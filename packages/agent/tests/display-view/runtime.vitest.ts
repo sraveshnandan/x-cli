@@ -1,0 +1,254 @@
+import { describe, expect, it } from 'vitest'
+import {
+  Addressed,
+  AmbientServiceTag,
+  EventEngine,
+} from '@magnitudedev/event-core'
+import { Duration, Effect, Fiber, Layer, Queue, Stream } from 'effect'
+import type { DisplayViewShape } from '@magnitudedev/acn-protocol'
+import type { AppEvent } from '../../src/events'
+import { AgentRoutingProjection } from '../../src/projections/agent-routing'
+import { AgentLifecycleProjection } from '../../src/projections/agent-lifecycle'
+import { ChatTitleProjection } from '../../src/projections/chat-title'
+import { CompactionProjection } from '../../src/projections/compaction'
+import { DetachedProcessProjection } from '../../src/projections/detached-process'
+import { GoalProjection } from '../../src/projections/goal'
+import { HarnessStateProjection } from '../../src/projections/harness-state'
+import { OutboundMessagesProjection } from '../../src/projections/outbound-messages'
+import { SessionContextProjection } from '../../src/projections/session-context'
+import { TaskGraphProjection } from '../../src/projections/task-graph'
+import { TaskAssignmentProjection } from '../../src/projections/task-assignment'
+import { TurnProjection } from '../../src/projections/turn'
+import { UserMessageResolutionProjection } from '../../src/projections/user-message-resolution'
+import { WorkerActivityProjection } from '../../src/projections/worker-activity'
+import {
+  DisplayTimelineProjection,
+  ModelRequestActivityAmbient,
+  ModelRequestActivityProjection,
+} from '../../src/display'
+import { WindowProjection } from '../../src/window'
+import {
+  DisplayViewNotFoundError,
+  DisplayViewRuntime,
+  DisplayViewRuntimeLive,
+  defaultDisplayViewShape,
+} from '../../src/display-view'
+import { makeCountingAddressedEntryStore } from '../helpers/counting-addressed-store'
+import { ToolUniverseSource } from '../../src/ambient/tool-universe-ambient'
+import { toolUniverseToolkit } from '../../src/tools/toolkits'
+
+const TestAgent = EventEngine.make<AppEvent>()({
+  name: 'DisplayViewRuntimeTestAgent',
+  schemaVersion: 'test',
+  projections: [
+    SessionContextProjection,
+    AgentRoutingProjection,
+    AgentLifecycleProjection,
+    GoalProjection,
+    TaskGraphProjection,
+    TurnProjection,
+    HarnessStateProjection,
+    DetachedProcessProjection,
+    WorkerActivityProjection,
+    OutboundMessagesProjection,
+    UserMessageResolutionProjection,
+    TaskAssignmentProjection,
+    WindowProjection,
+    CompactionProjection,
+    ChatTitleProjection,
+    DisplayTimelineProjection,
+    ModelRequestActivityProjection,
+  ],
+  workers: [],
+})
+
+const listMessages = <M,>(
+  m: { readonly byId: { readonly [id: string]: M }; readonly order: readonly string[] },
+): readonly M[] => m.order.map((id) => m.byId[id]!)
+
+const rootSmallShape: DisplayViewShape = {
+  timelines: {
+    root: { kind: 'tail', limit: 25, live: true, presentation: 'default' },
+  },
+}
+
+const provideRuntime = (storeLayer: Layer.Layer<Addressed.AddressedEntryStore>) =>
+  Layer.provideMerge(
+    DisplayViewRuntimeLive,
+    Layer.provideMerge(
+      TestAgent.EngineLayer,
+      Layer.merge(
+        storeLayer,
+        Layer.succeed(ToolUniverseSource, { toolkit: toolUniverseToolkit }),
+      ),
+    ),
+  )
+
+describe('display view runtime', () => {
+  it('materializes a shape without display view app events', async () => {
+    const fixture = await Effect.runPromise(makeCountingAddressedEntryStore)
+
+    const snapshot = await Effect.runPromise(Effect.gen(function* () {
+      const engine = (yield* EventEngine.Service) as EventEngine.Shape<AppEvent, unknown>
+      const runtime = yield* DisplayViewRuntime
+
+      yield* engine.send({ type: 'turn_started', forkId: null, turnId: 'turn-1', chainId: 'chain-1' })
+      yield* engine.send({ type: 'message_start', forkId: null, turnId: 'turn-1', id: 'msg-1', destination: { kind: 'user' } })
+      yield* engine.send({ type: 'message_chunk', forkId: null, turnId: 'turn-1', id: 'msg-1', text: 'hello' })
+      yield* engine.send({ type: 'message_end', forkId: null, turnId: 'turn-1', id: 'msg-1' })
+
+      yield* runtime.setShape('view-1', defaultDisplayViewShape)
+      return yield* runtime.snapshot('view-1')
+    }).pipe(
+      Effect.scoped,
+      Effect.provide(provideRuntime(Layer.succeed(Addressed.AddressedEntryStore, fixture.store))),
+      Effect.orDie
+    ))
+
+    expect(listMessages(snapshot.state.timelines.root.messages)).toMatchObject([
+      { type: 'assistant_message', content: 'hello' },
+    ])
+  })
+
+  it('streams updates when tracked addressed timeline content changes', async () => {
+    const fixture = await Effect.runPromise(makeCountingAddressedEntryStore)
+
+    const snapshots = await Effect.runPromise(Effect.gen(function* () {
+      const engine = (yield* EventEngine.Service) as EventEngine.Shape<AppEvent, unknown>
+      const runtime = yield* DisplayViewRuntime
+      const queue = yield* Queue.unbounded<unknown>()
+
+      yield* runtime.setShape('view-stream', rootSmallShape)
+      const fiber = yield* runtime.stream('view-stream').pipe(
+        Stream.tap((snapshot) => Queue.offer(queue, snapshot)),
+        Stream.runDrain,
+        Effect.fork
+      )
+
+      const first = yield* Queue.take(queue)
+      yield* engine.send({ type: 'turn_started', forkId: null, turnId: 'turn-1', chainId: 'chain-1' })
+      yield* engine.send({ type: 'message_start', forkId: null, turnId: 'turn-1', id: 'msg-1', destination: { kind: 'user' } })
+      yield* engine.send({ type: 'message_chunk', forkId: null, turnId: 'turn-1', id: 'msg-1', text: 'updated' })
+      let second = yield* Queue.take(queue).pipe(
+        Effect.timeoutFail({
+          duration: Duration.millis(500),
+          onTimeout: () => 'display view stream did not update',
+        })
+      )
+      const hasUpdatedMessage = (snapshot: any): boolean =>
+        listMessages(snapshot.state.timelines.root.messages).some((message: any) => message.content === 'updated')
+      for (let i = 0; i < 5 && !hasUpdatedMessage(second); i += 1) {
+        second = yield* Queue.take(queue).pipe(
+          Effect.timeoutFail({
+            duration: Duration.millis(500),
+            onTimeout: () => 'display view stream did not publish addressed content',
+          })
+        )
+      }
+
+      yield* Fiber.interrupt(fiber)
+      return [first, second] as const
+    }).pipe(
+      Effect.scoped,
+      Effect.provide(provideRuntime(Layer.succeed(Addressed.AddressedEntryStore, fixture.store))),
+      Effect.orDie
+    ))
+
+    expect(listMessages((snapshots[0] as any).state.timelines.root.messages)).toEqual([])
+    expect(listMessages((snapshots[1] as any).state.timelines.root.messages)).toMatchObject([
+      { type: 'assistant_message', content: 'updated' },
+    ])
+  })
+
+  it('streams transient model request activity without persisting an app event', async () => {
+    const fixture = await Effect.runPromise(makeCountingAddressedEntryStore)
+
+    const snapshots = await Effect.runPromise(Effect.gen(function* () {
+      const runtime = yield* DisplayViewRuntime
+      const ambient = yield* AmbientServiceTag
+      const engine = (yield* EventEngine.Service) as EventEngine.Shape<AppEvent, unknown>
+      const queue = yield* Queue.unbounded<any>()
+
+      yield* engine.send({
+        type: 'turn_started',
+        forkId: null,
+        turnId: 'turn-1',
+        chainId: 'chain-1',
+      })
+      yield* runtime.setShape('view-progress', rootSmallShape)
+      const fiber = yield* runtime.stream('view-progress').pipe(
+        Stream.tap((snapshot) => Queue.offer(queue, snapshot)),
+        Stream.runDrain,
+        Effect.fork,
+      )
+
+      yield* Queue.take(queue)
+      yield* ambient.update(ModelRequestActivityAmbient, {
+        turn: { turnId: 'turn-1', chainId: 'chain-1', forkId: null },
+        progress: {
+          phase: 'prefill',
+          requestId: 'request-1',
+          completedTokens: 14_020,
+          totalTokens: 14_300,
+          cachedTokens: 13_200,
+        },
+      })
+      let active = yield* Queue.take(queue)
+      while (active.state.actors.root?.status._tag !== 'Working'
+        || active.state.actors.root.status.detail._tag !== 'Prefill') {
+        active = yield* Queue.take(queue)
+      }
+
+      yield* ambient.update(ModelRequestActivityAmbient, {
+        turn: { turnId: 'turn-1', chainId: 'chain-1', forkId: null },
+        progress: { phase: 'generating', requestId: 'request-1' },
+      })
+      let cleared = yield* Queue.take(queue)
+      while (cleared.state.actors.root?.status._tag !== 'Working'
+        || cleared.state.actors.root.status.detail._tag === 'Prefill') {
+        cleared = yield* Queue.take(queue)
+      }
+
+      yield* Fiber.interrupt(fiber)
+      return [active, cleared] as const
+    }).pipe(
+      Effect.scoped,
+      Effect.provide(provideRuntime(Layer.succeed(Addressed.AddressedEntryStore, fixture.store))),
+      Effect.orDie,
+    ))
+
+    expect(snapshots[0].state.actors.root?.status).toMatchObject({
+      _tag: 'Working',
+      detail: {
+        _tag: 'Prefill',
+        completedTokens: 14_020,
+        totalTokens: 14_300,
+        cachedTokens: 13_200,
+      },
+    })
+    expect(snapshots[1].state.actors.root?.status).toMatchObject({
+      _tag: 'Working',
+      detail: { _tag: 'NoDetail' },
+    })
+  })
+
+  it('closes a runtime view explicitly', async () => {
+    const fixture = await Effect.runPromise(makeCountingAddressedEntryStore)
+
+    const result = await Effect.runPromise(Effect.gen(function* () {
+      const runtime = yield* DisplayViewRuntime
+      yield* runtime.setShape('view-close', defaultDisplayViewShape)
+      yield* runtime.close('view-close')
+      return yield* runtime.snapshot('view-close').pipe(Effect.either)
+    }).pipe(
+      Effect.scoped,
+      Effect.provide(provideRuntime(Layer.succeed(Addressed.AddressedEntryStore, fixture.store))),
+      Effect.orDie
+    ))
+
+    expect(result._tag).toBe('Left')
+    if (result._tag === 'Left') {
+      expect(result.left).toBeInstanceOf(DisplayViewNotFoundError)
+    }
+  })
+})

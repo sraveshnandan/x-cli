@@ -1,0 +1,44 @@
+{
+  "name": "@x-cli/agent",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "bun test",
+    "test:vitest": "bunx --bun vitest run",
+    "test:vitest:watch": "bunx --bun vitest",
+    "typecheck": "tsc --noEmit",
+    "measure-system-prompt": "bun run scripts/measure-system-prompt.ts",
+    "web-search:capture": "bun run scripts/web-search-capture.ts"
+  },
+  "dependencies": {
+    "@effect/platform": "^0.96.0",
+    "@effect/platform-bun": "^0.90.0",
+    "@x-cli/dom-extract": "workspace:*",
+    "@x-cli/generate-id": "workspace:*",
+    "@x-cli/ripgrep": "workspace:*",
+    "@x-cli/roles": "workspace:*",
+    "@x-cli/scratchpad": "workspace:*",
+    "@x-cli/utils": "workspace:*",
+    "@x-cli/shell-classifier": "workspace:*",
+    "@x-cli/skills": "workspace:*",
+    "@x-cli/ai": "workspace:*",
+    "@x-cli/sdk": "workspace:*",
+    "@x-cli/acn-protocol": "workspace:*",
+    "@x-cli/vcs": "workspace:*",
+    "effect": "^3.21.2",
+    "ignore": "^7.0.5",
+    "luxon": "^3.7.2",
+    "slimdom": "^4.3.5"
+  },
+  "devDependencies": {
+    "@effect/vitest": "^0.25.0",
+    "@x-cli/logger": "workspace:*",
+    "@x-cli/tracing": "workspace:*",
+    "@types/bun": "latest",
+    "@types/luxon": "^3.7.1",
+    "vitest": "^3.2.1"
+  }
+}

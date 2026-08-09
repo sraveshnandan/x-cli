@@ -1,0 +1,62 @@
+name: Release checks
+
+on:
+  pull_request:
+    paths:
+      - ".changeset/**"
+      - ".github/workflows/**"
+      - "cli/**"
+      - "inference/**"
+      - "packages/**"
+      - "patches/**"
+      - "scripts/accept-release-candidate.ts"
+      - "scripts/release-target.ts"
+      - "scripts/tsconfig.release.json"
+      - "bun.lock"
+      - "package.json"
+
+permissions:
+  contents: read
+
+env:
+  BUN_VERSION: "1.3.14"
+  RUST_VERSION: "1.91.1"
+  NPM_VERSION: "11.6.2"
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: ${{ env.RUST_VERSION }}
+      - run: npm install --global "npm@${NPM_VERSION}"
+      - run: bun install --frozen-lockfile
+      - run: bun run icn:check-generated
+      - run: bun run --cwd packages/icn-protocol typecheck
+      - run: bun run --cwd packages/icn-protocol test
+      - run: bun run --cwd packages/release typecheck
+      - run: bun run --cwd cli typecheck
+      - run: bun run --cwd packages/sdk typecheck
+      - run: bun run --cwd packages/icn typecheck
+      - run: bun run --cwd packages/ripgrep prepare
+      - run: bun run --cwd packages/acn typecheck
+      - run: bunx tsc -p scripts/tsconfig.release.json
+      - run: bun run packages/release/scripts/matrix.ts
+      - run: bun run packages/release/scripts/prepare-npm.ts release/npm-candidate
+
+  release-build:
+    needs: static
+    uses: ./.github/workflows/release-build.yml
+    with:
+      source_commit: ${{ github.sha }}
+      validate_candidate: true

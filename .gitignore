@@ -1,0 +1,38 @@
+node_modules
+# Rust/CMake outputs, including temporary standalone parity-crate builds.
+inference/target/
+inference/**/target/
+inference/dist/
+# Optional workspace-local model cache; the default cache is under inference/target/.
+inference/.parity-models/
+# Parity evidence uses unique, immutable run directories and is never source.
+inference/results/parity/
+# Composite benchmark evidence is likewise generated and immutable.
+inference/results/benchmark/
+.turbo
+dist
+/bin
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+release-artifacts
+/jobs
+packages/agent/tmp
+*.tsbuildinfo
+notes
+.motel-data
+specs
+bugs
+
+# Web / Desktop
+web/dist
+web/node_modules
+desktop/out
+desktop/node_modules
+
+packages/cli/lib/release-runtime.cjs
+
+.humanlayer/tasks/
+info/

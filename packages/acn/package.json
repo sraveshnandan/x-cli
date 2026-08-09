@@ -1,0 +1,33 @@
+{
+  "name": "@x-cli/acn",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "dev": "bun run --cwd ../.. icn:build && bun run --cwd ../.. dev:version && bun run --cwd ../.. dev:client",
+    "dev:run": "bun run --cwd ../.. dev:client",
+    "typecheck": "bun run ../version/scripts/generate-version.ts && tsc --noEmit"
+  },
+  "dependencies": {
+    "@effect/cli": "^0.75.2",
+    "@effect/opentelemetry": "^0.63.0",
+    "@effect/platform": "^0.96.0",
+    "@effect/platform-bun": "^0.90.0",
+    "@effect/rpc": "0.75.1",
+    "@x-cli/agent": "workspace:*",
+    "@x-cli/generate-id": "workspace:*",
+    "@x-cli/icn": "workspace:*",
+    "@x-cli/icn-protocol": "workspace:*",
+    "@x-cli/acn-protocol": "workspace:*",
+    "@x-cli/ripgrep": "workspace:*",
+    "@x-cli/roles": "workspace:*",
+    "@x-cli/skills": "workspace:*",
+    "@x-cli/storage": "workspace:*",
+    "@x-cli/utils": "workspace:*",
+    "@x-cli/version": "workspace:*",
+    "effect": "^3.21.2",
+    "fast-json-patch": "^3.1.1"
+  }
+}

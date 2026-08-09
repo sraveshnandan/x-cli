@@ -1,0 +1,163 @@
+/**
+ * Browser Platform implementation — spec §5.3
+ *
+ * Uses browser APIs: localStorage, navigator.clipboard, window.open, fetch.
+ */
+import { Effect, Exit, Layer, Scope } from "effect"
+import { FetchHttpClient } from "@effect/platform"
+import {
+  AcnInstanceManager,
+  makeAcnJitRuntime,
+  makeRemoteAcnInstanceManager,
+} from "@magnitudedev/sdk"
+import type { Platform, Storage, Clipboard, Notification, Dialogs } from "@magnitudedev/client-common"
+
+// Experimental File System Access API — only available in Chromium browsers.
+// This is a client-host capability, not agent-host filesystem access.
+interface FileSystemDirectoryHandle { readonly name: string }
+interface FileSystemFileHandle { readonly name: string }
+
+interface WindowWithFSAccess extends Window {
+  showDirectoryPicker?(): Promise<FileSystemDirectoryHandle>
+  showOpenFilePicker?(opts: { multiple?: boolean }): Promise<FileSystemFileHandle[]>
+}
+
+const STORAGE_KEY_PREFIX = "magnitude:"
+const DEFAULT_SERVER_KEY = `${STORAGE_KEY_PREFIX}default-server`
+
+const browserStorage: Storage = {
+  async getItem(key: string): Promise<string | null> {
+    try {
+      return localStorage.getItem(`${STORAGE_KEY_PREFIX}${key}`)
+    } catch {
+      return null
+    }
+  },
+  async setItem(key: string, value: string): Promise<void> {
+    try {
+      localStorage.setItem(`${STORAGE_KEY_PREFIX}${key}`, value)
+    } catch {
+      // ignore quota errors
+    }
+  },
+  async removeItem(key: string): Promise<void> {
+    try {
+      localStorage.removeItem(`${STORAGE_KEY_PREFIX}${key}`)
+    } catch {
+      // ignore
+    }
+  },
+}
+
+const browserClipboard: Clipboard = {
+  async readText(): Promise<string> {
+    try {
+      return await navigator.clipboard.readText()
+    } catch {
+      return ""
+    }
+  },
+  async writeText(text: string): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(text)
+    } catch {
+      // fallback: execCommand
+      const textarea = document.createElement("textarea")
+      textarea.value = text
+      textarea.style.position = "fixed"
+      textarea.style.opacity = "0"
+      document.body.appendChild(textarea)
+      textarea.select()
+      try {
+        document.execCommand("copy")
+      } finally {
+        document.body.removeChild(textarea)
+      }
+    }
+  },
+}
+
+const browserNotifications: Notification = {
+  show(title: string, body: string): void {
+    if (typeof Notification !== "undefined" && Notification.permission === "granted") {
+      try {
+        new Notification(title, { body })
+      } catch {
+        // ignore
+      }
+    }
+  },
+}
+
+const browserDialogs: Dialogs = {
+  async openDirectory(): Promise<string | null> {
+    const picker = (window as WindowWithFSAccess).showDirectoryPicker
+    if (!picker) return null
+    try {
+      const handle = await picker.call(window)
+      return handle.name
+    } catch {
+      return null
+    }
+  },
+  async openFile(options?: { multiple?: boolean }): Promise<string[] | null> {
+    const picker = (window as WindowWithFSAccess).showOpenFilePicker
+    if (!picker) return null
+    try {
+      const handles = await picker.call(window, { multiple: options?.multiple ?? false })
+      return handles.map((h) => h.name)
+    } catch {
+      return null
+    }
+  },
+}
+
+export async function createBrowserPlatform(
+  proxyUrl: string = window.location.origin,
+): Promise<Platform> {
+  const manager = await Effect.runPromise(
+    makeRemoteAcnInstanceManager(proxyUrl).pipe(Effect.provide(FetchHttpClient.layer)),
+  )
+  const acnScope = await Effect.runPromise(Scope.make())
+  const acn = await Effect.runPromise(
+    makeAcnJitRuntime().pipe(
+      Effect.provideService(AcnInstanceManager, manager),
+      Effect.provideService(Scope.Scope, acnScope),
+      Effect.provide(FetchHttpClient.layer),
+    ),
+  )
+  window.addEventListener("pagehide", (event) => {
+    if (event.persisted) return
+    Effect.runFork(acn.close.pipe(Effect.ensuring(Scope.close(acnScope, Exit.void))))
+  })
+  const protocolLayer = acn.protocolLayer.pipe(Layer.provide(FetchHttpClient.layer))
+  const shutdown = () => Effect.runPromise(
+    acn.close.pipe(Effect.ensuring(Scope.close(acnScope, Exit.void))),
+  )
+  return {
+    id: "web",
+    protocolLayer,
+    acnStartup: acn.startup,
+    shutdown,
+    clipboard: browserClipboard,
+    storage: browserStorage,
+    notifications: browserNotifications,
+    dialogs: browserDialogs,
+    async openLink(url: string): Promise<void> {
+      window.open(url, "_blank", "noopener,noreferrer")
+    },
+    async openPath(_path: string): Promise<void> {
+      // No-op in browser — cannot open local paths
+    },
+    showItemInFolder(_path: string): void {
+      // No-op in browser
+    },
+    fetch: globalThis.fetch.bind(globalThis),
+    async getDefaultServer(): Promise<string | null> {
+      return browserStorage.getItem(DEFAULT_SERVER_KEY)
+    },
+    async setDefaultServer(url: string): Promise<void> {
+      await browserStorage.setItem(DEFAULT_SERVER_KEY, url)
+    },
+  }
+}

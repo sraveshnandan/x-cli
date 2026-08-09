@@ -1,0 +1,45 @@
+{
+  "name": "@x-cli/cli",
+  "version": "0.0.1-alpha.38",
+  "description": "Magnitude AI coding agent",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/magnitudedev/magnitude.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/magnitudedev/magnitude",
+  "bugs": {
+    "url": "https://github.com/magnitudedev/magnitude/issues"
+  },
+  "keywords": [
+    "ai",
+    "coding",
+    "agent",
+    "cli",
+    "magnitude"
+  ],
+  "author": {
+    "name": "Magnitude",
+    "email": "founders@magnitude.dev",
+    "url": "https://magnitude.dev"
+  },
+  "contributors": [
+    "Anders Lie <anders@magnitude.dev>",
+    "Tom Greenwald <tom@magnitude.dev>"
+  ],
+  "bin": {
+    "magnitude": "bin/magnitude.js"
+  },
+  "files": [
+    "bin/magnitude.js",
+    "lib/download.js",
+    "lib/release-runtime.cjs"
+  ],
+  "scripts": {
+    "prepack": "cp ../../README.md ./README.md && bun run scripts/prepare-release-runtime.ts"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

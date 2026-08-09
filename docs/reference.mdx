@@ -1,0 +1,96 @@
+---
+title: Reference
+description: "Commands, shortcuts, input, sessions, and local files"
+icon: book-open
+---
+
+## Slash commands
+
+| Command | Aliases | Description |
+|---|---|---|
+| `/new` | | Start a new conversation |
+| `/resume` | | Open recent conversations |
+| `/models` | | Choose a ready model |
+| `/catalog` | | Find and download local models |
+| `/hardware` | | Inspect local inference hardware |
+| `/settings` | `/s` | Open model settings |
+| `/bash` | | Enter bash mode |
+| `/init` | | Generate `AGENTS.md` for the project |
+| `/transcript` | | Toggle transcript display mode |
+| `/exit` | `/quit`, `/q` | Exit Magnitude |
+
+Type `/` to see available commands with autocomplete. Installed skills may add their own commands to the same menu.
+
+## Keyboard shortcuts
+
+| Shortcut | Action |
+|---|---|
+| `Enter` | Send a message or confirm a selection |
+| `Shift+Enter` | Add a new line |
+| `Ctrl+T` | Open the reasoning-level selector; press again to move through its options |
+| `Ctrl+R` | Open or close recent conversations |
+| `Esc` | Close the active menu or interrupt active agent work |
+| `Ctrl+C` | Clear composer text, or exit while idle with an empty composer |
+
+When the reasoning selector is open, use the arrow keys or `J`/`K` to move, `Enter` to apply the selection, and `Esc` to close it without applying the pending change.
+
+Menus use the arrow keys to move, `Enter` to choose, and `Esc` to close. The models settings menu also uses `Tab` and `Shift+Tab` to move between models, catalog, and hardware.
+
+### Input editing
+
+| Shortcut | Action |
+|---|---|
+| `Ctrl+A` | Move to the start of the current line |
+| `Ctrl+E` | Move to the end of the current line |
+| `Ctrl+U` | Delete before the cursor on the current line |
+| `Ctrl+K` | Delete after the cursor on the current line |
+| `Ctrl+W` | Delete the word before the cursor |
+| `Ctrl+D` | Delete the word after the cursor |
+| `Ctrl+Y` | Restore the last deleted text |
+
+## Files and input
+
+Type `@` in the composer to mention a file or directory. Mentioned files are included as context for the agent.
+
+You can paste or drag images into the composer. Large text pastes are collapsed into paste segments instead of filling the input.
+
+Enter bash mode with `/bash` or start a message with `!` to run a shell command directly.
+
+## Sessions
+
+Magnitude saves conversations automatically. Use `/resume` or `Ctrl+R` to open recent conversations, or start a new one with `/new`.
+
+When a conversation becomes too long for its model context, Magnitude compacts older work into a summary and continues the session.
+
+## Project instructions
+
+Run `/init` to generate an `AGENTS.md` file for the current project. Use it to describe repository conventions, architecture, test commands, and anything agents should do or avoid.
+
+Edit `AGENTS.md` like any other project file. Magnitude reads applicable instructions when working in the repository.
+
+## Environment variables
+
+| Variable | Purpose |
+|---|---|
+| `EXA_API_KEY` | Enable web search through Exa |
+| `HF_HUB_CACHE` | Set the Hugging Face Hub cache directory |
+| `HUGGINGFACE_HUB_CACHE` | Legacy Hugging Face Hub cache override |
+| `HF_HOME` | Set the Hugging Face data directory; Magnitude checks its `hub` directory |
+| `XDG_CACHE_HOME` | Set the base cache directory; Magnitude checks `huggingface/hub` within it |
+
+Magnitude checks those Hugging Face cache settings in the order shown. If none is set, it checks `~/.cache/huggingface/hub`.
+
+## Files and directories
+
+Magnitude creates `~/.magnitude` automatically.
+
+| Path | Purpose |
+|---|---|
+| `~/.magnitude/models/` | Magnitude-managed local models |
+| `~/.magnitude/cache/` | Disposable model metadata, profiling results, and other caches |
+| `~/.magnitude/sessions/` | Conversation history |
+| `~/.magnitude/logs/` | Application logs |
+| `~/.magnitude/traces/` | Local trace data when tracing is enabled |
+| `~/.magnitude/config.json` | User settings and model selections |
+
+Deleting `~/.magnitude/cache` may cause hardware profiling and model evaluation to run again, but it does not delete downloaded models. Models managed by Magnitude are stored separately under `~/.magnitude/models`.

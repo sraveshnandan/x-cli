@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "noEmit": true,
+    "paths": {
+      "@x-cli/web": ["../web/src/index.tsx"],
+      "@x-cli/sdk": ["../packages/sdk/src"],
+      "@x-cli/sdk/*": ["../packages/sdk/src/*"],
+
+      "@x-cli/ai": ["../packages/ai/src"]
+    }
+  },
+  "include": ["src"]
+}

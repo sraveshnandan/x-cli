@@ -1,0 +1,94 @@
+name: Llama Cpp Rs Check
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: read-all
+
+jobs:
+  check:
+    name: Run Tests on LLama Cpp Rs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          submodules: recursive
+      - name: Install Compile Deps
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run:
+          sudo apt-get update && sudo apt-get install -y build-essential curl libssl-dev libclang-dev pkg-config cmake git
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - name: Lint extended llama.cpp bindings
+        run: >-
+          cargo clippy --workspace --all-targets --features sampler,mtmd -- -D warnings
+      - name: Fmt
+        run: cargo fmt --all -- --check
+      - name: Test bindings feature matrix
+        run: |
+          cargo test -p llama-cpp-2 --no-default-features
+          cargo test -p llama-cpp-2 --no-default-features --features common
+          cargo test -p llama-cpp-2 --no-default-features --features common,serde
+          cargo test -p llama-cpp-2 --no-default-features --features mtmd
+          cargo test -p llama-cpp-2 --no-default-features --features common,mtmd,sampler
+      - name: Dry-Run Publishing
+        run: RUST_BACKTRACE=1 cargo publish --workspace --verbose --dry-run
+  arm64:
+    name: Check that it builds on various targets
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        target: [ linux/arm64, linux/amd64 ]
+    steps:
+      - name: checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          submodules: recursive
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@06116385d9baf250c9f4dcb4858b16962ea869c3
+        with:
+          platforms: arm64,amd64
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@d7f5e7f509e45cec5c76c4d5afdd7de93d0b3df5
+      - name: Build
+        uses: docker/build-push-action@v7
+        with:
+          file: test-build.Dockerfile
+          target: base-cuda
+          platforms: ${{ matrix.target }}
+  mac:
+    name: Check that it builds on mac
+    runs-on: macos-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          submodules: recursive
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Build
+        run: cargo build --features sampler
+  windows:
+    name: Check that it builds on windows
+    runs-on: windows-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          submodules: recursive
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Build
+        run: cargo build --features sampler
+      - name: Test
+        run: cargo test --features sampler

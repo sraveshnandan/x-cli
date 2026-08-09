@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "@opentui/react",
+    "paths": {
+      "@x-cli/agent": ["./packages/agent/src"],
+      "@x-cli/roles": ["./packages/roles/src"],
+      "@x-cli/roles/constants": ["./packages/roles/src/constants"],
+      "@x-cli/event-core": ["./packages/event-core/src"],
+      "@x-cli/effect-query": ["./packages/effect-query/src"],
+
+      "@x-cli/ai": ["./packages/ai/src"],
+      "@x-cli/providers": ["./packages/providers/src"],
+
+      "@x-cli/scratchpad": ["./packages/scratchpad/src"],
+      "@x-cli/acn-protocol": ["./packages/acn-protocol/src"],
+      "@x-cli/acn-protocol/*": ["./packages/acn-protocol/src/*"],
+      "@x-cli/sdk": ["./packages/sdk/src"],
+      "@x-cli/storage": ["./packages/storage/src"],
+      "@x-cli/acn": ["./packages/acn/src"],
+      "@x-cli/version": ["./packages/version/src"],
+      "@x-cli/utils": ["./packages/utils/src"],
+      "@x-cli/utils/*": ["./packages/utils/src/*"],
+      "@x-cli/generate-id": ["./packages/generate-id/src"],
+      "@x-cli/ripgrep": ["./packages/ripgrep/src"],
+      "@x-cli/client-common": ["./packages/client-common/src"],
+    },
+    "plugins": [
+      { "name": "@effect/language-service" }
+    ]
+    },
+    "$schema": "https://raw.githubusercontent.com/Effect-TS/language-service/refs/heads/main/schema.json"
+}

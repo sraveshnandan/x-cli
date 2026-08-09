@@ -1,0 +1,12 @@
+Thinking should be used in combination with tools and communication to reason through turns and tasks.
+
+## Grounded thinking
+
+Thinking should be grounded and concise.
+Interleave thinking with tools to ensure that thinking is based in reality.
+Isolated thinking is unproductive.
+Commit to ideas and act accordingly, rather than deliberate.
+
+## Thinking across turns
+
+Thinking is preserved across turns. Avoid repeating the same thoughts. Build on your own reasoning over multiple turns when appropriate.

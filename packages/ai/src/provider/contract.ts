@@ -1,0 +1,126 @@
+import type { Effect, Option } from "effect"
+import type { BoundModel } from "../model/bound-model"
+import type { ModelFamilyId, ProviderId, ProviderModel, ProviderModelId, ReasoningEffort } from "./model"
+import type { ModelCatalog } from "./catalog"
+import type { ImagePlaceholderConfig } from "../model/capabilities"
+import type { BaseCallOptions, ToolChoice } from "./call-options"
+import type { ModelDiscoveryOperationId, ModelPropertyDiscoveryError, ModelPropertyDiscoveryRequest } from "./discoverable-property"
+
+/**
+ * The base provider interface — defines what a provider is.
+ * Provider-agnostic: no specific provider IDs, no specific model families.
+ *
+ * Every provider returns `BoundModel<BaseCallOptions>` — the universal call
+ * options shape. Provider-specific options are baked in at bind time inside
+ * the provider's `model()` implementation, never seen by the agent layer.
+ */
+export interface Provider<
+  TModel extends ProviderModel = ProviderModel,
+> {
+  readonly id: ProviderId
+  readonly displayName: string
+  readonly catalog: ModelCatalog<TModel>
+
+  readonly discoverModelProperties: (
+    request: ModelPropertyDiscoveryRequest,
+  ) => Effect.Effect<ModelDiscoveryOperationId, ModelPropertyDiscoveryError>
+
+  /**
+   * Bind a model for inference.
+   * `providerModelId` is the provider-specific model ID (ProviderModel.providerModelId).
+   * Returns a `BoundModel<BaseCallOptions>` — provider-specific options are
+   * baked in at bind time and invisible to the caller.
+   */
+  readonly bindModel: (
+    providerModelId: ProviderModelId,
+    options?: ProviderModelBindOptions,
+  ) => Effect.Effect<BoundModel<BaseCallOptions>, never, never>
+
+  /**
+   * Classify a model into a known model family.
+   * Takes the provider model without `modelFamilyId` (which is what
+   * we're computing). Returns the family ID, or None if the model
+   * cannot be classified. Each provider's catalog decides whether an
+   * unclassified model is excluded or surfaced with an unknown family.
+   */
+  readonly classifyModelFamily: (model: Omit<TModel, "modelFamilyId">) => Option.Option<ModelFamilyId>
+}
+
+/**
+ * Options passed when binding a model for inference.
+ * Provider-specific fields (traits, agentId) are ignored by providers
+ * that don't use them.
+ */
+export interface ProviderModelBindOptions {
+  readonly defaults?: Partial<BaseCallOptions>
+  readonly imagePlaceholders?: ImagePlaceholderConfig
+  readonly requestAttribution?: RequestAttribution
+  /** Awaited when a bound default effort is invalidated by authoritative runtime inspection. */
+  readonly reasoningEffortFallback?: (
+    requested: ReasoningEffort,
+    fallback: ReasoningEffort,
+  ) => Effect.Effect<void, unknown, never>
+  /** Agent ID — used by providers that support tracing/metadata. Ignored by others. */
+  readonly agentId?: string
+  /** Role ID — used by providers that support tracing/metadata. Ignored by others. */
+  readonly roleId?: string
+  /** Traits — Magnitude-specific, ignored by other providers. */
+  readonly traits?: readonly string[]
+  /** Prefer a specific upstream provider — Magnitude-specific, ignored by others. */
+  readonly preferProvider?: string
+}
+
+// ── Provider extensions ──────────────────────────────────────────────
+// Provider-specific capabilities (web search, balance) are separate
+// interfaces, not part of the base Provider. Only providers that
+// implement them declare conformance.
+
+export interface WebSearchResult {
+  readonly text: string
+  readonly sources: ReadonlyArray<{ readonly title: string; readonly url: string }>
+  readonly data?: unknown
+}
+
+export interface WebSearchExtension<TResult = WebSearchResult, TError = unknown, R = unknown> {
+  readonly webSearch: (
+    query: string,
+    schema?: Record<string, unknown>,
+  ) => Effect.Effect<TResult, TError, R>
+}
+
+export interface UsageQuery {
+  readonly period?: string
+  readonly days?: number
+  readonly tz?: string
+}
+
+export interface UsageResponse {
+  readonly usage: unknown
+}
+
+export interface UsageExtension<TResponse = UsageResponse, TError = unknown, R = unknown> {
+  readonly usage: (
+    query?: UsageQuery,
+  ) => Effect.Effect<TResponse, TError, R>
+}
+/** Process-local request attribution, such as per-slot MRU updates. */
+export interface RequestAttribution {
+  readonly key: string
+  readonly requestStarted: Effect.Effect<void, never, never>
+  readonly requestProgress?: (
+    progress: ModelRequestProgress,
+  ) => Effect.Effect<void, never, never>
+}
+
+export type ModelRequestProgress =
+  | { readonly phase: "queued"; readonly requestId: string }
+  | { readonly phase: "preparing"; readonly requestId: string | null }
+  | {
+      readonly phase: "prefill"
+      readonly requestId: string
+      readonly completedTokens: number
+      readonly totalTokens: number
+      readonly cachedTokens: number
+    }
+  | { readonly phase: "generating"; readonly requestId: string }
+  | { readonly phase: "cleared"; readonly requestId: string | null }

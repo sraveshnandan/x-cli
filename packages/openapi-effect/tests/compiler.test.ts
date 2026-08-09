@@ -1,0 +1,280 @@
+import { Effect, HashMap, Option } from "effect";
+import { describe, expect, it } from "vitest";
+import {
+  compileOpenApi,
+  decodeOpenApiDocument,
+  OpenApiDocumentDecodeError,
+  OpenApiSemanticError,
+} from "../src/index.js";
+import {
+  config,
+  document,
+  ndjsonDocument,
+  sseDocument,
+  streamConfig,
+} from "./fixtures.js";
+
+const compile = (input: unknown) =>
+  Effect.runPromise(compileOpenApi(input, config));
+
+describe("compileOpenApi", () => {
+  it("decodes optional OpenAPI fields into Option at the wire boundary", async () => {
+    const decoded = await Effect.runPromise(decodeOpenApiDocument(document));
+
+    expect(Option.isSome(decoded.components)).toBe(true);
+    expect(Option.isSome(decoded.paths)).toBe(true);
+    expect(Option.isNone(decoded.webhooks)).toBe(true);
+    expect(Option.isNone(decoded.servers)).toBe(true);
+  });
+
+  it("decodes OpenAPI once and emits Schema, operation, HttpApi, client, index, and manifest modules", async () => {
+    const result = await compile(document);
+    const schemas = HashMap.get(result.files, "schemas.ts");
+    const api = HashMap.get(result.files, "api.ts");
+    const client = HashMap.get(result.files, "client.ts");
+    const index = HashMap.get(result.files, "index.ts");
+    const manifest = HashMap.get(result.files, "manifest.json");
+
+    expect(schemas._tag).toBe("Some");
+    expect(
+      schemas.pipe((value) => (value._tag === "Some" ? value.value : ""))
+    ).toContain("export const Model");
+    expect(
+      schemas.pipe((value) => (value._tag === "Some" ? value.value : ""))
+    ).toContain("export type Model = S.Schema.Type<typeof Model>");
+    expect(
+      schemas.pipe((value) => (value._tag === "Some" ? value.value : ""))
+    ).toContain("export type ModelEncoded = S.Schema.Encoded<typeof Model>");
+    expect(
+      schemas.pipe((value) => (value._tag === "Some" ? value.value : ""))
+    ).toContain('as: "Option"');
+    expect(
+      api.pipe((value) => (value._tag === "Some" ? value.value : ""))
+    ).toContain("HttpApiEndpoint.get");
+    expect(
+      api.pipe((value) => (value._tag === "Some" ? value.value : ""))
+    ).toContain("S.NumberFromString");
+    expect(
+      client.pipe((value) => (value._tag === "Some" ? value.value : ""))
+    ).toContain("makeExampleApiClient");
+    expect(
+      index.pipe((value) => (value._tag === "Some" ? value.value : ""))
+    ).toContain('export * from "./client.js"');
+    expect(manifest._tag).toBe("Some");
+    expect(result.manifest.operations).toEqual(["getModel", "openModel"]);
+    const clientSource = client._tag === "Some" ? client.value : "";
+    for (const operation of result.manifest.operations)
+      expect(clientSource).toContain(`${operation}: make`);
+  });
+
+  it("emits configured NDJSON operations as descriptors, not HttpApi endpoints", async () => {
+    const result = await Effect.runPromise(
+      compileOpenApi(ndjsonDocument, streamConfig)
+    );
+    const operations = HashMap.get(result.files, "operations.ts");
+    const api = HashMap.get(result.files, "api.ts");
+    const operationSource = operations._tag === "Some" ? operations.value : "";
+    const apiSource = api._tag === "Some" ? api.value : "";
+
+    expect(operationSource).toContain('transport: "ndjson"');
+    expect(operationSource).toContain("eventSchema: Schemas.GenerationEvent");
+    expect(operationSource).toContain("payload:");
+    expect(operationSource).toContain("Schemas.OpenModelRequest");
+    expect(operationSource).toContain("status: 400");
+    expect(operationSource).toContain("Schemas.Problem");
+    expect(apiSource).not.toContain('HttpApiEndpoint.post("generate"');
+    const client = HashMap.get(result.files, "client.ts");
+    expect(client._tag === "Some" ? client.value : "").toContain(
+      "makeStreamOperation(http, options, Operations.generateOperation)"
+    );
+  });
+
+  it("emits finite and long-lived SSE descriptors with explicit policies", async () => {
+    const result = await Effect.runPromise(
+      compileOpenApi(sseDocument, streamConfig)
+    );
+    const operations = HashMap.get(result.files, "operations.ts");
+    const api = HashMap.get(result.files, "api.ts");
+    const operationSource = operations._tag === "Some" ? operations.value : "";
+    const apiSource = api._tag === "Some" ? api.value : "";
+
+    expect(operationSource).toContain('transport: "sse"');
+    expect(operationSource).toContain('value: "[DONE]"');
+    expect(operationSource).toContain('type: "long-lived"');
+    expect(operationSource).toContain('type: "last-event-id"');
+    expect(operationSource).toContain("eventSchema: Schemas.LifecycleEvent");
+    expect(apiSource).not.toContain('HttpApiEndpoint.post("chatCompletions"');
+    expect(apiSource).not.toContain('HttpApiEndpoint.get("watchLifecycle"');
+    const client = HashMap.get(result.files, "client.ts");
+    const clientSource = client._tag === "Some" ? client.value : "";
+    expect(clientSource).toContain("Operations.chatCompletionsOperation");
+    expect(clientSource).toContain("Operations.watchLifecycleOperation");
+  });
+
+  it("rejects document-shape failures through a typed decode error", async () => {
+    const exit = await Effect.runPromiseExit(
+      decodeOpenApiDocument({
+        openapi: "3.0.0",
+        info: { title: "Bad", version: "1" },
+      })
+    );
+    expect(exit._tag).toBe("Failure");
+    if (exit._tag === "Failure" && exit.cause._tag === "Fail") {
+      expect(exit.cause.error).toBeInstanceOf(OpenApiDocumentDecodeError);
+    }
+  });
+
+  it("rejects unsupported semantics through a typed semantic error", async () => {
+    const overlapping = {
+      openapi: "3.1.0",
+      info: { title: "Bad", version: "1" },
+      components: {
+        schemas: {
+          Bad: {
+            oneOf: [{ type: "string" }, { type: "string", minLength: 1 }],
+          },
+        },
+      },
+      paths: {},
+    };
+    const exit = await Effect.runPromiseExit(
+      compileOpenApi(overlapping, config)
+    );
+    expect(exit._tag).toBe("Failure");
+    if (exit._tag === "Failure" && exit.cause._tag === "Fail") {
+      expect(exit.cause.error).toBeInstanceOf(OpenApiSemanticError);
+      if (exit.cause.error instanceof OpenApiSemanticError) {
+        expect(exit.cause.error.diagnostics.map(({ code }) => code)).toContain(
+          "schema.oneOf-overlap"
+        );
+      }
+    }
+  });
+
+  it("supports propertyNames as a strongly typed record-key schema", async () => {
+    const result = await compile({
+      openapi: "3.1.0",
+      info: { title: "Property names", version: "1" },
+      components: {
+        schemas: {
+          Labels: {
+            type: "object",
+            propertyNames: { type: "string", pattern: "^[a-z]+$" },
+            additionalProperties: { type: "integer" },
+          },
+        },
+      },
+      paths: {},
+    });
+    const schemas = HashMap.get(result.files, "schemas.ts");
+    expect(schemas._tag).toBe("Some");
+    if (schemas._tag === "Some") {
+      expect(schemas.value).toContain(
+        'key: S.String.pipe(S.pattern(new RegExp("^[a-z]+$")))'
+      );
+    }
+  });
+
+  it("emits required string _tag discriminants as Effect tagged structs", async () => {
+    const result = await compile({
+      openapi: "3.1.0",
+      info: { title: "Tagged schema", version: "1" },
+      components: {
+        schemas: {
+          Ready: {
+            type: "object",
+            required: ["_tag", "value"],
+            properties: {
+              _tag: { const: "Ready" },
+              value: { type: "string" },
+            },
+            additionalProperties: false,
+          },
+        },
+      },
+      paths: {},
+    });
+    const schemas = HashMap.get(result.files, "schemas.ts");
+    expect(schemas._tag).toBe("Some");
+    if (schemas._tag === "Some") {
+      expect(schemas.value).toContain('S.TaggedStruct("Ready", {');
+      expect(schemas.value).not.toContain('"_tag":');
+    }
+  });
+
+  it("applies propertyNames to declared properties when additional properties are forbidden", async () => {
+    const result = await compile({
+      openapi: "3.1.0",
+      info: { title: "Closed property names", version: "1" },
+      components: {
+        schemas: {
+          ClosedLabels: {
+            type: "object",
+            properties: { foo: { type: "string" } },
+            propertyNames: { type: "string", pattern: "^bar$" },
+            additionalProperties: false,
+          },
+        },
+      },
+      paths: {},
+    });
+    const schemas = HashMap.get(result.files, "schemas.ts");
+    expect(schemas._tag).toBe("Some");
+    if (schemas._tag === "Some") {
+      expect(schemas.value).toContain(
+        'Object.keys(value).every(S.is(S.String.pipe(S.pattern(new RegExp("^bar$")))))'
+      );
+    }
+  });
+
+  it("proves referenced oneOf branches exclusive pairwise", async () => {
+    const result = await compile({
+      openapi: "3.1.0",
+      info: { title: "Referenced union", version: "1" },
+      components: {
+        schemas: {
+          Choice: {
+            oneOf: [
+              { $ref: "#/components/schemas/Mode" },
+              { $ref: "#/components/schemas/Named" },
+              { $ref: "#/components/schemas/Allowed" },
+            ],
+          },
+          Mode: { type: "string", enum: ["auto", "none"] },
+          Named: {
+            type: "object",
+            required: ["type"],
+            properties: { type: { const: "named" } },
+          },
+          Allowed: {
+            type: "object",
+            required: ["type"],
+            properties: { type: { const: "allowed" } },
+          },
+        },
+      },
+      paths: {},
+    });
+    const schemas = HashMap.get(result.files, "schemas.ts");
+    expect(schemas._tag).toBe("Some");
+  });
+
+  it("is deterministic across input record ordering", async () => {
+    const reversed = {
+      ...document,
+      components: {
+        schemas: Object.fromEntries(
+          Object.entries(document.components.schemas).reverse()
+        ),
+      },
+      paths: Object.fromEntries(Object.entries(document.paths).reverse()),
+    };
+    const [left, right] = await Promise.all([
+      compile(document),
+      compile(reversed),
+    ]);
+    expect([...HashMap.entries(left.files)].sort()).toEqual(
+      [...HashMap.entries(right.files)].sort()
+    );
+  });
+});

@@ -1,0 +1,25 @@
+{
+  "name": "@x-cli/roles",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./constants": "./src/constants.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@x-cli/harness": "workspace:*",
+    "@x-cli/ai": "workspace:*",
+    "@x-cli/shell-classifier": "workspace:*",
+    "@x-cli/scratchpad": "workspace:*",
+    "effect": "^3.21.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}

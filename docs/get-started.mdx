@@ -1,0 +1,66 @@
+---
+title: Get Started
+description: "Install Magnitude and start working with a local model"
+icon: rocket
+---
+
+## Install
+
+<Tabs>
+  <Tab title="npm">
+    ```sh
+    npm install -g @magnitudedev/cli
+    ```
+  </Tab>
+  <Tab title="bun">
+    ```sh
+    bun add -g @magnitudedev/cli
+    ```
+  </Tab>
+  <Tab title="pnpm">
+    ```sh
+    pnpm add -g @magnitudedev/cli
+    ```
+  </Tab>
+  <Tab title="yarn">
+    ```sh
+    yarn global add @magnitudedev/cli
+    ```
+  </Tab>
+</Tabs>
+
+## Run Magnitude
+
+From the directory you want Magnitude to work in:
+
+```sh
+cd your-project
+magnitude
+```
+
+On first launch, Magnitude detects and profiles your hardware, recommends local models for your machine, and asks you to choose one. Magnitude then downloads, prepares, and loads the model automatically. [Learn about model recommendations →](/models)
+
+Once the model is ready, ask Magnitude to inspect files, run commands, analyze data, or complete another task in the current directory. Add [skills](/skills) for specialized work with browsers, spreadsheets, presentations, documents, and PDFs.
+
+## Windows
+
+Magnitude requires WSL on Windows. Native Windows is not currently supported.
+
+```powershell
+wsl --install
+```
+
+Restart your computer, open WSL, and follow the installation steps above.
+
+## Terminal
+
+Magnitude renders best in a modern terminal emulator such as [Ghostty](https://ghostty.org) or [Kitty](https://sw.kovidgoyal.net/kitty/). The default macOS Terminal has limited color support and may look different.
+
+## Enable web search
+
+Magnitude can use [Exa](https://exa.ai) to search the web. Create an Exa API key, then set it before starting Magnitude:
+
+```sh
+export EXA_API_KEY="your-api-key"
+magnitude
+```

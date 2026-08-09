@@ -1,0 +1,24 @@
+{
+  "name": "@x-cli/storage",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "bunx --bun vitest run src/types/session.test.ts src/types/config.test.ts src/io/structured-file.test.ts src/io/storage.test.ts src/io/boundary-architecture.test.ts src/config/storage.test.ts src/sessions/storage.test.ts"
+  },
+  "dependencies": {
+    "@effect/platform": "^0.96.0",
+    "@effect/platform-bun": "^0.90.0",
+    "@x-cli/scratchpad": "workspace:*",
+    "@x-cli/ai": "workspace:*",
+    "@x-cli/acn-protocol": "workspace:*",
+    "effect": "^3.21.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "vitest": "^3.2.4"
+  }
+}

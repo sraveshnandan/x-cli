@@ -7,7 +7,7 @@ import {
   makeAmbientServiceLayer,
   FrameworkErrorPubSubLive,
   FrameworkErrorReporterLive,
-} from '@magnitudedev/event-core'
+} from '@x-cli/event-core'
 import type { AppEvent } from '../../events'
 import { TurnProjection } from '../turn'
 import { AgentRoutingProjection } from '../agent-routing'

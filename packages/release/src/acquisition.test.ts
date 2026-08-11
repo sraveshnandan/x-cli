@@ -25,7 +25,7 @@ import { ReleaseArtifactSchema } from "./contracts"
 import type { ArtifactInstallationEvent } from "./installation-progress"
 
 const version = "1.2.3"
-const tag = `@magnitudedev/cli@${version}`
+const tag = `@x-cli/cli@${version}`
 const sourceCommit = "a".repeat(40)
 const archive = new TextEncoder().encode("archive")
 const sha256 = (bytes: Uint8Array) =>
@@ -91,7 +91,7 @@ describe("unsigned release acquisition", () => {
   })
 
   it("rejects a valid manifest for a different requested release", async () => {
-    const root = await mkdtemp(join(tmpdir(), "magnitude-release-test-"))
+    const root = await mkdtemp(join(tmpdir(), "x-cli-release-test-"))
     const wrongVersion = "9.9.9"
     const server = Bun.serve({
       hostname: "127.0.0.1",
@@ -99,7 +99,7 @@ describe("unsigned release acquisition", () => {
       fetch: () =>
         new Response(new TextDecoder().decode(manifestBytes({
           version: wrongVersion,
-          tag: `@magnitudedev/cli@${wrongVersion}`,
+          tag: `@x-cli/cli@${wrongVersion}`,
         }))),
     })
     try {
@@ -122,7 +122,7 @@ describe("unsigned release acquisition", () => {
   })
 
   it("reuses a valid cached manifest without another download", async () => {
-    const root = await mkdtemp(join(tmpdir(), "magnitude-release-test-"))
+    const root = await mkdtemp(join(tmpdir(), "x-cli-release-test-"))
     let requests = 0
     const server = Bun.serve({
       hostname: "127.0.0.1",
@@ -154,7 +154,7 @@ describe("unsigned release acquisition", () => {
     ["digest", "corrupt", "downloaded artifact SHA-256"],
     ["size", "short", "artifact response declares 5 bytes, expected 7"],
   ])("rejects artifact bytes that differ from the manifest %s", async (_field, body, message) => {
-    const root = await mkdtemp(join(tmpdir(), "magnitude-release-test-"))
+    const root = await mkdtemp(join(tmpdir(), "x-cli-release-test-"))
     const server = Bun.serve({
       hostname: "127.0.0.1",
       port: 0,
@@ -181,7 +181,7 @@ describe("unsigned release acquisition", () => {
   })
 
   it("publishes an extracted installation without scoped staging cleanup failure", async () => {
-    const root = await mkdtemp(join(tmpdir(), "magnitude-release-test-"))
+    const root = await mkdtemp(join(tmpdir(), "x-cli-release-test-"))
     const payload = join(root, "payload")
     const archivePath = join(root, "cli.tar.gz")
     const destination = join(root, "installations", "digest")

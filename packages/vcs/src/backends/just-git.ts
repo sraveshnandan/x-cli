@@ -125,7 +125,7 @@ function eff<A>(
  *             Pass a MemoryFileSystem for in-memory testing.
  */
 /** Default git commit author for the shadow VCS. */
-const DEFAULT_AUTHOR = { name: "Magnitude Agent", email: "agent@magnitude.dev" } as const
+const DEFAULT_AUTHOR = { name: "x-cli Agent", email: "agent@x-cli.dev" } as const
 
 export async function createJustGitBackend(
   worktreePath: string,
@@ -158,14 +158,14 @@ export async function createJustGitBackend(
 
   await fs.writeFile(
     `${gitDirPath}/description`,
-    "Unnamed repository; shadow VCS for Magnitude agent\n",
+    "Unnamed repository; shadow VCS for x-cli agent\n",
   )
 
   // Exclude the storage directory so git add/status ignore it.
   const storageRelPath = path.relative(worktreePath, gitDirPath).replace(/\/\.git$/, "")
   await fs.writeFile(
     `${gitDirPath}/info/exclude`,
-    `# Magnitude shadow VCS excludes\n${storageRelPath}/\n.git\n`,
+    `# x-cli shadow VCS excludes\n${storageRelPath}/\n.git\n`,
   )
 
   const found = await findRepo(fs, gitDirPath)

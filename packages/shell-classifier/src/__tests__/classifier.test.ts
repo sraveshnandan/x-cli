@@ -271,7 +271,7 @@ describe('shell-classifier', () => {
 
     test('full session inspection command is readonly', () => {
       expect(classifyShellCommand(
-        "latest=$(ls -t ~/.magnitude/sessions | head -1); echo $latest; ls -la ~/.magnitude/sessions/$latest; echo '--- meta.json ---'; cat ~/.magnitude/sessions/$latest/meta.json; echo '--- first 20 events ---'; head -20 ~/.magnitude/sessions/$latest/events.jsonl; echo '--- first 20 logs ---'; head -20 ~/.magnitude/sessions/$latest/logs.jsonl"
+        "latest=$(ls -t ~/.x-cli/sessions | head -1); echo $latest; ls -la ~/.x-cli/sessions/$latest; echo '--- meta.json ---'; cat ~/.x-cli/sessions/$latest/meta.json; echo '--- first 20 events ---'; head -20 ~/.x-cli/sessions/$latest/events.jsonl; echo '--- first 20 logs ---'; head -20 ~/.x-cli/sessions/$latest/logs.jsonl"
       ).tier).toBe('readonly')
     })
 
@@ -356,12 +356,12 @@ describe('shell-classifier', () => {
     })
 
     test('workspace path is allowed when passed as additional root', () => {
-      expect(writesStayWithin('echo foo > /Users/alice/.magnitude/sessions/123/workspace/note.txt', {}, '/project', '/Users/alice/.magnitude/sessions/123/workspace/')).toBe(true)
-      expect(writesStayWithin('mkdir -p /Users/alice/.magnitude/sessions/123/workspace/tmp', {}, '/project', '/Users/alice/.magnitude/sessions/123/workspace')).toBe(true)
+      expect(writesStayWithin('echo foo > /Users/alice/.x-cli/sessions/123/workspace/note.txt', {}, '/project', '/Users/alice/.x-cli/sessions/123/workspace/')).toBe(true)
+      expect(writesStayWithin('mkdir -p /Users/alice/.x-cli/sessions/123/workspace/tmp', {}, '/project', '/Users/alice/.x-cli/sessions/123/workspace')).toBe(true)
     })
 
     test('outside paths remain blocked even with workspace allowlist', () => {
-      expect(writesStayWithin('echo foo > /Users/alice/.ssh/config', {}, '/project', '/Users/alice/.magnitude/sessions/123/workspace/')).toBe(false)
+      expect(writesStayWithin('echo foo > /Users/alice/.ssh/config', {}, '/project', '/Users/alice/.x-cli/sessions/123/workspace/')).toBe(false)
     })
   })
 

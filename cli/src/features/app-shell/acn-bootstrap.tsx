@@ -5,20 +5,20 @@ import type {
   AcnInstallationPhase,
   AcnLifecycleState,
   AcnStartingPhase,
-} from "@magnitudedev/sdk";
+} from "@x-cli/sdk";
 import { ProgressBar } from "../../components/progress-bar";
 import { useTheme } from "../../hooks/use-theme";
 
 const PHASE_LABELS: Readonly<Record<AcnInstallationPhase, string>> = {
-  DownloadingDaemon: "Downloading daemon",
-  DownloadingInferenceEngine: "Downloading inference engine",
-  StartingMagnitude: "Starting Magnitude",
+   DownloadingDaemon: "Downloading daemon",
+   DownloadingInferenceEngine: "Downloading inference engine",
+   StartingXCli: "Starting x-cli",
 };
 
 const STARTING_PHASE_LABELS: Readonly<Record<Extract<AcnStartingPhase, string>, string>> = {
-  Discovering: "Looking for Magnitude",
-  WaitingForOwner: "Waiting for previous Magnitude process",
-  LaunchingAcn: "Starting Magnitude",
+  Discovering: "Looking for x-cli",
+  WaitingForOwner: "Waiting for previous x-cli process",
+  LaunchingAcn: "Starting x-cli",
   ResolvingLocalInference: "Preparing local inference",
   LaunchingLocalInference: "Starting local inference",
 };
@@ -75,8 +75,8 @@ export function AcnBootstrapScreen({
     const title =
       state.stage === "InstallDaemon" ||
       state.stage === "PrepareLocalInference"
-        ? "Magnitude failed to install"
-        : "Magnitude failed to start";
+        ? "x-cli failed to install"
+        : "x-cli failed to start";
     return (
       <box
         style={{
@@ -111,7 +111,7 @@ export function AcnBootstrapScreen({
   const percentage = installing ? Math.floor(state.overallProgress * 100) : 0;
   const downloadDetail =
     installing &&
-    state.phase !== "StartingMagnitude" &&
+    state.phase !== "StartingXCli" &&
     state.detailIsExact &&
     Option.isSome(state.detail) &&
     state.detail.value.unit === "Bytes"
@@ -142,7 +142,7 @@ export function AcnBootstrapScreen({
             style={{ fg: theme.foreground }}
             attributes={TextAttributes.BOLD}
           >
-            Installing Magnitude
+            Installing x-cli
           </text>
           <box
             style={{
@@ -188,7 +188,7 @@ export function AcnBootstrapScreen({
             style={{ fg: theme.foreground }}
             attributes={TextAttributes.BOLD}
           >
-            Starting Magnitude
+            Starting x-cli
           </text>
           <text style={{ fg: theme.muted }}>
             {startingPhaseLabel(state.phase)}

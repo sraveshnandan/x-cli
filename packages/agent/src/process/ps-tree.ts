@@ -23,7 +23,7 @@
  */
 
 import { Cause, Data, Effect } from 'effect'
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 
 // ── Types ─────────────────────────────────────────────────────────────
 

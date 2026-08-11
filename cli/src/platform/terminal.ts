@@ -14,8 +14,8 @@ import {
   makeAcnJitRuntime,
   makeLocalAcnInstanceManager,
   SDK_ACN_TARGET,
-} from "@magnitudedev/sdk"
-import { BunSqliteDriverLayer } from "@magnitudedev/sdk/bun"
+} from "@x-cli/sdk"
+import { BunSqliteDriverLayer } from "@x-cli/sdk/bun"
 import type {
   Platform,
   Storage,
@@ -23,7 +23,7 @@ import type {
   Notification,
   Dialogs,
   TerminalCapabilities,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import { makeCliEffectLoggingLayer } from "./effect-logger"
 
 const noopStorage: Storage = {

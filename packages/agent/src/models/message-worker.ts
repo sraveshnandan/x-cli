@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { messageWorkerTool } from '../tools/agent-communication'
 import { MessageWorkerStateSchema, type MessageWorkerState } from './tool-state'

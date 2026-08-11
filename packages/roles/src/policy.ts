@@ -5,9 +5,9 @@ import {
   isGitAllowed,
   isPathWithin,
   writesStayWithin,
-} from '@magnitudedev/shell-classifier'
-import { expandScratchpadPath } from '@magnitudedev/scratchpad'
-import type { ExecuteHookContext, InterceptorDecision } from '@magnitudedev/harness'
+} from '@x-cli/shell-classifier'
+import { expandScratchpadPath } from '@x-cli/scratchpad'
+import type { ExecuteHookContext, InterceptorDecision } from '@x-cli/harness'
 import type { PolicyRule, PolicyContext } from './types'
 
 type FullContext = ExecuteHookContext & { policyContext: PolicyContext }

@@ -9,7 +9,7 @@ import {
   ModelServingConfigurationIdSchema,
   ProviderModelIdSchema,
   RecommendationIdSchema,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { beforeEach, expect, test, vi } from "vitest"
 import {
   makeCatalogCandidate,

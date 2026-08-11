@@ -3,7 +3,7 @@ import type {
   LocalInferenceHardware,
   LocalInferenceMemoryDomainId,
   ModelInstanceAllocation,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 export type HardwareMemoryBreakdownStatus =
   | "complete"

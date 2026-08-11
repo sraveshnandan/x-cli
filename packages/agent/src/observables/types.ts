@@ -1,5 +1,5 @@
 import type { Effect, Layer } from 'effect'
-import type { TextPart, ImagePart } from '@magnitudedev/ai'
+import type { TextPart, ImagePart } from '@x-cli/ai'
 import type { RoleId } from '../agents/role-validation'
 
 // ---------------------------------------------------------------------------

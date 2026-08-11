@@ -15,9 +15,9 @@ import {
   EventSinkTag,
   HydrationContext,
   ProjectionSnapshotServiceTag,
-} from '@magnitudedev/event-core'
-import type { EventCursor } from '@magnitudedev/event-core'
-import { logger } from '@magnitudedev/logger'
+} from '@x-cli/event-core'
+import type { EventCursor } from '@x-cli/event-core'
+import { logger } from '@x-cli/logger'
 
 import type { AppEvent } from '../events'
 import { ChatPersistence } from '../persistence/chat-persistence-service'

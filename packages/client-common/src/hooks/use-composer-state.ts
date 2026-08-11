@@ -41,8 +41,8 @@ import {
 import type {
   RawImageAttachment,
   RawMentionOccurrence,
-} from "@magnitudedev/sdk"
-import { createId } from "@magnitudedev/generate-id"
+} from "@x-cli/sdk"
+import { createId } from "@x-cli/generate-id"
 import { isDisplayRootStatusActive } from "../utils/actor-status"
 
 export interface UseComposerStateResult {

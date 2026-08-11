@@ -9,11 +9,11 @@ import { useState, useCallback, type ReactNode } from "react"
 import { Loader2, ArrowRight } from "lucide-react"
 import { Option } from "effect"
 import { useAtomValue, useAtomSet, Result } from "@effect-atom/atom-react"
-import { useAgentClient } from "@magnitudedev/client-common"
-import { ProviderIdSchema } from "@magnitudedev/sdk"
+import { useAgentClient } from "@x-cli/client-common"
+import { ProviderIdSchema } from "@x-cli/sdk"
 import { apiKeyVerifiedAtom } from "../state/web-atoms"
 
-const MAGNITUDE_PROVIDER_ID = ProviderIdSchema.make("magnitude")
+const MAGNITUDE_PROVIDER_ID = ProviderIdSchema.make("x-cli")
 
 export function LoginScreen(): ReactNode {
   const client = useAgentClient()
@@ -89,7 +89,7 @@ export function LoginScreen(): ReactNode {
             marginBottom: 4,
           }}
         >
-          Welcome to Magnitude
+          Welcome to x-cli
         </h1>
 
         {/* Subtitle */}
@@ -102,7 +102,7 @@ export function LoginScreen(): ReactNode {
             marginBottom: 24,
           }}
         >
-          Enter your Magnitude API key to connect.
+          Enter your x-cli API key to connect.
         </p>
 
         {/* Input */}

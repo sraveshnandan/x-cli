@@ -12,7 +12,7 @@ import { Atom, useAtom, useAtomValue, useAtomSet, Result } from "@effect-atom/at
 import { useAgentClient } from "../state/agent-client-context"
 import { useSessionsList, type UseSessionsListParams } from "./use-sessions-list"
 import { sessionsToRecentChats } from "../data/recent-chats"
-import type { SessionMetadata } from "@magnitudedev/sdk"
+import type { SessionMetadata } from "@x-cli/sdk"
 import type { RecentChat } from "../data/recent-chats"
 
 export interface UsePaginatedSessionsParams {

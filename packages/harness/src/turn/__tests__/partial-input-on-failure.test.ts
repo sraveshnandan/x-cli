@@ -3,7 +3,7 @@ import { expect } from 'vitest'
 import { Option } from 'effect'
 import { CanonicalAccumulatorReducer, projectCanonical } from '../reducers'
 import type { HarnessEvent, ToolInputStarted, ToolInputFieldChunk, ToolInputRejected, TurnOutcome } from '../../events'
-import type { ProviderToolCallId, ToolCallId } from '@magnitudedev/ai'
+import type { ProviderToolCallId, ToolCallId } from '@x-cli/ai'
 
 // ── Helpers ─────────────────────────────────────────────────────────
 

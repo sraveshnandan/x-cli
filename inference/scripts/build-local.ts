@@ -10,7 +10,7 @@ import {
 import { constants } from "node:fs";
 import { basename, delimiter, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { IcnInstallationDeclaration } from "@magnitudedev/icn-protocol";
+import { IcnInstallationDeclaration } from "@x-cli/icn-protocol";
 import { Schema } from "effect";
 import { getDefaultBunTarget } from "../../scripts/release-target";
 import { buildIcnBinary } from "./compile";
@@ -123,7 +123,7 @@ export const buildLocalIcn = async (): Promise<{
       });
     }
     const executable =
-      process.platform === "win32" ? "magnitude-icn.exe" : "magnitude-icn";
+      process.platform === "win32" ? "x-cli-icn.exe" : "x-cli-icn";
     await copyFile(build.binary, resolve(staging, "bin", executable));
     for (const source of build.runtimeLibraries) {
       await copyFile(source, resolve(staging, "runtime", basename(source)));
@@ -178,7 +178,7 @@ if (import.meta.main) {
   const result = await buildLocalIcn();
   if (process.argv.includes("--serve")) {
     const executable =
-      process.platform === "win32" ? "magnitude-icn.exe" : "magnitude-icn";
+      process.platform === "win32" ? "x-cli-icn.exe" : "x-cli-icn";
     const environment = process.platform === "win32"
       ? {
         ...process.env,

@@ -5,7 +5,7 @@ import { tmpdir } from 'os'
 import { join } from 'path'
 import { persistResult, loadResult, hasResult, PersistError } from '../result-persistence'
 
-const tmpDir = () => join(tmpdir(), `magnitude-persist-test-${Date.now()}-${Math.random().toString(36).slice(2)}`)
+const tmpDir = () => join(tmpdir(), `x-cli-persist-test-${Date.now()}-${Math.random().toString(36).slice(2)}`)
 
 describe('result-persistence', () => {
   it('round-trips a simple object', async () => {

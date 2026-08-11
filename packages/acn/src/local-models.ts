@@ -12,9 +12,9 @@ import {
   type ModelPackageEntry,
   type ProviderModelCatalogEntry,
   modelOfferingTargetPackageIds,
-} from "@magnitudedev/acn-protocol"
-import type { ModelServingConfigurationId, ProviderModelId } from "@magnitudedev/sdk"
-import { IcnCatalog } from "@magnitudedev/icn"
+} from "@x-cli/acn-protocol"
+import type { ModelServingConfigurationId, ProviderModelId } from "@x-cli/sdk"
+import { IcnCatalog } from "@x-cli/icn"
 import { makeMirroredState, MirroredStateChanges } from "./mirrored-state"
 import { LocalModelPackages } from "./local-model-packages"
 import { LocalModelRecommendations } from "./local-model-recommendations"

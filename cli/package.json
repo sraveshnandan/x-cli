@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "bin": {
-    "magnitude": "bin/magnitude"
+    "x-cli": "bin/x-cli.js"
   },
   "files": [
     "dist",
@@ -45,6 +45,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.2.3",
     "react-dom": "^19.2.4",
+    "react-test-renderer": "^19.0.0",
     "typescript": "^5.8.3"
   }
 }

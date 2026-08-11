@@ -21,7 +21,7 @@ export type ToolChoice =
 
 /**
  * Universal call options that every provider accepts.
- * Provider-specific options (e.g. magnitudeAdditionalOptions) are NOT here —
+ * Provider-specific options (e.g. xCliAdditionalOptions) are NOT here —
  * they're baked in at bind time inside the provider's `model()` implementation.
  */
 export interface BaseCallOptions {

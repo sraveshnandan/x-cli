@@ -6,7 +6,7 @@ import type {
   AppEvent,
   CodingAgentSession,
   ForkTurnState,
-} from "@magnitudedev/agent"
+} from "@x-cli/agent"
 import { AgentRuntime, type AgentRuntimeApi } from "./agent-runtime"
 import { SessionCommands, SessionCommandsLive } from "./session-commands"
 import type { RuntimeEntry } from "./session-types"
@@ -83,7 +83,7 @@ const makeEntry = Effect.fn("test.make-session-command-entry")(function* (
     updatedAt: 1,
     title: "Session",
     cwd: process.cwd(),
-    scratchpadPath: "/tmp/magnitude-session-commands-scratchpad",
+    scratchpadPath: "/tmp/x-cli-session-commands-scratchpad",
     session,
     scope,
   } satisfies RuntimeEntry

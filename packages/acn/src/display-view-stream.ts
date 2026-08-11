@@ -2,7 +2,7 @@ import { Deferred, Effect, Exit, Option, Queue, Scope, Stream } from "effect"
 import {
   compilePatchMap,
   diffDecoded,
-} from "@magnitudedev/utils/patch"
+} from "@x-cli/utils/patch"
 import {
   DisplayViewSnapshot as DisplayViewSnapshotSchema,
   SessionOperationFailed,
@@ -13,7 +13,7 @@ import {
   type DisplayViewStateEvent,
   type SessionError,
   type StreamEvent,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 
 export interface DisplayViewSource {
   readonly on: {

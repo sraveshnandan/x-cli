@@ -30,7 +30,7 @@ export const FatalErrorScreen = ({ error, invariantViolation = false, onRetry, o
 
   const title = invariantViolation
     ? 'An unexpected error occurred'
-    : 'Failed to connect to Magnitude daemon'
+    : 'Failed to connect to x-cli daemon'
 
   const body = invariantViolation
     ? `${error}\n\nPlease report this issue.`

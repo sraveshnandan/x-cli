@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, afterEach } from "vitest"
 import { Effect, Layer } from "effect"
 import * as path from "path"
 import * as fs from "fs/promises"
-import { ShadowVcs, makeShadowVcsLayer, VcsFsLive } from "@magnitudedev/vcs"
+import { ShadowVcs, makeShadowVcsLayer, VcsFsLive } from "@x-cli/vcs"
 
 const tmpDir = path.join(process.cwd(), "tmp-vcs-timestamp-test")
 

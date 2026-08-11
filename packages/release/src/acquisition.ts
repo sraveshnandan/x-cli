@@ -46,7 +46,7 @@ const failure = (
   transient = false
 ) => new ReleaseAcquisitionError({ stage, message, transient })
 
-const releaseTag = (version: string) => `@magnitudedev/cli@${version}`
+const releaseTag = (version: string) => `@x-cli/cli@${version}`
 
 export const releaseUrl = (
   baseUrl: string,
@@ -160,7 +160,7 @@ const readCachedManifest = (
     const fs = yield* FileSystem.FileSystem
     const path = yield* Path.Path
     const manifest = yield* fs
-      .readFile(path.join(directory, "magnitude-release.json"))
+      .readFile(path.join(directory, "x-cli-release.json"))
       .pipe(Effect.option)
     if (Option.isNone(manifest)) return Option.none()
     return manifest.value.byteLength <= MANIFEST_LIMIT
@@ -183,7 +183,7 @@ const publishCachedManifest = (
     })
     yield* Effect.gen(function* () {
       yield* fs.writeFile(
-        path.join(staging, "magnitude-release.json"),
+        path.join(staging, "x-cli-release.json"),
         manifest,
         {
           flag: "wx",
@@ -229,7 +229,7 @@ export const acquireRelease = (
     yield* fs
       .remove(cacheDirectory, { recursive: true, force: true })
       .pipe(Effect.catchAll(() => Effect.void))
-    const manifestUrl = releaseUrl(baseUrl, version, "magnitude-release.json")
+    const manifestUrl = releaseUrl(baseUrl, version, "x-cli-release.json")
     const manifestBytes = yield* getBounded(manifestUrl, MANIFEST_LIMIT)
     const acquired = yield* validateReleaseManifestBytes(manifestBytes)
     if (

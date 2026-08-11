@@ -11,7 +11,7 @@ const fixture = resolve(
 
 describe("ACN owner admission", () => {
   it("admits service initialization in exactly one contending process", async () => {
-    const root = await mkdtemp(join(tmpdir(), "magnitude-owner-admission-"))
+    const root = await mkdtemp(join(tmpdir(), "x-cli-owner-admission-"))
     const barrier = join(root, "barrier")
     const admissions = join(root, "admissions")
     const spawn = () => Bun.spawn([process.execPath, fixture, root, barrier, admissions], {

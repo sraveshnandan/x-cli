@@ -11,12 +11,12 @@
 import { useMemo } from "react"
 import { Effect } from "effect"
 import { Atom, useAtomSet, useAtomValue, useAtomMount } from "@effect-atom/atom-react"
-import { useDisplayViewController, usePlatform, useSessionActions } from "@magnitudedev/client-common"
+import { useDisplayViewController, usePlatform, useSessionActions } from "@x-cli/client-common"
 import {
   settingsOpenAtom,
   usageOpenAtom,
   nextEscWillKillAllAtom,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import { sidebarSearchAtom } from "../state/web-atoms"
 
 /** Check if the platform uses Cmd (macOS) vs Ctrl (other). */
@@ -54,7 +54,7 @@ export function useMenuActions(): void {
                 break
               case "toggle-sidebar-search":
                 setSearchQuery("")
-                window.dispatchEvent(new CustomEvent("__magnitude:focus-search"))
+                window.dispatchEvent(new CustomEvent("__x-cli:focus-search"))
                 break
               case "toggle-transcript-mode":
                 togglePresentationMode()
@@ -104,7 +104,7 @@ export function useMenuActions(): void {
 
               if (isDoubleEsc) {
                 setNextEscWillKillAll(false)
-                window.dispatchEvent(new CustomEvent("__magnitude:interrupt-all"))
+                window.dispatchEvent(new CustomEvent("__x-cli:interrupt-all"))
                 e.preventDefault()
               } else {
                 // First Esc — show hint that next Esc will interrupt all
@@ -131,7 +131,7 @@ export function useMenuActions(): void {
                   // Cmd/Ctrl+R → focus sidebar search
                   e.preventDefault()
                   setSearchQuery("")
-                  window.dispatchEvent(new CustomEvent("__magnitude:focus-search"))
+                  window.dispatchEvent(new CustomEvent("__x-cli:focus-search"))
                   break
                 case "t":
                   // Cmd/Ctrl+T → toggle transcript mode

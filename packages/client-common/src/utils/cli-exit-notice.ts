@@ -3,11 +3,11 @@ import type {
   AcnClientCloseResult,
   ModelSlotConfiguredLocal,
   ModelSlotsState,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 export const CLI_EXIT_OBSERVATION_FALLBACK =
-  "Magnitude may still have background processes running.\n" +
-  "Run `magnitude stop` to stop the current daemon and release any loaded model now."
+  "x-cli may still have background processes running.\n" +
+  "Run `x-cli stop` to stop the current daemon and release any loaded model now."
 
 const activeLocalSlots = (state: ModelSlotsState): ReadonlyArray<ModelSlotConfiguredLocal> =>
   [state.slots.primary, state.slots.secondary].filter(
@@ -42,7 +42,7 @@ export const deriveCliExitNotice = (observation: AcnClientCloseResult): Option.O
               connectedClientCount === 1 ? "client is" : "clients are"
             } connected.`
         return Option.some(
-          `${firstSentence}\nRun \`magnitude stop\` to stop the current daemon and release the models now.`
+          `${firstSentence}\nRun \`x-cli stop\` to stop the current daemon and release the models now.`
         )
       }
 
@@ -60,7 +60,7 @@ export const deriveCliExitNotice = (observation: AcnClientCloseResult): Option.O
             } connected.`
 
       return Option.some(
-        `${firstSentence}\nRun \`magnitude stop\` to stop the current daemon and release the model now.`
+        `${firstSentence}\nRun \`x-cli stop\` to stop the current daemon and release the model now.`
       )
     },
   })

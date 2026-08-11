@@ -14,7 +14,7 @@ applies_to:
 
 # CUDA compatibility and preparation
 
-Magnitude owns the CUDA backend module and its runtime libraries. The host owns the NVIDIA driver.
+x-cli owns the CUDA backend module and its runtime libraries. The host owns the NVIDIA driver.
 A locally installed CUDA toolkit is neither required nor consulted at runtime.
 
 CUDA discovery, static artifact compatibility, and successful execution are different facts. A
@@ -30,7 +30,7 @@ Windows resolves `nvcuda.dll` from the system directory.
 
 The resolver validates required driver symbols, initializes CUDA, enumerates devices, rejects the
 stub provider, retains the loaded handle, and reports its actual path, driver API, compute
-capabilities, and hardware labels. Magnitude never changes host loader configuration or creates
+capabilities, and hardware labels. x-cli never changes host loader configuration or creates
 system symlinks.
 
 ## Shipped artifact contract
@@ -47,7 +47,7 @@ publishes the inspected result as artifact truth. The configured architecture li
 compiler input and is not duplicated as a second compatibility declaration. An unknown PTX version
 has no implicit driver floor and fails publication.
 
-Cubins and additional target relations are not part of this contract until Magnitude actually
+Cubins and additional target relations are not part of this contract until x-cli actually
 ships them.
 
 ## Build matrix
@@ -71,7 +71,7 @@ they increase build time and artifact size.
 
 ## Static selection
 
-For each pack on the current host, Magnitude checks:
+For each pack on the current host, x-cli checks:
 
 1. each enumerated CUDA architecture has at least one applicable image; and
 2. the installed driver API meets that image's inspected PTX JIT floor.
@@ -108,8 +108,8 @@ ACN projects this operation through startup state without owning it:
 }
 ```
 
-The TUI remains responsive and shows the phase under `Starting Magnitude`. It does not fabricate a
-percentage for opaque driver JIT work. The NVIDIA driver may reuse its disk JIT cache, but Magnitude
+The TUI remains responsive and shows the phase under `Starting x-cli`. It does not fabricate a
+percentage for opaque driver JIT work. The NVIDIA driver may reuse its disk JIT cache, but x-cli
 does not depend on or manage that cache. Worker initialization runs on every CUDA ICN startup;
 calibration measurement runs only on a cache miss.
 

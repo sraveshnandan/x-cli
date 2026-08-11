@@ -3,7 +3,7 @@ import {
   type ModelFailure,
   type ModelSlot,
   type ModelSlotConfiguredLocal,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 export interface CurrentModelAllocation {
   readonly parallelSequences: number

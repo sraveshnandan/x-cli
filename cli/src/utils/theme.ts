@@ -1,15 +1,15 @@
 import { collectCliEnv } from './env'
 
-import type { MarkdownPalette } from '@magnitudedev/client-common'
+import type { MarkdownPalette } from '@x-cli/client-common'
 import type { CliEnv } from '../types/env'
 import type {
   ChatTheme,
   MarkdownHeadingLevel,
   ThemeName,
 } from '../types/theme-system'
-import { blue, slate, red, green, orange, violet, indigo } from '@magnitudedev/client-common'
+import { blue, slate, red, green, orange, violet, indigo } from '@x-cli/client-common'
 
-export { blue, slate, red, green, orange, violet, indigo } from '@magnitudedev/client-common'
+export { blue, slate, red, green, orange, violet, indigo } from '@x-cli/client-common'
 
 /**
  * Theme Configuration System

@@ -18,7 +18,7 @@ import {
   useDisplayViewController,
   usageOpenAtom,
   composerHasContentAtom,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 import { modelMenuStateAtom, showRecentChatsOverlayAtom } from '../state/cli-atoms'
 import { matchKeyToChord } from '../utils/chord'
 import type { ActionId } from '../types/ui-actions'

@@ -4,7 +4,7 @@
  * Used by both `full` (leader) and `autopilot` window-to-prompt mappers.
  */
 
-import type { Message as AiMessage, TerminalMessages, UserPart } from '@magnitudedev/ai'
+import type { Message as AiMessage, TerminalMessages, UserPart } from '@x-cli/ai'
 import { Option } from 'effect'
 import type { WindowEntry, CompletedTurn, TurnFeedback } from '../types'
 import type { TimelineEntry } from '../inbox/types'

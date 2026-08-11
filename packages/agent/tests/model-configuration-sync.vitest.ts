@@ -1,9 +1,9 @@
-import type { AmbientService } from '@magnitudedev/event-core'
+import type { AmbientService } from '@x-cli/event-core'
 import {
   ProviderIdSchema,
   ProviderModelIdSchema,
   ReasoningEffortSchema,
-} from '@magnitudedev/ai'
+} from '@x-cli/ai'
 import { Effect, Ref } from 'effect'
 import { describe, expect, it } from 'vitest'
 import { ConfigAmbient, type ConfigState } from '../src/ambient/config-ambient'
@@ -75,7 +75,7 @@ describe('resident session model configuration', () => {
 describe('resident session tool availability', () => {
   it('re-reads the authoritative snapshot and skips semantic duplicates', async () => {
     const state = (
-      source: 'magnitude' | 'exa' | 'unavailable',
+      source: 'x-cli' | 'exa' | 'unavailable',
     ): ToolAvailabilityState => ({
       webSearch: source === 'unavailable'
         ? { _tag: 'Unavailable' }
@@ -102,13 +102,13 @@ describe('resident session tool availability', () => {
 
       yield* synchronizer.sync
       yield* synchronizer.sync
-      yield* Ref.set(authoritative, state('magnitude'))
+      yield* Ref.set(authoritative, state('x-cli'))
       yield* synchronizer.sync
 
       return { resident, applied }
     }))
 
-    expect(result.resident).toEqual(state('magnitude'))
-    expect(result.applied).toEqual(['exa', 'magnitude'])
+    expect(result.resident).toEqual(state('x-cli'))
+    expect(result.applied).toEqual(['exa', 'x-cli'])
   })
 })

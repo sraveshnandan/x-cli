@@ -2,7 +2,7 @@
 
 ## Design Content
 
-These design documents are the high-level source of truth for Magnitude's product and code. They
+These design documents are the high-level source of truth for x-cli's product and code. They
 describe definitions, models, and policies that represent the desired semantic shape of the
 codebase. Any difference between design and code is a contradiction.
 

@@ -7,12 +7,12 @@
  */
 
 import { Effect } from 'effect'
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 import type {
   HarnessEvent,
   ToolLifecycleEvent,
-} from '@magnitudedev/harness'
-import type { GenerationPerformance, ProviderToolCallId } from '@magnitudedev/ai'
+} from '@x-cli/harness'
+import type { GenerationPerformance, ProviderToolCallId } from '@x-cli/ai'
 import {
   type AppEvent,
   type MessageDestination,

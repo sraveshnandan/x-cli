@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { Effect, Fiber, Option, Ref, Schema, Stream } from "effect"
-import { defineMirroredState } from "@magnitudedev/acn-protocol"
-import { makeIcnObservedState } from "@magnitudedev/icn"
+import { defineMirroredState } from "@x-cli/acn-protocol"
+import { makeIcnObservedState } from "@x-cli/icn"
 import {
   bindMirroredState,
   makeMirroredState,

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import type { RpcMiddleware } from "@effect/rpc"
 import { Context, Option } from "effect"
-import { MagnitudeRpcs } from "./group"
+import { XCliRpcs } from "./group"
 import { AcnRpcDemand } from "./middleware"
 import { AcnSubscriptionMetadataTag } from "./subscription"
 
@@ -11,7 +11,7 @@ const hasDemandMiddleware = (
 
 describe("ACN RPC lifecycle policy", () => {
   it("derives one unambiguous policy for every RPC", () => {
-    for (const [tag, rpc] of MagnitudeRpcs.requests) {
+    for (const [tag, rpc] of XCliRpcs.requests) {
       const subscription = Option.isSome(
         Context.getOption(rpc.annotations, AcnSubscriptionMetadataTag),
       )

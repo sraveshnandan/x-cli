@@ -92,7 +92,7 @@ describe("normalizeProjectPath", () => {
 
 describe("Git path collection", () => {
   test("includes staged, unstaged, and untracked files and expands directories", () => {
-    const root = mkdtempSync(join(tmpdir(), "magnitude-design-docs-"));
+    const root = mkdtempSync(join(tmpdir(), "x-cli-design-docs-"));
     try {
       Bun.spawnSync(["git", "init", "-q"], { cwd: root });
       mkdirSync(join(root, "src", "nested"), { recursive: true });

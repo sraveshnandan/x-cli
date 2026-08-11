@@ -38,11 +38,11 @@ const eventProgress = (
 const eventLabel = (event: ArtifactInstallationEvent): string => {
   switch (event._tag) {
     case "Downloading":
-      return "Downloading Magnitude CLI"
+      return "Downloading x-cli CLI"
     case "Verifying":
-      return "Verifying Magnitude CLI"
+      return "Verifying x-cli CLI"
     case "Extracting":
-      return "Installing Magnitude CLI"
+      return "Installing x-cli CLI"
   }
 }
 
@@ -89,7 +89,7 @@ export const makeLauncherInstallationProgress = (
     succeeded: interactive
       ? clear
       : Effect.sync(() => {
-          output.write("Magnitude CLI installed.\n")
+          output.write("x-cli CLI installed.\n")
         }),
     failed: clear,
   }

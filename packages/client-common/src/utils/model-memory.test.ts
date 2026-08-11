@@ -4,7 +4,7 @@ import {
   LocalInferenceMemoryDomainIdSchema,
   type LocalInferenceHardware,
   type ProviderModelCatalogEntry,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { providerModelMemoryConditions } from "./model-memory"
 
 const systemMemoryDomainId = LocalInferenceMemoryDomainIdSchema.make("system")

@@ -5,7 +5,7 @@ import {
   red,
   slate,
   type SlotProfiles,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 import { Atom, useAtomMount } from '@effect-atom/atom-react'
 import { Effect, Option } from 'effect'
 import { useCallback, useMemo, useRef, useState } from 'react'
@@ -15,18 +15,18 @@ import { Button } from '../../components/button'
 import { computeWorkerElapsedMs, formatWorkerTimer, isWorkerResumed } from '../../utils/task-list-worker-timer'
 import { BOX_CHARS } from '../../utils/ui-constants'
 import { useAnimationStep } from '../../hooks/use-animation-time'
-import { formatTokensCompact } from '@magnitudedev/client-common'
+import { formatTokensCompact } from '@x-cli/client-common'
 import {
   computeInheritedVisualStatusMap,
   type VisualStatus,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 import {
   buildRootSummaries,
   findOwningRootIndex,
-} from '@magnitudedev/client-common'
-import type { TaskAssignee, TaskDisplayRow } from '@magnitudedev/client-common'
-import type { DisplayActor, DisplayTasks } from '@magnitudedev/sdk'
-import { isRoleId, PRIMARY_SLOT_ID, ROLE_TO_SLOT, SECONDARY_SLOT_ID } from '@magnitudedev/sdk'
+} from '@x-cli/client-common'
+import type { TaskAssignee, TaskDisplayRow } from '@x-cli/client-common'
+import type { DisplayActor, DisplayTasks } from '@x-cli/sdk'
+import { isRoleId, PRIMARY_SLOT_ID, ROLE_TO_SLOT, SECONDARY_SLOT_ID } from '@x-cli/sdk'
 
 const COLLAPSED_ROWS = 6
 const EXPANDED_ROWS = 25

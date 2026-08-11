@@ -67,7 +67,7 @@ describe("ACN installation lifecycle", () => {
     );
   });
 
-  it("gives Starting Magnitude the final ten percent asymptotically", async () => {
+  it("gives Starting x-cli the final ten percent asymptotically", async () => {
     await run(
       Effect.gen(function* () {
         const lifecycle = yield* makeAcnLifecycle();
@@ -84,7 +84,7 @@ describe("ACN installation lifecycle", () => {
         });
         yield* lifecycle.report({
           _tag: "Installing",
-          phase: "StartingMagnitude",
+          phase: "StartingXCli",
           plan,
           progress: Option.none(),
         });
@@ -146,7 +146,7 @@ describe("ACN installation lifecycle", () => {
         const lifecycle = yield* makeAcnLifecycle();
         yield* lifecycle.report({
           _tag: "Installing",
-          phase: "StartingMagnitude",
+          phase: "StartingXCli",
           plan,
           progress: Option.none(),
         });

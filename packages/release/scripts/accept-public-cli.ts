@@ -15,7 +15,7 @@ if (!version || !tarball) {
   throw new Error("release version and accepted npm tarball are required")
 }
 
-const root = await mkdtemp(resolve(tmpdir(), "magnitude-public-cli-"))
+const root = await mkdtemp(resolve(tmpdir(), "x-cli-public-cli-"))
 const project = resolve(root, "project")
 const home = resolve(root, "home")
 try {
@@ -24,7 +24,7 @@ try {
   await run(["npm", "install", "--ignore-scripts", resolve(tarball)], {
     cwd: project,
   })
-  const executable = resolve(project, "node_modules/.bin/magnitude")
+  const executable = resolve(project, "node_modules/.bin/x-cli")
   const runtimes = [
     { name: "Node.js", command: "node", executable: Bun.which("node") },
     { name: "Bun", command: "bun", executable: process.execPath },

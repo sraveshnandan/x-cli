@@ -11,8 +11,8 @@
  * removed 2026-06-21.
  */
 
-import type { RoleDefinition } from '@magnitudedev/roles'
-import type { Skill } from '@magnitudedev/skills'
+import type { RoleDefinition } from '@x-cli/roles'
+import type { Skill } from '@x-cli/skills'
 import { renderSkillReferenceTable } from './tasks/index'
 import checkpointSectionRaw from './checkpoint-section.txt' with { type: 'text' }
 import skillsIntroRaw from './skills-intro.txt' with { type: 'text' }

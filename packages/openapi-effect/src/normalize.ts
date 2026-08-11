@@ -44,7 +44,7 @@ interface NormalizationContextShape {
 }
 
 class NormalizationContext extends Context.Tag(
-  "@magnitudedev/openapi-effect/NormalizationContext"
+  "@x-cli/openapi-effect/NormalizationContext"
 )<NormalizationContext, NormalizationContextShape>() {}
 
 const pointerEscape = (value: string): string =>

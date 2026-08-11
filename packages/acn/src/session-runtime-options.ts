@@ -2,15 +2,15 @@ import { Context, Effect, Layer, Schema } from "effect";
 import * as FileSystem from "@effect/platform/FileSystem";
 import * as NodePath from "node:path";
 import {
-  MagnitudeStorage,
+  XCliStorage,
   readStructuredFile,
   writeStructuredFileAtomic,
-} from "@magnitudedev/storage";
+} from "@x-cli/storage";
 import {
   SessionOperationFailed,
   type SessionError,
   SessionOptions as SessionOptionsSchema,
-} from "@magnitudedev/acn-protocol";
+} from "@x-cli/acn-protocol";
 
 export interface SessionRuntimeOptions {
   readonly disableShellSafeguards: boolean;
@@ -70,11 +70,11 @@ const toRuntimeOptionsError =
 export const SessionRuntimeOptionsStoreLive: Layer.Layer<
   SessionRuntimeOptionsStore,
   never,
-  MagnitudeStorage | FileSystem.FileSystem
+  XCliStorage | FileSystem.FileSystem
 > = Layer.effect(
   SessionRuntimeOptionsStore,
   Effect.gen(function* () {
-    const storage = yield* MagnitudeStorage;
+    const storage = yield* XCliStorage;
     const fs = yield* FileSystem.FileSystem;
 
     const pathFor = (sessionId: string) =>

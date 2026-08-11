@@ -1,6 +1,6 @@
 /**
- * AUTO-GENERATED from magnitude-provider/lib/api-contract.
- * Run npm run sync:types in magnitude-provider to update this file.
+ * AUTO-GENERATED from x-cli-provider/lib/api-contract.
+ * Run npm run sync:types in x-cli-provider to update this file.
  */
 
 import type {

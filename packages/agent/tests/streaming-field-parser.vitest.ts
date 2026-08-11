@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Schema } from 'effect'
-import { createStreamingFieldParser } from '@magnitudedev/ai'
+import { createStreamingFieldParser } from '@x-cli/ai'
 import { escalateTool, passTool } from '../src/observer/schema'
 
 function expectValid(parser: { readonly valid: boolean; readonly validationIssue: unknown }) {

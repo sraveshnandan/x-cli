@@ -32,5 +32,5 @@ export interface SqliteDriver {
 }
 
 export const SqliteDriver = Context.GenericTag<SqliteDriver>(
-  "@magnitudedev/acn-protocol/coordination/SqliteDriver",
+  "@x-cli/acn-protocol/coordination/SqliteDriver",
 )

@@ -32,8 +32,8 @@ export default defineConfig({
     },
     resolve: {
       alias: [
-        { find: "@magnitudedev/web", replacement: resolve(__dirname, "../web/src/index.tsx") },
-        { find: /^@magnitudedev\/sdk$/, replacement: resolve(__dirname, "../packages/sdk/src/browser.ts") },
+        { find: "@x-cli/web", replacement: resolve(__dirname, "../web/src/index.tsx") },
+        { find: /^@x-cli\/sdk$/, replacement: resolve(__dirname, "../packages/sdk/src/browser.ts") },
         { find: "@web-styles", replacement: resolve(__dirname, "../web/src/styles") },
       ],
     },
@@ -52,11 +52,11 @@ export default defineConfig({
     },
     optimizeDeps: {
       exclude: [
-        "@magnitudedev/sdk",
-        "@magnitudedev/acn-protocol",
-        "@magnitudedev/client-common",
-        "@magnitudedev/generate-id",
-        "@magnitudedev/web",
+        "@x-cli/sdk",
+        "@x-cli/acn-protocol",
+        "@x-cli/client-common",
+        "@x-cli/generate-id",
+        "@x-cli/web",
       ],
     },
   },

@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { shellTool } from '../tools/shell'
 import { ShellStateSchema, type ShellState } from './tool-state'

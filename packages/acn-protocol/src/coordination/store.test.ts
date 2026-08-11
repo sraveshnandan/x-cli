@@ -23,7 +23,7 @@ describe("ACN coordination database", () => {
   let root: string
 
   beforeEach(async () => {
-    root = await mkdtemp(join(tmpdir(), "magnitude-acn-coordination-"))
+    root = await mkdtemp(join(tmpdir(), "x-cli-acn-coordination-"))
   })
 
   afterEach(async () => {

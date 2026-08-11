@@ -17,8 +17,8 @@ export function createScoutRole(): RoleDefinition {
     policy: [
       denyForbiddenCommands(),
       denyMutatingGit(),
-      denyWritesOutside(ctx => [ctx.cwd, ctx.scratchpadPath, join(homedir(), '.magnitude')]),
-      denyMassDestructiveIn(ctx => [join(homedir(), '.magnitude')]),
+      denyWritesOutside(ctx => [ctx.cwd, ctx.scratchpadPath, join(homedir(), '.x-cli')]),
+      denyMassDestructiveIn(ctx => [join(homedir(), '.x-cli')]),
       allowAll(),
     ],
     lifecycle: {

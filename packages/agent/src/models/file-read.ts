@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { readTool } from '../tools/fs'
 import { FileReadStateSchema, type FileReadState } from './tool-state'

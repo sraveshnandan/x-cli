@@ -6,19 +6,19 @@ import {
   PRIMARY_SLOT_ID,
   SECONDARY_SLOT_ID,
   type ProviderModelCatalogEntry,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   ProviderIdSchema,
   ProviderModelIdSchema,
   ReasoningEffortSchema,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
   localModelSlotAvailability,
   modelSlotActions,
   projectModelInstance,
   selectableModelCapabilities,
 } from "./model-slot-projection"
-import type * as Generated from "@magnitudedev/icn-protocol/schemas"
+import type * as Generated from "@x-cli/icn-protocol/schemas"
 
 describe("model slot projection", () => {
   it("preserves exact instance and configuration identity from ICN", () => {

@@ -82,39 +82,39 @@ describe("Exa search contract", () => {
     const wire = {
       requestId: "request-1",
       results: [{
-        id: "https://magnitude.dev/",
-        title: "Magnitude",
-        url: "https://magnitude.dev/",
+        id: "https://x-cli.dev/",
+        title: "x-cli",
+        url: "https://x-cli.dev/",
         publishedDate: null,
-        author: "Magnitude",
+        author: "x-cli",
         score: 0.92,
-        image: "https://magnitude.dev/og-image.png",
-        favicon: "https://magnitude.dev/favicon.ico",
-        text: "Magnitude is a coding agent.",
+        image: "https://x-cli.dev/og-image.png",
+        favicon: "https://x-cli.dev/favicon.ico",
+        text: "x-cli is a coding agent.",
         highlights: ["The best coding agent for open models."],
         highlightScores: [0.84],
         summary: "An open-model coding agent.",
         subpages: [{
-          id: "https://magnitude.dev/docs",
+          id: "https://x-cli.dev/docs",
           title: null,
-          url: "https://magnitude.dev/docs",
+          url: "https://x-cli.dev/docs",
           author: null,
           highlights: ["Documentation"],
           extras: {
-            links: ["https://docs.magnitude.dev"],
-            imageLinks: ["https://magnitude.dev/og-image.png"],
+            links: ["https://docs.x-cli.dev"],
+            imageLinks: ["https://x-cli.dev/og-image.png"],
           },
         }],
         extras: {
-          links: ["https://docs.magnitude.dev"],
-          imageLinks: ["https://magnitude.dev/og-image.png"],
+          links: ["https://docs.x-cli.dev"],
+          imageLinks: ["https://x-cli.dev/og-image.png"],
         },
         entities: [{
-          id: "https://exa.ai/library/organization/magnitude",
+          id: "https://exa.ai/library/organization/x-cli",
           type: "company",
           version: 1,
           properties: {
-            name: "Magnitude",
+            name: "x-cli",
             foundedYear: 2025,
             description: "Open-model coding agent",
             workforce: { total: 2 },
@@ -148,12 +148,12 @@ describe("Exa search contract", () => {
               citationCount: 2,
               areas: ["coding agents"],
               notableWorks: [{
-                title: "Magnitude",
+                title: "x-cli",
                 year: 2026,
                 venue: "GitHub",
                 citationCount: 2,
                 doi: null,
-                id: "magnitude",
+                id: "x-cli",
               }],
               topResearchers: [{
                 person: {
@@ -182,8 +182,8 @@ describe("Exa search contract", () => {
                 to: null,
               },
               company: {
-                id: "magnitude",
-                name: "Magnitude",
+                id: "x-cli",
+                name: "x-cli",
               },
             }],
             educationHistory: [{
@@ -200,19 +200,19 @@ describe("Exa search contract", () => {
       }],
       output: {
         content: {
-          officialWebsite: "https://magnitude.dev/",
+          officialWebsite: "https://x-cli.dev/",
         },
         grounding: [{
           field: "officialWebsite",
           citations: [{
-            url: "https://magnitude.dev/",
-            title: "Magnitude",
+            url: "https://x-cli.dev/",
+            title: "x-cli",
           }],
           confidence: "high",
         }],
       },
       statuses: [{
-        id: "https://magnitude.dev/",
+        id: "https://x-cli.dev/",
         status: "success",
       }],
       costDollars: {

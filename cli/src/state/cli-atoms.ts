@@ -1,7 +1,7 @@
 /**
  * CLI-only atoms — state specific to the terminal app.
  *
- * Shared atoms live in `@magnitudedev/client-common`.
+ * Shared atoms live in `@x-cli/client-common`.
  * Web-only atoms live in `web/src/state/web-atoms.ts`.
  */
 import { Atom } from "@effect-atom/atom-react"

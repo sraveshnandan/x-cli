@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { DisplayRootStatus, DisplayWorkerStatus } from '@magnitudedev/sdk'
+import type { DisplayRootStatus, DisplayWorkerStatus } from '@x-cli/sdk'
 import {
   displayRootStatusElapsedMs,
   displayWorkerStatusElapsedMs,

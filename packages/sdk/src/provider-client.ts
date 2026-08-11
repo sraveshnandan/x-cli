@@ -1,7 +1,7 @@
 import { Context, Schema } from "effect"
 import type * as HttpClient from "@effect/platform/HttpClient"
 import { Effect } from "effect"
-import { ModelCatalogError } from "@magnitudedev/ai"
+import { ModelCatalogError } from "@x-cli/ai"
 import type {
   BaseCallOptions,
   BoundModel,
@@ -16,28 +16,28 @@ import type {
   RequestAttribution,
   UsageQuery,
   WebSearchResult,
-} from "@magnitudedev/ai"
-import type { ModelCatalog } from "@magnitudedev/ai"
-import { makeFileBackedModelCatalog } from "@magnitudedev/ai"
+} from "@x-cli/ai"
+import type { ModelCatalog } from "@x-cli/ai"
+import { makeFileBackedModelCatalog } from "@x-cli/ai"
 import {
-  createMagnitudeProvider,
+  createXCliProvider,
   createExaWebSearch,
   makeProviderRegistry,
   WebSearchNotConfigured,
   WebSearchProviderSchema,
   type DiscoverableProviderInstance,
-  type MagnitudeProviderInstance,
-  type MagnitudeClientConfig,
-  type MagnitudeCallOptions,
-  type MagnitudeAdditionalOptions,
-  type MagnitudeClientError,
-  type MagnitudeModelInfo,
+  type XCliProviderInstance,
+  type XCliClientConfig,
+  type XCliCallOptions,
+  type XCliAdditionalOptions,
+  type XCliClientError,
+  type XCliModelInfo,
   type WebSearchError,
   type FetchUsageOptions,
   type CloudUsageResponse,
   type ProviderCatalogOutcome,
-} from "@magnitudedev/providers"
-import type { ProviderInfo as RegistryProviderInfo } from "@magnitudedev/providers"
+} from "@x-cli/providers"
+import type { ProviderInfo as RegistryProviderInfo } from "@x-cli/providers"
 
 // =============================================================================
 // Re-exported types with provider-agnostic names
@@ -53,7 +53,7 @@ export type {
   ProviderId,
   ProviderModelId,
   ModelFamilyId,
-} from "@magnitudedev/ai"
+} from "@x-cli/ai"
 export {
   AVAILABLE_PROVIDER_MODEL,
   isProviderModelAvailable,
@@ -70,35 +70,35 @@ export {
   ReasoningEffortSchema,
   ReasoningProperty,
   VisionProperty,
-} from "@magnitudedev/ai"
+} from "@x-cli/ai"
 export type {
   ModelDiscoveryOperationId,
   ModelPropertyDiscoveryError,
   ModelPropertyDiscoveryRequest,
   ModelPropertyName,
   ReasoningEffort,
-} from "@magnitudedev/ai"
-export type ProviderClientError = MagnitudeClientError
+} from "@x-cli/ai"
+export type ProviderClientError = XCliClientError
 export type ProviderRegistryInfo = RegistryProviderInfo
-export type { ProviderCatalogOutcome } from "@magnitudedev/providers"
+export type { ProviderCatalogOutcome } from "@x-cli/providers"
 
-export interface ProviderClientConfig extends MagnitudeClientConfig {
+export interface ProviderClientConfig extends XCliClientConfig {
   readonly discoverableProviders?: readonly DiscoverableProviderInstance[]
   readonly exaApiKey?: string
   readonly exaEndpoint?: string
 }
 
 export type {
-  MagnitudeModelInfo,
+  XCliModelInfo,
   FetchUsageOptions,
   CloudUsageResponse,
-  MagnitudeCallOptions,
-  MagnitudeAdditionalOptions,
-} from "@magnitudedev/providers"
-export type { WebSearchResult, UsageQuery } from "@magnitudedev/ai"
-export type { WebSearchError } from "@magnitudedev/providers"
-export { formatWebSearchError } from "@magnitudedev/providers"
-export type { UsagePeriod } from "@magnitudedev/acn-protocol"
+  XCliCallOptions,
+  XCliAdditionalOptions,
+} from "@x-cli/providers"
+export type { WebSearchResult, UsageQuery } from "@x-cli/ai"
+export type { WebSearchError } from "@x-cli/providers"
+export { formatWebSearchError } from "@x-cli/providers"
+export type { UsagePeriod } from "@x-cli/acn-protocol"
 
 // =============================================================================
 // Re-exported constants and helpers
@@ -106,16 +106,16 @@ export type { UsagePeriod } from "@magnitudedev/acn-protocol"
 
 export {
   classifyModelFamilyFromEvidence,
-  classifyMagnitudeRejectedResponse,
+  classifyXCliRejectedResponse,
   tryParseErrorBody,
-  type ParsedMagnitudeApiError,
-} from "@magnitudedev/providers"
-export { makeFileBackedModelCatalog } from "@magnitudedev/ai"
+  type ParsedXCliApiError,
+} from "@x-cli/providers"
+export { makeFileBackedModelCatalog } from "@x-cli/ai"
 export {
-  createMagnitudeCompatibleSpec,
-  MagnitudeModelListResponseSchema,
-  toMagnitudeModelInfo,
-} from "@magnitudedev/providers"
+  createXCliCompatibleSpec,
+  XCliModelListResponseSchema,
+  toXCliModelInfo,
+} from "@x-cli/providers"
 
 // =============================================================================
 // Runtime config (provider-specific env vars read behind the boundary)
@@ -188,7 +188,7 @@ export class ProviderClient extends Context.Tag("ProviderClient")<
 // =============================================================================
 
 export function createProviderClient(config?: ProviderClientConfig): ProviderClientShape {
-  const magnitudeInstance: MagnitudeProviderInstance = createMagnitudeProvider(config)
+  const xCliInstance: XCliProviderInstance = createXCliProvider(config)
   const exaInstance = createExaWebSearch({
     ...(config?.exaApiKey === undefined ? {} : { apiKey: config.exaApiKey }),
     ...(config?.exaEndpoint === undefined ? {} : { endpoint: config.exaEndpoint }),
@@ -201,15 +201,15 @@ export function createProviderClient(config?: ProviderClientConfig): ProviderCli
   const webSearch = webSearchSource === "exa"
     ? exaInstance.webSearch
     : () => Effect.fail(new WebSearchNotConfigured())
-  // const webSearch = webSearchSource === "magnitude"
-  //   ? magnitudeInstance.provider.webSearch
+  // const webSearch = webSearchSource === "xCli"
+  //   ? xCliInstance.provider.webSearch
   //   : webSearchSource === "exa"
   //     ? exaInstance.webSearch
   //     : () => Effect.fail(new WebSearchNotConfigured())
 
   const registry = makeProviderRegistry({
-    // magnitude: magnitudeInstance,
-    magnitude: null,
+    // xCli: xCliInstance,
+    xCli: null,
     discoverableProviders: config?.discoverableProviders ?? [],
   })
 
@@ -224,7 +224,7 @@ export function createProviderClient(config?: ProviderClientConfig): ProviderCli
     requestAttribution: (_providerId, _providerModelId, key) => ({ key, requestStarted: Effect.void }),
     webSearchSource: Effect.succeed(webSearchSource),
     webSearch,
-    usage: magnitudeInstance.provider.usage,
+    usage: xCliInstance.provider.usage,
     runtimeConfig: {
       preferProvider: process.env.MAGNITUDE_PREFER_PROVIDER || undefined,
       disableTraits: !!process.env.MAGNITUDE_DISABLE_TRAITS,

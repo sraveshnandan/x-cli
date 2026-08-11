@@ -1,18 +1,18 @@
 /**
- * Convert Magnitude toolkits to ATIF `agent.tool_definitions` format.
+ * Convert x-cli toolkits to ATIF `agent.tool_definitions` format.
  *
  * ATIF expects OpenAI function-calling schema:
  *   { type: "function", function: { name, description, parameters } }
  *
- * Magnitude tools use Effect Schema for inputSchema. We convert through the
+ * x-cli tools use Effect Schema for inputSchema. We convert through the
  * native tool-parameter boundary function.
  */
 
 import { Schema } from 'effect'
 import { materializeAgentToolkit } from '../../tools/toolkits'
-import type { Toolkit } from '@magnitudedev/harness'
-import { makeNativeToolParametersJsonSchema, type JsonValue } from '@magnitudedev/ai'
-import type { JsonSchemaObject } from '@magnitudedev/utils/schema'
+import type { Toolkit } from '@x-cli/harness'
+import { makeNativeToolParametersJsonSchema, type JsonValue } from '@x-cli/ai'
+import type { JsonSchemaObject } from '@x-cli/utils/schema'
 
 interface AtifFunctionDefinition {
   readonly [key: string]: JsonValue

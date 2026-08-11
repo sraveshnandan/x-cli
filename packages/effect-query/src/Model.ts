@@ -4,11 +4,11 @@ import type * as Equal from "effect/Equal"
 import * as Option from "effect/Option"
 
 export const QueryDefinitionTypeId: unique symbol = Symbol.for(
-  "@magnitudedev/effect-query/QueryDefinition"
+  "@x-cli/effect-query/QueryDefinition"
 )
 
 export const MutationDefinitionTypeId: unique symbol = Symbol.for(
-  "@magnitudedev/effect-query/MutationDefinition"
+  "@x-cli/effect-query/MutationDefinition"
 )
 
 export interface QueryDefinition {

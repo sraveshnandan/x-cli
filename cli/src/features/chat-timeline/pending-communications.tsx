@@ -1,6 +1,6 @@
 import { TextAttributes } from '@opentui/core'
 import { Option } from 'effect'
-import type { AgentCommunicationMessage, PendingInboundCommunication } from '@magnitudedev/sdk'
+import type { AgentCommunicationMessage, PendingInboundCommunication } from '@x-cli/sdk'
 import { useTheme } from '../../hooks/use-theme'
 import { BOX_CHARS } from '../../utils/ui-constants'
 import { AgentCommunicationCard } from './messages/agent-communication-card'

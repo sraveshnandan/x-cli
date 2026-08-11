@@ -1,6 +1,6 @@
 import { Effect } from "effect";
-import { DisplayViewSnapshot, type StreamEvent } from "@magnitudedev/sdk";
-import { compilePatchMap, applyDecodedPatch } from "@magnitudedev/utils/patch";
+import { DisplayViewSnapshot, type StreamEvent } from "@x-cli/sdk";
+import { compilePatchMap, applyDecodedPatch } from "@x-cli/utils/patch";
 import type { DisplaySyncSink } from "./display-view-store";
 
 export type RestoreQueuedMessagesCallback = (payload: {

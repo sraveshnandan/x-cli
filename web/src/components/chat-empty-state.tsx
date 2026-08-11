@@ -7,8 +7,8 @@
 import { useCallback, useMemo, useState, type ReactNode, type UIEvent } from "react"
 import { Folder, Loader2, Search } from "lucide-react"
 import { useAtomValue, useAtomSet, Result } from "@effect-atom/atom-react"
-import { formatCwdForDisplay, formatRelativeTime, selectedCwdAtom, useAgentClient } from "@magnitudedev/client-common"
-import type { DirectoryCandidate, SearchDirectoriesResult } from "@magnitudedev/sdk"
+import { formatCwdForDisplay, formatRelativeTime, selectedCwdAtom, useAgentClient } from "@x-cli/client-common"
+import type { DirectoryCandidate, SearchDirectoriesResult } from "@x-cli/sdk"
 
 const DIRECTORY_PAGE_SIZE = 14
 

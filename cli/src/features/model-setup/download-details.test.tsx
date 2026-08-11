@@ -3,7 +3,7 @@ import { KeyEvent } from "@opentui/core"
 import { testRender } from "@opentui/react/test-utils"
 import { Option } from "effect"
 import { beforeEach, expect, test, vi } from "vitest"
-import { DownloadAttemptIdSchema } from "@magnitudedev/sdk"
+import { DownloadAttemptIdSchema } from "@x-cli/sdk"
 import { makeCatalogCandidate, GIB } from "../local-inference/test-fixtures"
 
 const keyboard = vi.hoisted(() => ({

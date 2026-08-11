@@ -4,7 +4,7 @@
  * Buffers streamed message_start/chunk/end events into completed outbound messages.
  */
 
-import { Projection, Signal } from '@magnitudedev/event-core'
+import { Projection, Signal } from '@x-cli/event-core'
 import { Schema } from 'effect'
 import type { AppEvent } from '../events'
 import { AgentRoutingProjection, getRoutingEntryByForkId } from './agent-routing'

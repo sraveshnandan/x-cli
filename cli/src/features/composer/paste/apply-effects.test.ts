@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test'
-import { applyPasteIntent } from '@magnitudedev/client-common'
-import { derivePasteEffects } from '@magnitudedev/client-common'
-import type { InputValue } from '@magnitudedev/client-common'
+import { applyPasteIntent } from '@x-cli/client-common'
+import { derivePasteEffects } from '@x-cli/client-common'
+import type { InputValue } from '@x-cli/client-common'
 
 const EMPTY_INPUT: InputValue = {
   text: '',

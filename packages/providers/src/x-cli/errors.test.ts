@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest"
-import { rejectedHttpResponse, type ProviderCall } from '@x-cli/ai'
+import { rejectedHttpResponse, type ProviderCall } from "@x-cli/ai"
 import { classifyXCliRejectedResponse, tryParseErrorBody } from "./errors"
 
 const budget = {
@@ -18,7 +18,7 @@ const call: ProviderCall = {
   url: "https://api.x-cli.dev/v1/chat/completions",
 }
 
-describe("Magnitude usage-limit errors", () => {
+describe("x-cli usage-limit errors", () => {
   test("parses a Pro monthly usage limit", () => {
     const parsed = tryParseErrorBody(JSON.stringify({
       error: {

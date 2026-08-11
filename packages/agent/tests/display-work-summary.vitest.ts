@@ -7,10 +7,10 @@ import {
   ProjectionBusTag,
   makeAmbientServiceLayer,
   makeProjectionBusLayer,
-} from '@magnitudedev/event-core'
+} from '@x-cli/event-core'
 import type { AppEvent } from '../src/events'
 import type { DisplayMessage } from '../src/display'
-import type { GenerationPerformance } from '@magnitudedev/ai'
+import type { GenerationPerformance } from '@x-cli/ai'
 import { DisplayTimelineProjection } from '../src/display'
 import { AgentLifecycleProjection } from '../src/projections/agent-lifecycle'
 import { AgentRoutingProjection } from '../src/projections/agent-routing'

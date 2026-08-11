@@ -8,9 +8,9 @@ import {
 } from '../index'
 import type { PatchApplyError } from '../index'
 import type { CompiledMap, DecodedPatchOp, DecodedValue, Path } from '../index'
-import { DisplayViewSnapshot } from '../../../../protocol/src/schemas/display'
-import type { DisplayViewSnapshot as DVS } from '../../../../protocol/src/schemas/display'
-import { StreamEvent } from '../../../../protocol/src/schemas/events'
+import { DisplayViewSnapshot } from '@x-cli/acn-protocol'
+import type { DisplayViewSnapshot as DVS } from '@x-cli/acn-protocol'
+import { StreamEvent } from '@x-cli/acn-protocol'
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -202,8 +202,7 @@ const NestedLiteralUnionSchema = Schema.Struct({
 const DeepUnionSchema = Schema.Struct({
   id: Schema.String,
   message: Schema.Union(
-    Schema.Struct({
-      _tag: Schema.Literal('ToolMessage'),
+    Schema.TaggedStruct('ToolMessage', {
       id: Schema.String,
       presentation: Schema.optionalWith(
         Schema.Union(
@@ -221,8 +220,7 @@ const DeepUnionSchema = Schema.Struct({
         { as: 'Option', exact: true },
       ),
     }),
-    Schema.Struct({
-      _tag: Schema.Literal('UserMessage'),
+    Schema.TaggedStruct('UserMessage', {
       id: Schema.String,
       content: Schema.String,
     }),

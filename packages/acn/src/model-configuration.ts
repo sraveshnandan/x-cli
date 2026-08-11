@@ -4,16 +4,16 @@ import type {
   ProviderModelIdentity,
   SlotId,
   SlotSelection,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
-  MagnitudeStorage,
+  XCliStorage,
   type ConfigStorageShape,
-  type MagnitudeConfig,
+  type XCliConfig,
   type ResolvedContextLimitPolicy,
   resolveContextLimitPolicy,
-} from "@magnitudedev/storage"
+} from "@x-cli/storage"
 
-type StoredModelConfiguration = NonNullable<MagnitudeConfig["models"]>
+type StoredModelConfiguration = NonNullable<XCliConfig["models"]>
 export type ModelSlotsConfiguration = StoredModelConfiguration["slots"]
 type Storage = Pick<
   ConfigStorageShape,
@@ -158,8 +158,8 @@ export const makeModelConfiguration = (
 export const makeModelConfigurationLayer = (): Layer.Layer<
   ModelConfiguration,
   ModelConfigurationError,
-  MagnitudeStorage
+  XCliStorage
 > => Layer.effect(ModelConfiguration, Effect.gen(function* () {
-  const storage = yield* MagnitudeStorage
+  const storage = yield* XCliStorage
   return yield* makeModelConfiguration(storage.config)
 }))

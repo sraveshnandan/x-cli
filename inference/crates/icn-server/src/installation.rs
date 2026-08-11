@@ -53,9 +53,9 @@ impl Installation {
 
     pub(crate) fn executable(&self) -> PathBuf {
         self.root.join("bin").join(if cfg!(windows) {
-            "magnitude-icn.exe"
+            "x-cli-icn.exe"
         } else {
-            "magnitude-icn"
+            "x-cli-icn"
         })
     }
 

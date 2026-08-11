@@ -1,10 +1,10 @@
 import { describe, expect, mock, test } from 'bun:test'
 import React, { type ReactNode } from 'react'
 import { act, create, type ReactTestRenderer } from 'react-test-renderer'
-import type { InputValue } from '@magnitudedev/client-common'
+import type { InputValue } from '@x-cli/client-common'
 import type { ComposerProps } from './types'
 import { chatThemes } from '../../utils/theme'
-import { PRIMARY_SLOT_ID } from '@magnitudedev/sdk'
+import { PRIMARY_SLOT_ID } from '@x-cli/sdk'
 
 let latestMultilineProps: {
   onChange: (value: InputValue) => void

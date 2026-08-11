@@ -37,7 +37,7 @@ export {
 // Main API modules
 export * as Ambient from './ambient/index'
 export * as Signal from './signal/index'
-// FSM has been moved to @magnitudedev/utils
+// FSM has been moved to @x-cli/utils
 // export * as FSM from './fsm/index'
 export * as Projection from './projection/index'
 export * as Worker from './worker/index'

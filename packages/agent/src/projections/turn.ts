@@ -5,15 +5,15 @@
  * Each fork has independent lifecycle, trigger queue, and inbound communication buffer.
  */
 
-import { Projection, Signal } from '@magnitudedev/event-core'
-import { FSM } from '@magnitudedev/utils'
+import { Projection, Signal } from '@x-cli/event-core'
+import { FSM } from '@x-cli/utils'
 const { defineFSM } = FSM
 import { Schema, Option } from 'effect'
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 import { outcomeWillChainContinue } from '../events'
 import type { AppEvent, TurnOutcomeEvent } from '../events'
 import { computeDelayMs, getRetryAfterHint } from '../util/retry-backoff'
-import { JsonValueSchema } from '@magnitudedev/ai'
+import { JsonValueSchema } from '@x-cli/ai'
 import { AgentLifecycleProjection, hasActiveWorkers } from './agent-lifecycle'
 import { AgentRoutingProjection } from './agent-routing'
 import { UserMessageResolutionProjection } from './user-message-resolution'

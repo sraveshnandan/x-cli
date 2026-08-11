@@ -1,4 +1,4 @@
-import type { ImagePart, ImageMediaType, ToolResultPart } from '@magnitudedev/ai'
+import type { ImagePart, ImageMediaType, ToolResultPart } from '@x-cli/ai'
 import { ContentBuilder } from '../content'
 
 export function isImageValue(value: unknown): value is Record<string, unknown> & { mediaType: string } {

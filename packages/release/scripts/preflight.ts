@@ -29,7 +29,7 @@ const github = async (path: string): Promise<unknown | undefined> => {
 
 const npm = async (version: string): Promise<unknown | undefined> => {
   const response = await fetch(
-    `https://registry.npmjs.org/%40magnitudedev%2Fcli/${encodeURIComponent(version)}`,
+    `https://registry.npmjs.org/%40x-cli%2Fcli/${encodeURIComponent(version)}`,
     { signal: AbortSignal.timeout(30_000) },
   )
   if (response.status === 404) return undefined
@@ -79,7 +79,7 @@ await run([
 ], { cwd: PROJECT_ROOT })
 
 const repository = required("GITHUB_REPOSITORY")
-const tag = `@magnitudedev/cli@${version}`
+const tag = `@x-cli/cli@${version}`
 const [tagRef, release, npmVersion] = await Promise.all([
   github(`/repos/${repository}/git/ref/tags/${encodeURIComponent(tag)}`),
   findGithubRelease(

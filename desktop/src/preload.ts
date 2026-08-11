@@ -190,4 +190,4 @@ function makeDesktopApi(): DesktopApi {
   }
 }
 
-contextBridge.exposeInMainWorld("__magnitudeDesktop", makeDesktopApi())
+contextBridge.exposeInMainWorld("__x-cliDesktop", makeDesktopApi())

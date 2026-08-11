@@ -1,6 +1,6 @@
 import { Data, Effect } from "effect"
 
-export type MagnitudeProcessKind = "ICN" | "ACN" | "CLI"
+export type XCliProcessKind = "ICN" | "ACN" | "CLI"
 
 export interface ProcessInfo {
   readonly pid: number
@@ -8,8 +8,8 @@ export interface ProcessInfo {
   readonly command: string
 }
 
-export interface MagnitudeProcess extends ProcessInfo {
-  readonly kind: MagnitudeProcessKind
+export interface XCliProcess extends ProcessInfo {
+  readonly kind: XCliProcessKind
 }
 
 class ProcessListError extends Data.TaggedError("ProcessListError")<{
@@ -26,16 +26,16 @@ const scriptInvocation = (path: string): RegExp =>
     "i",
   )
 
-const icnExecutable = executable("(?:magnitude-icn|icn-server)")
-const acnExecutable = executable("magnitude-acn")
-const cliExecutable = executable("magnitude-cli")
+const icnExecutable = executable("(?:x-cli-icn|icn-server)")
+const acnExecutable = executable("x-cli-acn")
+const cliExecutable = executable("x-cli-cli")
 const acnSource = scriptInvocation("packages/acn/src/binary\\.ts")
 const cliSource = scriptInvocation("cli/src/index\\.tsx")
-const npmCliSource = scriptInvocation("packages/cli/bin/magnitude\\.js")
+const npmCliSource = scriptInvocation("packages/cli/bin/x-cli.js")
 
-export const classifyMagnitudeProcess = (
+export const classifyXCliProcess = (
   command: string,
-): MagnitudeProcessKind | undefined => {
+): XCliProcessKind | undefined => {
   if (
     icnExecutable.test(command) ||
     /(?:^|\s)(?:icn:dev|icn:serve)(?:\s|$)/i.test(command) ||
@@ -96,7 +96,7 @@ const isRunning = (pid: number): boolean => {
   }
 }
 
-const signal = (target: MagnitudeProcess, name: NodeJS.Signals): void => {
+const signal = (target: XCliProcess, name: NodeJS.Signals): void => {
   try {
     process.kill(target.pid, name)
     console.log(`${name === "SIGTERM" ? "Stopping" : "Killing"} ${target.kind} pid ${target.pid}: ${target.command}`)
@@ -105,7 +105,7 @@ const signal = (target: MagnitudeProcess, name: NodeJS.Signals): void => {
   }
 }
 
-const waitForExit = (targets: readonly MagnitudeProcess[], timeoutMs: number) =>
+const waitForExit = (targets: readonly XCliProcess[], timeoutMs: number) =>
   Effect.gen(function* () {
     const deadline = Date.now() + timeoutMs
     let running = targets.filter(({ pid }) => isRunning(pid))
@@ -116,16 +116,16 @@ const waitForExit = (targets: readonly MagnitudeProcess[], timeoutMs: number) =>
     return running
   })
 
-export const killAllMagnitudeProcesses = Effect.gen(function* () {
+export const killAllXCliProcesses = Effect.gen(function* () {
   const ownPid = process.pid
-  const targets = (yield* collectProcesses).flatMap((candidate): readonly MagnitudeProcess[] => {
+  const targets = (yield* collectProcesses).flatMap((candidate): readonly XCliProcess[] => {
     if (candidate.pid === ownPid) return []
-    const kind = classifyMagnitudeProcess(candidate.command)
+    const kind = classifyXCliProcess(candidate.command)
     return kind ? [{ ...candidate, kind }] : []
   })
 
   if (targets.length === 0) {
-    console.log("No Magnitude ICN, ACN, or CLI processes found.")
+    console.log("No x-cli ICN, ACN, or CLI processes found.")
     return
   }
 
@@ -136,5 +136,5 @@ export const killAllMagnitudeProcesses = Effect.gen(function* () {
 })
 
 if (import.meta.main) {
-  await Effect.runPromise(killAllMagnitudeProcesses)
+  await Effect.runPromise(killAllXCliProcesses)
 }

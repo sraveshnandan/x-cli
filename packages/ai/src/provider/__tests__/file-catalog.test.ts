@@ -34,9 +34,9 @@ const model = (providerId: ProviderId, displayName: string): ProviderModel => ({
 
 describe("file-backed model catalog", () => {
   it("uses provider ID and provider model ID as the cache key", async () => {
-    const directory = await mkdtemp(join(tmpdir(), "magnitude-model-cache-"))
+    const directory = await mkdtemp(join(tmpdir(), "x-cli-model-cache-"))
     const models = [
-      model(ProviderIdSchema.make("magnitude"), "Hosted model"),
+      model(ProviderIdSchema.make("x-cli"), "Hosted model"),
       model(ProviderIdSchema.make("local"), "Local model"),
     ]
     const inner: ModelCatalog<ProviderModel> = {

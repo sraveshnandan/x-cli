@@ -2,12 +2,12 @@ import { memo, useCallback, useMemo, useState } from 'react'
 import {
   useAgentClient,
   useSettingsState,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 import { TextAttributes, type KeyEvent } from '@opentui/core'
 import { useKeyboard } from '@opentui/react'
 import { useTheme } from '../../hooks/use-theme'
 import { Button } from '../../components/button'
-import type { CloudUsageResponse, UsagePeriod } from '@magnitudedev/sdk'
+import type { CloudUsageResponse, UsagePeriod } from '@x-cli/sdk'
 import { Atom, Result, useAtomValue } from '@effect-atom/atom-react'
 import { authSourceAtom } from '../../state/cli-atoms'
 import { hasCloudUsageAuth } from './usage-auth'
@@ -302,7 +302,7 @@ function UsageBody({ data, period, onPeriodChange, loading }: UsageBodyProps) {
         </text>
         {subscription.status !== 'active' && (
           <text style={{ fg: theme.muted }}>
-            Magnitude Pro is required to use cloud models.
+            x-cli Pro is required to use cloud models.
           </text>
         )}
         {subscription.status === 'active' && (

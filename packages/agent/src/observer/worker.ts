@@ -17,10 +17,10 @@
  */
 
 import { Effect, Stream, Cause, Ref, Fiber } from 'effect'
-import { Worker, type WorkerReadFn, type PublishFn } from '@magnitudedev/event-core'
-import { createHarness, type HarnessEvent, type ToolInputRejected, type TurnOutcome } from '@magnitudedev/harness'
-import { logger } from '@magnitudedev/logger'
-import type { StreamFailure } from '@magnitudedev/ai'
+import { Worker, type WorkerReadFn, type PublishFn } from '@x-cli/event-core'
+import { createHarness, type HarnessEvent, type ToolInputRejected, type TurnOutcome } from '@x-cli/harness'
+import { logger } from '@x-cli/logger'
+import type { StreamFailure } from '@x-cli/ai'
 
 import type { AppEvent } from '../events'
 import { AgentLifecycleProjection } from '../projections/agent-lifecycle'

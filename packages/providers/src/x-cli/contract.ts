@@ -1,21 +1,21 @@
 /**
- * Magnitude provider contract types.
+ * x-cli provider contract types.
  *
  * These types define the x-cli-specific extension of ProviderModel
- * and the call options for the Magnitude provider.
+ * and the call options for the x-cli provider.
  */
 
 import type { RoleId } from "./roles"
-import type { SlotId } from '@x-cli/roles'
-import type { ProviderModel, ReasoningEffort, ModelPricingInfo } from '@x-cli/ai'
+import type { SlotId } from "@x-cli/roles"
+import type { ProviderModel, ReasoningEffort, ModelPricingInfo } from "@x-cli/ai"
 import { Schema } from "effect"
-import { ProviderModelIdSchema } from '@x-cli/ai'
+import { ProviderModelIdSchema } from "@x-cli/ai"
 
-export type { ReasoningEffort, ModelPricingInfo } from '@x-cli/ai'
-export type { ProviderModelCapabilities as ModelCapabilities } from '@x-cli/ai'
+export type { ReasoningEffort, ModelPricingInfo } from "@x-cli/ai"
+export type { ProviderModelCapabilities as ModelCapabilities } from "@x-cli/ai"
 
 /**
- * A model in the Magnitude provider's catalog.
+ * A model in the x-cli provider's catalog.
  * Extends ProviderModel with x-cli-specific fields.
  */
 export interface XCliModelInfo extends ProviderModel {
@@ -26,7 +26,7 @@ export interface XCliModelInfo extends ProviderModel {
   readonly type?: "utility"
 }
 
-const MagnitudeRoleIdSchema: Schema.Schema<RoleId> = Schema.Literal(
+const XCliRoleIdSchema: Schema.Schema<RoleId> = Schema.Literal(
   "leader",
   "scout",
   "architect",
@@ -37,16 +37,16 @@ const MagnitudeRoleIdSchema: Schema.Schema<RoleId> = Schema.Literal(
   "advisor",
 )
 
-const MagnitudeSlotIdSchema: Schema.Schema<SlotId> = Schema.Literal("primary", "secondary")
+const XCliSlotIdSchema: Schema.Schema<SlotId> = Schema.Literal("primary", "secondary")
 
-/** Validated raw model shape returned by Magnitude model-list endpoints. */
+/** Validated raw model shape returned by x-cli model-list endpoints. */
 export const XCliRawModelSchema = Schema.Struct({
   id: ProviderModelIdSchema,
   object: Schema.Literal("model"),
   owned_by: Schema.String,
   displayName: Schema.String,
-  roles: Schema.Array(MagnitudeRoleIdSchema),
-  slots: Schema.Array(MagnitudeSlotIdSchema),
+  roles: Schema.Array(XCliRoleIdSchema),
+  slots: Schema.Array(XCliSlotIdSchema),
   tiers: Schema.optionalWith(Schema.Array(Schema.String), { as: "Option", exact: true }),
   type: Schema.optionalWith(Schema.Literal("utility"), { as: "Option", exact: true }),
   contextWindow: Schema.Number,

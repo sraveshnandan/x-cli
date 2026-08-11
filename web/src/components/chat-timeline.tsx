@@ -44,7 +44,7 @@ import {
   type TimelineScrollAdapter,
   type ActivityKind,
   TRANSCRIPT_LINE_CAP,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import { useAtomSet, useAtomValue } from "@effect-atom/atom-react"
 import type {
   DisplayTimeline,
@@ -66,7 +66,7 @@ import type {
   SpawnWorkerPresentation,
   GenericToolPresentation,
   QueryImagePresentation,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { MessageDispatch } from "./messages"
 import { TimelineLoadingState } from "./timeline-loading-state"
 import { ChatEmptyState } from "./chat-empty-state"

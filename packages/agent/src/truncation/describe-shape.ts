@@ -10,7 +10,7 @@ import { charsToTokensUpper, allocateBudget } from './budget'
 import { estimateText } from './estimate'
 import type { Measurement } from './budget'
 import { measureBounded } from './json/measure'
-import type { JsonValue } from '@magnitudedev/ai'
+import type { JsonValue } from '@x-cli/ai'
 import { formatSize } from './format'
 
 const DEFAULT_BUDGET = 500

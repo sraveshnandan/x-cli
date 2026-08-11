@@ -1,4 +1,4 @@
-import { Projection, type ReadFn, type ForkedState } from '@magnitudedev/event-core'
+import { Projection, type ReadFn, type ForkedState } from '@x-cli/event-core'
 import { outcomeWillChainContinue } from '../events'
 import type { AppEvent } from '../events'
 import { Option, Schema } from 'effect'

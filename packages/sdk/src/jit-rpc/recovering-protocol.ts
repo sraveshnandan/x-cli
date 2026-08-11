@@ -3,9 +3,9 @@ import type { FromClientEncoded, ResponseExitEncoded } from "@effect/rpc/RpcMess
 import * as HttpBody from "@effect/platform/HttpBody"
 import * as HttpClient from "@effect/platform/HttpClient"
 import { Array as Arr, Chunk, Deferred, Effect, Either, Layer, Schema, Scope, Stream } from "effect"
-import { JsonValueSchema } from "@magnitudedev/utils/schema"
+import { JsonValueSchema } from "@x-cli/utils/schema"
 import type { RecoveringStreamProtocol } from "./recovering-stream-protocol"
-import type { AcnRpcRecoveryPolicy } from "@magnitudedev/acn-protocol"
+import type { AcnRpcRecoveryPolicy } from "@x-cli/acn-protocol"
 import {
   type JitRpcAttemptFailure,
   toRpcClientError,
@@ -99,7 +99,7 @@ export const makeRecoveringProtocol = <InfraError, Endpoint extends RpcEndpoint 
                 const response = yield* client
                   .post(`${endpoint.url}${options.rpcPath}`, {
                     body,
-                    headers: { "x-magnitude-acn-id": endpoint.id },
+                    headers: { "x-x-cli-acn-id": endpoint.id },
                   })
                   .pipe(
                     Effect.mapError(

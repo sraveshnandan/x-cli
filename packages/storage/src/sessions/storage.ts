@@ -2,8 +2,8 @@ import * as FileSystem from "@effect/platform/FileSystem";
 import * as Path from "@effect/platform/Path";
 import { type PlatformError } from "@effect/platform/Error";
 import { Effect, Schema } from "effect";
-import { generateSortableId } from "@magnitudedev/generate-id";
-import { SCRATCHPAD_SUBDIRS } from "@magnitudedev/scratchpad";
+import { generateSortableId } from "@x-cli/generate-id";
+import { SCRATCHPAD_SUBDIRS } from "@x-cli/scratchpad";
 
 import {
   makeStorageIo,

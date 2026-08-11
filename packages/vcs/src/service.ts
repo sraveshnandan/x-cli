@@ -1,5 +1,5 @@
 import { Context, Effect, Layer } from "effect"
-import type { ToolkitEntry } from "@magnitudedev/harness"
+import type { ToolkitEntry } from "@x-cli/harness"
 import type {
   OperationId,
   SnapshotId,
@@ -115,5 +115,5 @@ export interface ShadowVcs {
   readonly getTools: () => ReadonlyArray<VcsToolEntry>
 }
 
-export const ShadowVcs = Context.Tag("@magnitudedev/vcs/ShadowVcs")<ShadowVcs, ShadowVcs>()
+export const ShadowVcs = Context.Tag("@x-cli/vcs/ShadowVcs")<ShadowVcs, ShadowVcs>()
 export type ShadowVcsService = ShadowVcs

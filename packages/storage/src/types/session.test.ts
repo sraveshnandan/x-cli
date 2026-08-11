@@ -92,7 +92,7 @@ describe('StoredSessionMetaSchema', () => {
   })
 
   test('readMeta returns version defaults for missing fields via StorageLive', async () => {
-    const root = await mkdtemp(join(tmpdir(), 'magnitude-storage-session-'))
+    const root = await mkdtemp(join(tmpdir(), 'x-cli-storage-session-'))
     const sessionId = 'session-1'
     const paths = makeGlobalStoragePaths(root)
 

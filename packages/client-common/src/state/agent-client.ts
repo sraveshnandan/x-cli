@@ -1,5 +1,5 @@
 /**
- * AgentClient — AtomRpc tag for the MagnitudeRpcs group.
+ * AgentClient — AtomRpc tag for the XCliRpcs group.
  * Spec §6.2.
  *
  * Uses the SDK's recovering protocol layer with a host-provided
@@ -9,7 +9,7 @@
 import { AtomRpc, Atom } from "@effect-atom/atom-react"
 import { RpcClient } from "@effect/rpc"
 import type { Layer } from "effect"
-import { MagnitudeRpcs } from "@magnitudedev/sdk"
+import { XCliRpcs } from "@x-cli/sdk"
 
 /**
  * Placeholder class used as the type identifier for the AgentClient tag.
@@ -31,7 +31,7 @@ export function createAgentClient(
   protocolLayer: Layer.Layer<RpcClient.Protocol, never, never>,
 ) {
   const client = AtomRpc.Tag<AgentClient>()("AgentClient", {
-    group: MagnitudeRpcs,
+    group: XCliRpcs,
     protocol: protocolLayer,
   })
   Atom.runtime.addGlobalLayer(client.layer)

@@ -3,7 +3,7 @@ import { Result } from "@effect-atom/atom-react"
 import { Option } from "effect"
 import { testRender } from "@opentui/react/test-utils"
 import { act } from "react"
-import { LocalInferenceAcceleratorIdSchema, LocalInferenceMemoryDomainIdSchema } from "@magnitudedev/sdk"
+import { LocalInferenceAcceleratorIdSchema, LocalInferenceMemoryDomainIdSchema } from "@x-cli/sdk"
 import { GIB, makeHardware, makeView } from "../local-inference/test-fixtures"
 
 const textPosition = (frame: string, needle: string) => {
@@ -52,8 +52,8 @@ const localInferenceState = makeView({
   }),
 })
 
-vi.mock("@magnitudedev/client-common", async (importOriginal) => ({
-  ...await importOriginal<typeof import("@magnitudedev/client-common")>(),
+vi.mock("@x-cli/client-common", async (importOriginal) => ({
+  ...await importOriginal<typeof import("@x-cli/client-common")>(),
   useLocalInferenceHardware: () => Result.success(localInferenceState.hardware),
   useModelSlots: () => Result.success(localInferenceState.slots),
 }))
@@ -76,7 +76,7 @@ vi.mock("../../hooks/use-theme", () => ({
 
 const { SettingsOverlay } = await import("./settings")
 
-test("settings starts with detected hardware followed by explicit Magnitude Cloud status", async () => {
+test("settings starts with detected hardware followed by explicit x-cli Cloud status", async () => {
   const view = await testRender(
     <SettingsOverlay
       isVisible
@@ -109,14 +109,14 @@ test("settings starts with detected hardware followed by explicit Magnitude Clou
     expect(frame).toContain("KV cache      6.0 GiB")
     expect(frame).toContain("System & apps 17.0 GiB")
     expect(frame).toContain("Free          12.0 GiB")
-    expect(frame).toContain("Magnitude Cloud")
+    expect(frame).toContain("x-cli Cloud")
     expect(frame).toContain("○ Not connected")
-    expect(frame).not.toContain("No Magnitude Cloud API key · No cloud model access")
+    expect(frame).not.toContain("No x-cli Cloud API key · No cloud model access")
     expect(frame).toContain("Add API Key")
-    expect(frame).toContain("https://app.magnitude.dev")
+    expect(frame).toContain("https://app.x-cli.dev")
     expect(frame).toContain("[Copy link]")
     expect(frame).not.toContain("Install runtime")
-    expect(frame.indexOf("DETECTED HARDWARE")).toBeLessThan(frame.indexOf("Magnitude Cloud"))
+    expect(frame.indexOf("DETECTED HARDWARE")).toBeLessThan(frame.indexOf("x-cli Cloud"))
 
     const addApiKey = textPosition(frame, "Add API Key")
     await act(async () => view.mockMouse.click(addApiKey.x, addApiKey.y))
@@ -124,12 +124,12 @@ test("settings starts with detected hardware followed by explicit Magnitude Clou
     const editFrame = view.captureCharFrame()
     expect(editFrame).not.toContain("Add API Key")
     expect(editFrame).toContain("○ Not connected")
-    expect(editFrame).toContain("Paste Magnitude Cloud API key")
-    expect(editFrame.indexOf("Paste Magnitude Cloud API key")).toBeLessThan(editFrame.indexOf("Save (Enter)"))
+    expect(editFrame).toContain("Paste x-cli Cloud API key")
+    expect(editFrame.indexOf("Paste x-cli Cloud API key")).toBeLessThan(editFrame.indexOf("Save (Enter)"))
     expect(editFrame.indexOf("Save (Enter)")).toBeLessThan(editFrame.indexOf("Get an API key"))
     expect(editFrame).not.toContain("Configure Cloud fallback")
     expect(editFrame).not.toContain("Enter to save, Esc to cancel")
-    expect(textPosition(editFrame, "Save (Enter)").y - textPosition(editFrame, "Paste Magnitude Cloud API key").y).toBe(2)
+    expect(textPosition(editFrame, "Save (Enter)").y - textPosition(editFrame, "Paste x-cli Cloud API key").y).toBe(2)
   } finally {
     await act(async () => view.renderer.destroy())
   }

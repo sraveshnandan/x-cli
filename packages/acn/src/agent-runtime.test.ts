@@ -19,9 +19,9 @@ import type {
   CodingAgentSession,
   ForkTurnState,
   SessionWorkStatus,
-} from "@magnitudedev/agent"
-import type { StoredSessionMeta } from "@magnitudedev/storage"
-import { SessionOperationFailed } from "@magnitudedev/acn-protocol"
+} from "@x-cli/agent"
+import type { StoredSessionMeta } from "@x-cli/storage"
+import { SessionOperationFailed } from "@x-cli/acn-protocol"
 import {
   AcnServiceLifecycle,
   type AcnServiceLifecycleApi,

@@ -4,7 +4,7 @@ import { Button } from '../../components/button'
 import { spinnerFrameForStep } from '../../hooks/use-spinner-frame'
 import { useAnimationStep } from '../../hooks/use-animation-time'
 import { useTheme } from '../../hooks/use-theme'
-import { blue, slate } from '@magnitudedev/client-common'
+import { blue, slate } from '@x-cli/client-common'
 
 // Same pulse animation as subagent working state in task-list.tsx
 const PULSE_BLUE_SHADES = [

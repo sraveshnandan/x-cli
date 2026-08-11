@@ -1,4 +1,4 @@
 export {
   ACN_COORDINATION_REVISION,
-  MAGNITUDE_VERSION,
+  X_CLI_VERSION,
 } from "./version.generated"

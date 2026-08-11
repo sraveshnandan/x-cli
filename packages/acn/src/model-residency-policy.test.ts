@@ -1,4 +1,4 @@
-import { IcnClient, type IcnClientService } from "@magnitudedev/icn"
+import { IcnClient, type IcnClientService } from "@x-cli/icn"
 import { Effect } from "effect"
 import { describe, expect, it } from "vitest"
 import {

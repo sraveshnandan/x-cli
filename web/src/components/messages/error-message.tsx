@@ -6,7 +6,7 @@
  */
 import { type ReactNode } from "react"
 import { Option } from "effect"
-import type { ErrorDisplayMessage as ErrorType } from "@magnitudedev/sdk"
+import type { ErrorDisplayMessage as ErrorType } from "@x-cli/sdk"
 import { CopyButton, Timestamp } from "./shared"
 
 type ErrorCtaValue = Option.Option.Value<ErrorType["cta"]>

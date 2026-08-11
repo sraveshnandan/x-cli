@@ -7,7 +7,7 @@ import type {
   ModelServingConfiguration,
   RecommendableModel,
   ServingProfile,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   DownloadAttemptSchema,
   ModelOfferingTargetSchema,
@@ -15,7 +15,7 @@ import {
   ModelPackageSchema,
   RecommendableModelSchema,
   ServingProfileSchema,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import type {
   DownloadAttempt as NativeDownloadAttempt,
   ModelOfferingTarget as NativeModelOfferingTarget,
@@ -25,7 +25,7 @@ import type {
   ModelTargetInput,
   RecommendableModel as NativeRecommendableModel,
   ServingProfile as NativeServingProfile,
-} from "@magnitudedev/icn-protocol/schemas"
+} from "@x-cli/icn-protocol/schemas"
 
 const normalizeModelPackageFromIcn = (
   modelPackage: NativeModelPackage,
@@ -50,7 +50,7 @@ import {
   ModelOfferingTarget as NativeModelOfferingTargetSchema,
   ModelPackage as NativeModelPackageSchema,
   ModelTargetInput as NativeModelTargetInputSchema,
-} from "@magnitudedev/icn-protocol/schemas"
+} from "@x-cli/icn-protocol/schemas"
 
 export const modelPackageFromIcn = (
   modelPackage: NativeModelPackage,

@@ -1,14 +1,14 @@
 /**
  * Streaming partial utilities for incremental tool input accumulation (replay).
  *
- * Type definitions (StreamingPartial, StreamingLeaf) live in @magnitudedev/ai.
+ * Type definitions (StreamingPartial, StreamingLeaf) live in @x-cli/ai.
  * These functions stay here for replay — reconstructing partials from persisted events.
  */
 
-import type { StreamingPartial } from "@magnitudedev/ai"
+import type { StreamingPartial } from "@x-cli/ai"
 
 // Re-export types from AI package for backward compatibility
-export type { StreamingPartial, StreamingLeaf } from "@magnitudedev/ai"
+export type { StreamingPartial, StreamingLeaf } from "@x-cli/ai"
 
 /** All valid deep paths into T as tuple types. */
 export type DeepPaths<T> = T extends object

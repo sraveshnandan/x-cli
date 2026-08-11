@@ -81,6 +81,14 @@ export const releaseHosts = [
     executableExtension: "",
     cargoFeatures: ["mtmd", "dynamic-backends"],
   },
+  {
+    id: "windows-x64-msvc",
+    runner: "windows-latest",
+    bunTarget: "bun-windows-x64",
+    rustTarget: "x86_64-pc-windows-msvc",
+    executableExtension: ".exe",
+    cargoFeatures: ["mtmd", "dynamic-backends"],
+  },
 ] as const satisfies readonly ReleaseHost[]
 
 const cudaBuilds = [
@@ -164,7 +172,7 @@ export const hostById = (id: HostId): ReleaseHost => {
 export const cliArchive = (host: HostId) => `x-cli-cli-${host}.tar.gz`
 export const acnArchive = (host: HostId) => `x-cli-acn-${host}.tar.gz`
 export const icnBaseArchive = (host: HostId) => `x-cli-icn-base-${host}.tar.gz`
-export const backendArchive = (pack: BackendPack) => `magnitude-icn-${pack.id}.tar.gz`
+export const backendArchive = (pack: BackendPack) => `x-cli-icn-${pack.id}.tar.gz`
 
 export const currentHost = (): HostId => {
   const key = `${process.platform}-${process.arch}`

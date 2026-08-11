@@ -7,7 +7,7 @@
 
 import { CHARS_PER_TOKEN_UPPER } from '../../constants'
 import { charsToTokensUpper, allocateBudget } from '../budget'
-import type { JsonValue } from '@magnitudedev/ai'
+import type { JsonValue } from '@x-cli/ai'
 import { measureBounded, jsonEscapedCharLen } from './measure'
 
 // Token costs for common structural elements

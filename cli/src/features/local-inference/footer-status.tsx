@@ -1,7 +1,7 @@
 import { Option } from "effect"
-import { modelSlotResidentAllocation } from "@magnitudedev/client-common"
-import { PRIMARY_SLOT_ID, ProviderIdSchema } from "@magnitudedev/sdk"
-import type { LocalModelsState, ModelSlot, ModelSlotsState, ProviderId, SlotId } from "@magnitudedev/sdk"
+import { modelSlotResidentAllocation } from "@x-cli/client-common"
+import { PRIMARY_SLOT_ID, ProviderIdSchema } from "@x-cli/sdk"
+import type { LocalModelsState, ModelSlot, ModelSlotsState, ProviderId, SlotId } from "@x-cli/sdk"
 
 const LOCAL_PROVIDER_ID = ProviderIdSchema.make("local")
 export interface LocalInferenceFooterView {

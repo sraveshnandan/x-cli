@@ -20,7 +20,7 @@ import {
   usageOpenAtom,
   sessionsToRecentChats,
   type RecentChat,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 import { modelMenuStateAtom, showRecentChatsOverlayAtom } from '../../state/cli-atoms'
 import { hasConversationActivity } from '../../utils/start-state'
 import { RecentChatsWidget } from './recent-chats-widget'

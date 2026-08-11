@@ -1,4 +1,4 @@
-import { IcnClient } from "@magnitudedev/icn"
+import { IcnClient } from "@x-cli/icn"
 import { Context, Data, Duration, Effect, Layer, Ref, Schedule } from "effect"
 
 export class ModelResidencyPolicyUnavailable extends Data.TaggedError("ModelResidencyPolicyUnavailable")<{

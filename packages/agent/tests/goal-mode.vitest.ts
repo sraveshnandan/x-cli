@@ -7,7 +7,7 @@ import {
   ProjectionBusTag,
   makeAmbientServiceLayer,
   makeProjectionBusLayer,
-} from '@magnitudedev/event-core'
+} from '@x-cli/event-core'
 
 import type { AppEvent, TurnOutcomeEvent } from '../src/events'
 import { DisplayTimelineProjection, type DisplayTimeline } from '../src/display'

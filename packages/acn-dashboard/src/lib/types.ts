@@ -1,10 +1,10 @@
-import type { AcnRegistration } from '@magnitudedev/acn-protocol'
+import type { AcnRegistration } from '@x-cli/acn-protocol'
 
 export type {
   AcnDisplayViewIntrospection,
   AcnIntrospectionSession as AcnSession,
   AcnSessionIntrospection,
-} from '@magnitudedev/acn'
+} from '@x-cli/acn'
 
 export type {
   AddressedAtlasGroup,
@@ -14,7 +14,7 @@ export type {
   AddressedAtlasSegment,
   AddressedPin,
   ProjectionIntrospection,
-} from '@magnitudedev/agent'
+} from '@x-cli/agent'
 
 export interface AcnInfo {
   readonly version: string

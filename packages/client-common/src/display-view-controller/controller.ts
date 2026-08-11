@@ -2,12 +2,12 @@ import { Cause, Effect, Fiber, Layer, Queue, Stream } from "effect"
 import { RpcClient } from "@effect/rpc"
 import {
   forkIdToKey,
-  MagnitudeRpcs,
+  XCliRpcs,
   type DisplayTimeline,
   type DisplayViewShape,
   type StreamDisplayViewFailure,
   type StreamEvent,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
   applyStreamEvent,
   ceilToPageMultiple,
@@ -96,7 +96,7 @@ type Command =
 
 const viewIdForSession = (sessionId: string): string => `main:${sessionId}`
 
-const makeClient = () => RpcClient.make(MagnitudeRpcs)
+const makeClient = () => RpcClient.make(XCliRpcs)
 type DisplayRpcClient = Effect.Effect.Success<ReturnType<typeof makeClient>>
 
 const sameTimelineShape = (

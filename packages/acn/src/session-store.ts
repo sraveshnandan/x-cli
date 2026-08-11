@@ -1,8 +1,8 @@
 import { Context, Cause, Effect, Layer, Option } from "effect"
 import { resolve } from "path"
 import { stat } from "fs/promises"
-import { DEFAULT_CHAT_NAME } from "@magnitudedev/agent"
-import { MagnitudeStorage, type StoredSessionMeta } from "@magnitudedev/storage"
+import { DEFAULT_CHAT_NAME } from "@x-cli/agent"
+import { XCliStorage, type StoredSessionMeta } from "@x-cli/storage"
 import {
   InvalidSessionPath,
   SessionNotFound,
@@ -11,7 +11,7 @@ import {
   type SessionError,
   type SessionCwdSummary,
   type SessionMetadata as ProtocolSessionMetadata,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import type { SessionExecutionContext } from "./session-types"
 import { sessionErrorMessage } from "./session-errors"
 
@@ -121,7 +121,7 @@ export const defaultStoredMeta = (
 export const SessionStoreLive = Layer.effect(
   SessionStore,
   Effect.gen(function* () {
-    const storage = yield* MagnitudeStorage
+    const storage = yield* XCliStorage
 
     const readMeta = Effect.fn("acn.session-store.read-meta")(function* (sessionId: string) {
       return yield* storage.sessions.readMeta(sessionId).pipe(

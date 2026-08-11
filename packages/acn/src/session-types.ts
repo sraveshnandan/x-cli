@@ -2,12 +2,12 @@ import type { CloseableScope } from "effect/Scope"
 import type {
   AppEvent,
   CodingAgentSession,
-} from "@magnitudedev/agent"
+} from "@x-cli/agent"
 import type {
   RawImageAttachment,
   RawMentionOccurrence,
   StreamEvent as ProtocolStreamEvent,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 
 export interface RuntimeEntry {
   readonly id: string

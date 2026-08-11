@@ -1,4 +1,4 @@
-import { Ambient, AmbientServiceTag } from '@magnitudedev/event-core'
+import { Ambient, AmbientServiceTag } from '@x-cli/event-core'
 import { Effect } from 'effect'
 
 /**

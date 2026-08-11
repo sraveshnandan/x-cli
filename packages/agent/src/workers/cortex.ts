@@ -10,9 +10,9 @@
  */
 
 import { Cause, Effect, Layer, Stream } from 'effect'
-import { Worker, AmbientServiceTag } from '@magnitudedev/event-core'
-import { logger } from '@magnitudedev/logger'
-import { createHarness } from '@magnitudedev/harness'
+import { Worker, AmbientServiceTag } from '@x-cli/event-core'
+import { logger } from '@x-cli/logger'
+import { createHarness } from '@x-cli/harness'
 import type { AppEvent } from '../events'
 import { finalizeAgentModelStartFailure, type AgentModelStartFailure } from '../errors'
 import { describeThrown, stackTraceLines } from '../errors/formatters'
@@ -31,16 +31,16 @@ import { materializeAgentToolkit } from '../tools/toolkits'
 import { createHarnessAdapter } from '../execution/harness-adapter'
 import { buildSystemPrompt } from '../prompts/system-prompt-builder'
 import { windowToPrompt, createAgentFormatter } from '../prompts/window-to-prompt'
-import { createToolResultFormatter } from '@magnitudedev/harness'
+import { createToolResultFormatter } from '@x-cli/harness'
 
-import { ShadowVcs } from '@magnitudedev/vcs'
+import { ShadowVcs } from '@x-cli/vcs'
 import { ExecutionManager } from '../execution/types'
 import { SkillsAmbient } from '../ambient/skills-ambient'
 import { buildInterruptedTurnOutcome } from '../util/interrupt-utils'
 import type { ContextPart } from '../content'
 import type { ObservablePart } from '../observables/types'
-import type { BaseCallOptions } from '@magnitudedev/sdk'
-import { normalizeVision } from '@magnitudedev/ai'
+import type { BaseCallOptions } from '@x-cli/sdk'
+import { normalizeVision } from '@x-cli/ai'
 import { captureContextImageInline, type ContextImageCaptureError } from '../util/capture-context-image'
 
 function captureObservablePart(
@@ -91,7 +91,7 @@ export function buildObserverEscalationRunOptions(turnState: ForkTurnState | und
   //     type: 'function' as const,
   //     function: { name: 'message_advisor' },
   //   },
-  //   magnitudeAdditionalOptions: {
+  //   xCliAdditionalOptions: {
   //     turn_constraints: { message: 'forbid' },
   //   },
   // }

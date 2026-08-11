@@ -1,4 +1,4 @@
-import type { DisplayState } from "@magnitudedev/sdk"
+import type { DisplayState } from "@x-cli/sdk"
 
 export const EMPTY_DISPLAY_STATE: DisplayState = {
   session: { sessionId: "", title: null, cwd: "" },

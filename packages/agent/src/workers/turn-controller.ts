@@ -5,7 +5,7 @@
  */
 
 import { Effect, Option } from 'effect'
-import { Worker, type PublishFn } from '@magnitudedev/event-core'
+import { Worker, type PublishFn } from '@x-cli/event-core'
 import type { AppEvent } from '../events'
 import {
   TurnProjection,

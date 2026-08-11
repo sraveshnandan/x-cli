@@ -5,9 +5,9 @@ import {
   collectSessionContext,
   createCodingAgentSession,
   type CodingAgentSession,
-} from "@magnitudedev/agent"
-import { MagnitudeStorage, type StoredSessionMeta } from "@magnitudedev/storage"
-import type { SessionError } from "@magnitudedev/acn-protocol"
+} from "@x-cli/agent"
+import { XCliStorage, type StoredSessionMeta } from "@x-cli/storage"
+import type { SessionError } from "@x-cli/acn-protocol"
 import { AcnChatPersistence } from "./agent-persistence"
 import { toSessionError } from "./session-errors"
 import type { SessionRuntimeOptions } from "./session-runtime-options"
@@ -33,11 +33,11 @@ export class AgentFactory extends Context.Tag("AgentFactory")<
 export const AgentFactoryLive = (options: {
   readonly debug: boolean
   readonly version: string
-}): Layer.Layer<AgentFactory, never, MagnitudeStorage | ProviderClientRegistry | ModelSlotController> =>
+}): Layer.Layer<AgentFactory, never, XCliStorage | ProviderClientRegistry | ModelSlotController> =>
   Layer.effect(
     AgentFactory,
     Effect.gen(function* () {
-      const storage = yield* MagnitudeStorage
+      const storage = yield* XCliStorage
       const providerClients = yield* ProviderClientRegistry
       const modelSlots = yield* ModelSlotController
 

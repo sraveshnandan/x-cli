@@ -29,13 +29,13 @@ import {
   type Prompt,
   type ToolCallId,
   type ToolDefinition,
-} from "@magnitudedev/ai"
+} from "@x-cli/ai"
 import { IcnClient, type IcnClientService } from "../client.js"
-import * as Generated from "@magnitudedev/icn-protocol/schemas"
+import * as Generated from "@x-cli/icn-protocol/schemas"
 import {
   GeneratedClientInvalidResponseError,
   type GeneratedClientError,
-} from "@magnitudedev/openapi-effect/client-runtime"
+} from "@x-cli/openapi-effect/client-runtime"
 import type { LocalProviderSource } from "./provider.js"
 import { CurrentModelInstance } from "./contract.js"
 
@@ -343,7 +343,7 @@ const bindMissingIcnModel = (providerModelId: ProviderModelId) => Effect.succeed
 
 export interface IcnProviderService extends LocalProviderSource {}
 
-export class IcnProvider extends Context.Tag("@magnitudedev/icn/IcnProvider")<
+export class IcnProvider extends Context.Tag("@x-cli/icn/IcnProvider")<
   IcnProvider,
   IcnProviderService
 >() {}
@@ -359,7 +359,7 @@ export interface IcnProviderModelResolverService {
 }
 
 export class IcnProviderModelResolver extends Context.Tag(
-  "@magnitudedev/icn/IcnProviderModelResolver",
+  "@x-cli/icn/IcnProviderModelResolver",
 )<IcnProviderModelResolver, IcnProviderModelResolverService>() {}
 
 export const makeIcnProvider = (): Layer.Layer<

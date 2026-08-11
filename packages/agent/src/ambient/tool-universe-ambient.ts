@@ -1,6 +1,6 @@
-import { Ambient } from '@magnitudedev/event-core'
+import { Ambient } from '@x-cli/event-core'
 import { Context, Effect } from 'effect'
-import type { Toolkit } from '@magnitudedev/harness'
+import type { Toolkit } from '@x-cli/harness'
 
 export interface ToolUniverseSourceService {
   readonly toolkit: Toolkit

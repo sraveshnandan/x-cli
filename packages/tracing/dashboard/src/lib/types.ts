@@ -1,4 +1,4 @@
-export type { AgentCallTrace, TokenLogprob, RawInputToken, RawOutputToken, RawLogprobEntry } from '@magnitudedev/tracing'
+export type { AgentCallTrace, TokenLogprob, RawInputToken, RawOutputToken, RawLogprobEntry } from '@x-cli/tracing'
 
 export interface SessionInfo {
   id: string

@@ -1,10 +1,10 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "magnitudedev/magnitude" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "x-cli-dev/x-cli" }],
   "commit": false,
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@magnitudedev/!(cli)"],
+  "ignore": ["@x-cli/!(cli)"],
   "privatePackages": { "version": false, "tag": false }
 }

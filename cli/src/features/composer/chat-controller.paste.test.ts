@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test'
-import { resolvePasteIntent } from '@magnitudedev/client-common'
-import { applyPasteIntent } from '@magnitudedev/client-common'
-import { derivePasteEffects } from '@magnitudedev/client-common'
+import { resolvePasteIntent } from '@x-cli/client-common'
+import { applyPasteIntent } from '@x-cli/client-common'
+import { derivePasteEffects } from '@x-cli/client-common'
 
 describe('paste pipeline', () => {
   test('prefers event text and routes to inline insertion', async () => {

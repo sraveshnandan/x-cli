@@ -7,8 +7,8 @@
 
 import { Effect, Context, Layer, Stream } from 'effect'
 import type { AttemptCommitPolicy, TurnOutcome } from '../events'
-import type { GenerationPerformance, ResponseUsage } from '@magnitudedev/ai'
-import type { Projection, WorkerBusService } from '@magnitudedev/event-core'
+import type { GenerationPerformance, ResponseUsage } from '@x-cli/ai'
+import type { Projection, WorkerBusService } from '@x-cli/event-core'
 import type { RoleId } from '../agents/role-validation'
 import type { AgentRoutingProjection } from '../projections/agent-routing'
 import type { AgentLifecycleProjection } from '../projections/agent-lifecycle'

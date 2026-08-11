@@ -254,7 +254,7 @@ describe("defaultRetryabilityForFailure", () => {
       response: rejectedHttpResponse(402, new Headers(), "{}"),
       rejection: {
         _tag: "SubscriptionRequired",
-        message: "Magnitude Pro is required to use cloud models.",
+        message: "x-cli Pro is required to use cloud models.",
       },
     }))
 

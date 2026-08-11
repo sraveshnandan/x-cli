@@ -1,6 +1,6 @@
 import { Rpc } from "@effect/rpc"
 import { Schema } from "effect"
-import { ProviderIdSchema } from "@magnitudedev/ai/provider/model"
+import { ProviderIdSchema } from "@x-cli/ai/provider/model"
 import {
   ModelPreferenceMutationFailed,
   ModelSlotUpdateError,

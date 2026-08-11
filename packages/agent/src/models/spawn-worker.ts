@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { spawnWorkerTool } from '../tools/task-tools'
 import { SpawnWorkerStateSchema, type SpawnWorkerState } from './tool-state'

@@ -9,7 +9,7 @@ reference build used by primitive parity validation.
 - `build-profiles.toml` defines the upstream-default and Cargo-equivalent
   native build lanes.
 - `binding-surfaces.json` inventories the upstream, C bridge, and safe Rust
-  symbols used by Magnitude. Its verifier checks declarations only; it does
+  symbols used by x-cli. Its verifier checks declarations only; it does
   not establish behavioral parity.
 
 Build one or more selections with:

@@ -1,38 +1,38 @@
 {
   "name": "@x-cli/cli",
   "version": "0.0.1-alpha.38",
-  "description": "Magnitude AI coding agent",
+  "description": "x-cli AI coding agent",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/magnitudedev/magnitude.git",
+    "url": "https://github.com/x-clidev/x-cli.git",
     "directory": "packages/cli"
   },
-  "homepage": "https://github.com/magnitudedev/magnitude",
+  "homepage": "https://github.com/x-clidev/x-cli",
   "bugs": {
-    "url": "https://github.com/magnitudedev/magnitude/issues"
+    "url": "https://github.com/x-clidev/x-cli/issues"
   },
   "keywords": [
     "ai",
     "coding",
     "agent",
     "cli",
-    "magnitude"
+    "x-cli"
   ],
   "author": {
-    "name": "Magnitude",
-    "email": "founders@magnitude.dev",
-    "url": "https://magnitude.dev"
+    "name": "x-cli",
+    "email": "founders@x-cli.dev",
+    "url": "https://x-cli.dev"
   },
   "contributors": [
-    "Anders Lie <anders@magnitude.dev>",
-    "Tom Greenwald <tom@magnitude.dev>"
+    "Anders Lie <anders@x-cli.dev>",
+    "Tom Greenwald <tom@x-cli.dev>"
   ],
   "bin": {
-    "magnitude": "bin/magnitude.js"
+    "x-cli": "bin/x-cli.js"
   },
   "files": [
-    "bin/magnitude.js",
+    "bin/x-cli.js",
     "lib/download.js",
     "lib/release-runtime.cjs"
   ],

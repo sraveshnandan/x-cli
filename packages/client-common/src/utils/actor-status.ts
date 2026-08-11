@@ -1,4 +1,4 @@
-import type { DisplayRootStatus, DisplayWorkerStatus } from '@magnitudedev/sdk'
+import type { DisplayRootStatus, DisplayWorkerStatus } from '@x-cli/sdk'
 
 export function isDisplayRootStatusActive(
   status: DisplayRootStatus,

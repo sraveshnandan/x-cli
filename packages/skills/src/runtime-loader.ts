@@ -55,10 +55,10 @@ function reportSkillLoadDiagnostic(
  * Scans 6 directories in priority order (later overrides earlier on name conflicts):
  * 1. ~/.claude/skills/ (global, Claude Code)
  * 2. ~/.agents/skills/ (global, cross-agent standard)
- * 3. ~/.magnitude/skills/ (global, Magnitude-native)
+ * 3. ~/.x-cli/skills/ (global, x-cli-native)
  * 4. <cwd>/.claude/skills/ (project-local, Claude Code)
  * 5. <cwd>/.agents/skills/ (project-local, cross-agent standard)
- * 6. <cwd>/.magnitude/skills/ (project-local, highest priority)
+ * 6. <cwd>/.x-cli/skills/ (project-local, highest priority)
  */
 export async function loadSkills(cwd: string, options?: LoadSkillsOptions): Promise<Map<string, Skill>> {
   const home = os.homedir()
@@ -66,10 +66,10 @@ export async function loadSkills(cwd: string, options?: LoadSkillsOptions): Prom
   const dirs = [
     path.join(home, '.claude', 'skills'),
     path.join(home, '.agents', 'skills'),
-    path.join(home, '.magnitude', 'skills'),
+    path.join(home, '.x-cli', 'skills'),
     path.join(cwd, '.claude', 'skills'),
     path.join(cwd, '.agents', 'skills'),
-    path.join(cwd, '.magnitude', 'skills'),
+    path.join(cwd, '.x-cli', 'skills'),
   ]
 
   const skills = new Map<string, Skill>()

@@ -24,7 +24,7 @@ describe('context image rendering', () => {
   })
 
   it('materializes inline bytes before returning canonical image content', async () => {
-    const scratchpadPath = await mkdtemp(join(tmpdir(), 'magnitude-context-image-'))
+    const scratchpadPath = await mkdtemp(join(tmpdir(), 'x-cli-context-image-'))
     try {
       const captured = await Effect.runPromise(captureContextImageInline({
         base64: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',

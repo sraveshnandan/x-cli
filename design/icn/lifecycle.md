@@ -174,7 +174,7 @@ deadlines, output bounds, authentication/instance identity, and compatible API/b
 It must be validated before spawning.
 
 The model store and disposable cache are separate roots. In the managed product layout, authoritative
-model artifacts live under `.magnitude/models` and every Magnitude-owned disposable cache namespace
+model artifacts live under `.magnitude/models` and every x-cli-owned disposable cache namespace
 lives under `.magnitude/cache`; cache implementations must not create private cache roots beneath
 the model store. ICN's managed Hugging Face hub lives beneath the model store, and ICN does not
 implicitly discover or adopt a host user's global Hugging Face cache.

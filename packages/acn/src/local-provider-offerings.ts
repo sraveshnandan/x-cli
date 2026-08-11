@@ -13,16 +13,16 @@ import {
   modelOfferingTargetPackageIds,
   ModelOfferingTargetSchema,
   ModelServingConfigurationSchema,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   ProviderModelIdSchema,
   type ProviderModelId,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
-  MagnitudeStorage,
+  XCliStorage,
   type PersistedLocalProviderOffering,
-} from "@magnitudedev/storage"
-import { IcnCatalog, IcnInstalledModels } from "@magnitudedev/icn"
+} from "@x-cli/storage"
+import { IcnCatalog, IcnInstalledModels } from "@x-cli/icn"
 import {
   modelPackageFromIcn,
   packageInspectionFromIcn,
@@ -81,9 +81,9 @@ export class LocalProviderOfferings extends Context.Tag("LocalProviderOfferings"
 export const LocalProviderOfferingsLive: Layer.Layer<
   LocalProviderOfferings,
   never,
-  MagnitudeStorage | IcnCatalog | IcnInstalledModels
+  XCliStorage | IcnCatalog | IcnInstalledModels
 > = Layer.effect(LocalProviderOfferings, Effect.gen(function* () {
-  const storage = yield* MagnitudeStorage
+  const storage = yield* XCliStorage
   const catalog = yield* IcnCatalog
   const installed = yield* IcnInstalledModels
   const mutations = yield* PubSub.sliding<void>(16)

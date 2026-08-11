@@ -49,6 +49,8 @@ export interface CommandContext {
   openUsage: () => void
   /** Open the client-owned cloud model setup surface, when available. */
   openCloud?: () => void
+  /** Open MCP configuration or summary, when available. */
+  openMcp?: () => void
   /** Open a client-owned model menu root, when available. */
   openModelMenu?: (menu: ModelMenuId) => void
   /** Toggle between the default and transcript timeline presentations. */
@@ -183,8 +185,28 @@ export function routeSlashCommand(input: string, ctx: CommandContext): boolean {
     case 'catalog':
     case 'hardware':
     case 'cloud':
-      if (!ctx.openModelMenu) return false
-      ctx.openModelMenu(parsed.commandId)
+    case 'connect':
+      if (parsed.commandId === 'connect' && ctx.openCloud) {
+        ctx.openCloud()
+        return true
+      }
+      if (!ctx.openModelMenu) {
+        if (ctx.openCloud) {
+          ctx.openCloud()
+          return true
+        }
+        ctx.openSettings()
+        return true
+      }
+      ctx.openModelMenu(parsed.commandId === 'connect' ? 'cloud' : (parsed.commandId as ModelMenuId))
+      return true
+
+    case 'mcp':
+      if (ctx.openMcp) {
+        ctx.openMcp()
+        return true
+      }
+      ctx.showSystemMessage('MCP (Model Context Protocol): Managed via MCP servers configuration.')
       return true
 
     case 'autopilot':

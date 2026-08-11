@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'bun:test'
 import { addImageAttachmentsFromPastedText, handleChatControllerPaste } from './composer'
-import type { InputValue } from '@magnitudedev/client-common'
+import type { InputValue } from '@x-cli/client-common'
 
 const EMPTY_INPUT: InputValue = {
   text: '',

@@ -1,5 +1,5 @@
 import type { ResponseExitEncoded } from "@effect/rpc/RpcMessage"
-import type { JsonValue } from "@magnitudedev/utils/schema"
+import type { JsonValue } from "@x-cli/utils/schema"
 import type { Effect, ParseResult, Schema } from "effect"
 
 export type DecodedStreamChunk =

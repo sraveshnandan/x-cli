@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { Effect, Fiber, Layer, Option, Queue, Scope, Stream } from "effect"
-import type { AgentIntrospection, CodingAgentSession } from "@magnitudedev/agent"
-import type { DisplayViewShape } from "@magnitudedev/acn-protocol"
+import type { AgentIntrospection, CodingAgentSession } from "@x-cli/agent"
+import type { DisplayViewShape } from "@x-cli/acn-protocol"
 import { AcnActivityTrackerLive } from "../activity-tracker"
 import { AcnServiceLifecycleLive } from "../service-lifecycle"
 import { AgentRuntime, type AgentRuntimeApi } from "../agent-runtime"
@@ -110,6 +110,7 @@ const makeLayer = (queue: Queue.Queue<AgentIntrospection>) =>
               leaseCount: 0,
               leaseLabels: [],
               idleSince: null,
+              lastCommandAt: null,
               revision: 0,
             },
             retirement: null,

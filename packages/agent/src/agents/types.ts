@@ -1,5 +1,5 @@
 /**
- * Magnitude-specific types for agent definitions.
+ * x-cli-specific types for agent definitions.
  */
 
 import { Context, Effect } from 'effect'

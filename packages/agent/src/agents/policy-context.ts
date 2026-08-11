@@ -6,7 +6,7 @@
  */
 
 import { Effect } from 'effect'
-import type { Projection } from '@magnitudedev/event-core'
+import type { Projection } from '@x-cli/event-core'
 import { AgentLifecycleProjection, type AgentInfo } from '../projections/agent-lifecycle'
 import { TurnProjection } from '../projections/turn'
 

@@ -6,7 +6,7 @@
  */
 
 import { Effect, Schema } from 'effect'
-import { defineHarnessTool } from '@magnitudedev/harness'
+import { defineHarnessTool } from '@x-cli/harness'
 import {
   AdvisorErrorSchema,
   executeMessageAdvisor,

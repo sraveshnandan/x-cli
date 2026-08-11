@@ -1,6 +1,6 @@
-import { ProviderIdSchema, type ProviderCatalogFailure } from '@magnitudedev/sdk'
+import { ProviderIdSchema, type ProviderCatalogFailure } from '@x-cli/sdk'
 
-const MAGNITUDE_PROVIDER_ID = ProviderIdSchema.make('magnitude')
+const MAGNITUDE_PROVIDER_ID = ProviderIdSchema.make('x-cli')
 
 export interface CatalogFailureNotice {
   readonly message: string
@@ -10,7 +10,7 @@ export interface CatalogFailureNotice {
 const isMissingCloudAuthentication = (failure: ProviderCatalogFailure): boolean =>
   failure._tag === 'ProviderFailure'
   && failure.providerId === MAGNITUDE_PROVIDER_ID
-  && failure.message === 'Magnitude authentication is not configured'
+  && failure.message === 'x-cli authentication is not configured'
 
 export function getCatalogFailureNotice(
   failures: readonly ProviderCatalogFailure[],

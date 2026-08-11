@@ -2,16 +2,16 @@ import { Context, Effect, Option, Schema } from "effect"
 import {
   AcnSubscriptionMetadataTag,
   AcnSubscriptionWireItem,
-  MagnitudeRpcs,
+  XCliRpcs,
   ACN_SUBSCRIPTION_LIVENESS_TIMEOUT_MS,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   isCleanOrInterruptedExit,
   type RecoveringStreamProtocol,
 } from "../jit-rpc"
 
 export const acnSubscriptionTags: ReadonlySet<string> = new Set(
-  Array.from(MagnitudeRpcs.requests.entries())
+  Array.from(XCliRpcs.requests.entries())
     .filter(([, rpc]) =>
       Option.isSome(Context.getOption(rpc.annotations, AcnSubscriptionMetadataTag)),
     )

@@ -5,17 +5,17 @@ import {
   type BaseCallOptions,
   type ToolCallId,
   type ToolDefinition,
-} from '@magnitudedev/ai'
-import type { SlotId } from '@magnitudedev/roles'
+} from '@x-cli/ai'
+import type { SlotId } from '@x-cli/roles'
 import { buildMaxToolCallsGrammar } from './tool-call-grammar'
-import { Fork } from '@magnitudedev/event-core'
+import { Fork } from '@x-cli/event-core'
 import {
   getTraceSessionId,
   writeTrace,
   type AgentCallType,
   type AgentTraceActor,
   type AgentTraceScope,
-} from '@magnitudedev/tracing'
+} from '@x-cli/tracing'
 import { TurnContextTag } from '../engine/turn-context'
 import type { RoleId } from '../agents/role-validation'
 import { createId } from '../util/id'

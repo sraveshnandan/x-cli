@@ -1,4 +1,4 @@
-import type { MentionAttachment, RawMentionOccurrence } from "@magnitudedev/sdk"
+import type { MentionAttachment, RawMentionOccurrence } from "@x-cli/sdk"
 import type { InputMentionSegment } from "../types/store"
 
 export {
@@ -7,7 +7,7 @@ export {
   imageMediaTypeFromFilename,
   imageMediaTypeFromMime,
   isSupportedImageFilename,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 export interface MentionSegment {
   path: string

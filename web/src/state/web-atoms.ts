@@ -2,7 +2,7 @@
  * Web-only UI atoms — sidebar state that is specific to the web/desktop layout.
  *
  * Shared atoms (settings, usage, composer state, etc.) are imported from
- * `@magnitudedev/client-common`. This file holds only the atoms that have no
+ * `@x-cli/client-common`. This file holds only the atoms that have no
  * CLI counterpart.
  */
 import { Atom } from "@effect-atom/atom-react"
@@ -19,7 +19,7 @@ import {
   nextEscWillKillAllAtom,
   composerHasContentAtom,
   pendingUserSubmitAtom,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 
 // Re-export all shared atoms so existing web imports keep working
 export {

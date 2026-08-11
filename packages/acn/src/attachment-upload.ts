@@ -1,8 +1,8 @@
-import { type SessionError, SessionOperationFailed } from "@magnitudedev/acn-protocol"
+import { type SessionError, SessionOperationFailed } from "@x-cli/acn-protocol"
 import { Effect, Option } from "effect"
 import * as FileSystem from "@effect/platform/FileSystem"
 import * as Path from "@effect/platform/Path"
-import { createId } from "@magnitudedev/generate-id"
+import { createId } from "@x-cli/generate-id"
 
 // ---------------------------------------------------------------------------
 // Attachment upload — writes base64-decoded content to $M/attachments/

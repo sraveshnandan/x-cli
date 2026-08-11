@@ -8,7 +8,7 @@
 import { useState, type ReactNode } from "react"
 import { Option } from "effect"
 import { Brain, ChevronRight } from "lucide-react"
-import type { ThinkingMessage as ThinkingMessageType } from "@magnitudedev/sdk"
+import type { ThinkingMessage as ThinkingMessageType } from "@x-cli/sdk"
 
 export interface ThinkingMessageProps {
   message: ThinkingMessageType

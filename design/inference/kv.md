@@ -8,7 +8,7 @@ applies_to:
 
 # KV state reuse
 
-Magnitude uses llama.cpp's standard sequence state as a disposable prompt-reuse optimization. It
+x-cli uses llama.cpp's standard sequence state as a disposable prompt-reuse optimization. It
 does not patch llama.cpp with a second KV ownership model, expose physical KV pages, or maintain
 device, host, and disk cache tiers.
 

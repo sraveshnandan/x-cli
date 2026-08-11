@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react'
 import type { Block, HighlightRange } from './blocks'
-import type { MarkdownPalette } from '@magnitudedev/client-common'
-import { parseMarkdownToMdast } from '@magnitudedev/client-common'
+import type { MarkdownPalette } from '@x-cli/client-common'
+import { parseMarkdownToMdast } from '@x-cli/client-common'
 import { renderDocumentToBlocks } from './blocks'
 
 export function hasOddFenceCount(content: string): boolean {

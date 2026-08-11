@@ -6,12 +6,12 @@
  * keys that catalog.ts used (e.g., 'fileRead', 'shell', 'webSearch').
  */
 
-import { defineToolkit, mergeToolkits, type Toolkit, type ToolkitEntry, type ToolkitKeys } from '@magnitudedev/harness'
+import { defineToolkit, mergeToolkits, type Toolkit, type ToolkitEntry, type ToolkitKeys } from '@x-cli/harness'
 import type { RoleId } from '../agents/role-validation'
 import type { ConfigState } from '../ambient/config-ambient'
 import type { ToolAvailabilityState } from '../ambient/tool-availability-ambient'
-import { ROLE_TO_SLOT } from '@magnitudedev/roles'
-import { vcsToolkit } from '@magnitudedev/vcs'
+import { ROLE_TO_SLOT } from '@x-cli/roles'
+import { vcsToolkit } from '@x-cli/vcs'
 import type { ToolKeyErased } from './types'
 
 // --- Tools ---

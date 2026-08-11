@@ -2,7 +2,7 @@ import { describe, expect, mock, test } from 'bun:test'
 import React, { useEffect } from 'react'
 import { act, create, type ReactTestRenderer } from 'react-test-renderer'
 import type { KeyEvent } from '@opentui/core'
-import { useSlashCommands } from '@magnitudedev/client-common'
+import { useSlashCommands } from '@x-cli/client-common'
 
 type HookSnapshot = ReturnType<typeof useSlashCommands>
 

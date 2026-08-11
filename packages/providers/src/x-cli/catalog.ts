@@ -2,19 +2,19 @@ import { Effect, Option, Schema } from "effect"
 import * as HttpClient from "@effect/platform/HttpClient"
 import * as HttpClientRequest from "@effect/platform/HttpClientRequest"
 import { XCliModelListResponseSchema, type XCliModelInfo, type XCliRawModel } from "./contract"
-import { AVAILABLE_PROVIDER_MODEL, ModelCatalogError, ModelFamilyIdSchema, ProviderIdSchema, ReasoningEffortSchema, ReasoningProperty, VisionProperty, type AuthApplicator, type ModelCatalog, type ModelFamilyId } from '@x-cli/ai'
+import { AVAILABLE_PROVIDER_MODEL, ModelCatalogError, ModelFamilyIdSchema, ProviderIdSchema, ReasoningEffortSchema, ReasoningProperty, VisionProperty, type AuthApplicator, type ModelCatalog, type ModelFamilyId } from "@x-cli/ai"
 
-type MagnitudeModelWithoutFamily = Omit<XCliModelInfo, "modelFamilyId">
+type XCliModelWithoutFamily = Omit<XCliModelInfo, "modelFamilyId">
 
 const MAGNITUDE_REASONING_EFFORTS = ["none", "low", "medium", "high", "max"]
   .map((effort) => ReasoningEffortSchema.make(effort))
 const MAGNITUDE_DEFAULT_REASONING_EFFORT = ReasoningEffortSchema.make("high")
 
 /**
- * Map a raw Magnitude API model to a XCliModelInfo (without modelFamilyId).
+ * Map a raw x-cli API model to a XCliModelInfo (without modelFamilyId).
  * The API returns `id`; ProviderModel uses `providerModelId`.
  */
-export function toXCliModelInfo(raw: XCliRawModel): MagnitudeModelWithoutFamily {
+export function toXCliModelInfo(raw: XCliRawModel): XCliModelWithoutFamily {
   return {
     providerModelId: raw.id,
     providerId: ProviderIdSchema.make("x-cli"),
@@ -55,21 +55,21 @@ export type XCliAuthentication =
       readonly _tag: "NotConfigured"
     }
 
-export interface MagnitudeCatalogConfig {
+export interface XCliCatalogConfig {
   readonly endpoint: string
   readonly authentication: XCliAuthentication
   readonly ttlMs?: number
-  readonly classify: (model: MagnitudeModelWithoutFamily) => Option.Option<ModelFamilyId>
+  readonly classify: (model: XCliModelWithoutFamily) => Option.Option<ModelFamilyId>
 }
 
 /**
  * x-cli-specific model catalog implementation.
  *
- * Fetches models from the Magnitude API and enriches models with a family
+ * Fetches models from the x-cli API and enriches models with a family
  * classification when one is known. Family classification is metadata, not
  * an availability gate.
  */
-export function createXCliCatalog(config: MagnitudeCatalogConfig): ModelCatalog<XCliModelInfo> {
+export function createXCliCatalog(config: XCliCatalogConfig): ModelCatalog<XCliModelInfo> {
   const { endpoint, authentication, ttlMs = 5 * 60 * 1000, classify } = config
 
   let cache: readonly XCliModelInfo[] | null = null

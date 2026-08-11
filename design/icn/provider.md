@@ -17,7 +17,7 @@ applies_to:
 
 # ICN provider contract
 
-ICN implements Magnitude's `local` AI provider. Generic provider and agent code sees an ordinary
+ICN implements x-cli's `local` AI provider. Generic provider and agent code sees an ordinary
 provider model ID and `BoundModel`; it does not see packages, downloads, assessments, native plans,
 or runtime residency.
 

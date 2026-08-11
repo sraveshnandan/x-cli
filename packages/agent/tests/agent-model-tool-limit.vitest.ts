@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { Effect, Schema, Stream } from 'effect'
 import * as HttpClient from '@effect/platform/HttpClient'
-import { Prompt, type BaseCallOptions, type BoundModel } from '@magnitudedev/ai'
+import { Prompt, type BaseCallOptions, type BoundModel } from '@x-cli/ai'
 import { makeAgentBoundModel } from '../src/model/agent-model'
 
 describe('agent model tool-call prevention', () => {

@@ -5,7 +5,7 @@
  */
 import { type CSSProperties, type ReactNode } from "react"
 import { Square } from "lucide-react"
-import type { InterruptedMessage as InterruptedType } from "@magnitudedev/sdk"
+import type { InterruptedMessage as InterruptedType } from "@x-cli/sdk"
 
 const DEFAULT_INTERRUPTED_TEXT = "Interrupted. What would you like to do instead?"
 

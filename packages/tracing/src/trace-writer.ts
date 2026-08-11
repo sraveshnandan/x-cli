@@ -1,5 +1,5 @@
 /**
- * Trace Writer — persists LLM call traces to ~/.magnitude/traces/<session-id>/
+ * Trace Writer — persists LLM call traces to ~/.x-cli/traces/<session-id>/
  *
  * Call initTraceSession() once at startup, then pass writeTrace to onTrace().
  */
@@ -11,8 +11,8 @@ import {
   initTraceSessionSync,
   makeGlobalStoragePaths,
   updateTraceMetaSync,
-} from '@magnitudedev/storage'
-import { logger } from '@magnitudedev/logger'
+} from '@x-cli/storage'
+import { logger } from '@x-cli/logger'
 import type { AgentCallTrace, TraceSessionMeta } from './types'
 
 const globalPaths = makeGlobalStoragePaths(defaultGlobalStorageRoot())

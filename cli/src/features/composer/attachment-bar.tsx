@@ -2,7 +2,7 @@ import React, { memo, useState } from 'react'
 import { TextAttributes } from '@opentui/core'
 import { useRenderer } from '@opentui/react'
 import stringWidth from 'string-width'
-import { truncateFilename } from '@magnitudedev/client-common'
+import { truncateFilename } from '@x-cli/client-common'
 import { useTheme } from '../../hooks/use-theme'
 import type { PendingImageAttachment } from './composer'
 

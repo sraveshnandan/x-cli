@@ -35,7 +35,7 @@ export function useMenuActionsCore(): void {
               case "toggle-sidebar-search":
                 // App-specific — dispatch a custom event each app listens for
                 if (typeof window !== "undefined") {
-                  window.dispatchEvent(new CustomEvent("__magnitude:focus-search"))
+                  window.dispatchEvent(new CustomEvent("__x-cli:focus-search"))
                 }
                 break
               case "toggle-transcript-mode":

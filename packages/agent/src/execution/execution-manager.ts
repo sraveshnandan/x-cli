@@ -7,7 +7,7 @@
 import * as path from 'path'
 import { Effect, Layer } from 'effect'
 import { ToolInterceptorTag, type ToolInterceptor } from './permission-gate'
-import { Fork, Projection, WorkerBusTag, AmbientServiceTag, type WorkerBusService } from '@magnitudedev/event-core'
+import { Fork, Projection, WorkerBusTag, AmbientServiceTag, type WorkerBusService } from '@x-cli/event-core'
 import type { AppEvent } from '../events'
 import { isToolKey, type ToolKey } from '../tools/toolkits'
 
@@ -26,7 +26,7 @@ import { TaskGraphStateReaderTag, canCompleteRecord, getChildRecords, canAssignR
 import { GoalStateReaderTag, type GoalStateReader } from '../tools/goal'
 import { ConversationProjection, type ConversationState } from '../projections/conversation'
 import { createId } from '../util/id'
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 
 import { AgentRoutingProjection, type AgentRoutingState } from '../projections/agent-routing'
 import { AgentLifecycleProjection, type AgentLifecycleState, getAgentByForkId } from '../projections/agent-lifecycle'
@@ -36,7 +36,7 @@ import { TaskGraphProjection, type TaskGraphState } from '../projections/task-gr
 import { WindowProjection, type ForkWindowState } from '../window'
 import { GoalProjection, type GoalState } from '../projections/goal'
 
-import type { RoleDefinition } from '@magnitudedev/roles'
+import type { RoleDefinition } from '@x-cli/roles'
 import type { BoundObservable } from '../observables/types'
 import { bindObservable } from '../observables/types'
 import { ProjectionReaderTag, type ProjectionReader } from '../observables/projection-reader'
@@ -51,7 +51,7 @@ import { DetachedShellRegistry, type DetachedShellRegistryService } from '../pro
 import { makeDetachedShellRegistryService } from '../process/detached-process-registry-live'
 
 import { ChatPersistence } from '../persistence/chat-persistence-service'
-import { ShadowVcs, makeShadowVcsLayer, VcsFsLive, makeNoOpVcsLayer } from '@magnitudedev/vcs'
+import { ShadowVcs, makeShadowVcsLayer, VcsFsLive, makeNoOpVcsLayer } from '@x-cli/vcs'
 
 const { ForkContext } = Fork
 

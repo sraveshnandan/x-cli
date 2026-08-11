@@ -3,13 +3,13 @@ import {
   AcnInstanceIdSchema,
   type AcnInstance,
   AcnReady,
-  MagnitudeRpcs,
+  XCliRpcs,
   ModelSlotUnassigned,
   PRIMARY_SLOT_ID,
   ProcessStartIdentitySchema,
   AcnRevisionSchema,
   SECONDARY_SLOT_ID,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import * as HttpClient from "@effect/platform/HttpClient"
 import * as HttpClientError from "@effect/platform/HttpClientError"
 import * as HttpClientResponse from "@effect/platform/HttpClientResponse"
@@ -67,11 +67,11 @@ const rpcClient = (
       cause: new Error("connection refused"),
     }))
   }
-  const rpc = MagnitudeRpcs.requests.get(message.tag)
+  const rpc = XCliRpcs.requests.get(message.tag)
   if (rpc === undefined) throw new Error(`Unknown RPC ${message.tag}`)
   const success = message.tag === "Health"
     ? {
-        service: "magnitude-acn" as const,
+        service: "x-cli-acn" as const,
         revision: instance.revision,
         version: instance.identity,
         id: instance.id,
@@ -282,7 +282,7 @@ describe("AcnJitRuntime", () => {
       )
       yield* runtime.startup.retry
       expect((yield* runtime.startup.state.get)._tag).toBe("Ready")
-      const client = yield* RpcClient.make(MagnitudeRpcs).pipe(
+      const client = yield* RpcClient.make(XCliRpcs).pipe(
         Effect.provide(runtime.protocolLayer.pipe(
           Layer.provide(Layer.succeed(HttpClient.HttpClient, http)),
         )),

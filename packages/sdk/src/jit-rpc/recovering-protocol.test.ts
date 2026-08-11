@@ -14,7 +14,7 @@ import {
 } from "./recovering-stream-protocol"
 import {
   AcnInstanceIdSchema,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 
 interface TestEndpoint {
   readonly id: ReturnType<typeof AcnInstanceIdSchema.make>
@@ -278,7 +278,7 @@ describe("recovering protocol — operation contract", () => {
     expect(result).toBe("pong")
     expect(calls()).toBe(1)
     expect(startCalls()).toBe(0)
-    expect(requests()[0]?.headers["x-magnitude-acn-id"]).toBe("http://daemon-1")
+    expect(requests()[0]?.headers["x-x-cli-acn-id"]).toBe("http://daemon-1")
   })
 
   it("does not recover or replay a healthy unary request because its response is slow", async () => {

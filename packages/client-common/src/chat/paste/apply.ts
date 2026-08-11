@@ -1,4 +1,4 @@
-import { createId } from '@magnitudedev/generate-id'
+import { createId } from '@x-cli/generate-id'
 import { applyTextEditWithPastesAndMentions, insertPasteSegment } from '../../utils/strings'
 import type { InputValue } from '../../types/store'
 import type { PasteApplyResult, PasteIntent } from './types'

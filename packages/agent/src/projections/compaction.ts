@@ -7,8 +7,8 @@
  */
 
 import { Schema } from 'effect'
-import { Projection, Signal } from '@magnitudedev/event-core'
-import { FSM } from '@magnitudedev/utils'
+import { Projection, Signal } from '@x-cli/event-core'
+import { FSM } from '@x-cli/utils'
 import { CompletedTurnSchema, type CompletedTurn } from '../window/types'
 import { CompactResultSchema } from '../compaction/context'
 const { defineFSM } = FSM

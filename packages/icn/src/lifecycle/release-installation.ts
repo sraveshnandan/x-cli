@@ -8,7 +8,7 @@ import {
   BackendEligibilityReport,
   IcnBinaryIdentity,
   IcnInstallationDeclaration,
-} from "@magnitudedev/icn-protocol"
+} from "@x-cli/icn-protocol"
 import {
   acquireRelease,
   currentHost,
@@ -18,7 +18,7 @@ import {
   selectArtifact,
   type ReleaseArtifact,
   type ReleaseManifest,
-} from "@magnitudedev/release"
+} from "@x-cli/release"
 import { IcnPreparationReporter } from "./preparation.js"
 import { installationLoaderEnvironment } from "./installation-environment.js"
 import { selectCudaArtifact } from "./cuda-compatibility.js"
@@ -47,7 +47,7 @@ const installationError = (
 ) => new ReleaseIcnInstallationError({ stage, message })
 
 const executableName = () =>
-  process.platform === "win32" ? "magnitude-icn.exe" : "magnitude-icn"
+  process.platform === "win32" ? "x-cli-icn.exe" : "x-cli-icn"
 
 const MAXIMUM_COMMAND_OUTPUT = 64 * 1024
 

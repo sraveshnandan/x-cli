@@ -7,7 +7,7 @@
 import { useMemo } from "react"
 import { useAtomValue, useAtomSet, Result } from "@effect-atom/atom-react"
 import { Option } from "effect"
-import { ProviderModelCatalogMirror, ModelSlotsMirror, ProviderIdSchema } from "@magnitudedev/sdk"
+import { ProviderModelCatalogMirror, ModelSlotsMirror, ProviderIdSchema } from "@x-cli/sdk"
 import { useAgentClient } from "../state/agent-client-context"
 
 export interface ApiKeyState {
@@ -46,7 +46,7 @@ function maskApiKey(key: string): string {
   return `${head}………${tail}`
 }
 
-const MAGNITUDE_PROVIDER_ID = ProviderIdSchema.make("magnitude")
+const MAGNITUDE_PROVIDER_ID = ProviderIdSchema.make("x-cli")
 
 export function useSettingsState(): UseSettingsStateResult {
   const client = useAgentClient()
@@ -63,13 +63,13 @@ export function useSettingsState(): UseSettingsStateResult {
 
   const saving = Result.isWaiting(updateProviderAuthResult)
   const saveError = Result.isFailure(updateProviderAuthResult)
-    ? "Failed to update the Magnitude API key"
+    ? "Failed to update the x-cli API key"
     : null
 
   const snapshot = Result.value(result)
   const loading = Result.isWaiting(result) && Option.isNone(snapshot)
   const loadError = Result.isFailure(result)
-    ? "Failed to read the Magnitude API key configuration"
+    ? "Failed to read the x-cli API key configuration"
     : null
   const configuredKey = Option.flatMap(snapshot, ({ auth }) => Option.flatMap(auth, (value) =>
     value.type === "api" && value.key.trim().length > 0 ? Option.some(value) : Option.none()))

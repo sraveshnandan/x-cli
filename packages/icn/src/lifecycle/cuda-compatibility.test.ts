@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { Option } from "effect"
-import type { ReleaseArtifact, ReleaseManifest } from "@magnitudedev/release"
+import type { ReleaseArtifact, ReleaseManifest } from "@x-cli/release"
 import { selectCudaArtifact } from "./cuda-compatibility"
 
 const sha = "a".repeat(64)
@@ -35,9 +35,10 @@ const pack = (
 })
 
 const manifest = (artifacts: readonly ReleaseArtifact[]): ReleaseManifest => ({
-  schemaVersion: 1,
+  schemaVersion: 2,
   version: "1.0.0",
-  tag: "@magnitudedev/cli@1.0.0",
+  acnRevision: 1,
+  tag: "@x-cli/cli@1.0.0",
   sourceCommit: "b".repeat(40),
   artifacts: artifacts as [ReleaseArtifact, ...ReleaseArtifact[]],
 })

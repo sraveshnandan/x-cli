@@ -1,0 +1,41 @@
+---
+title: MCP & Custom Skills
+description: Model Context Protocol (MCP) tool integration and custom workspace skills.
+---
+
+# MCP & Custom Workspace Skills
+
+`x-cli` provides an extensible skill system supporting Model Context Protocol (MCP) tools, `skills.sh` integrations, and local workspace instructions.
+
+---
+
+## Installing Skills via CLI
+
+You can add pre-built community skills using `npx skills`:
+
+```bash
+npx skills add vercel-labs/agent-browser   # Chrome browser automation
+npx skills add anthropics/skills/xlsx      # Read & write Excel spreadsheets
+npx skills add anthropics/skills/pptx      # Generate PowerPoint decks
+```
+
+---
+
+## Creating Local Custom Skills
+
+Create workspace-specific skills under `.agents/skills/<skill-name>/SKILL.md` or globally under `~/.x-cli/skills/`:
+
+```markdown
+---
+name: database-query
+description: Execute read-only SQL queries against local Postgres dev container
+---
+
+# Database Query Skill
+
+When asked to query database schema or data, execute:
+
+`python scripts/query.py --sql "<query>"`
+```
+
+`x-cli` automatically loads skill metadata into the agent context at runtime.

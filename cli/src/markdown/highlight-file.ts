@@ -1,6 +1,6 @@
 import { createLowlight, common } from 'lowlight'
 import type { Element, RootContent as HastRootContent, Text as HastText } from 'hast'
-import type { SyntaxColors } from '@magnitudedev/client-common'
+import type { SyntaxColors } from '@x-cli/client-common'
 import type { Span } from './blocks'
 
 const lowlight = createLowlight(common)

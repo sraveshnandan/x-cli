@@ -4,7 +4,7 @@
  * cannot import CompactionProjection. These signals are shared between both.
  */
 
-import { Signal } from '@magnitudedev/event-core'
+import { Signal } from '@x-cli/event-core'
 import type { CompletedTurn } from '../window/types'
 import type { CompactionOutcome, SessionContext } from '../events'
 

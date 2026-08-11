@@ -7,8 +7,8 @@
 
 import { Effect, Schema, Stream } from 'effect'
 import * as HttpClient from '@effect/platform/HttpClient'
-import { formatStreamFailureMessage, type FinishReason, type ModelStreamResult, type ModelStreamTerminal, type StreamFailure } from '@magnitudedev/ai'
-import { advisorPrompt } from '@magnitudedev/roles'
+import { formatStreamFailureMessage, type FinishReason, type ModelStreamResult, type ModelStreamTerminal, type StreamFailure } from '@x-cli/ai'
+import { advisorPrompt } from '@x-cli/roles'
 import { AgentModelResolver } from '../model/model-resolver'
 import { getAgentByForkId, type AgentLifecycleState } from '../projections/agent-lifecycle'
 import {
@@ -23,7 +23,7 @@ import { AgentStateReaderTag } from '../tools/fork'
 import { advisorWindowToPrompt } from '../window/render'
 import { ToolErrorSchema } from '../tools/errors'
 
-import { Fork } from '@magnitudedev/event-core'
+import { Fork } from '@x-cli/event-core'
 
 const { ForkContext } = Fork
 

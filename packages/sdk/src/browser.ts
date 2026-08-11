@@ -1,7 +1,7 @@
 /**
  * Browser-safe SDK entry.
  *
- * Renderer builds resolve `@magnitudedev/sdk` here. ACN ensurance is
+ * Renderer builds resolve `@x-cli/sdk` here. ACN ensurance is
  * delegated to the host over HTTP.
  */
 export {
@@ -36,7 +36,7 @@ export {
   DisplayState as DisplayStateSchema,
   DisplayViewSnapshot,
   DisplayViewShape as DisplayViewShapeSchema,
-  MagnitudeRpcs,
+  XCliRpcs,
   StreamEvent as StreamEventSchema,
   canonicalExtensionForImageMediaType,
   filenameWithImageExtension,
@@ -90,7 +90,7 @@ export {
   ModelAssessmentIdSchema,
   AssessmentEnvironmentIdSchema,
   LocalModelsStateSchema,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 
 export {
   ProviderIdSchema,
@@ -98,7 +98,7 @@ export {
   ReasoningEffortSchema,
   ReasoningProperty,
   VisionProperty,
-} from "@magnitudedev/ai/provider/model"
+} from "@x-cli/ai/provider/model"
 
 export type {
   DownloadAttemptId,
@@ -149,8 +149,8 @@ export type {
   TaskDisplayRow,
   TimelineActivity,
   ToolMessage,
-} from "@magnitudedev/acn-protocol"
-export type * from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
+export type * from "@x-cli/acn-protocol"
 
 export {
   isRoleId,
@@ -160,11 +160,11 @@ export {
   SLOT_IDS,
   SLOT_DISPLAY_NAMES,
   SLOT_DESCRIPTIONS,
-} from "@magnitudedev/roles/constants"
-export type { RoleId } from "@magnitudedev/roles/constants"
+} from "@x-cli/roles/constants"
+export type { RoleId } from "@x-cli/roles/constants"
 export type {
   FetchUsageOptions,
   CloudUsageResponse,
-} from "@magnitudedev/providers"
-export type { UsageQuery } from "@magnitudedev/ai"
-export type { UsagePeriod } from "@magnitudedev/acn-protocol"
+} from "@x-cli/providers"
+export type { UsageQuery } from "@x-cli/ai"
+export type { UsagePeriod } from "@x-cli/acn-protocol"

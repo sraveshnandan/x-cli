@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Schema } from 'effect'
-import { NoInputSchema } from '@magnitudedev/utils/schema'
+import { NoInputSchema } from '@x-cli/utils/schema'
 import { makeNativeToolParametersJsonSchema } from '../../ai/src'
 import { webSearchTool } from '../src/tools/web-search'
 

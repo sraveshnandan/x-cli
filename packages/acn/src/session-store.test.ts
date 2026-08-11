@@ -6,14 +6,14 @@ import { Effect, Layer } from "effect"
 import { BunFileSystem, BunPath } from "@effect/platform-bun"
 import {
   GlobalStorage,
-  MagnitudeStorage,
+  XCliStorage,
   ProjectStorage,
   StorageLive,
   Version,
   makeGlobalStoragePaths,
   makeProjectStoragePaths,
   type StoredSessionMeta,
-} from "@magnitudedev/storage"
+} from "@x-cli/storage"
 import { SessionStore, SessionStoreLive } from "./session-store"
 
 const VERSION = "0.0.1"
@@ -37,7 +37,7 @@ function makeTestLayer(root: string) {
   return Layer.provideMerge(SessionStoreLive, storageLayer)
 }
 
-const run = <A, E>(eff: Effect.Effect<A, E, SessionStore | MagnitudeStorage>, root: string) =>
+const run = <A, E>(eff: Effect.Effect<A, E, SessionStore | XCliStorage>, root: string) =>
   Effect.runPromise(eff.pipe(Effect.provide(makeTestLayer(root))))
 
 const meta = (
@@ -64,7 +64,7 @@ describe("SessionStore", () => {
   let tmpDir: string
 
   beforeEach(async () => {
-    tmpDir = await mkdtemp(join(tmpdir(), "magnitude-acn-session-store-"))
+    tmpDir = await mkdtemp(join(tmpdir(), "x-cli-acn-session-store-"))
     await mkdir(tmpDir, { recursive: true })
   })
 
@@ -75,7 +75,7 @@ describe("SessionStore", () => {
   test("lists sessions by updated time with cursor pagination", async () => {
     await run(
       Effect.gen(function* () {
-        const storage = yield* MagnitudeStorage
+        const storage = yield* XCliStorage
         yield* storage.sessions.writeMeta("mqa00000", meta("mqa00000", "2026-01-02T00:00:00.000Z"))
         yield* storage.sessions.writeMeta("mqa00001", meta("mqa00001", "2026-01-04T00:00:00.000Z"))
         yield* storage.sessions.writeMeta("mqa00002", meta("mqa00002", "2026-01-03T00:00:00.000Z"))
@@ -101,7 +101,7 @@ describe("SessionStore", () => {
   test("filters sessions by cwd and query on the server", async () => {
     await run(
       Effect.gen(function* () {
-        const storage = yield* MagnitudeStorage
+        const storage = yield* XCliStorage
         yield* storage.sessions.writeMeta("mqa00000", meta("mqa00000", "2026-01-02T00:00:00.000Z", "/repo"))
         yield* storage.sessions.writeMeta("mqa00001", meta("mqa00001", "2026-01-04T00:00:00.000Z", "/repo"))
         yield* storage.sessions.writeMeta("mqa00002", meta("mqa00002", "2026-01-03T00:00:00.000Z", "/other"))
@@ -123,7 +123,7 @@ describe("SessionStore", () => {
 
     await run(
       Effect.gen(function* () {
-        const storage = yield* MagnitudeStorage
+        const storage = yield* XCliStorage
         yield* storage.sessions.writeMeta("mqa00000", meta("mqa00000", "2026-01-02T00:00:00.000Z"))
 
         const store = yield* SessionStore
@@ -139,7 +139,7 @@ describe("SessionStore", () => {
   test("lists cwd summaries sorted by recent activity", async () => {
     await run(
       Effect.gen(function* () {
-        const storage = yield* MagnitudeStorage
+        const storage = yield* XCliStorage
         yield* storage.sessions.writeMeta("mqa00000", meta("mqa00000", "2026-01-02T00:00:00.000Z", "/repo"))
         yield* storage.sessions.writeMeta("mqa00001", meta("mqa00001", "2026-01-04T00:00:00.000Z", "/other"))
         yield* storage.sessions.writeMeta("mqa00002", meta("mqa00002", "2026-01-03T00:00:00.000Z", "/repo"))
@@ -157,7 +157,7 @@ describe("SessionStore", () => {
   test("hides draft sessions from protocol lists while exposing them for cleanup", async () => {
     await run(
       Effect.gen(function* () {
-        const storage = yield* MagnitudeStorage
+        const storage = yield* XCliStorage
         yield* storage.sessions.writeMeta("mqa00000", meta("mqa00000", "2026-01-02T00:00:00.000Z", "/repo", "visible"))
         yield* storage.sessions.writeMeta("mqa00001", meta("mqa00001", "2026-01-04T00:00:00.000Z", "/repo", "draft"))
         yield* storage.sessions.writeMeta("mqa00002", meta("mqa00002", "2026-01-03T00:00:00.000Z", "/other", "draft"))

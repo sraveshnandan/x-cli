@@ -2,8 +2,8 @@ import { homedir } from "node:os"
 import { extname, isAbsolute, relative, resolve, sep } from "node:path"
 import { statSync } from "node:fs"
 import { Effect } from "effect"
-import { createId } from "@magnitudedev/generate-id"
-import { SessionOperationFailed, type MentionAttachment, type RawMentionOccurrence, type SessionError } from "@magnitudedev/acn-protocol"
+import { createId } from "@x-cli/generate-id"
+import { SessionOperationFailed, type MentionAttachment, type RawMentionOccurrence, type SessionError } from "@x-cli/acn-protocol"
 
 const TRAILING_PUNCTUATION = new Set([".", ",", ";", "!", "?", ")", "]", "}"])
 

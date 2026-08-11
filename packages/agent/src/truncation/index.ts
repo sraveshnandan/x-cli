@@ -9,7 +9,7 @@ export { DEFAULT_IMAGE_TOKENS, estimateImageTokens, estimateText, estimateConten
 export { formatSize } from './format'
 
 // JSON truncation
-export type { JsonValue } from '@magnitudedev/ai'
+export type { JsonValue } from '@x-cli/ai'
 export { measureBounded } from './json/measure'
 export { truncate, truncateMany } from './json/truncate'
 

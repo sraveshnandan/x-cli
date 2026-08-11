@@ -12,7 +12,7 @@ const CacheScope = Schema.Literal(
 
 type CacheScope = typeof CacheScope.Type
 
-const cacheRoot = NodePath.join(NodeOs.homedir(), ".magnitude", "cache")
+const cacheRoot = NodePath.join(NodeOs.homedir(), ".x-cli", "cache")
 
 const targetsFor = (scope: CacheScope): ReadonlyArray<string> => scope === "all"
   ? [cacheRoot]

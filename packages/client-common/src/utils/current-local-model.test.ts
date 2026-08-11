@@ -8,7 +8,7 @@ import {
   ProviderIdSchema,
   ProviderModelIdSchema,
   ReasoningEffortSchema,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { deriveCurrentLocalModel } from "./current-local-model"
 
 const selection = {

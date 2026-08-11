@@ -3,10 +3,10 @@ import { Atom, useAtomMount, useAtomSet } from "@effect-atom/atom-react"
 import { Cause, Effect, Fiber, Stream } from "effect"
 import { RpcClient } from "@effect/rpc"
 import {
-  MagnitudeRpcs,
+  XCliRpcs,
   type ActiveSessionStatus,
   type ActiveSessionStatuses,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import type { Layer } from "effect"
 import { usePlatform } from "../platform/platform-context"
 
@@ -40,7 +40,7 @@ export function subscribeActiveSessionStatuses(
   interruptActiveSessionStatuses()
 
   const effect = Effect.gen(function* () {
-    const client = yield* RpcClient.make(MagnitudeRpcs)
+    const client = yield* RpcClient.make(XCliRpcs)
     yield* client.StreamActiveSessionStatuses({}).pipe(
       Stream.tap((snapshot) => Effect.sync(() => callbacks.onSnapshot(snapshot))),
       Stream.runDrain,

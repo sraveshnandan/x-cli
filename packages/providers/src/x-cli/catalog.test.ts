@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { Option } from "effect"
-import { ProviderModelIdSchema } from '@x-cli/ai'
+import { ProviderModelIdSchema } from "@x-cli/ai"
 import { toXCliModelInfo } from "./catalog"
 import type { XCliRawModel } from "./contract"
 
@@ -20,7 +20,7 @@ const rawModel = (overrides: Partial<XCliRawModel> = {}): XCliRawModel => ({
   ...overrides,
 })
 
-describe("Magnitude model catalog mapping", () => {
+describe("x-cli model catalog mapping", () => {
   it("assigns the provider-wide reasoning efforts without model-list metadata", () => {
     const model = toXCliModelInfo(rawModel())
 

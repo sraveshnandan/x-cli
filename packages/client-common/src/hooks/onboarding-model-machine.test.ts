@@ -11,7 +11,7 @@ import {
   type LocalModelDownload,
   type LocalModelsState,
   type ModelSlotsState,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
   OnboardingIdle,
   OnboardingModelMachine,

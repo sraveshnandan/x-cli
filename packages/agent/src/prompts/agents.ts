@@ -37,7 +37,7 @@ export function buildConversationSummary(entries: readonly ConversationEntry[]):
 
   const formatted = entries.map(e =>
     `${e.role.toUpperCase()}:\n${e.text}`
-    //`<magnitude:message role="${e.role}>\n${e.text}\n</magnitude:message>`
+    //`<x-cli:message role="${e.role}>\n${e.text}\n</x-cli:message>`
   )
 
   // Always keep the first entry

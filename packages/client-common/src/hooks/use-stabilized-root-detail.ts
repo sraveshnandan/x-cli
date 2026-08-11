@@ -1,7 +1,7 @@
 import { useMemo, useRef, useSyncExternalStore } from 'react'
 import { Atom, useAtomMount } from '@effect-atom/atom-react'
 import { Clock, Effect } from 'effect'
-import type { DisplayRootStatus } from '@magnitudedev/sdk'
+import type { DisplayRootStatus } from '@x-cli/sdk'
 
 type WorkingStatus = Extract<DisplayRootStatus, { readonly _tag: 'Working' }>
 type DisplayRootDetail = WorkingStatus['detail']

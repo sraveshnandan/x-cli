@@ -14,7 +14,7 @@ import {
   type ProviderModelCatalogState,
   type ProviderModelId,
   type ReasoningEffort,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 const LOCAL_PROVIDER_ID = ProviderIdSchema.make("local")
 

@@ -6,9 +6,9 @@
  */
 import { useState, useSyncExternalStore } from "react"
 import { ChevronDown, ChevronUp, Circle, Plus, X } from "lucide-react"
-import { formatElapsedMs } from "@magnitudedev/client-common"
-import type { TaskDisplayRow, TaskAssignee, DisplayTasks } from "@magnitudedev/sdk"
-import { subscribeTick, getTickSnapshot, subscribeNoop } from "@magnitudedev/client-common"
+import { formatElapsedMs } from "@x-cli/client-common"
+import type { TaskDisplayRow, TaskAssignee, DisplayTasks } from "@x-cli/sdk"
+import { subscribeTick, getTickSnapshot, subscribeNoop } from "@x-cli/client-common"
 
 export interface TaskListProps {
   tasks: DisplayTasks | null

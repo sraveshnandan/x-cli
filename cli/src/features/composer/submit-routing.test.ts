@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { shouldHandleSlashCommandInTab } from '@magnitudedev/client-common'
+import { shouldHandleSlashCommandInTab } from '@x-cli/client-common'
 
 describe('shouldHandleSlashCommand in task/main-chat context', () => {
   test('allows slash commands in main chat', () => {

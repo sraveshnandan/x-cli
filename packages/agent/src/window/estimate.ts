@@ -2,7 +2,7 @@ import type { ContextPart } from '../content'
 import type { CompletedTurn } from '../window/types'
 import type { TimelineEntry } from './inbox/types'
 
-import type { Skill } from '@magnitudedev/skills'
+import type { Skill } from '@x-cli/skills'
 import type { RoleId } from '../agents/role-validation'
 
 import { estimateContentTokens, estimateText } from '../truncation/estimate'

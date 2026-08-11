@@ -5,14 +5,14 @@ import {
   type AppEvent,
   type ChatPersistenceService,
   type SessionMetadata as AgentSessionMetadata,
-} from "@magnitudedev/agent"
-import type { EventCursor, Timestamped } from "@magnitudedev/event-core"
-import type { MagnitudeStorageShape, StoredSessionMeta } from "@magnitudedev/storage"
+} from "@x-cli/agent"
+import type { EventCursor, Timestamped } from "@x-cli/event-core"
+import type { XCliStorageShape, StoredSessionMeta } from "@x-cli/storage"
 import { defaultStoredMeta } from "./session-store"
 
 export class AcnChatPersistence implements ChatPersistenceService {
   constructor(
-    private readonly storage: MagnitudeStorageShape,
+    private readonly storage: XCliStorageShape,
     private readonly workingDirectory: string,
     private readonly sessionId: string,
     private readonly version: string,

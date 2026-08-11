@@ -5,12 +5,12 @@
  */
 
 import { Effect, Context } from 'effect'
-import { Fork } from '@magnitudedev/event-core'
-import type { RoleDefinition } from '@magnitudedev/roles'
-import { evaluatePolicy } from '@magnitudedev/roles'
-import type { ToolCallId } from '@magnitudedev/ai'
-import type { ExecuteHookContext, InterceptorDecision } from '@magnitudedev/harness'
-import type { PolicyContext as RolesPolicyContext } from '@magnitudedev/roles'
+import { Fork } from '@x-cli/event-core'
+import type { RoleDefinition } from '@x-cli/roles'
+import { evaluatePolicy } from '@x-cli/roles'
+import type { ToolCallId } from '@x-cli/ai'
+import type { ExecuteHookContext, InterceptorDecision } from '@x-cli/harness'
+import type { PolicyContext as RolesPolicyContext } from '@x-cli/roles'
 import { PolicyContextProviderTag } from '../agents/types'
 
 const { ForkContext } = Fork

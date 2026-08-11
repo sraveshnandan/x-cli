@@ -1,4 +1,4 @@
-import type { DisplayRootStatus } from '@magnitudedev/sdk'
+import type { DisplayRootStatus } from '@x-cli/sdk'
 
 type DisplayRootDetail = Extract<
   DisplayRootStatus,

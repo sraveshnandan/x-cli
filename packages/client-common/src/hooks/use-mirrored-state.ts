@@ -6,14 +6,14 @@ import type * as Rpc from "@effect/rpc/Rpc"
 import type * as RpcGroup from "@effect/rpc/RpcGroup"
 import type { RpcClientError } from "@effect/rpc/RpcClientError"
 import type {
-  MagnitudeRpcs,
+  XCliRpcs,
   MirroredStateInvalidation,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { useAgentClient } from "../state/agent-client-context"
 
-type MagnitudeRpc = RpcGroup.Rpcs<typeof MagnitudeRpcs>
+type XCliRpc = RpcGroup.Rpcs<typeof XCliRpcs>
 type WatchEvent = MirroredStateInvalidation
-type RpcPayload<Tag extends Rpc.Tag<MagnitudeRpc>> = Rpc.PayloadConstructor<Rpc.ExtractTag<MagnitudeRpc, Tag>>
+type RpcPayload<Tag extends Rpc.Tag<XCliRpc>> = Rpc.PayloadConstructor<Rpc.ExtractTag<XCliRpc, Tag>>
 type AgentClientInstance = ReturnType<typeof useAgentClient>
 
 interface ResidentWatch {
@@ -76,7 +76,7 @@ const getResidentWatch = (
  * RPC tag is also its invalidation identity, so no parallel client configuration exists.
  */
 export function useMirroredState<
-  const Id extends Rpc.Tag<MagnitudeRpc>,
+  const Id extends Rpc.Tag<XCliRpc>,
   Snapshot,
   SnapshotEncoded,
   SnapshotRequirements,
@@ -99,7 +99,7 @@ export function useMirroredState<
  * successful values may be composed purely at the rendering boundary.
  */
 export function useMirroredStateAtom<
-  const Id extends Rpc.Tag<MagnitudeRpc>,
+  const Id extends Rpc.Tag<XCliRpc>,
   Snapshot,
   SnapshotEncoded,
   SnapshotRequirements,

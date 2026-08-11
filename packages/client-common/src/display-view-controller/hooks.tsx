@@ -9,7 +9,7 @@ import {
 } from "react"
 import { Atom, useAtomMount, useAtomSet } from "@effect-atom/atom-react"
 import { Effect } from "effect"
-import type { DisplayState } from "@magnitudedev/sdk"
+import type { DisplayState } from "@x-cli/sdk"
 import { usePlatform } from "../platform/platform-context"
 import {
   createDisplayViewStore,

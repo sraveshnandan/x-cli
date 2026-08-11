@@ -1,7 +1,7 @@
 import * as FileSystem from "@effect/platform/FileSystem";
 import * as BunContext from "@effect/platform-bun/BunContext";
 import * as BunRuntime from "@effect/platform-bun/BunRuntime";
-import { compileOpenApi } from "@magnitudedev/openapi-effect";
+import { compileOpenApi } from "@x-cli/openapi-effect";
 import { Data, Effect, HashMap, Option } from "effect";
 import { resolve } from "node:path";
 import { config } from "../openapi-effect.config.js";

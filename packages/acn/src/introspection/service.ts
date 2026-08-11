@@ -1,6 +1,6 @@
 import { Context, Effect, Layer, Option, Stream } from "effect"
-import { SessionNotFound, SessionOperationFailed, type SessionError } from "@magnitudedev/acn-protocol"
-import type { AgentIntrospection } from "@magnitudedev/agent"
+import { SessionNotFound, SessionOperationFailed, type SessionError } from "@x-cli/acn-protocol"
+import type { AgentIntrospection } from "@x-cli/agent"
 import { AgentRuntime } from "../agent-runtime"
 import { AcnActivityTracker } from "../activity-tracker"
 import { formatUnknownCause } from "../session-errors"

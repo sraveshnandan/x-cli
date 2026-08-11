@@ -2,7 +2,7 @@ import {
   UpstreamRetryability,
   type ModelAttemptFailureSnapshot,
   type UpstreamRetryability as UpstreamRetryabilityType,
-} from '@magnitudedev/ai'
+} from '@x-cli/ai'
 import type { AttemptCommitPolicy, TurnOutcome } from '../events'
 import type {
   AgentModelStartFailure,

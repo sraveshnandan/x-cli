@@ -14,8 +14,8 @@ import {
   selectedCwdAtom,
   useTimelineStatus,
   findSlotProfile,
-} from '@magnitudedev/client-common'
-import { forkIdToKey, PRIMARY_SLOT_ID, ROLE_TO_SLOT, SLOT_DISPLAY_NAMES, SLOT_DESCRIPTIONS, isRoleId, SECONDARY_SLOT_ID, type SlotId } from '@magnitudedev/sdk'
+} from '@x-cli/client-common'
+import { forkIdToKey, PRIMARY_SLOT_ID, ROLE_TO_SLOT, SLOT_DISPLAY_NAMES, SLOT_DESCRIPTIONS, isRoleId, SECONDARY_SLOT_ID, type SlotId } from '@x-cli/sdk'
 import { Option } from 'effect'
 import { showRecentChatsOverlayAtom } from '../../state/cli-atoms'
 import type { ActionId } from '../../types/ui-actions'

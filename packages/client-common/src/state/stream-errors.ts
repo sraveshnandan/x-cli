@@ -12,7 +12,7 @@ import {
   AcnEnsuranceFailed,
   DownloadFailed,
   type StreamDisplayViewFailure,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 /**
  * Structured stream error info consumed by both apps.
@@ -40,15 +40,15 @@ export function isAcnAvailabilityError(error: unknown): error is AcnAvailability
 
 export function acnAvailabilityErrorMessage(error: AcnAvailabilityError): string {
   if (error instanceof BinaryNotFound) {
-    return "Magnitude daemon is missing. Please restart Magnitude to reinstall it."
+    return "x-cli daemon is missing. Please restart x-cli to reinstall it."
   }
   if (error instanceof BinaryVersionMismatch) {
-    return `Magnitude daemon version does not match this client. Expected ${error.expected}, got ${error.actual}.`
+    return `x-cli daemon version does not match this client. Expected ${error.expected}, got ${error.actual}.`
   }
   if (error instanceof DownloadFailed) {
-    return `Failed to download the Magnitude daemon: ${error.reason}`
+    return `Failed to download the x-cli daemon: ${error.reason}`
   }
-  return `Magnitude daemon failed to start: ${error.reason}`
+  return `x-cli daemon failed to start: ${error.reason}`
 }
 
 function caughtErrorDetails(error: unknown): string {
@@ -128,7 +128,7 @@ export function classifyStreamError(cause: Cause.Cause<StreamDisplayViewFailure>
         }
       }
       return {
-        message: `Lost connection to the Magnitude daemon and could not recover.\n\n${formatStreamFailure(failure)}`,
+        message: `Lost connection to the x-cli daemon and could not recover.\n\n${formatStreamFailure(failure)}`,
         invariantViolation: false,
         isAcnAvailabilityError: false,
       }

@@ -22,7 +22,7 @@ describe("compareAcnIdentities", () => {
     expect(compareAcnIdentities("anything", "anything")).toBe(0)
   })
 
-  it("orders Magnitude development identities by generated timestamp", () => {
+  it("orders x-cli development identities by generated timestamp", () => {
     expect(compareAcnIdentities(
       "0.0.1-alpha.22+dev.2c5b178.1784757574495",
       "0.0.1-alpha.22+dev.2c5b178.1784755698047",
@@ -43,7 +43,7 @@ describe("compareAcnIdentities", () => {
     expect(compareAcnIdentities("0.0.1-alpha.23", "0.0.1-alpha.22+dev.2c5b178.1")).toBe(1)
   })
 
-  it("deterministically orders malformed and non-Magnitude identities", () => {
+  it("deterministically orders malformed and non-x-cli identities", () => {
     expect(compareAcnIdentities("release-10", "release-2")).toBe(1)
     expect(compareAcnIdentities("release-2", "release-10")).toBe(-1)
     expect(compareAcnIdentities("01", "1")).toBe(-1)

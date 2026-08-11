@@ -1,7 +1,7 @@
 /**
  * Recent tasks data layer
  *
- * Previously loaded task summaries from .magnitude/tasks/ for display in the
+ * Previously loaded task summaries from .x-cli/tasks/ for display in the
  * task panel empty state. In the client-server architecture, the client must
  * not touch the filesystem directly. Until a server-side RPC exists for task
  * listing, the empty state is returned.
@@ -26,7 +26,7 @@ export interface PreviewedTask {
 }
 
 /**
- * Get recent tasks from .magnitude/tasks/ directory
+ * Get recent tasks from .x-cli/tasks/ directory
  *
  * TODO: Replace with a server-side RPC once available. The client should not
  * read the filesystem directly.
@@ -49,7 +49,7 @@ export function formatTaskDate(dateFolder: string): string {
 }
 
 /**
- * Load full task content from a .magnitude/tasks/ file by ID
+ * Load full task content from a .x-cli/tasks/ file by ID
  *
  * TODO: Replace with a server-side RPC once available. The client should not
  * read the filesystem directly.

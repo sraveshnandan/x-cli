@@ -4,14 +4,14 @@
 
 import { describe, it, expect } from 'vitest'
 import { Effect, Layer, Option } from 'effect'
-import { ModelFamilyIdSchema, ProviderIdSchema, ProviderModelIdSchema, ReasoningEffortSchema } from '@magnitudedev/ai'
+import { ModelFamilyIdSchema, ProviderIdSchema, ProviderModelIdSchema, ReasoningEffortSchema } from '@x-cli/ai'
 import {
   ModelSlotConfiguredRemote,
   PRIMARY_SLOT_ID,
   SECONDARY_SLOT_ID,
   type ModelSlotsState,
   type ProviderModelCatalogEntry,
-} from '@magnitudedev/sdk'
+} from '@x-cli/sdk'
 import {
   ProjectionBusTag,
   makeProjectionBusLayer,
@@ -19,7 +19,7 @@ import {
   AmbientServiceTag,
   FrameworkErrorPubSubLive,
   FrameworkErrorReporterLive,
-} from '@magnitudedev/event-core'
+} from '@x-cli/event-core'
 import type { AppEvent } from '../src/events'
 import { AtifProjection } from '../src/projections/atif/projection'
 import { AgentRoutingProjection } from '../src/projections/agent-routing'
@@ -32,7 +32,7 @@ import type { AtifForkState, AtifTrajectory } from '../src/projections/atif'
 import { serializeAtif } from '../src/projections/atif/serialize'
 import { selectAgentToolKeys, toolUniverseToolkit, toToolKeyErased } from '../src/tools/toolkits'
 
-const providerId = ProviderIdSchema.make('magnitude')
+const providerId = ProviderIdSchema.make('x-cli')
 const reasoningEffort = ReasoningEffortSchema.make('none')
 const model = (
   providerModelId: string,
@@ -94,7 +94,7 @@ const mockConfigState = buildConfigStateFromSlots(mockModels, mockSlots, {
   softCapMaxTokens: 200_000,
 })
 const toolAvailability = {
-  webSearch: { _tag: 'Available', source: 'magnitude' },
+  webSearch: { _tag: 'Available', source: 'x-cli' },
 } as const
 const leaderToolKeys = selectAgentToolKeys({
   roleId: 'leader', configState: mockConfigState, toolAvailability, solo: false, vcsAvailable: false,
@@ -282,7 +282,7 @@ describe('AtifProjection', () => {
         cacheReadTokens: 0,
         cacheWriteTokens: 0,
         cost: null,
-        providerId: 'magnitude',
+        providerId: 'x-cli',
         modelId: 'claude-sonnet-4-6',
       },
     ] as AppEvent[], true)
@@ -671,7 +671,7 @@ describe('AtifProjection', () => {
       },
     ] as AppEvent[], true, 'agent-scout-1')
 
-    expect(fork.agentName).toBe('magnitude-scout')
+    expect(fork.agentName).toBe('x-cli-scout')
     expect(fork.agentRole).toBe('scout')
     // Root fork should have a spawnWorker step
     const rootFork = await makeAtif([
@@ -803,7 +803,7 @@ describe('AtifProjection', () => {
     expect(trajectory.schema_version).toBe('ATIF-v1.7')
     expect(Option.getOrNull(trajectory.session_id)).toBe('test-session')
     expect(Option.getOrNull(trajectory.trajectory_id)).toBe('main')
-    expect(trajectory.agent.name).toBe('magnitude')
+    expect(trajectory.agent.name).toBe('x-cli')
     expect(trajectory.steps.length).toBeGreaterThan(0)
 
     // Validate sequential step_ids
@@ -817,7 +817,7 @@ describe('AtifProjection', () => {
     expect(subagentTrajectories?.length).toBe(1)
     const firstSub = subagentTrajectories?.[0]
     expect(firstSub && Option.getOrNull(firstSub.trajectory_id)).toBe('agent-scout-1')
-    expect(firstSub?.agent.name).toBe('magnitude-scout')
+    expect(firstSub?.agent.name).toBe('x-cli-scout')
   })
 
   it('should produce a user step for interrupt', async () => {
@@ -857,7 +857,7 @@ describe('AtifProjection', () => {
     ] as AppEvent[], true, 'agent-1')
 
     // The worker fork should still have the initial state from agent_created
-    expect(fork.agentName).toBe('magnitude-engineer')
+    expect(fork.agentName).toBe('x-cli-engineer')
   })
 
   it('should handle multiple tool calls in a single agent step', async () => {
@@ -934,7 +934,7 @@ describe('AtifProjection', () => {
         cacheReadTokens: 50,
         cacheWriteTokens: 10,
         cost: 0.001,
-        providerId: 'magnitude',
+        providerId: 'x-cli',
         modelId: 'claude-sonnet-4-6',
       },
     ] as AppEvent[], true)
@@ -962,7 +962,7 @@ describe('AtifProjection', () => {
     // Provider-specific metrics in extra
     const metricsExtra = metrics && Option.getOrNull(metrics.extra)
     expect(metricsExtra?.cache_creation_input_tokens).toBe(10)
-    expect(metricsExtra?.provider_id).toBe('magnitude')
+    expect(metricsExtra?.provider_id).toBe('x-cli')
     expect(metricsExtra?.model_id).toBe('claude-sonnet-4-6')
 
     // Token accumulator
@@ -1137,7 +1137,7 @@ describe('AtifProjection', () => {
         cacheReadTokens: 200,
         cacheWriteTokens: 50,
         cost: 0.005,
-        providerId: 'magnitude',
+        providerId: 'x-cli',
         modelId: 'claude-sonnet-4-6',
       },
     ] as AppEvent[], true)
@@ -1206,7 +1206,7 @@ describe('AtifProjection', () => {
     expect(finalMetrics && Option.getOrNull(finalMetrics.total_cost_usd)).toBe(0.005)
 
     // Agent info
-    expect(trajectory.agent.name).toBe('magnitude')
+    expect(trajectory.agent.name).toBe('x-cli')
     expect(trajectory.agent.version).toBe('1.0.0')
   })
 })

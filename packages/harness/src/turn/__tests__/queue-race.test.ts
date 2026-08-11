@@ -4,8 +4,8 @@ import { expect } from 'vitest'
 import { createHarness } from '../harness'
 import { defineHarnessTool } from '../../tool/tool'
 import { defineToolkit } from '../../tool/toolkit'
-import type { BoundModel, ProviderToolCallId, ToolCallId, ResponseStreamEvent, StreamingFieldParser } from '@magnitudedev/ai'
-import { createStreamingFieldParser, ModelStreamTerminal, Prompt, createToolCallId } from '@magnitudedev/ai'
+import type { BoundModel, ProviderToolCallId, ToolCallId, ResponseStreamEvent, StreamingFieldParser } from '@x-cli/ai'
+import { createStreamingFieldParser, ModelStreamTerminal, Prompt, createToolCallId } from '@x-cli/ai'
 
 // ── Test tool that always errors ─────────────────────────────────────
 

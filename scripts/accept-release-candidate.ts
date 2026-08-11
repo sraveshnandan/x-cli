@@ -5,11 +5,11 @@ import {
   BunDetachedChildProcessSpawner,
   ChildProcessSpawner,
   AcnInstanceManager,
-  MagnitudeRpcs,
+  XCliRpcs,
   makeAcnJitRuntime,
   makeLocalAcnInstanceManager,
-} from "@magnitudedev/sdk"
-import { BunSqliteDriverLayer } from "@magnitudedev/sdk/bun"
+} from "@x-cli/sdk"
+import { BunSqliteDriverLayer } from "@x-cli/sdk/bun"
 import { Duration, Effect, Exit, Layer, Option, Schema, Scope } from "effect"
 import {
   mkdir,
@@ -20,9 +20,9 @@ import {
 } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { resolve } from "node:path"
-import { releaseUrl } from "@magnitudedev/release/acquisition"
-import { ReleaseManifestSchema } from "@magnitudedev/release/contracts"
-import { currentHost } from "@magnitudedev/release/targets"
+import { releaseUrl } from "@x-cli/release/acquisition"
+import { ReleaseManifestSchema } from "@x-cli/release/contracts"
+import { currentHost } from "@x-cli/release/targets"
 
 const BOOTSTRAP_TIMEOUT_MS = 2 * 60_000
 const SHUTDOWN_TIMEOUT_MS = 20_000
@@ -63,7 +63,7 @@ const run = async (
 
 const manifest = Schema.decodeUnknownSync(
   Schema.parseJson(ReleaseManifestSchema),
-)(await readFile(resolve(candidate, "magnitude-release.json"), "utf8"))
+)(await readFile(resolve(candidate, "x-cli-release.json"), "utf8"))
 const cliArtifact = manifest.artifacts.find((artifact) =>
   artifact.kind === "cli" &&
   Option.getOrUndefined(artifact.host) === currentHost()
@@ -74,7 +74,7 @@ if (!cliArtifact) {
 
 const routes = new Map(
   [
-    "magnitude-release.json",
+    "x-cli-release.json",
     ...manifest.artifacts.map((artifact) => artifact.filename),
   ].map((name) => [
     new URL(releaseUrl("http://release.invalid", manifest.version, name)).pathname,
@@ -94,8 +94,8 @@ const server = Bun.serve({
   },
 })
 const baseUrl = `http://127.0.0.1:${server.port}`
-const root = await mkdtemp(resolve(tmpdir(), "magnitude-candidate-"))
-const dataDir = resolve(root, "home-bootstrap", ".magnitude")
+const root = await mkdtemp(resolve(tmpdir(), "x-cli-candidate-"))
+const dataDir = resolve(root, "home-bootstrap", ".x-cli")
 let serverRunning = true
 const ensurerScope = await Effect.runPromise(Scope.make())
 
@@ -220,7 +220,7 @@ const probeBootstrap = Effect.gen(function* () {
     Layer.provide(FetchHttpClient.layer),
   )
   return yield* Effect.gen(function* () {
-    const client = yield* RpcClient.make(MagnitudeRpcs)
+    const client = yield* RpcClient.make(XCliRpcs)
     const health = yield* client.Health({})
     while (true) {
       const localModels = yield* client.GetLocalModels({})
@@ -249,7 +249,7 @@ const acceptBootstrap = async (): Promise<void> => {
   try {
     const health = await Effect.runPromise(probeBootstrap)
     if (
-      health.service !== "magnitude-acn" ||
+      health.service !== "x-cli-acn" ||
       health.version !== manifest.version ||
       health.revision !== manifest.acnRevision ||
       health.state._tag !== "Ready"
@@ -296,23 +296,23 @@ try {
   await writeFile(resolve(bunRoot, "package.json"), "{}\n")
   await run(["npm", "install", "--ignore-scripts", tarball], { cwd: npmRoot })
   await invoke(
-    ["node", resolve(npmRoot, "node_modules/@magnitudedev/cli/bin/magnitude.js"), "--version"],
+    ["node", resolve(npmRoot, "node_modules/@x-cli/cli/bin/x-cli.js"), "--version"],
     npmRoot,
     resolve(root, "home-node"),
   )
   await invoke(
-    ["npx", "--no-install", "magnitude", "--version"],
+    ["npx", "--no-install", "x-cli", "--version"],
     npmRoot,
     resolve(root, "home-npx"),
   )
   await run(["bun", "add", "--ignore-scripts", tarball], { cwd: bunRoot })
   await invoke(
-    ["bun", resolve(bunRoot, "node_modules/@magnitudedev/cli/bin/magnitude.js"), "--version"],
+    ["bun", resolve(bunRoot, "node_modules/@x-cli/cli/bin/x-cli.js"), "--version"],
     bunRoot,
     resolve(root, "home-bun"),
   )
   await invoke(
-    ["bunx", "--bun", "magnitude", "--version"],
+    ["bunx", "--bun", "x-cli", "--version"],
     bunRoot,
     resolve(root, "home-bunx"),
   )

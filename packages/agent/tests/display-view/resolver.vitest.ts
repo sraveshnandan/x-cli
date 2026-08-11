@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { Addressed } from '@magnitudedev/event-core'
+import { Addressed } from '@x-cli/event-core'
 import {
   resolveDisplayViewAddressPlan,
   resolveTimelineWindow,

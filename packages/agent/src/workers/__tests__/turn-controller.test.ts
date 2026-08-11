@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'bun:test'
-import { EventEngine } from '@magnitudedev/event-core'
+import { EventEngine } from '@x-cli/event-core'
 import { Layer } from 'effect'
 import type { AppEvent } from '../../events'
 import { TurnProjection } from '../../projections/turn'

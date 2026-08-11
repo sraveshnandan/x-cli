@@ -45,16 +45,16 @@ export {
   buildFamilies,
 } from "./catalog-aggregator"
 
-// Magnitude provider
+// x-cli provider
 export {
-  createMagnitudeProvider,
+  createXCliProvider,
   fetchUsage,
   PROVIDER_ID as MAGNITUDE_PROVIDER_ID,
-  type MagnitudeProviderInstance,
-  type MagnitudeClientConfig,
+  type XCliProviderInstance,
+  type XCliClientConfig,
   type FetchUsageOptions,
-  MagnitudeClientError,
-} from "./magnitude/provider"
+  XCliClientError,
+} from "./x-cli/provider"
 export {
   createExaWebSearch,
   type ExaWebSearchConfig,
@@ -73,29 +73,29 @@ export {
   type WebSearchProvider,
   type WebSearchError,
 } from "./web-search-error"
-export type { WebSearchResult, UsageQuery } from "@magnitudedev/ai"
-export { createMagnitudeCatalog, toMagnitudeModelInfo, type MagnitudeAuthentication } from "./magnitude/catalog"
-export { MagnitudeModelListResponseSchema, MagnitudeRawModelSchema } from "./magnitude/contract"
+export type { WebSearchResult, UsageQuery } from "@x-cli/ai"
+export { createXCliCatalog, toXCliModelInfo, type XCliAuthentication } from "./x-cli/catalog"
+export { XCliModelListResponseSchema, XCliRawModelSchema } from "./x-cli/contract"
 export {
-  createMagnitudeCompatibleSpec,
-  type MagnitudeCallOptions,
-  type MagnitudeModelSpec,
-  type MagnitudeCompatibleSpecConfig,
-} from "./magnitude/models"
+  createXCliCompatibleSpec,
+  type XCliCallOptions,
+  type XCliModelSpec,
+  type XCliCompatibleSpecConfig,
+} from "./x-cli/models"
 export {
-  classifyMagnitudeRejectedResponse,
+  classifyXCliRejectedResponse,
   tryParseErrorBody,
-  type ParsedMagnitudeApiError,
-} from "./magnitude/errors"
+  type ParsedXCliApiError,
+} from "./x-cli/errors"
 export type {
-  MagnitudeModelInfo,
-  MagnitudeRawModel,
+  XCliModelInfo,
+  XCliRawModel,
   ModelListResponse,
-  MagnitudeAdditionalOptions,
-  MagnitudeApiError,
-  MagnitudeErrorType,
-  MagnitudeErrorCode,
-  MagnitudeErrorDetails,
+  XCliAdditionalOptions,
+  XCliApiError,
+  XCliErrorType,
+  XCliErrorCode,
+  XCliErrorDetails,
   UsageLimitDetails,
   SubscriptionRequiredDetails,
   BillingWindowBudget,
@@ -103,6 +103,15 @@ export type {
   ProSubscriptionStatus,
   ReasoningEffort,
   ModelPricingInfo,
-} from "./magnitude/contract"
-export type { ToolChoice } from "@magnitudedev/ai"
-export type { CloudUsageResponse, UsagePeriod } from "./magnitude/usage"
+} from "./x-cli/contract"
+
+// Nvidia NIM provider
+export {
+  createNvidiaNimProvider,
+  type NvidiaNimProviderInstance,
+  type NvidiaNimClientConfig,
+  PROVIDER_ID as NVIDIA_NIM_PROVIDER_ID,
+} from "./nvidia-nim/provider"
+export { createNvidiaNimCatalog } from "./nvidia-nim/catalog"
+export type { ToolChoice } from "@x-cli/ai"
+export type { CloudUsageResponse, UsagePeriod } from "./x-cli/usage"

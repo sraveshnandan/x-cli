@@ -1,7 +1,7 @@
 import * as HttpClient from "@effect/platform/HttpClient"
 import * as HttpClientRequest from "@effect/platform/HttpClientRequest"
 import { Effect, Schema, Stream } from "effect"
-import { AcnReady, type AcnInstance } from "@magnitudedev/acn-protocol"
+import { AcnReady, type AcnInstance } from "@x-cli/acn-protocol"
 import {
   AcnEnsureRequestSchema,
   AcnInstanceManager,

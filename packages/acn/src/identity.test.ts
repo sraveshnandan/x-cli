@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { Effect, Option, Schema } from "effect";
-import { AcnHealthResponseSchema } from "@magnitudedev/acn-protocol";
+import { AcnHealthResponseSchema } from "@x-cli/acn-protocol";
 import { makeHealthResponse } from "./identity";
 
 describe("ACN identity", () => {
@@ -8,7 +8,7 @@ describe("ACN identity", () => {
     expect(
       makeHealthResponse("1.2.3", { _tag: "Ready" }, "owner-1", 1234, 42)
     ).toEqual({
-      service: "magnitude-acn",
+      service: "x-cli-acn",
       version: "1.2.3",
       revision: 42,
       id: "owner-1",

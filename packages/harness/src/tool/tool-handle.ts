@@ -1,4 +1,4 @@
-import type { ProviderToolCallId, ToolCallId } from "@magnitudedev/ai"
+import type { ProviderToolCallId, ToolCallId } from "@x-cli/ai"
 import type { HarnessEvent, ToolLifecycleEvent, ToolExecutionEnded } from "../events"
 import { BaseStateSchema, type BaseState, type StateModel } from "./state-model"
 import type { Schema } from "effect"

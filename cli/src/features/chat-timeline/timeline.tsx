@@ -20,7 +20,7 @@ import type {
   GenericToolPresentation,
   QueryImagePresentation,
   ToolSummaryPresentation,
-} from '@magnitudedev/sdk'
+} from '@x-cli/sdk'
 import {
   messageForEntry,
   shortenCommandPreview,
@@ -29,7 +29,7 @@ import {
   TRANSCRIPT_LINE_CAP,
   truncateToDisplayWidth,
   type SystemMessage,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 import type { ActionId } from '../../types/ui-actions'
 import { MessageView } from './message-view'
 import { ErrorBoundary } from '../../components/error-boundary'

@@ -1,5 +1,5 @@
-import type { DisplayMessage, DisplayState, DisplayTimeline, DisplayTimelineMessages } from '@magnitudedev/sdk'
-import { forkIdToKey } from '@magnitudedev/sdk'
+import type { DisplayMessage, DisplayState, DisplayTimeline, DisplayTimelineMessages } from '@x-cli/sdk'
+import { forkIdToKey } from '@x-cli/sdk'
 
 export function getFork(state: DisplayState, forkId: string | null): DisplayTimeline | undefined {
   return state.timelines[forkIdToKey(forkId)]

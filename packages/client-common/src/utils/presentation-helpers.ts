@@ -2,7 +2,7 @@ import type {
   DisplayMessage,
   DisplayTimeline,
   DisplayTimelineEntry,
-} from '@magnitudedev/sdk'
+} from '@x-cli/sdk'
 
 /**
  * Maximum number of output lines rendered in transcript mode before the

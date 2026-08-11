@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { compactTool } from '../tools/compact'
 import { CompactStateSchema, type CompactState } from './tool-state'

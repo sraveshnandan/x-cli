@@ -6,7 +6,7 @@
  */
 
 import type { AppEvent } from './events'
-import type { Timestamped } from '@magnitudedev/event-core'
+import type { Timestamped } from '@x-cli/event-core'
 
 export interface SerializedEvent {
   readonly type: string

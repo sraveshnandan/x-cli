@@ -6,7 +6,7 @@ import {
   useAtomValue,
 } from "@effect-atom/atom-react"
 import { Option } from "effect"
-import type { AcnLifecycleState } from "@magnitudedev/sdk"
+import type { AcnLifecycleState } from "@x-cli/sdk"
 import { usePlatform } from "../platform/platform-context"
 
 export function useAcnLifecycle(

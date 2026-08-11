@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { parseMarkdownToMdast } from '@magnitudedev/client-common'
+import { parseMarkdownToMdast } from '@x-cli/client-common'
 import {
   extractHeadingSlugsFromBlocks,
   renderDocumentToBlocks,

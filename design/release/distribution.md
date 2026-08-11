@@ -9,7 +9,7 @@ applies_to:
 
 # Release distribution
 
-Magnitude distributes one versioned release as an npm package plus a fixed graph of native
+x-cli distributes one versioned release as an npm package plus a fixed graph of native
 artifacts. The release graph is product configuration, not a plugin system.
 
 ## Published artifacts

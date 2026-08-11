@@ -5,7 +5,7 @@ if (!version || !expectedIntegrity) {
 }
 
 const url =
-  `https://registry.npmjs.org/%40magnitudedev%2Fcli/${encodeURIComponent(version)}`
+  `https://registry.npmjs.org/%40x-cli%2Fcli/${encodeURIComponent(version)}`
 let lastFailure = "npm registry did not expose the published version"
 let verified = false
 for (let attempt = 0; attempt < 20; attempt++) {

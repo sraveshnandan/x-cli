@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { TextAttributes } from '@opentui/core'
 import { useTheme } from '../../hooks/use-theme'
 import { Button } from '../../components/button'
-import { formatRelativeTime, type RecentChat } from '@magnitudedev/client-common'
+import { formatRelativeTime, type RecentChat } from '@x-cli/client-common'
 
 interface RecentChatEntryProps {
   chat: RecentChat

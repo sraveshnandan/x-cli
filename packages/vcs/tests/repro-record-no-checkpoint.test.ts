@@ -19,7 +19,7 @@ describe("REPRO: record() doesn't create checkpoints after changes", () => {
 
   beforeEach(async () => {
     projectDir = os.tmpdir() + "/repro-record-" + Date.now()
-    storagePath = path.join(projectDir, ".magnitude", ".vcs")
+    storagePath = path.join(projectDir, ".x-cli", ".vcs")
     await mkdir(projectDir, { recursive: true })
     await mkdir(path.join(projectDir, "src"), { recursive: true })
     await writeFile(path.join(projectDir, "foo.txt"), "Hello World\n")

@@ -8,7 +8,7 @@
  */
 
 import { Effect } from 'effect'
-import { Worker } from '@magnitudedev/event-core'
+import { Worker } from '@x-cli/event-core'
 import type { AppEvent } from '../events'
 import { ExecutionManager } from '../execution/types'
 

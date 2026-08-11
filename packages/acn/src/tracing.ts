@@ -32,7 +32,7 @@ export const TracingLayer = Layer.unwrapEffect(
 
     return Otlp.layerJson({
       baseUrl: endpoint,
-      resource: { serviceName: "magnitude-acn" },
+      resource: { serviceName: "x-cli-acn" },
       tracerExportInterval: "1 seconds",
       loggerExportInterval: "1 seconds",
     }).pipe(

@@ -4,9 +4,9 @@ import {
   OnboardingMirror,
   type MirroredSnapshot,
   type OnboardingState,
-} from "@magnitudedev/acn-protocol"
-import { MagnitudeStorage } from "@magnitudedev/storage"
-import type { ConfigStorageShape } from "@magnitudedev/storage"
+} from "@x-cli/acn-protocol"
+import { XCliStorage } from "@x-cli/storage"
+import type { ConfigStorageShape } from "@x-cli/storage"
 import { makeMirroredState, MirroredStateChanges } from "../mirrored-state"
 
 export interface OnboardingApi {
@@ -53,11 +53,11 @@ export const makeOnboarding = (storage: OnboardingStorage): OnboardingPersistenc
 export const OnboardingLive: Layer.Layer<
   Onboarding,
   never,
-  MagnitudeStorage | MirroredStateChanges
+  XCliStorage | MirroredStateChanges
 > = Layer.effect(
   Onboarding,
   Effect.gen(function* () {
-    const storage = yield* MagnitudeStorage
+    const storage = yield* XCliStorage
     const persisted = makeOnboarding(storage.config)
     const initial = yield* persisted.state.pipe(Effect.orDie)
     const mirror = yield* makeMirroredState(OnboardingMirror, initial)

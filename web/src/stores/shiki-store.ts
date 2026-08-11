@@ -5,14 +5,14 @@
  * and all components that need syntax highlighting share it.
  */
 import type { Highlighter } from "shiki"
-import { buildMergedPalette } from "@magnitudedev/client-common"
+import { buildMergedPalette } from "@x-cli/client-common"
 
 let highlighterPromise: Promise<Highlighter> | null = null
 let highlighterValue: Highlighter | null = null
 const listeners = new Set<() => void>()
 const markdownPalette = buildMergedPalette()
 const shikiTheme = {
-  name: "magnitude-dark",
+  name: "x-cli-dark",
   type: "dark" as const,
   fg: markdownPalette.codeTextFg,
   bg: markdownPalette.codeBackground,
@@ -74,7 +74,7 @@ export function highlightCode(code: string, lang: string): string | null {
   try {
     return highlighterValue.codeToHtml(code, {
       lang: lang || "text",
-      theme: "magnitude-dark",
+      theme: "x-cli-dark",
     })
   } catch {
     return `<pre><code>${escapeHtml(code)}</code></pre>`

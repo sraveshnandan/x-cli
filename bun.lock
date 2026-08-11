@@ -28,21 +28,21 @@
       },
     },
     "cli": {
-      "name": "@magnitudedev/cli-source",
+      "name": "@x-cli/cli-source",
       "version": "0.0.1",
       "bin": {
-        "magnitude": "bin/magnitude",
+        "x-cli": "bin/x-cli.js",
       },
       "dependencies": {
         "@commander-js/extra-typings": "^14.0.0",
         "@effect/platform": "^0.96.0",
         "@effect/platform-bun": "^0.90.0",
-        "@magnitudedev/client-common": "workspace:*",
-        "@magnitudedev/generate-id": "workspace:*",
-        "@magnitudedev/sdk": "workspace:*",
-        "@magnitudedev/version": "workspace:*",
         "@opentui/core": "0.1.88",
         "@opentui/react": "0.1.88",
+        "@x-cli/client-common": "workspace:*",
+        "@x-cli/generate-id": "workspace:*",
+        "@x-cli/sdk": "workspace:*",
+        "@x-cli/version": "workspace:*",
         "ansis": "^3.17.0",
         "beautiful-mermaid": "^0.1.3",
         "commander": "^14.0.1",
@@ -55,23 +55,24 @@
         "string-width": "^8.1.1",
       },
       "devDependencies": {
-        "@magnitudedev/logger": "workspace:*",
         "@types/react": "^19.0.0",
         "@types/react-dom": "^19.2.3",
+        "@x-cli/logger": "workspace:*",
         "react-dom": "^19.2.4",
+        "react-test-renderer": "^19.0.0",
         "typescript": "^5.8.3",
       },
     },
     "desktop": {
-      "name": "@magnitudedev/desktop",
+      "name": "@x-cli/desktop",
       "dependencies": {
         "@effect/platform": "^0.96.1",
         "@effect/platform-node-shared": "^0.60.0",
         "@effect/rpc": "0.75.1",
-        "@magnitudedev/acn-protocol": "workspace:*",
-        "@magnitudedev/client-common": "workspace:*",
-        "@magnitudedev/sdk": "workspace:*",
-        "@magnitudedev/web": "workspace:*",
+        "@x-cli/acn-protocol": "workspace:*",
+        "@x-cli/client-common": "workspace:*",
+        "@x-cli/sdk": "workspace:*",
+        "@x-cli/web": "workspace:*",
         "effect": "^3.21.2",
         "sqlite3": "5.1.7",
       },
@@ -86,14 +87,14 @@
       },
     },
     "inference": {
-      "name": "@magnitudedev/inference",
+      "name": "@x-cli/inference",
       "dependencies": {
-        "@magnitudedev/icn-protocol": "workspace:*",
+        "@x-cli/icn-protocol": "workspace:*",
         "effect": "3.21.2",
       },
     },
     "packages/acn": {
-      "name": "@magnitudedev/acn",
+      "name": "@x-cli/acn",
       "version": "0.0.1",
       "dependencies": {
         "@effect/cli": "^0.75.2",
@@ -101,28 +102,28 @@
         "@effect/platform": "^0.96.0",
         "@effect/platform-bun": "^0.90.0",
         "@effect/rpc": "0.75.1",
-        "@magnitudedev/acn-protocol": "workspace:*",
-        "@magnitudedev/agent": "workspace:*",
-        "@magnitudedev/generate-id": "workspace:*",
-        "@magnitudedev/icn": "workspace:*",
-        "@magnitudedev/icn-protocol": "workspace:*",
-        "@magnitudedev/ripgrep": "workspace:*",
-        "@magnitudedev/roles": "workspace:*",
-        "@magnitudedev/skills": "workspace:*",
-        "@magnitudedev/storage": "workspace:*",
-        "@magnitudedev/utils": "workspace:*",
-        "@magnitudedev/version": "workspace:*",
+        "@x-cli/acn-protocol": "workspace:*",
+        "@x-cli/agent": "workspace:*",
+        "@x-cli/generate-id": "workspace:*",
+        "@x-cli/icn": "workspace:*",
+        "@x-cli/icn-protocol": "workspace:*",
+        "@x-cli/ripgrep": "workspace:*",
+        "@x-cli/roles": "workspace:*",
+        "@x-cli/skills": "workspace:*",
+        "@x-cli/storage": "workspace:*",
+        "@x-cli/utils": "workspace:*",
+        "@x-cli/version": "workspace:*",
         "effect": "^3.21.2",
         "fast-json-patch": "^3.1.1",
       },
     },
     "packages/acn-dashboard": {
-      "name": "@magnitudedev/acn-dashboard",
+      "name": "@x-cli/acn-dashboard",
       "version": "0.0.1",
       "dependencies": {
-        "@magnitudedev/acn": "workspace:*",
-        "@magnitudedev/acn-protocol": "workspace:*",
-        "@magnitudedev/agent": "workspace:*",
+        "@x-cli/acn": "workspace:*",
+        "@x-cli/acn-protocol": "workspace:*",
+        "@x-cli/agent": "workspace:*",
       },
       "devDependencies": {
         "@sveltejs/vite-plugin-svelte": "^5.0.3",
@@ -137,13 +138,13 @@
       },
     },
     "packages/acn-protocol": {
-      "name": "@magnitudedev/acn-protocol",
+      "name": "@x-cli/acn-protocol",
       "version": "0.0.1",
       "dependencies": {
         "@effect/platform": "^0.96.0",
         "@effect/rpc": "0.75.1",
-        "@magnitudedev/ai": "workspace:*",
-        "@magnitudedev/utils": "workspace:*",
+        "@x-cli/ai": "workspace:*",
+        "@x-cli/utils": "workspace:*",
         "effect": "^3.21.2",
       },
       "devDependencies": {
@@ -152,23 +153,23 @@
       },
     },
     "packages/agent": {
-      "name": "@magnitudedev/agent",
+      "name": "@x-cli/agent",
       "version": "0.0.1",
       "dependencies": {
         "@effect/platform": "^0.96.0",
         "@effect/platform-bun": "^0.90.0",
-        "@magnitudedev/acn-protocol": "workspace:*",
-        "@magnitudedev/ai": "workspace:*",
-        "@magnitudedev/dom-extract": "workspace:*",
-        "@magnitudedev/generate-id": "workspace:*",
-        "@magnitudedev/ripgrep": "workspace:*",
-        "@magnitudedev/roles": "workspace:*",
-        "@magnitudedev/scratchpad": "workspace:*",
-        "@magnitudedev/sdk": "workspace:*",
-        "@magnitudedev/shell-classifier": "workspace:*",
-        "@magnitudedev/skills": "workspace:*",
-        "@magnitudedev/utils": "workspace:*",
-        "@magnitudedev/vcs": "workspace:*",
+        "@x-cli/acn-protocol": "workspace:*",
+        "@x-cli/ai": "workspace:*",
+        "@x-cli/dom-extract": "workspace:*",
+        "@x-cli/generate-id": "workspace:*",
+        "@x-cli/ripgrep": "workspace:*",
+        "@x-cli/roles": "workspace:*",
+        "@x-cli/scratchpad": "workspace:*",
+        "@x-cli/sdk": "workspace:*",
+        "@x-cli/shell-classifier": "workspace:*",
+        "@x-cli/skills": "workspace:*",
+        "@x-cli/utils": "workspace:*",
+        "@x-cli/vcs": "workspace:*",
         "effect": "^3.21.2",
         "ignore": "^7.0.5",
         "luxon": "^3.7.2",
@@ -176,21 +177,21 @@
       },
       "devDependencies": {
         "@effect/vitest": "^0.25.0",
-        "@magnitudedev/logger": "workspace:*",
-        "@magnitudedev/tracing": "workspace:*",
         "@types/bun": "latest",
         "@types/luxon": "^3.7.1",
+        "@x-cli/logger": "workspace:*",
+        "@x-cli/tracing": "workspace:*",
         "vitest": "^3.2.1",
       },
     },
     "packages/ai": {
-      "name": "@magnitudedev/ai",
+      "name": "@x-cli/ai",
       "version": "0.0.1",
       "dependencies": {
         "@effect/platform": "^0.96.0",
         "@effect/platform-bun": "^0.90.0",
-        "@magnitudedev/utils": "workspace:*",
         "@paralleldrive/cuid2": "^3.3.0",
+        "@x-cli/utils": "workspace:*",
         "effect": "^3.21.2",
       },
       "devDependencies": {
@@ -198,22 +199,22 @@
       },
     },
     "packages/cli": {
-      "name": "@magnitudedev/cli",
-      "version": "0.0.1-alpha.35",
+      "name": "@x-cli/cli",
+      "version": "0.0.1-alpha.38",
       "bin": {
-        "magnitude": "bin/magnitude.js",
+        "x-cli": "bin/x-cli.js",
       },
     },
     "packages/client-common": {
-      "name": "@magnitudedev/client-common",
+      "name": "@x-cli/client-common",
       "version": "0.0.1",
       "dependencies": {
         "@effect-atom/atom-react": "^0.5.0",
         "@effect/platform": "^0.96.0",
         "@effect/rpc": "0.75.1",
-        "@magnitudedev/generate-id": "workspace:*",
-        "@magnitudedev/sdk": "workspace:*",
-        "@magnitudedev/utils": "workspace:*",
+        "@x-cli/generate-id": "workspace:*",
+        "@x-cli/sdk": "workspace:*",
+        "@x-cli/utils": "workspace:*",
         "effect": "^3.21.2",
         "fast-json-patch": "^3.1.1",
         "react": "^19.0.0",
@@ -227,10 +228,10 @@
       },
     },
     "packages/dom-extract": {
-      "name": "@magnitudedev/dom-extract",
+      "name": "@x-cli/dom-extract",
       "version": "0.0.1",
       "dependencies": {
-        "@magnitudedev/generate-id": "workspace:*",
+        "@x-cli/generate-id": "workspace:*",
         "cheerio": "^1.0.0",
       },
       "devDependencies": {
@@ -238,7 +239,7 @@
       },
     },
     "packages/effect-query": {
-      "name": "@magnitudedev/effect-query",
+      "name": "@x-cli/effect-query",
       "version": "0.0.1",
       "dependencies": {
         "@effect-atom/atom": "^0.5.3",
@@ -250,11 +251,11 @@
       },
     },
     "packages/event-core": {
-      "name": "@magnitudedev/event-core",
+      "name": "@x-cli/event-core",
       "version": "0.0.1",
       "dependencies": {
-        "@magnitudedev/generate-id": "workspace:*",
-        "@magnitudedev/utils": "workspace:*",
+        "@x-cli/generate-id": "workspace:*",
+        "@x-cli/utils": "workspace:*",
         "effect": "^3.21.2",
         "immer": "^11.1.3",
       },
@@ -263,19 +264,19 @@
       },
     },
     "packages/generate-id": {
-      "name": "@magnitudedev/generate-id",
+      "name": "@x-cli/generate-id",
       "version": "0.0.1",
       "dependencies": {
         "@paralleldrive/cuid2": "^3.3.0",
       },
     },
     "packages/harness": {
-      "name": "@magnitudedev/harness",
+      "name": "@x-cli/harness",
       "version": "0.0.1",
       "dependencies": {
         "@effect/platform": "^0.96.0",
-        "@magnitudedev/ai": "workspace:*",
-        "@magnitudedev/utils": "workspace:*",
+        "@x-cli/ai": "workspace:*",
+        "@x-cli/utils": "workspace:*",
         "effect": "^3.21.2",
       },
       "devDependencies": {
@@ -283,16 +284,16 @@
       },
     },
     "packages/icn": {
-      "name": "@magnitudedev/icn",
+      "name": "@x-cli/icn",
       "version": "0.0.1",
       "dependencies": {
         "@effect/platform": "^0.96.0",
-        "@magnitudedev/ai": "workspace:*",
-        "@magnitudedev/icn-protocol": "workspace:*",
-        "@magnitudedev/openapi-effect": "workspace:*",
-        "@magnitudedev/release": "workspace:*",
-        "@magnitudedev/utils": "workspace:*",
         "@noble/hashes": "^2.2.0",
+        "@x-cli/ai": "workspace:*",
+        "@x-cli/icn-protocol": "workspace:*",
+        "@x-cli/openapi-effect": "workspace:*",
+        "@x-cli/release": "workspace:*",
+        "@x-cli/utils": "workspace:*",
         "effect": "3.21.2",
       },
       "devDependencies": {
@@ -302,11 +303,11 @@
       },
     },
     "packages/icn-protocol": {
-      "name": "@magnitudedev/icn-protocol",
+      "name": "@x-cli/icn-protocol",
       "version": "0.0.1",
       "dependencies": {
         "@effect/platform": "^0.96.0",
-        "@magnitudedev/openapi-effect": "workspace:*",
+        "@x-cli/openapi-effect": "workspace:*",
         "effect": "3.21.2",
       },
       "devDependencies": {
@@ -317,10 +318,10 @@
       },
     },
     "packages/logger": {
-      "name": "@magnitudedev/logger",
+      "name": "@x-cli/logger",
       "version": "0.0.1",
       "dependencies": {
-        "@magnitudedev/storage": "workspace:*",
+        "@x-cli/storage": "workspace:*",
       },
       "devDependencies": {
         "@types/bun": "latest",
@@ -336,7 +337,7 @@
       },
     },
     "packages/openapi-effect": {
-      "name": "@magnitudedev/openapi-effect",
+      "name": "@x-cli/openapi-effect",
       "version": "0.0.1",
       "dependencies": {
         "@effect/platform": "^0.96.0",
@@ -350,14 +351,14 @@
       },
     },
     "packages/providers": {
-      "name": "@magnitudedev/providers",
+      "name": "@x-cli/providers",
       "version": "0.0.0",
       "dependencies": {
         "@effect/platform": "^0.96.0",
         "@effect/platform-bun": "^0.90.0",
-        "@magnitudedev/ai": "workspace:*",
-        "@magnitudedev/roles": "workspace:*",
-        "@magnitudedev/utils": "workspace:*",
+        "@x-cli/ai": "workspace:*",
+        "@x-cli/roles": "workspace:*",
+        "@x-cli/utils": "workspace:*",
         "effect": "3.21.2",
       },
       "devDependencies": {
@@ -365,13 +366,13 @@
       },
     },
     "packages/release": {
-      "name": "@magnitudedev/release",
+      "name": "@x-cli/release",
       "version": "0.0.1",
       "dependencies": {
         "@effect/platform": "^0.96.0",
         "@effect/platform-node": "0.107.0",
-        "@magnitudedev/icn-protocol": "workspace:*",
-        "@magnitudedev/version": "workspace:*",
+        "@x-cli/icn-protocol": "workspace:*",
+        "@x-cli/version": "workspace:*",
         "effect": "3.21.2",
         "mdast-util-from-markdown": "^2.0.3",
         "tar-stream": "3.2.0",
@@ -382,20 +383,20 @@
       },
     },
     "packages/ripgrep": {
-      "name": "@magnitudedev/ripgrep",
+      "name": "@x-cli/ripgrep",
       "version": "0.0.1",
       "devDependencies": {
         "@types/bun": "latest",
       },
     },
     "packages/roles": {
-      "name": "@magnitudedev/roles",
+      "name": "@x-cli/roles",
       "version": "0.0.1",
       "dependencies": {
-        "@magnitudedev/ai": "workspace:*",
-        "@magnitudedev/harness": "workspace:*",
-        "@magnitudedev/scratchpad": "workspace:*",
-        "@magnitudedev/shell-classifier": "workspace:*",
+        "@x-cli/ai": "workspace:*",
+        "@x-cli/harness": "workspace:*",
+        "@x-cli/scratchpad": "workspace:*",
+        "@x-cli/shell-classifier": "workspace:*",
         "effect": "^3.21.2",
       },
       "devDependencies": {
@@ -403,27 +404,27 @@
       },
     },
     "packages/scratchpad": {
-      "name": "@magnitudedev/scratchpad",
+      "name": "@x-cli/scratchpad",
       "version": "0.0.1",
       "devDependencies": {
         "@types/bun": "latest",
       },
     },
     "packages/sdk": {
-      "name": "@magnitudedev/sdk",
+      "name": "@x-cli/sdk",
       "version": "0.0.1",
       "dependencies": {
         "@effect/opentelemetry": "^0.63.0",
         "@effect/platform": "^0.96.0",
         "@effect/rpc": "0.75.1",
-        "@magnitudedev/acn-protocol": "workspace:*",
-        "@magnitudedev/ai": "workspace:*",
-        "@magnitudedev/providers": "workspace:*",
-        "@magnitudedev/release": "workspace:*",
-        "@magnitudedev/roles": "workspace:*",
-        "@magnitudedev/storage": "workspace:*",
-        "@magnitudedev/utils": "workspace:*",
-        "@magnitudedev/version": "workspace:*",
+        "@x-cli/acn-protocol": "workspace:*",
+        "@x-cli/ai": "workspace:*",
+        "@x-cli/providers": "workspace:*",
+        "@x-cli/release": "workspace:*",
+        "@x-cli/roles": "workspace:*",
+        "@x-cli/storage": "workspace:*",
+        "@x-cli/utils": "workspace:*",
+        "@x-cli/version": "workspace:*",
         "effect": "^3.21.2",
       },
       "devDependencies": {
@@ -432,7 +433,7 @@
       },
     },
     "packages/shell-classifier": {
-      "name": "@magnitudedev/shell-classifier",
+      "name": "@x-cli/shell-classifier",
       "version": "0.0.1",
       "dependencies": {
         "typescript": "^5.0.0",
@@ -442,7 +443,7 @@
       },
     },
     "packages/skills": {
-      "name": "@magnitudedev/skills",
+      "name": "@x-cli/skills",
       "version": "0.0.1",
       "dependencies": {
         "@types/mdast": "^4.0.4",
@@ -456,14 +457,14 @@
       },
     },
     "packages/storage": {
-      "name": "@magnitudedev/storage",
+      "name": "@x-cli/storage",
       "version": "0.0.1",
       "dependencies": {
         "@effect/platform": "^0.96.0",
         "@effect/platform-bun": "^0.90.0",
-        "@magnitudedev/acn-protocol": "workspace:*",
-        "@magnitudedev/ai": "workspace:*",
-        "@magnitudedev/scratchpad": "workspace:*",
+        "@x-cli/acn-protocol": "workspace:*",
+        "@x-cli/ai": "workspace:*",
+        "@x-cli/scratchpad": "workspace:*",
         "effect": "^3.21.2",
       },
       "devDependencies": {
@@ -472,12 +473,12 @@
       },
     },
     "packages/tracing": {
-      "name": "@magnitudedev/tracing",
+      "name": "@x-cli/tracing",
       "version": "0.0.1",
       "dependencies": {
-        "@magnitudedev/ai": "workspace:*",
-        "@magnitudedev/logger": "workspace:*",
-        "@magnitudedev/storage": "workspace:*",
+        "@x-cli/ai": "workspace:*",
+        "@x-cli/logger": "workspace:*",
+        "@x-cli/storage": "workspace:*",
       },
       "devDependencies": {
         "@sveltejs/vite-plugin-svelte": "^5.0.3",
@@ -491,7 +492,7 @@
       },
     },
     "packages/utils": {
-      "name": "@magnitudedev/utils",
+      "name": "@x-cli/utils",
       "version": "0.0.1",
       "dependencies": {
         "effect": "^3.21.2",
@@ -502,11 +503,11 @@
       },
     },
     "packages/vcs": {
-      "name": "@magnitudedev/vcs",
+      "name": "@x-cli/vcs",
       "version": "0.0.1",
       "dependencies": {
-        "@magnitudedev/event-core": "workspace:*",
-        "@magnitudedev/harness": "workspace:*",
+        "@x-cli/event-core": "workspace:*",
+        "@x-cli/harness": "workspace:*",
         "diff": "^8.0.2",
         "effect": "^3.21.2",
         "ignore": "^7.0.5",
@@ -517,18 +518,18 @@
       },
     },
     "packages/version": {
-      "name": "@magnitudedev/version",
+      "name": "@x-cli/version",
       "version": "0.0.1",
     },
     "web": {
-      "name": "@magnitudedev/web",
+      "name": "@x-cli/web",
       "dependencies": {
         "@effect-atom/atom-react": "^0.5.0",
         "@effect/platform": "^0.96.0",
         "@effect/rpc": "0.75.1",
-        "@magnitudedev/client-common": "workspace:*",
-        "@magnitudedev/generate-id": "workspace:*",
-        "@magnitudedev/sdk": "workspace:*",
+        "@x-cli/client-common": "workspace:*",
+        "@x-cli/generate-id": "workspace:*",
+        "@x-cli/sdk": "workspace:*",
         "effect": "^3.21.2",
         "lucide-react": "^0.460.0",
         "react": "^19.0.0",
@@ -836,72 +837,6 @@
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
     "@magnitude/markdown-cst": ["@magnitude/markdown-cst@workspace:packages/markdown-cst"],
-
-    "@magnitudedev/acn": ["@magnitudedev/acn@workspace:packages/acn"],
-
-    "@magnitudedev/acn-dashboard": ["@magnitudedev/acn-dashboard@workspace:packages/acn-dashboard"],
-
-    "@magnitudedev/acn-protocol": ["@magnitudedev/acn-protocol@workspace:packages/acn-protocol"],
-
-    "@magnitudedev/agent": ["@magnitudedev/agent@workspace:packages/agent"],
-
-    "@magnitudedev/ai": ["@magnitudedev/ai@workspace:packages/ai"],
-
-    "@magnitudedev/cli": ["@magnitudedev/cli@workspace:packages/cli"],
-
-    "@magnitudedev/cli-source": ["@magnitudedev/cli-source@workspace:cli"],
-
-    "@magnitudedev/client-common": ["@magnitudedev/client-common@workspace:packages/client-common"],
-
-    "@magnitudedev/desktop": ["@magnitudedev/desktop@workspace:desktop"],
-
-    "@magnitudedev/dom-extract": ["@magnitudedev/dom-extract@workspace:packages/dom-extract"],
-
-    "@magnitudedev/effect-query": ["@magnitudedev/effect-query@workspace:packages/effect-query"],
-
-    "@magnitudedev/event-core": ["@magnitudedev/event-core@workspace:packages/event-core"],
-
-    "@magnitudedev/generate-id": ["@magnitudedev/generate-id@workspace:packages/generate-id"],
-
-    "@magnitudedev/harness": ["@magnitudedev/harness@workspace:packages/harness"],
-
-    "@magnitudedev/icn": ["@magnitudedev/icn@workspace:packages/icn"],
-
-    "@magnitudedev/icn-protocol": ["@magnitudedev/icn-protocol@workspace:packages/icn-protocol"],
-
-    "@magnitudedev/inference": ["@magnitudedev/inference@workspace:inference"],
-
-    "@magnitudedev/logger": ["@magnitudedev/logger@workspace:packages/logger"],
-
-    "@magnitudedev/openapi-effect": ["@magnitudedev/openapi-effect@workspace:packages/openapi-effect"],
-
-    "@magnitudedev/providers": ["@magnitudedev/providers@workspace:packages/providers"],
-
-    "@magnitudedev/release": ["@magnitudedev/release@workspace:packages/release"],
-
-    "@magnitudedev/ripgrep": ["@magnitudedev/ripgrep@workspace:packages/ripgrep"],
-
-    "@magnitudedev/roles": ["@magnitudedev/roles@workspace:packages/roles"],
-
-    "@magnitudedev/scratchpad": ["@magnitudedev/scratchpad@workspace:packages/scratchpad"],
-
-    "@magnitudedev/sdk": ["@magnitudedev/sdk@workspace:packages/sdk"],
-
-    "@magnitudedev/shell-classifier": ["@magnitudedev/shell-classifier@workspace:packages/shell-classifier"],
-
-    "@magnitudedev/skills": ["@magnitudedev/skills@workspace:packages/skills"],
-
-    "@magnitudedev/storage": ["@magnitudedev/storage@workspace:packages/storage"],
-
-    "@magnitudedev/tracing": ["@magnitudedev/tracing@workspace:packages/tracing"],
-
-    "@magnitudedev/utils": ["@magnitudedev/utils@workspace:packages/utils"],
-
-    "@magnitudedev/vcs": ["@magnitudedev/vcs@workspace:packages/vcs"],
-
-    "@magnitudedev/version": ["@magnitudedev/version@workspace:packages/version"],
-
-    "@magnitudedev/web": ["@magnitudedev/web@workspace:web"],
 
     "@manypkg/find-root": ["@manypkg/find-root@1.1.0", "", { "dependencies": { "@babel/runtime": "^7.5.5", "@types/node": "^12.7.1", "find-up": "^4.1.0", "fs-extra": "^8.1.0" } }, "sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA=="],
 
@@ -1226,6 +1161,72 @@
     "@vitest/utils": ["@vitest/utils@3.2.4", "", { "dependencies": { "@vitest/pretty-format": "3.2.4", "loupe": "^3.1.4", "tinyrainbow": "^2.0.0" } }, "sha512-fB2V0JFrQSMsCo9HiSq3Ezpdv4iYaXRG1Sx8edX3MwxfyNn83mKiGzOcH+Fkxt4MHxr3y42fQi1oeAInqgX2QA=="],
 
     "@webgpu/types": ["@webgpu/types@0.1.70", "", {}, "sha512-LFiNHHKMvmAEvwVew3JLJmTdShhbdwRFSImUshGhE2mGE8ybQzIo63l5uRp+YKnNx+8Qno8Kf6gN+DKMreIJCA=="],
+
+    "@x-cli/acn": ["@x-cli/acn@workspace:packages/acn"],
+
+    "@x-cli/acn-dashboard": ["@x-cli/acn-dashboard@workspace:packages/acn-dashboard"],
+
+    "@x-cli/acn-protocol": ["@x-cli/acn-protocol@workspace:packages/acn-protocol"],
+
+    "@x-cli/agent": ["@x-cli/agent@workspace:packages/agent"],
+
+    "@x-cli/ai": ["@x-cli/ai@workspace:packages/ai"],
+
+    "@x-cli/cli": ["@x-cli/cli@workspace:packages/cli"],
+
+    "@x-cli/cli-source": ["@x-cli/cli-source@workspace:cli"],
+
+    "@x-cli/client-common": ["@x-cli/client-common@workspace:packages/client-common"],
+
+    "@x-cli/desktop": ["@x-cli/desktop@workspace:desktop"],
+
+    "@x-cli/dom-extract": ["@x-cli/dom-extract@workspace:packages/dom-extract"],
+
+    "@x-cli/effect-query": ["@x-cli/effect-query@workspace:packages/effect-query"],
+
+    "@x-cli/event-core": ["@x-cli/event-core@workspace:packages/event-core"],
+
+    "@x-cli/generate-id": ["@x-cli/generate-id@workspace:packages/generate-id"],
+
+    "@x-cli/harness": ["@x-cli/harness@workspace:packages/harness"],
+
+    "@x-cli/icn": ["@x-cli/icn@workspace:packages/icn"],
+
+    "@x-cli/icn-protocol": ["@x-cli/icn-protocol@workspace:packages/icn-protocol"],
+
+    "@x-cli/inference": ["@x-cli/inference@workspace:inference"],
+
+    "@x-cli/logger": ["@x-cli/logger@workspace:packages/logger"],
+
+    "@x-cli/openapi-effect": ["@x-cli/openapi-effect@workspace:packages/openapi-effect"],
+
+    "@x-cli/providers": ["@x-cli/providers@workspace:packages/providers"],
+
+    "@x-cli/release": ["@x-cli/release@workspace:packages/release"],
+
+    "@x-cli/ripgrep": ["@x-cli/ripgrep@workspace:packages/ripgrep"],
+
+    "@x-cli/roles": ["@x-cli/roles@workspace:packages/roles"],
+
+    "@x-cli/scratchpad": ["@x-cli/scratchpad@workspace:packages/scratchpad"],
+
+    "@x-cli/sdk": ["@x-cli/sdk@workspace:packages/sdk"],
+
+    "@x-cli/shell-classifier": ["@x-cli/shell-classifier@workspace:packages/shell-classifier"],
+
+    "@x-cli/skills": ["@x-cli/skills@workspace:packages/skills"],
+
+    "@x-cli/storage": ["@x-cli/storage@workspace:packages/storage"],
+
+    "@x-cli/tracing": ["@x-cli/tracing@workspace:packages/tracing"],
+
+    "@x-cli/utils": ["@x-cli/utils@workspace:packages/utils"],
+
+    "@x-cli/vcs": ["@x-cli/vcs@workspace:packages/vcs"],
+
+    "@x-cli/version": ["@x-cli/version@workspace:packages/version"],
+
+    "@x-cli/web": ["@x-cli/web@workspace:web"],
 
     "abbrev": ["abbrev@1.1.1", "", {}, "sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q=="],
 
@@ -2127,11 +2128,15 @@
 
     "react-dom": ["react-dom@19.2.6", "", { "dependencies": { "scheduler": "^0.27.0" }, "peerDependencies": { "react": "^19.2.6" } }, "sha512-0prMI+hvBbPjsWnxDLxlCGyM8PN6UuWjEUCYmZhO67xIV9Xasa/r/vDnq+Xyq4Lo27g8QSbO5YzARu0D1Sps3g=="],
 
+    "react-is": ["react-is@19.2.8", "", {}, "sha512-s5un28nYxKJw5gvUHyW5PCC28CvBqLu9r3cWgzHT4Vo/5fqqkFcdRYsGcKf50WMPpjjFZS5d76fn3YCo2njKwQ=="],
+
     "react-markdown": ["react-markdown@9.1.0", "", { "dependencies": { "@types/hast": "^3.0.0", "@types/mdast": "^4.0.0", "devlop": "^1.0.0", "hast-util-to-jsx-runtime": "^2.0.0", "html-url-attributes": "^3.0.0", "mdast-util-to-hast": "^13.0.0", "remark-parse": "^11.0.0", "remark-rehype": "^11.0.0", "unified": "^11.0.0", "unist-util-visit": "^5.0.0", "vfile": "^6.0.0" }, "peerDependencies": { "@types/react": ">=18", "react": ">=18" } }, "sha512-xaijuJB0kzGiUdG7nc2MOMDUDBWPyGAjZtUrow9XxUeua8IqeP+VlIfAZ3bphpcLTnSZXz6z9jcVC/TCwbfgdw=="],
 
     "react-reconciler": ["react-reconciler@0.32.0", "", { "dependencies": { "scheduler": "^0.26.0" }, "peerDependencies": { "react": "^19.1.0" } }, "sha512-2NPMOzgTlG0ZWdIf3qG+dcbLSoAc/uLfOwckc3ofy5sSK0pLJqnQLpUFxvGcN2rlXSjnVtGeeFLNimCQEj5gOQ=="],
 
     "react-refresh": ["react-refresh@0.17.0", "", {}, "sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ=="],
+
+    "react-test-renderer": ["react-test-renderer@19.2.8", "", { "dependencies": { "react-is": "^19.2.8", "scheduler": "^0.27.0" }, "peerDependencies": { "react": "^19.2.8" } }, "sha512-GHKPaDRaNYU24PHTLG8Bx8VMY9t+qNfxQbt/Yjp7aMWBkKU6766SR0n6TnYu7P5I1MfEuAMUadqiyDHyI4Yy9Q=="],
 
     "read-cache": ["read-cache@1.0.0", "", { "dependencies": { "pify": "^2.3.0" } }, "sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA=="],
 
@@ -2473,10 +2478,6 @@
 
     "@eslint-community/eslint-utils/eslint-visitor-keys": ["eslint-visitor-keys@3.4.3", "", {}, "sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag=="],
 
-    "@magnitudedev/event-core/immer": ["immer@11.1.8", "", {}, "sha512-/tbkHMW7y10Lx6i1crLjD4/OhNkRG+Fo7byZHtah0547nIeXYcpIXaUh0IAQY6gO5459qpGGYapcEOHtFXkIuA=="],
-
-    "@magnitudedev/web/tailwindcss": ["tailwindcss@3.4.19", "", { "dependencies": { "@alloc/quick-lru": "^5.2.0", "arg": "^5.0.2", "chokidar": "^3.6.0", "didyoumean": "^1.2.2", "dlv": "^1.1.3", "fast-glob": "^3.3.2", "glob-parent": "^6.0.2", "is-glob": "^4.0.3", "jiti": "^1.21.7", "lilconfig": "^3.1.3", "micromatch": "^4.0.8", "normalize-path": "^3.0.0", "object-hash": "^3.0.0", "picocolors": "^1.1.1", "postcss": "^8.4.47", "postcss-import": "^15.1.0", "postcss-js": "^4.0.1", "postcss-load-config": "^4.0.2 || ^5.0 || ^6.0", "postcss-nested": "^6.2.0", "postcss-selector-parser": "^6.1.2", "resolve": "^1.22.8", "sucrase": "^3.35.0" }, "bin": { "tailwind": "lib/cli.js", "tailwindcss": "lib/cli.js" } }, "sha512-3ofp+LL8E+pK/JuPLPggVAIaEuhvIz4qNcf3nA1Xn2o/7fb7s/TYpHhwGDv1ZU3PkBluUVaF8PyCHcm48cKLWQ=="],
-
     "@manypkg/find-root/@types/node": ["@types/node@12.20.55", "", {}, "sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ=="],
 
     "@manypkg/find-root/find-up": ["find-up@4.1.0", "", { "dependencies": { "locate-path": "^5.0.0", "path-exists": "^4.0.0" } }, "sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw=="],
@@ -2498,6 +2499,10 @@
     "@tailwindcss/oxide-wasm32-wasi/@tybys/wasm-util": ["@tybys/wasm-util@0.10.2", "", { "dependencies": { "tslib": "^2.4.0" }, "bundled": true }, "sha512-RoBvJ2X0wuKlWFIjrwffGw1IqZHKQqzIchKaadZZfnNpsAYp2mM0h36JtPCjNDAHGgYez/15uMBpfGwchhiMgg=="],
 
     "@tailwindcss/oxide-wasm32-wasi/tslib": ["tslib@2.8.1", "", { "bundled": true }, "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="],
+
+    "@x-cli/event-core/immer": ["immer@11.1.8", "", {}, "sha512-/tbkHMW7y10Lx6i1crLjD4/OhNkRG+Fo7byZHtah0547nIeXYcpIXaUh0IAQY6gO5459qpGGYapcEOHtFXkIuA=="],
+
+    "@x-cli/web/tailwindcss": ["tailwindcss@3.4.19", "", { "dependencies": { "@alloc/quick-lru": "^5.2.0", "arg": "^5.0.2", "chokidar": "^3.6.0", "didyoumean": "^1.2.2", "dlv": "^1.1.3", "fast-glob": "^3.3.2", "glob-parent": "^6.0.2", "is-glob": "^4.0.3", "jiti": "^1.21.7", "lilconfig": "^3.1.3", "micromatch": "^4.0.8", "normalize-path": "^3.0.0", "object-hash": "^3.0.0", "picocolors": "^1.1.1", "postcss": "^8.4.47", "postcss-import": "^15.1.0", "postcss-js": "^4.0.1", "postcss-load-config": "^4.0.2 || ^5.0 || ^6.0", "postcss-nested": "^6.2.0", "postcss-selector-parser": "^6.1.2", "resolve": "^1.22.8", "sucrase": "^3.35.0" }, "bin": { "tailwind": "lib/cli.js", "tailwindcss": "lib/cli.js" } }, "sha512-3ofp+LL8E+pK/JuPLPggVAIaEuhvIz4qNcf3nA1Xn2o/7fb7s/TYpHhwGDv1ZU3PkBluUVaF8PyCHcm48cKLWQ=="],
 
     "anymatch/picomatch": ["picomatch@2.3.2", "", {}, "sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA=="],
 
@@ -2615,11 +2620,11 @@
 
     "yargs/string-width": ["string-width@4.2.3", "", { "dependencies": { "emoji-regex": "^8.0.0", "is-fullwidth-code-point": "^3.0.0", "strip-ansi": "^6.0.1" } }, "sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g=="],
 
-    "@magnitudedev/web/tailwindcss/chokidar": ["chokidar@3.6.0", "", { "dependencies": { "anymatch": "~3.1.2", "braces": "~3.0.2", "glob-parent": "~5.1.2", "is-binary-path": "~2.1.0", "is-glob": "~4.0.1", "normalize-path": "~3.0.0", "readdirp": "~3.6.0" }, "optionalDependencies": { "fsevents": "~2.3.2" } }, "sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw=="],
-
-    "@magnitudedev/web/tailwindcss/jiti": ["jiti@1.21.7", "", { "bin": { "jiti": "bin/jiti.js" } }, "sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A=="],
-
     "@manypkg/find-root/find-up/locate-path": ["locate-path@5.0.0", "", { "dependencies": { "p-locate": "^4.1.0" } }, "sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g=="],
+
+    "@x-cli/web/tailwindcss/chokidar": ["chokidar@3.6.0", "", { "dependencies": { "anymatch": "~3.1.2", "braces": "~3.0.2", "glob-parent": "~5.1.2", "is-binary-path": "~2.1.0", "is-glob": "~4.0.1", "normalize-path": "~3.0.0", "readdirp": "~3.6.0" }, "optionalDependencies": { "fsevents": "~2.3.2" } }, "sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw=="],
+
+    "@x-cli/web/tailwindcss/jiti": ["jiti@1.21.7", "", { "bin": { "jiti": "bin/jiti.js" } }, "sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A=="],
 
     "cliui/strip-ansi/ansi-regex": ["ansi-regex@5.0.1", "", {}, "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ=="],
 
@@ -2707,11 +2712,11 @@
 
     "yargs/string-width/strip-ansi": ["strip-ansi@6.0.1", "", { "dependencies": { "ansi-regex": "^5.0.1" } }, "sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A=="],
 
-    "@magnitudedev/web/tailwindcss/chokidar/glob-parent": ["glob-parent@5.1.2", "", { "dependencies": { "is-glob": "^4.0.1" } }, "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow=="],
-
-    "@magnitudedev/web/tailwindcss/chokidar/readdirp": ["readdirp@3.6.0", "", { "dependencies": { "picomatch": "^2.2.1" } }, "sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA=="],
-
     "@manypkg/find-root/find-up/locate-path/p-locate": ["p-locate@4.1.0", "", { "dependencies": { "p-limit": "^2.2.0" } }, "sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A=="],
+
+    "@x-cli/web/tailwindcss/chokidar/glob-parent": ["glob-parent@5.1.2", "", { "dependencies": { "is-glob": "^4.0.1" } }, "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow=="],
+
+    "@x-cli/web/tailwindcss/chokidar/readdirp": ["readdirp@3.6.0", "", { "dependencies": { "picomatch": "^2.2.1" } }, "sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA=="],
 
     "glob/minimatch/brace-expansion/balanced-match": ["balanced-match@1.0.2", "", {}, "sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw=="],
 
@@ -2723,8 +2728,8 @@
 
     "yargs/string-width/strip-ansi/ansi-regex": ["ansi-regex@5.0.1", "", {}, "sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ=="],
 
-    "@magnitudedev/web/tailwindcss/chokidar/readdirp/picomatch": ["picomatch@2.3.2", "", {}, "sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA=="],
-
     "@manypkg/find-root/find-up/locate-path/p-locate/p-limit": ["p-limit@2.3.0", "", { "dependencies": { "p-try": "^2.0.0" } }, "sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w=="],
+
+    "@x-cli/web/tailwindcss/chokidar/readdirp/picomatch": ["picomatch@2.3.2", "", {}, "sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA=="],
   }
 }

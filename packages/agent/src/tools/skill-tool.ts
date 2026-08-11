@@ -5,8 +5,8 @@
  */
 
 import { Effect, Schema } from 'effect'
-import { defineHarnessTool } from '@magnitudedev/harness'
-import { AmbientServiceTag } from '@magnitudedev/event-core'
+import { defineHarnessTool } from '@x-cli/harness'
+import { AmbientServiceTag } from '@x-cli/event-core'
 import { SkillsAmbient } from '../ambient/skills-ambient'
 import { ToolErrorSchema } from './errors'
 

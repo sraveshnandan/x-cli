@@ -19,8 +19,8 @@ import {
   ModelDiscoveryOperationIdSchema,
   type ModelFamilyId,
   type ProviderModelId,
-} from '@x-cli/ai'
-import { isEnvFlagOn } from '@x-cli/utils'
+} from "@x-cli/ai"
+import { isEnvFlagOn } from "@x-cli/utils"
 import type { XCliModelInfo, XCliAdditionalOptions } from "./contract"
 import { classifyModelFamily as classifyModelFamilyRaw } from "../family-registry"
 import { createXCliCatalog, type XCliAuthentication } from "./catalog"
@@ -75,7 +75,7 @@ export interface FetchUsageOptions {
 }
 
 /**
- * The Magnitude provider — implements Provider<XCliModelInfo, XCliCallOptions>
+ * The x-cli provider — implements Provider<XCliModelInfo, XCliCallOptions>
  * & WebSearchExtension & UsageExtension.
  */
 export interface XCliProvider extends Provider<XCliModelInfo> {
@@ -90,7 +90,7 @@ export interface XCliProviderInstance {
 }
 
 export function createXCliProvider(config?: XCliClientConfig): XCliProviderInstance {
-  const useLocal = isEnvFlagOn(process.env.X_CLI_USE_LOCAL)
+  const useLocal = isEnvFlagOn(process.env.MAGNITUDE_USE_LOCAL)
   const endpoint = config?.endpoint ?? (useLocal ? LOCAL_ENDPOINT : DEFAULT_ENDPOINT)
   const sessionId = config?.sessionId ?? null
   const dedicatedProvider = config?.dedicatedProvider || process.env.MAGNITUDE_USE_DEDICATED || undefined
@@ -131,8 +131,8 @@ export function createXCliProvider(config?: XCliClientConfig): XCliProviderInsta
     options?: ProviderModelBindOptions,
   ): Effect.Effect<BoundModel<BaseCallOptions>, never, never> =>
     Effect.gen(function* () {
-      // Build magnitude-specific options from bind options
-      const magnitudeOptions: XCliAdditionalOptions = {
+      // Build x-cli-specific options from bind options
+      const xCliOptions: XCliAdditionalOptions = {
         ...(options?.agentId ? { agent_id: options.agentId } : {}),
         ...(options?.traits ? { traits: [...options.traits] } : {}),
         ...(options?.preferProvider ? { prefer_provider: options.preferProvider } : {}),
@@ -145,7 +145,7 @@ export function createXCliProvider(config?: XCliClientConfig): XCliProviderInsta
         ...(options?.imagePlaceholders ? { imagePlaceholders: options.imagePlaceholders } : {}),
       })
 
-      return wrapAsBaseModel(internal, magnitudeOptions)
+      return wrapAsBaseModel(internal, xCliOptions)
     })
 
   const webSearch: WebSearchExtension<WebSearchResult, WebSearchError, HttpClient.HttpClient>["webSearch"] = (query, schema?) =>
@@ -268,7 +268,7 @@ export function createXCliProvider(config?: XCliClientConfig): XCliProviderInsta
     id: PROVIDER_ID,
     displayName: "x-cli",
     catalog,
-    discoverModelProperties: () => Effect.succeed(ModelDiscoveryOperationIdSchema.make("magnitude-authoritative")),
+    discoverModelProperties: () => Effect.succeed(ModelDiscoveryOperationIdSchema.make("x-cli-authoritative")),
     bindModel,
     classifyModelFamily,
     webSearch,

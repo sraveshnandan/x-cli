@@ -17,8 +17,8 @@ import {
   FrameworkErrorPubSubLive,
   FrameworkErrorReporterLive,
   type Timestamped,
-} from '@magnitudedev/event-core'
-import { ProviderToolCallIdSchema, ToolCallIdSchema } from '@magnitudedev/ai'
+} from '@x-cli/event-core'
+import { ProviderToolCallIdSchema, ToolCallIdSchema } from '@x-cli/ai'
 import { UserBashCommandId, type AppEvent } from '../src/events'
 import type { ToolKey } from '../src/tools/toolkits'
 import { toToolKeyErased } from '../src/tools/toolkits'

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Option } from 'effect'
-import type { Message, ProviderToolCallId, ToolCallId, JsonValue } from '@magnitudedev/ai'
+import type { Message, ProviderToolCallId, ToolCallId, JsonValue } from '@x-cli/ai'
 import { observerWindowToPrompt } from '../src/observer'
 import type { ForkWindowState, WindowEntry } from '../src/window'
 
@@ -212,7 +212,7 @@ describe('observerWindowToPrompt', () => {
     })
 
     const text = textFromMessages(prompt.messages)
-    expect(text).toContain('<magnitude>')
+    expect(text).toContain('<x-cli>')
     expect(text).toContain('<thoughts>\nthe exact thought text\n</thoughts>')
     expect(text).toContain('<message>\nI found it.\n</message>')
     expect(text).toContain('<feedback from="user">')

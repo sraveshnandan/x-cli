@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { killWorkerTool } from '../tools/task-tools'
 import { KillWorkerStateSchema, type KillWorkerState } from './tool-state'

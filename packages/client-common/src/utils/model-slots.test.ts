@@ -10,7 +10,7 @@ import {
   ProviderModelIdSchema,
   ReasoningEffortSchema,
   SECONDARY_SLOT_ID,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
   deriveLocalModelLoadActivity,
   isModelSlotConfigured,

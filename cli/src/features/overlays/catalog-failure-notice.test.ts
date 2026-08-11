@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   ProviderIdSchema,
   type ProviderCatalogFailure,
-} from '@magnitudedev/sdk'
+} from '@x-cli/sdk'
 import { getCatalogFailureNotice } from './catalog-failure-notice'
 
 const failure = (providerId: string, message: string): ProviderCatalogFailure => ({
@@ -14,13 +14,13 @@ const failure = (providerId: string, message: string): ProviderCatalogFailure =>
 describe('getCatalogFailureNotice', () => {
   it('does not treat missing optional cloud authentication as an error', () => {
     expect(getCatalogFailureNotice([
-      failure('magnitude', 'Magnitude authentication is not configured'),
+      failure('x-cli', 'x-cli authentication is not configured'),
     ], true)).toBeNull()
   })
 
   it('still reports other failures when optional cloud authentication is missing', () => {
     expect(getCatalogFailureNotice([
-      failure('magnitude', 'Magnitude authentication is not configured'),
+      failure('x-cli', 'x-cli authentication is not configured'),
       failure('local', 'Local inference unavailable'),
     ], false)).toEqual({
       message: 'Some model providers are currently unavailable.',

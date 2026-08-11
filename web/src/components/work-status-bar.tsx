@@ -12,15 +12,15 @@ import {
   useStabilizedRootDetail,
   type SlotProfile,
   type SlotProfiles,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import type {
   DisplayActor,
   DisplayRootStatus,
   DisplayTasks,
   TaskAssignee,
   TaskDisplayRow,
-} from "@magnitudedev/sdk"
-import { isRoleId, ROLE_TO_SLOT } from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
+import { isRoleId, ROLE_TO_SLOT } from "@x-cli/sdk"
 import { ContextUsageIndicator } from "./context-usage-indicator"
 
 export interface WorkStatusBarProps {

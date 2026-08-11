@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Option } from 'effect'
-import { forkIdToKey } from '@magnitudedev/acn-protocol'
+import { forkIdToKey } from '@x-cli/acn-protocol'
 import { materializeDisplayActors, materializeDisplayTasks, materializeDisplayTimeline } from '../../src/display-view'
 
 describe('display view materializer', () => {

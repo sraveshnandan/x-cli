@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { Option } from "effect"
-import type { ModelSlotsState } from "@magnitudedev/sdk"
+import type { ModelSlotsState } from "@x-cli/sdk"
 import { CLI_EXIT_OBSERVATION_FALLBACK, deriveCliExitNotice } from "./cli-exit-notice"
 
 const state = (lifecycle: "Ready" | "Loading" | "Stopped", duplicate = false): ModelSlotsState => {
@@ -82,7 +82,7 @@ describe("deriveCliExitNotice", () => {
   it("reports a fresh ten-minute boundary for the final client", () => {
     expect(notice(state("Ready"), 0)).toBe(
       "Qwen Test is still running and will stop automatically after 10 minutes.\n" +
-        "Run `magnitude stop` to stop the current daemon and release the model now."
+        "Run `x-cli stop` to stop the current daemon and release the model now."
     )
   })
 
@@ -94,7 +94,7 @@ describe("deriveCliExitNotice", () => {
   it("deduplicates the same projected model instance", () => {
     expect(notice(state("Loading", true), 0)).toBe(
       "Qwen Test is still loading. When idle, it will stop automatically after 10 minutes.\n" +
-        "Run `magnitude stop` to stop the current daemon and release the model now."
+        "Run `x-cli stop` to stop the current daemon and release the model now."
     )
   })
 

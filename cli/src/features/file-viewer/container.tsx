@@ -6,7 +6,7 @@
  */
 import { useCallback, type ReactNode } from 'react'
 import { useAtomValue, useAtomSet } from '@effect-atom/atom-react'
-import { selectedFilePathAtom, selectedCwdAtom } from '@magnitudedev/client-common'
+import { selectedFilePathAtom, selectedCwdAtom } from '@x-cli/client-common'
 import { selectedFileSectionAtom } from '../../state/cli-atoms'
 import { useFilePanel } from '../../hooks/use-file-panel'
 import { FileViewerPanel } from './panel'

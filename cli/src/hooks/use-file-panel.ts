@@ -1,13 +1,13 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { Effect, Stream, Cause, Fiber, Runtime } from 'effect'
-import { useAgentClient, selectedFilePathAtom } from '@magnitudedev/client-common'
+import { useAgentClient, selectedFilePathAtom } from '@x-cli/client-common'
 import { Result, useAtomValue, useAtomSet } from '@effect-atom/atom-react'
 import { selectedFileSectionAtom } from '../state/cli-atoms'
 import type { TurnState } from '../utils/file-panel-utils'
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 import { useFrozenBaseContent } from './use-frozen-base-content'
 import { findActiveFileStream } from '../utils/file-panel-utils'
-import type { ReadFileResult, ResolvePathResult } from '@magnitudedev/sdk'
+import type { ReadFileResult, ResolvePathResult } from '@x-cli/sdk'
 
 export interface SelectedFileRef {
   path: string

@@ -12,7 +12,7 @@ export interface AcnRevisionStore {
 }
 
 export const AcnRevisionStore = Context.GenericTag<AcnRevisionStore>(
-  "@magnitudedev/acn-protocol/coordination/AcnRevisionStore",
+  "@x-cli/acn-protocol/coordination/AcnRevisionStore",
 )
 
 export const makeAcnRevisionStore = (

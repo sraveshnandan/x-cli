@@ -47,7 +47,7 @@ export interface GlobalStoragePaths {
 }
 
 export function defaultGlobalStorageRoot(): string {
-  return join(homedir(), '.magnitude')
+  return join(homedir(), '.x-cli')
 }
 
 export function makeGlobalStoragePaths(root: string): GlobalStoragePaths {

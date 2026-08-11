@@ -18,7 +18,7 @@ const Value = Schema.Struct({ value: Schema.String });
 
 describe("structured file", () => {
   it("distinguishes missing, invalid, and present", async () => {
-    const dir = await mkdtemp(join(tmpdir(), "magnitude-structured-"));
+    const dir = await mkdtemp(join(tmpdir(), "x-cli-structured-"));
     const path = join(dir, "value.json");
 
     expect((await run(readStructuredFile(path, Value)))._tag).toBe("Missing");
@@ -37,7 +37,7 @@ describe("structured file", () => {
   });
 
   it("leaves no temporary file after atomic publication", async () => {
-    const dir = await mkdtemp(join(tmpdir(), "magnitude-structured-"));
+    const dir = await mkdtemp(join(tmpdir(), "x-cli-structured-"));
     const path = join(dir, "value.json");
 
     await run(writeStructuredFileAtomic(path, Value, { value: "complete" }));
@@ -48,7 +48,7 @@ describe("structured file", () => {
   });
 
   it("recovers invalid leaves and escalates required failures without losing siblings", async () => {
-    const dir = await mkdtemp(join(tmpdir(), "magnitude-structured-"));
+    const dir = await mkdtemp(join(tmpdir(), "x-cli-structured-"));
     const path = join(dir, "value.json");
     const schema = Schema.Struct({
       keep: Schema.String,
@@ -77,7 +77,7 @@ describe("structured file", () => {
   });
 
   it("applies a schema decoding default after removing an invalid property", async () => {
-    const dir = await mkdtemp(join(tmpdir(), "magnitude-structured-"));
+    const dir = await mkdtemp(join(tmpdir(), "x-cli-structured-"));
     const path = join(dir, "value.json");
     const schema = Schema.Struct({
       count: Schema.optionalWith(Schema.Number, { default: () => 10 }),
@@ -95,7 +95,7 @@ describe("structured file", () => {
   });
 
   it("removes invalid array entries without shifting later targets", async () => {
-    const dir = await mkdtemp(join(tmpdir(), "magnitude-structured-"));
+    const dir = await mkdtemp(join(tmpdir(), "x-cli-structured-"));
     const path = join(dir, "value.json");
     const schema = Schema.Struct({
       values: Schema.Array(Schema.Struct({ value: Schema.Number })),
@@ -114,7 +114,7 @@ describe("structured file", () => {
   });
 
   it("distinguishes malformed JSON and resets an invalid root", async () => {
-    const dir = await mkdtemp(join(tmpdir(), "magnitude-structured-"));
+    const dir = await mkdtemp(join(tmpdir(), "x-cli-structured-"));
     const path = join(dir, "value.json");
     await Bun.write(path, "{");
     const malformed = await run(readRecoverableStructuredFile(path, Value, {
@@ -133,7 +133,7 @@ describe("structured file", () => {
   });
 
   it("preserves unknown fields through schema-aware encoding", async () => {
-    const dir = await mkdtemp(join(tmpdir(), "magnitude-structured-"));
+    const dir = await mkdtemp(join(tmpdir(), "x-cli-structured-"));
     const path = join(dir, "value.json");
     const value = { value: "complete", future: { enabled: true } };
 
@@ -145,7 +145,7 @@ describe("structured file", () => {
   });
 
   it("still rejects invalid application values while encoding", async () => {
-    const dir = await mkdtemp(join(tmpdir(), "magnitude-structured-"));
+    const dir = await mkdtemp(join(tmpdir(), "x-cli-structured-"));
     const path = join(dir, "value.json");
 
     const result = await run(Effect.either(

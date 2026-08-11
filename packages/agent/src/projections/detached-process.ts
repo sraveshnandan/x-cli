@@ -6,8 +6,8 @@
  * injection (reminders).
  */
 
-import { Projection } from '@magnitudedev/event-core'
-import type { ForkedState } from '@magnitudedev/event-core'
+import { Projection } from '@x-cli/event-core'
+import type { ForkedState } from '@x-cli/event-core'
 import { Schema, Option } from 'effect'
 import type { AppEvent } from '../events'
 

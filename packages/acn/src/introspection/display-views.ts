@@ -1,5 +1,5 @@
 import { Context, Effect, Layer, PubSub, Ref, Stream } from "effect"
-import type { DisplayViewShape } from "@magnitudedev/acn-protocol"
+import type { DisplayViewShape } from "@x-cli/acn-protocol"
 
 export interface AcnDisplayViewIntrospection {
   readonly sessionId: string

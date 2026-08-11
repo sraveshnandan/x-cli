@@ -14,8 +14,8 @@ import {
   makeAmbientServiceLayer,
   FrameworkErrorPubSubLive,
   FrameworkErrorReporterLive,
-} from '@magnitudedev/event-core'
-import type { ProviderToolCallId, ToolCallId } from '@magnitudedev/ai'
+} from '@x-cli/event-core'
+import type { ProviderToolCallId, ToolCallId } from '@x-cli/ai'
 import type { AppEvent } from '../src/events'
 import { TurnProjection } from '../src/projections/turn'
 import { AgentRoutingProjection } from '../src/projections/agent-routing'

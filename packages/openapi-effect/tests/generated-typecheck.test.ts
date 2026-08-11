@@ -16,7 +16,7 @@ afterEach(async () => {
 });
 
 describe("generated TypeScript", () => {
-  it("type-checks against Magnitude's installed Effect 3 platform", async () => {
+  it("type-checks against x-cli's installed Effect 3 platform", async () => {
     const recursiveDocument = {
       ...sseDocument,
       components: {

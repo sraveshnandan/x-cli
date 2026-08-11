@@ -4,7 +4,7 @@
  * Global projection tracking child agent message routing.
  */
 
-import { Projection, Signal } from '@magnitudedev/event-core'
+import { Projection, Signal } from '@x-cli/event-core'
 import { type AppEvent, outcomeWillChainContinue } from '../events'
 import { Schema } from 'effect'
 

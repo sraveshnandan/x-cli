@@ -1,14 +1,14 @@
 import { FetchHttpClient } from '@effect/platform'
 import { Effect, Layer, Stream } from 'effect'
 import { describe, expect, it } from 'vitest'
-import { EventEngine } from '@magnitudedev/event-core'
+import { EventEngine } from '@x-cli/event-core'
 import {
   ModelStreamTerminal,
   StreamClientCorrectnessViolation,
   type BaseCallOptions,
   type ModelStreamResult,
   type ResponseStreamEvent,
-} from '@magnitudedev/ai'
+} from '@x-cli/ai'
 
 import { DEFAULT_CHAT_NAME } from '../src/constants'
 import type { AppEvent } from '../src/events'

@@ -1,4 +1,4 @@
-import { isRoleId, type RoleId, ROLE_IDS } from '@magnitudedev/roles'
+import { isRoleId, type RoleId, ROLE_IDS } from '@x-cli/roles'
 
 // Roles that can be spawned via spawn-worker tool.
 // Excludes leader (not spawnable) and advisor (peer-only, created via messageAdvisor).

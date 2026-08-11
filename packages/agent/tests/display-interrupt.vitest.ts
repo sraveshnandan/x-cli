@@ -7,8 +7,8 @@ import {
   ProjectionBusTag,
   makeAmbientServiceLayer,
   makeProjectionBusLayer,
-} from '@magnitudedev/event-core'
-import type { ProviderToolCallId, ToolCallId } from '@magnitudedev/ai'
+} from '@x-cli/event-core'
+import type { ProviderToolCallId, ToolCallId } from '@x-cli/ai'
 import { UserBashCommandId, type AppEvent } from '../src/events'
 import { DisplayTimelineProjection } from '../src/display'
 import { AgentRoutingProjection } from '../src/projections/agent-routing'

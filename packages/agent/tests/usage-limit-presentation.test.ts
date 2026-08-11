@@ -19,7 +19,7 @@ describe("usage-limit presentation", () => {
     expect(result.cta).toEqual({
       kind: "url",
       label: "View cloud usage",
-      url: "https://app.magnitude.dev/billing",
+      url: "https://app.x-cli.dev/billing",
     })
   })
 
@@ -28,17 +28,17 @@ describe("usage-limit presentation", () => {
       _tag: "ProviderNotReady",
       detail: {
         _tag: "SubscriptionRequired",
-        message: "Magnitude Pro is required to use cloud models.",
+        message: "x-cli Pro is required to use cloud models.",
       },
       requestId: "request",
     })
 
     expect(result.retryable).toBe(false)
-    expect(result.message).toContain("Magnitude Pro")
+    expect(result.message).toContain("x-cli Pro")
     expect(result.cta).toEqual({
       kind: "url",
-      label: "Start Magnitude Pro",
-      url: "https://app.magnitude.dev/billing",
+      label: "Start x-cli Pro",
+      url: "https://app.x-cli.dev/billing",
     })
   })
 })

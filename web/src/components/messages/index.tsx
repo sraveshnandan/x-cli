@@ -6,7 +6,7 @@
  * below are defensive — projection never emits these as message entries.
  */
 import { memo, type ReactNode } from "react"
-import type { DisplayMessage } from "@magnitudedev/sdk"
+import type { DisplayMessage } from "@x-cli/sdk"
 
 import { UserMessage } from "./user-message"
 import { QueuedUserMessage } from "./queued-user-message"

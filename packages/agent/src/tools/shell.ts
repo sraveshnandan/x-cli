@@ -6,8 +6,8 @@
  */
 
 import { Effect, Schema, Stream, Deferred, Fiber } from 'effect'
-import { defineHarnessTool } from '@magnitudedev/harness'
-import { Fork } from '@magnitudedev/event-core'
+import { defineHarnessTool } from '@x-cli/harness'
+import { Fork } from '@x-cli/event-core'
 import { WorkingDirectoryTag } from '../execution/working-directory'
 import { agentEnv } from '../util/agent-env'
 import { ToolErrorSchema } from './errors'

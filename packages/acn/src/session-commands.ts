@@ -1,9 +1,9 @@
 import { Context, Effect, Layer } from "effect"
 import * as FileSystem from "@effect/platform/FileSystem"
 import * as Path from "@effect/platform/Path"
-import { createId } from "@magnitudedev/generate-id"
-import type { AppEvent } from "@magnitudedev/agent"
-import { SessionStartFailed, type InterruptTarget, type SessionError } from "@magnitudedev/acn-protocol"
+import { createId } from "@x-cli/generate-id"
+import type { AppEvent } from "@x-cli/agent"
+import { SessionStartFailed, type InterruptTarget, type SessionError } from "@x-cli/acn-protocol"
 import { AgentRuntime } from "./agent-runtime"
 import type {
   SendUserMessageInput,

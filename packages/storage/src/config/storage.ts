@@ -17,17 +17,17 @@ import {
 } from "../io/structured-file";
 import { GlobalStorage } from "../services";
 import {
-  MagnitudeConfigSchema,
+  XCliConfigSchema,
   resolveContextLimitPolicy,
   type ContextLimitPolicy,
-  type MagnitudeConfig,
+  type XCliConfig,
 } from "../types/config";
 import type { ConfigStorageShape } from "./contracts";
 
-const DEFAULT_CONFIG = Schema.decodeUnknownSync(MagnitudeConfigSchema)({});
+const DEFAULT_CONFIG = Schema.decodeUnknownSync(XCliConfigSchema)({});
 
-const discardRemovedModelConfiguration = (config: MagnitudeConfig): {
-  readonly value: MagnitudeConfig;
+const discardRemovedModelConfiguration = (config: XCliConfig): {
+  readonly value: XCliConfig;
   readonly changed: boolean;
 } => {
   const models = config.models === undefined ? undefined : {
@@ -65,9 +65,9 @@ export function makeConfigStorage(): Effect.Effect<
     const g = globalStorage.paths;
 
     const writeConfigUnlocked = (
-      config: MagnitudeConfig
+      config: XCliConfig
     ): Effect.Effect<void, PlatformError | JsonError> =>
-      writeStructuredFileAtomic(g.configFile, MagnitudeConfigSchema, config, {
+      writeStructuredFileAtomic(g.configFile, XCliConfigSchema, config, {
         parseOptions: { onExcessProperty: "preserve" },
       }).pipe(
         Effect.provideService(FileSystem.FileSystem, fs),
@@ -94,11 +94,11 @@ export function makeConfigStorage(): Effect.Effect<
         return backupPath;
       });
 
-    const readConfigUnlocked = (): Effect.Effect<MagnitudeConfig, PlatformError | JsonError> =>
+    const readConfigUnlocked = (): Effect.Effect<XCliConfig, PlatformError | JsonError> =>
       Effect.gen(function* () {
         const result = yield* readRecoverableStructuredFile(
           g.configFile,
-          MagnitudeConfigSchema,
+          XCliConfigSchema,
           { rootDefault: () => DEFAULT_CONFIG }
         ).pipe(
           Effect.provideService(FileSystem.FileSystem, fs)
@@ -110,7 +110,7 @@ export function makeConfigStorage(): Effect.Effect<
         if (result._tag === "Malformed") {
           const backupPath = yield* preserveCorruptOriginal(result.originalText);
           yield* writeConfigUnlocked(DEFAULT_CONFIG);
-          yield* Effect.logWarning("Recovered malformed Magnitude config").pipe(
+          yield* Effect.logWarning("Recovered malformed x-cli config").pipe(
             Effect.annotateLogs({
               path: g.configFile,
               backupPath,
@@ -127,7 +127,7 @@ export function makeConfigStorage(): Effect.Effect<
           yield* writeConfigUnlocked(cleaned.value);
         }
         if (result.recovery.recovered) {
-          yield* Effect.logWarning("Recovered invalid Magnitude config values").pipe(
+          yield* Effect.logWarning("Recovered invalid x-cli config values").pipe(
             Effect.annotateLogs({
               path: g.configFile,
               resetRoot: result.recovery.resetRoot,
@@ -148,7 +148,7 @@ export function makeConfigStorage(): Effect.Effect<
         return cleaned.value;
       });
 
-    const readConfig = (): Effect.Effect<MagnitudeConfig, PlatformError | JsonError> =>
+    const readConfig = (): Effect.Effect<XCliConfig, PlatformError | JsonError> =>
       io.withPathLock(g.configFile, readConfigUnlocked());
 
     const emptyModelConfig = () => ({

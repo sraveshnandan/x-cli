@@ -1,6 +1,6 @@
 import { Cause, Layer, Logger } from "effect"
-import { addEphemeralLogMessage } from "@magnitudedev/client-common"
-import { TracingLayer } from "@magnitudedev/sdk"
+import { addEphemeralLogMessage } from "@x-cli/client-common"
+import { TracingLayer } from "@x-cli/sdk"
 
 const stringifyMessagePart = (value: unknown): string => {
   if (typeof value === "string") return value

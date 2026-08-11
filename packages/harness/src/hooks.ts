@@ -1,6 +1,6 @@
 import type { Effect } from "effect"
-import type { JsonValue } from "@magnitudedev/utils/schema"
-import type { ToolCallId } from "@magnitudedev/ai"
+import type { JsonValue } from "@x-cli/utils/schema"
+import type { ToolCallId } from "@x-cli/ai"
 import type { HarnessEvent, ToolError, ToolResult } from "./events"
 
 export interface ExecuteHookContext {

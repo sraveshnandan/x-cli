@@ -30,7 +30,7 @@ history. Invalid UTF-8 or invalid JSON in a committed record—including an empt
 record—is a visible persistence failure and is never skipped or deleted automatically.
 
 The generic JSONL layer validates UTF-8 and JSON syntax. Its type parameter describes the caller's
-expected value but is not runtime validation. Magnitude does not currently define a runtime schema
+expected value but is not runtime validation. x-cli does not currently define a runtime schema
 for the complete `AppEvent` union, so event-variant shape validation is outside this recovery
 boundary. A syntactically valid committed JSON value is never deleted as tail damage merely because
 a downstream domain consumer cannot use its shape.

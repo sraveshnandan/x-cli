@@ -1,4 +1,4 @@
-import type { ToolSummaryPresentation } from '@magnitudedev/sdk'
+import type { ToolSummaryPresentation } from '@x-cli/sdk'
 
 /**
  * Computes the human-readable label for a tool summary entry from its typed

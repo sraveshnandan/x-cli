@@ -1,10 +1,10 @@
 import { Effect, Option, Ref, Schema } from 'effect'
-import { defineHarnessTool } from '@magnitudedev/harness'
+import { defineHarnessTool } from '@x-cli/harness'
 import { resolve } from 'path'
 import * as fs from 'fs/promises'
 import { CompactionContextTag } from '../compaction/context'
 import { WorkingDirectoryTag } from '../execution/working-directory'
-import { expandScratchpadPath } from '@magnitudedev/scratchpad'
+import { expandScratchpadPath } from '@x-cli/scratchpad'
 import { COMPACT_MAX_FILES, COMPACT_MAX_FILE_CHARS, CHARS_PER_TOKEN_LOWER } from '../constants'
 import { ToolErrorSchema } from './errors'
 

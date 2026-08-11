@@ -1,4 +1,4 @@
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 
 export interface ImagePayload {
   base64: string

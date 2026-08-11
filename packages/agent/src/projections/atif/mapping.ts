@@ -28,7 +28,7 @@ import type {
   AtifImagePart,
   AtifImageSource,
 } from './types'
-import { JsonValueSchema, type JsonValue } from '@magnitudedev/ai'
+import { JsonValueSchema, type JsonValue } from '@x-cli/ai'
 import { Schema, Option } from 'effect'
 
 // =============================================================================

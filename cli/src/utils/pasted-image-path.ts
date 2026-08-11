@@ -2,7 +2,7 @@ import os from 'os'
 import path from 'path'
 import type { ImageMediaType } from '../types/media'
 import { extractImageDimensions } from './clipboard'
-import type { ReadFileResult, ResolvePathResult } from '@magnitudedev/sdk'
+import type { ReadFileResult, ResolvePathResult } from '@x-cli/sdk'
 
 export interface PastedImageFileResult {
   path: string

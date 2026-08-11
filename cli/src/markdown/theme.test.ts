@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { buildMergedPalette } from '@magnitudedev/client-common'
+import { buildMergedPalette } from '@x-cli/client-common'
 
 describe('markdown/theme', () => {
   it('returns full default palette with no overrides', () => {

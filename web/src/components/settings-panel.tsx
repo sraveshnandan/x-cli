@@ -8,13 +8,13 @@
 import { useState, useCallback, type ReactNode } from "react"
 import { Option } from "effect"
 import { Result } from "@effect-atom/atom-react"
-import { formatTokensCompact, reasoningEffortControl, reasoningPropertyLabel, selectedSlotModel, visionPropertyLabel } from "@magnitudedev/client-common"
+import { formatTokensCompact, reasoningEffortControl, reasoningPropertyLabel, selectedSlotModel, visionPropertyLabel } from "@x-cli/client-common"
 import { AlertTriangle } from "lucide-react"
-import type { CloudUsageResponse, UsagePeriod, SlotId, ProviderModelCatalogEntry } from "@magnitudedev/sdk"
-import { ProviderModelCatalogLifecycle } from "@magnitudedev/sdk"
-import type { UseModelConfigResult } from "@magnitudedev/client-common"
+import type { CloudUsageResponse, UsagePeriod, SlotId, ProviderModelCatalogEntry } from "@x-cli/sdk"
+import { ProviderModelCatalogLifecycle } from "@x-cli/sdk"
+import type { UseModelConfigResult } from "@x-cli/client-common"
 
-export type { UsagePeriod } from "@magnitudedev/sdk"
+export type { UsagePeriod } from "@x-cli/sdk"
 
 type Tab = "settings" | "usage"
 
@@ -184,7 +184,7 @@ function SettingsTab({
           marginBottom: 12,
         }}
       >
-        Magnitude
+        x-cli
       </h3>
 
       {mode === "view" && apiKey.status === "config" && (
@@ -370,7 +370,7 @@ function UsageTab({
             )}
             {subscription?.status === "not_subscribed" && (
               <div style={{ marginTop: 4, fontSize: 12, color: "var(--fg-secondary)" }}>
-                Magnitude Pro is required to use cloud models.
+                x-cli Pro is required to use cloud models.
               </div>
             )}
             {Object.entries(usageWindows).map(([window, budget]) => budget && (
@@ -569,7 +569,7 @@ function UsageTab({
           Usage data is not available.
           <br />
           <span style={{ fontSize: 12, color: "var(--fg-quaternary)" }}>
-            Connect a Magnitude account to view usage statistics.
+            Connect a x-cli account to view usage statistics.
           </span>
         </div>
       )}

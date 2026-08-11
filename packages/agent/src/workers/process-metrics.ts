@@ -15,8 +15,8 @@
  */
 
 import { Effect, Schedule, Cause } from 'effect'
-import { Worker, type PublishFn, type WorkerReadFn } from '@magnitudedev/event-core'
-import { logger } from '@magnitudedev/logger'
+import { Worker, type PublishFn, type WorkerReadFn } from '@x-cli/event-core'
+import { logger } from '@x-cli/logger'
 import type { AppEvent } from '../events'
 import { DetachedProcessProjection } from '../projections/detached-process'
 import { sampleMetrics, type ProcessMetricsSample } from '../process/ps-tree'

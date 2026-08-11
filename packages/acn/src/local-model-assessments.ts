@@ -26,12 +26,12 @@ import {
   type ModelOfferingTargetId,
   type ModelServingConfiguration,
   type ServingProfile,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import type {
   AssessModelResult,
   ModelAssessment,
-} from "@magnitudedev/icn-protocol/schemas"
-import { IcnClient } from "@magnitudedev/icn"
+} from "@x-cli/icn-protocol/schemas"
+import { IcnClient } from "@x-cli/icn"
 import { LocalModelPackages } from "./local-model-packages"
 import {
   servingProfileFromIcn,

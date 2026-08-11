@@ -77,7 +77,7 @@ export const validateReleaseManifest = (
   const ids = new Set<string>()
   const names = new Set<string>()
   const fail = (message: string) => Effect.fail(new InvalidReleaseManifest({ message }))
-  if (manifest.tag !== `@magnitudedev/cli@${manifest.version}`) {
+  if (manifest.tag !== `@x-cli/cli@${manifest.version}`) {
     return fail("release tag does not match version")
   }
   for (const artifact of manifest.artifacts) {

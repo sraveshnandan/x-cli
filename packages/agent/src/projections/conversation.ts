@@ -9,7 +9,7 @@
  * Used by the reviewer agent to get injected with user intent context.
  */
 
-import { Projection } from '@magnitudedev/event-core'
+import { Projection } from '@x-cli/event-core'
 import { Schema } from 'effect'
 import type { AppEvent } from '../events'
 import { UserMessageResolutionProjection } from './user-message-resolution'

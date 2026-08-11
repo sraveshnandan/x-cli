@@ -1,5 +1,5 @@
-import type { ModelRequestProgress } from '@magnitudedev/ai'
-import { Ambient } from '@magnitudedev/event-core'
+import type { ModelRequestProgress } from '@x-cli/ai'
+import { Ambient } from '@x-cli/event-core'
 
 interface ModelRequestTurn {
   readonly turnId: string

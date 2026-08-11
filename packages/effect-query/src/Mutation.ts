@@ -26,7 +26,7 @@ import {
   type MutationFilter
 } from "./Model.js"
 
-export const TypeId: unique symbol = Symbol.for("@magnitudedev/effect-query/Mutation")
+export const TypeId: unique symbol = Symbol.for("@x-cli/effect-query/Mutation")
 
 export { MutationExecutionId, MutationScope }
 export type { AnyMutationExecution, MutationExecution, MutationFilter }

@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useRef, useSyncExternalStore } from 'react'
 import type { DisplayReader, DisplaySpeculator } from './display-view-store'
-import type { DisplayViewSnapshot } from '@magnitudedev/sdk'
+import type { DisplayViewSnapshot } from '@x-cli/sdk'
 
 export const DisplayReaderContext = createContext<DisplayReader | null>(null)
 export const DisplaySpeculatorContext = createContext<DisplaySpeculator | null>(null)

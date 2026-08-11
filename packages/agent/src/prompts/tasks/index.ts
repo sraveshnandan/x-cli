@@ -1,4 +1,4 @@
-import type { Skill } from '@magnitudedev/skills'
+import type { Skill } from '@x-cli/skills'
 
 /**
  * Prompt text for task lifecycle hook reminders.

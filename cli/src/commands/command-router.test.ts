@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from 'vitest'
-import { routeSlashCommand, type CommandContext } from '@magnitudedev/client-common'
+import { routeSlashCommand, type CommandContext } from '@x-cli/client-common'
 import { registerCliCommands } from './register'
 
 registerCliCommands()
@@ -50,6 +50,14 @@ describe('routeSlashCommand', () => {
     const ctx = createContext()
     expect(routeSlashCommand('/transcript', ctx)).toBe(true)
     expect(ctx.toggleTranscript).toHaveBeenCalledTimes(1)
+  })
+
+  test('/connect and /mcp commands route correctly', () => {
+    const ctx = createContext({ openMcp: vi.fn() })
+    expect(routeSlashCommand('/connect', ctx)).toBe(true)
+    expect(ctx.openCloud).toHaveBeenCalledTimes(1)
+    expect(routeSlashCommand('/mcp', ctx)).toBe(true)
+    expect(ctx.openMcp).toHaveBeenCalledTimes(1)
   })
 
   test('unknown command is not handled', () => {

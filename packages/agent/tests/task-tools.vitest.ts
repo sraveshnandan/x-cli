@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@effect/vitest'
 import { Effect, Stream } from 'effect'
-import { Fork, WorkerBusTag, type WorkerBusService } from '@magnitudedev/event-core'
+import { Fork, WorkerBusTag, type WorkerBusService } from '@x-cli/event-core'
 import type { AppEvent } from '../src/events'
 import type { ConversationState } from '../src/projections/conversation'
 import { type TaskGraphState, type TaskRecord } from '../src/projections/task-graph'

@@ -6,7 +6,7 @@ import {
   type ProviderModel,
   type ProviderId,
   type ModelFamilyId,
-} from "@magnitudedev/ai"
+} from "@x-cli/ai"
 
 /**
  * Merge multiple provider catalogs into a single aggregated catalog.

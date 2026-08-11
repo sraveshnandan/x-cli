@@ -57,14 +57,14 @@ describe("ICN compilation", () => {
     await expect(
       readCargoMessages(
         stream(
-          '{"reason":"compiler-artifact","target":{"name":"magnitude-icn"}}',
+          '{"reason":"compiler-artifact","target":{"name":"x-cli-icn"}}',
         ),
         () => {},
       ),
     ).resolves.toEqual([
       {
         reason: "compiler-artifact",
-        target: { name: "magnitude-icn" },
+        target: { name: "x-cli-icn" },
       },
     ])
   })

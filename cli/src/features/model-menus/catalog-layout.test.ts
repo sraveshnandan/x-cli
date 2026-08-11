@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest"
-import { getDisplayWidth } from "@magnitudedev/client-common"
+import { getDisplayWidth } from "@x-cli/client-common"
 import {
   catalogDetailHints,
   catalogListHints,

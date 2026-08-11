@@ -1,4 +1,4 @@
 export {
   BunSqliteDriver,
   BunSqliteDriverLayer,
-} from "@magnitudedev/acn-protocol/coordination/bun"
+} from "@x-cli/acn-protocol/coordination/bun"

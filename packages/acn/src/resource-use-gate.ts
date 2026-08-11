@@ -24,6 +24,7 @@ export interface ResourceUseGateSnapshot {
   readonly leaseLabels: ReadonlyArray<string>;
   readonly idleSince: number | null;
   readonly revision: number;
+  readonly lastCommandAt: number | null;
 }
 
 export interface ResourceRetirementClaim {
@@ -81,6 +82,7 @@ interface OpenState {
   readonly leases: ReadonlyMap<number, string>;
   readonly retentions: ReadonlyMap<number, string>;
   readonly idleSince: number | null;
+  readonly lastCommandAt: number | null;
   readonly revision: number;
   readonly changed: Deferred.Deferred<void>;
 }
@@ -165,6 +167,7 @@ export const makeResourceUseGate = <E = never, R = never>(
       leases: new Map(),
       retentions: new Map(),
       idleSince: startedAt,
+      lastCommandAt: null,
       revision: 0,
       changed: initialChanged,
     });
@@ -203,6 +206,7 @@ export const makeResourceUseGate = <E = never, R = never>(
                 leases,
                 retentions,
                 idleSince: leases.size === 0 && retentions.size === 0 ? now : null,
+                lastCommandAt: current.lastCommandAt,
                 revision: current.revision + 1,
                 changed: nextChanged,
               },
@@ -220,6 +224,7 @@ export const makeResourceUseGate = <E = never, R = never>(
       Effect.suspend(() =>
         Effect.uninterruptibleMask((restore) =>
           Effect.gen(function* () {
+            const now = yield* monotonicMillis;
             const changed = yield* Deferred.make<void>();
             const admission = yield* Ref.modify(
               state,
@@ -253,6 +258,7 @@ export const makeResourceUseGate = <E = never, R = never>(
                     leases,
                     retentions,
                     idleSince: null,
+                    lastCommandAt: now,
                     revision: current.revision + 1,
                     changed,
                   },
@@ -387,6 +393,7 @@ export const makeResourceUseGate = <E = never, R = never>(
                 leases: new Map(),
                 retentions: new Map(),
                 idleSince: now,
+                lastCommandAt: null,
                 revision: current.revision + 1,
                 changed: nextChanged,
               },
@@ -501,6 +508,7 @@ export const makeResourceUseGate = <E = never, R = never>(
             : [],
           idleSince: current.phase === "open" ? current.idleSince : null,
           revision: current.revision,
+          lastCommandAt: current.phase === "open" ? current.lastCommandAt : null,
         })
       )
     );

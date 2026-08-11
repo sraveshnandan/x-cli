@@ -1,4 +1,4 @@
-import type { JsonSchemaObject } from "@magnitudedev/utils/schema"
+import type { JsonSchemaObject } from "@x-cli/utils/schema"
 import { Option } from "effect"
 import { Prompt } from "../../prompt/prompt"
 import type { ProviderToolCallId } from "../../prompt/ids"

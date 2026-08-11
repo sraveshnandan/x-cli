@@ -1,5 +1,5 @@
 import { CHARS_PER_TOKEN_LOWER } from '../constants'
-import type { UserPart } from '@magnitudedev/ai'
+import type { UserPart } from '@x-cli/ai'
 import { renderContextImageAnchor, type ContextPart } from '../content'
 
 /**

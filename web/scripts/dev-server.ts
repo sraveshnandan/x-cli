@@ -26,8 +26,8 @@ import {
   AcnEnsuranceFailed,
   SDK_ACN_TARGET,
   type RemoteAcnEnsureMessage,
-} from "@magnitudedev/sdk"
-import { BunSqliteDriverLayer } from "@magnitudedev/sdk/bun"
+} from "@x-cli/sdk"
+import { BunSqliteDriverLayer } from "@x-cli/sdk/bun"
 import { resolve } from "node:path"
 
 // ─── Daemon host boundaries ─────────────────────────────────────────────────

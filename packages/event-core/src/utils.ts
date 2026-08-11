@@ -1,4 +1,4 @@
-export { createId } from '@magnitudedev/generate-id'
+export { createId } from '@x-cli/generate-id'
 
 export function tupleMap<T, U>(
   items: readonly [T, ...T[]],

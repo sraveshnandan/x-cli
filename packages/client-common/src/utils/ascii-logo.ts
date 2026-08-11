@@ -1,4 +1,4 @@
-// Magnitude — robot face logo
+// x-cli — robot face logo
 
 export const LOGO_LINES: string[] = [
   ` ▄▆▆▆▇▇▇▇▇████████████▇▇▇▇▇▆▆▆▄`,
@@ -18,4 +18,4 @@ export const LOGO_LINES: string[] = [
   `          ▐██████████▌`,
 ]
 
-export const MAGNITUDE_LOGO = LOGO_LINES.join('\n')
+export const X_CLI_LOGO = LOGO_LINES.join('\n')

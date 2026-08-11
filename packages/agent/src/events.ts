@@ -9,19 +9,19 @@
 
 import { Brand, Option, Schema } from 'effect'
 import type { ContextPart } from './content'
-import { GenerationPerformanceSchema } from '@magnitudedev/ai'
-import type { ModelAttemptFailureSnapshot, ProviderToolCallId, ToolCallId } from '@magnitudedev/ai'
-import type { ToolLifecycleEvent } from '@magnitudedev/harness'
-import type { ValidationIssue } from '@magnitudedev/ai'
+import { GenerationPerformanceSchema } from '@x-cli/ai'
+import type { ModelAttemptFailureSnapshot, ProviderToolCallId, ToolCallId } from '@x-cli/ai'
+import type { ToolLifecycleEvent } from '@x-cli/harness'
+import type { ValidationIssue } from '@x-cli/ai'
 // ToolKey is intentionally NOT imported here. events.ts participates in a
 // circular type dependency: events → toolkits → task-tools → events.
 // Using the erased branded type from tools/types.ts breaks the cycle.
 // See tools/types.ts for details.
 import type { ToolKeyErased } from './tools/types'
 
-import type { Skill } from '@magnitudedev/skills'
-import type { RoleId } from '@magnitudedev/roles'
-import type { ModelReleaseReason } from '@magnitudedev/acn-protocol'
+import type { Skill } from '@x-cli/skills'
+import type { RoleId } from '@x-cli/roles'
+import type { ModelReleaseReason } from '@x-cli/acn-protocol'
 import type { TaskAssignee } from './tasks/types'
 import type { ErrorPresentation } from './errors/present'
 import type { CompletedTurn } from './window/types'

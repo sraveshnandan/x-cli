@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { updateTaskTool } from '../tools/task-tools'
 import { UpdateTaskStateSchema, UpdateTaskStatusSchema, type UpdateTaskState, type UpdateTaskStatus } from './tool-state'

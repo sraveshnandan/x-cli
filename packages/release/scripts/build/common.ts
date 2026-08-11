@@ -89,7 +89,7 @@ export const verifyOwnedLoaderPaths = async ({
       const dynamic = await run(["readelf", "-d", file])
       return [...dynamic.matchAll(
         /\((?:RUNPATH|RPATH)\).*\[([^\]]+)\]/g,
-      )].flatMap((match) => match[1]!.split(":"))
+      )].flatMap((match) => match[1]!.split(":")).filter(Boolean)
     }
     const commands = await run(["otool", "-l", file])
     return [...commands.matchAll(

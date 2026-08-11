@@ -8,8 +8,8 @@ import {
   createAgentClient,
   useLocalModels,
   useModelSlots,
-} from "@magnitudedev/client-common"
-import { PRIMARY_SLOT_ID, ProviderIdSchema, protocolLayer } from "@magnitudedev/sdk"
+} from "@x-cli/client-common"
+import { PRIMARY_SLOT_ID, ProviderIdSchema, protocolLayer } from "@x-cli/sdk"
 import { deriveLocalInferenceFooterView } from "./footer-status"
 
 const LOCAL_PROVIDER_ID = ProviderIdSchema.make("local")

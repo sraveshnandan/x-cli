@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { existsSync } from 'node:fs'
 import { normalizeReferencedPath } from './file-refs'
-import { expandScratchpadPath } from '@magnitudedev/scratchpad'
+import { expandScratchpadPath } from '@x-cli/scratchpad'
 
 export interface ResolvedFileRef {
   resolvedPath: string

@@ -15,7 +15,7 @@ import {
   selectArtifact,
   type ArtifactInstallationEvent,
   type ReleaseBundleSizes,
-} from "@magnitudedev/release";
+} from "@x-cli/release";
 import {
   BinaryNotFound,
   BinaryRevisionMismatch,
@@ -49,9 +49,9 @@ export interface ResolvedBinaryCommand {
   readonly needsDownload: boolean;
 }
 
-export const defaultDataDir = (): string => join(homedir(), ".magnitude");
+export const defaultDataDir = (): string => join(homedir(), ".x-cli");
 export const defaultBinaryPath = (dataDir: string = defaultDataDir()): string =>
-  join(dataDir, "bin", "magnitude-acn");
+  join(dataDir, "bin", "x-cli-acn");
 
 const releaseRoot = (dataDir: string) => join(dataDir, "releases");
 const acnRoot = (dataDir: string, version: string) =>
@@ -59,16 +59,16 @@ const acnRoot = (dataDir: string, version: string) =>
 const pointerPath = (dataDir: string, version: string) =>
   join(acnRoot(dataDir, version), "current.txt");
 const executableName = () =>
-  process.platform === "win32" ? "magnitude-acn.exe" : "magnitude-acn";
+  process.platform === "win32" ? "x-cli-acn.exe" : "x-cli-acn";
 
 export function releaseTag(version: string): string {
-  return `@magnitudedev/cli@${version}`;
+  return `@x-cli/cli@${version}`;
 }
 
 export function releaseBaseUrl(): string {
   return (
     process.env.MAGNITUDE_RELEASE_BASE_URL ??
-    "https://github.com/magnitudedev/magnitude/releases/download"
+    "https://github.com/x-clidev/x-cli/releases/download"
   ).replace(/\/+$/, "");
 }
 
@@ -113,7 +113,7 @@ const validateBinaryRevision = (
   const actual = Number(output)
   if (!Number.isSafeInteger(actual) || actual <= 0) {
     return yield* new AcnEnsuranceFailed({
-      reason: `Magnitude executable ${binaryPath} returned an invalid ACN revision`,
+      reason: `x-cli executable ${binaryPath} returned an invalid ACN revision`,
     })
   }
   if (actual !== expectedRevision) {

@@ -4,4 +4,4 @@ export {
   type JsonPrimitive,
   type JsonRecord,
   type JsonValue,
-} from "@magnitudedev/utils/schema"
+} from "@x-cli/utils/schema"

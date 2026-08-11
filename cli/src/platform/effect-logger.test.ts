@@ -3,7 +3,7 @@ import { Effect } from "effect"
 import {
   clearEphemeralMessage,
   getEphemeralMessageSnapshot,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import { makeCliEffectLoggingLayer } from "./effect-logger"
 
 afterEach(() => clearEphemeralMessage())

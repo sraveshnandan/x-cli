@@ -43,10 +43,10 @@ describe("executeHttpStream", () => {
     const program = Effect.gen(function* () {
       const result = yield* executeHttpStream({
         call: {
-          provider: "https://app.magnitude.dev",
+          provider: "https://app.x-cli.dev",
           model: "test-model",
           method: "POST",
-          url: "https://app.magnitude.dev/api/v1/chat/completions",
+          url: "https://app.x-cli.dev/api/v1/chat/completions",
         },
         body: {},
         auth: () => {},
@@ -70,7 +70,7 @@ describe("executeHttpStream", () => {
 
     const message = formatStreamFailureMessage(result.left)
     expect(message).toContain("Model response stream failed operationally")
-    expect(message).toContain("response: 200 POST https://app.magnitude.dev/api/v1/chat/completions")
+    expect(message).toContain("response: 200 POST https://app.x-cli.dev/api/v1/chat/completions")
     expect(message).toContain("effectReason=Decode")
     expect(message).toContain("cause=TypeError: terminated")
   })
@@ -107,10 +107,10 @@ describe("executeHttpStream", () => {
     const program = Effect.gen(function* () {
       const result = yield* executeHttpStream({
         call: {
-          provider: "https://app.magnitude.dev",
+          provider: "https://app.x-cli.dev",
           model: "test-model",
           method: "POST",
-          url: "https://app.magnitude.dev/api/v1/chat/completions",
+          url: "https://app.x-cli.dev/api/v1/chat/completions",
         },
         body: {},
         auth: () => {},

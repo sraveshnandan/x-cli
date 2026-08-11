@@ -4,9 +4,9 @@ import { useRenderer } from '@opentui/react'
 import stringWidth from 'string-width'
 import { useTheme } from '../../../hooks/use-theme'
 import { writeTextToClipboard } from '../../../utils/clipboard'
-import { fitAttachments } from '@magnitudedev/client-common'
-import { formatShortTimestamp } from '@magnitudedev/client-common'
-import type { ImageAttachment } from '@magnitudedev/sdk'
+import { fitAttachments } from '@x-cli/client-common'
+import { formatShortTimestamp } from '@x-cli/client-common'
+import type { ImageAttachment } from '@x-cli/sdk'
 import { UserMessageFrame } from './user-message-frame'
 
 const COPY_FEEDBACK_RESET_MS = 2000

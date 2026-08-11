@@ -1,5 +1,5 @@
-export type { Phase, BaseState } from '@magnitudedev/harness'
-import { defineStateModel } from '@magnitudedev/harness'
+export type { Phase, BaseState } from '@x-cli/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { finishGoalTool } from '../tools/goal'
 import { FinishGoalStateSchema, type FinishGoalState } from './tool-state'

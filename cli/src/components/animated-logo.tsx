@@ -1,7 +1,7 @@
 import React from 'react'
 import { TextAttributes } from '@opentui/core'
 import { useTheme } from '../hooks/use-theme'
-import { LOGO_LINES } from '@magnitudedev/client-common'
+import { LOGO_LINES } from '@x-cli/client-common'
 
 export function AnimatedLogo() {
   const theme = useTheme()
@@ -12,7 +12,7 @@ export function AnimatedLogo() {
         <text key={i} style={{ fg: theme.primary }}>{line}</text>
       ))}
       <text>{' '}</text>
-      <text style={{ fg: theme.foreground }} attributes={TextAttributes.BOLD}>Magnitude</text>
+      <text style={{ fg: theme.foreground }} attributes={TextAttributes.BOLD}>x-cli</text>
       <text style={{ fg: theme.muted }}>Your actually local agent</text>
     </box>
   )

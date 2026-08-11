@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { TextAttributes } from '@opentui/core'
 import { useTheme } from '../../../hooks/use-theme'
-import type { SystemMessage } from '@magnitudedev/client-common'
+import type { SystemMessage } from '@x-cli/client-common'
 
 /**
  * Renders a CLI-local system banner (slash-command feedback, status banners).

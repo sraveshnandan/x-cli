@@ -1,7 +1,7 @@
 
-import { Ambient, AmbientServiceTag } from '@magnitudedev/event-core'
+import { Ambient, AmbientServiceTag } from '@x-cli/event-core'
 import { Effect } from 'effect'
-import type { Skill } from '@magnitudedev/skills'
+import type { Skill } from '@x-cli/skills'
 
 export const SkillsAmbient = Ambient.define<Map<string, Skill>, never>({
   name: 'Skills',

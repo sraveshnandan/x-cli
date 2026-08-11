@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Option } from 'effect'
-import type { ProviderToolCallId, ToolCallId } from '@magnitudedev/ai'
+import type { ProviderToolCallId, ToolCallId } from '@x-cli/ai'
 import { windowToPrompt } from '../src/window/render'
 import type { ForkWindowState } from '../src/window'
 

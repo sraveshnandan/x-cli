@@ -1,4 +1,4 @@
-import { ClientIdSchema } from "@magnitudedev/acn-protocol"
+import { ClientIdSchema } from "@x-cli/acn-protocol"
 import { Cause, Deferred, Duration, Effect, Exit, Fiber, Ref, TestClock, TestContext } from "effect"
 import { describe, expect, it } from "vitest"
 import { makeClientLeaseManager } from "./client-lease-manager"

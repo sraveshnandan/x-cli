@@ -9,9 +9,9 @@ import {
   type ModelPackageEntry,
   type ProviderModelCatalogEntry,
   modelOfferingTargetPackageIds,
-} from "@magnitudedev/acn-protocol"
-import { IcnCatalog, IcnHardware } from "@magnitudedev/icn"
-import { PROVIDER_ID as LOCAL_PROVIDER_ID } from "@magnitudedev/icn/provider"
+} from "@x-cli/acn-protocol"
+import { IcnCatalog, IcnHardware } from "@x-cli/icn"
+import { PROVIDER_ID as LOCAL_PROVIDER_ID } from "@x-cli/icn/provider"
 import {
   LocalModelAssessments,
 } from "./local-model-assessments"

@@ -6,7 +6,7 @@
 import { useMemo, useState } from "react"
 import { useAtomValue, Result } from "@effect-atom/atom-react"
 import { useAgentClient } from "../state/agent-client-context"
-import type { CloudUsageResponse, UsagePeriod } from "@magnitudedev/sdk"
+import type { CloudUsageResponse, UsagePeriod } from "@x-cli/sdk"
 
 export interface UseUsageStateResult {
   /** Whether the query is loading */

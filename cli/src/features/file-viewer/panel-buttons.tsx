@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useCopyFeedback } from '@magnitudedev/client-common'
+import { useCopyFeedback } from '@x-cli/client-common'
 import { writeTextToClipboard } from '../../utils/clipboard'
 import { Button } from '../../components/button'
 import type { ChatTheme } from '../../types/theme-system'

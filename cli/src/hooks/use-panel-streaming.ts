@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useTheme } from './use-theme'
 import type { FilePanelStream } from './use-file-panel'
 import { useStreamingReveal } from './use-streaming-reveal'
-import { findUniqueMatchRange } from '@magnitudedev/client-common'
+import { findUniqueMatchRange } from '@x-cli/client-common'
 import { computeOptimisticUpdatePreview } from '../utils/file-panel-utils'
 
 export function usePanelStreaming(

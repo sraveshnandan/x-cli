@@ -9,11 +9,11 @@
  * disabled. Zero cost when ATIF is not enabled.
  */
 
-import { Projection } from '@magnitudedev/event-core'
+import { Projection } from '@x-cli/event-core'
 import type { AppEvent } from '../../events'
 import { outcomeWillChainContinue } from '../../events'
 import { AtifAmbient, type AtifConfig } from '../../ambient/atif-ambient'
-import type { JsonValue } from '@magnitudedev/ai'
+import type { JsonValue } from '@x-cli/ai'
 import { AgentRoutingProjection } from '../agent-routing'
 import { AgentLifecycleProjection, getAgentByForkId } from '../agent-lifecycle'
 import { DEFAULT_AGENT_NAME } from '../../agents/registry'

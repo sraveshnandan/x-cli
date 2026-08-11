@@ -1,7 +1,7 @@
 import { mkdtemp, readFile, rm } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
-import { ExactProcessControllerLive } from "@magnitudedev/acn-protocol/coordination"
+import { ExactProcessControllerLive } from "@x-cli/acn-protocol/coordination"
 import { Duration, Effect, Option } from "effect"
 import { describe, expect, it } from "vitest"
 import { BunDetachedChildProcessSpawner } from "./bun-spawn-process"
@@ -32,7 +32,7 @@ describe("BunDetachedChildProcessSpawner", () => {
   it.skipIf(process.platform === "win32")(
     "reaps the candidate group when the root exits before its descendant",
     async () => {
-      const root = await mkdtemp(join(tmpdir(), "magnitude-candidate-tree-"))
+      const root = await mkdtemp(join(tmpdir(), "x-cli-candidate-tree-"))
       const childPidPath = join(root, "child-pid")
       let childPid = 0
       try {

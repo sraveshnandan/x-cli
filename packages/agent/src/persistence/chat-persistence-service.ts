@@ -6,7 +6,7 @@
  */
 
 import { Effect, Context, Data, Schema } from 'effect'
-import type { EventCursor, Timestamped } from '@magnitudedev/event-core'
+import type { EventCursor, Timestamped } from '@x-cli/event-core'
 import type { AppEvent } from '../events'
 
 // =============================================================================

@@ -15,7 +15,7 @@ export interface ProjectStoragePaths {
 }
 
 export function makeProjectStoragePaths(cwd: string): ProjectStoragePaths {
-  const root = join(cwd, '.magnitude')
+  const root = join(cwd, '.x-cli')
   const skillsRoot = join(root, 'skills')
 
   return {

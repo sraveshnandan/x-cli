@@ -8,7 +8,7 @@ import {
   type DisplayState,
   type TaskAssignee,
   type TaskDisplayRow,
-} from '@magnitudedev/acn-protocol'
+} from '@x-cli/acn-protocol'
 import { DEFAULT_CHAT_NAME } from '../constants'
 import type { AgentLifecycleState, AgentInfo } from '../projections/agent-lifecycle'
 import type { ActiveModelRequests } from '../display/model-request-activity'

@@ -7,7 +7,7 @@ import { TextAttributes } from '@opentui/core'
 import type { ChatTheme } from '../../types/theme-system'
 import { violet } from '../../utils/theme'
 import type { ComposerProps } from './types'
-import { PRIMARY_SLOT_ID, ReasoningEffortSchema, type TaskDisplayRow } from '@magnitudedev/sdk'
+import { PRIMARY_SLOT_ID, ReasoningEffortSchema, type TaskDisplayRow } from '@x-cli/sdk'
 import {
   GIB,
   LOCAL_PROVIDER_ID,
@@ -65,8 +65,8 @@ vi.mock('./slash-menu', () => ({
   SlashCommandMenu: () => null,
 }))
 
-vi.mock('@magnitudedev/client-common', async () => {
-  const actual = await vi.importActual<typeof import('@magnitudedev/client-common')>('@magnitudedev/client-common')
+vi.mock('@x-cli/client-common', async () => {
+  const actual = await vi.importActual<typeof import('@x-cli/client-common')>('@x-cli/client-common')
   return {
     ...actual,
     useFileMentions: () => ({
@@ -266,7 +266,7 @@ function makeProps(): ComposerProps {
 }
 
 test('composer shell renders without an embedded task list (task list is the AgentStatus feature)', () => {
-  const html = render(<Composer {...makeProps()} clientWorkingDirectory="/tmp/magnitude" />)
+  const html = render(<Composer {...makeProps()} clientWorkingDirectory="/tmp/x-cli" />)
 
   expect(html).toContain('background-color:#111111;padding-top:1px;padding-bottom:1px;padding-left:1px;padding-right:2px')
   expect(html).toContain('border-style:single;border:left')
@@ -275,7 +275,7 @@ test('composer shell renders without an embedded task list (task list is the Age
   expect(html).toContain('>high<')
   expect(html).toContain('style="fg:#c4b5fd"><span attributes="0">high</span>')
   expect(html).toContain('width:2px;flex-shrink:0')
-  expect(html).toContain('/tmp/magnitude')
+  expect(html).toContain('/tmp/x-cli')
   expect(html).not.toContain('Thinking:')
   expect(html).not.toContain('Assigned To')
 

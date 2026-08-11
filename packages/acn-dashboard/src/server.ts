@@ -5,12 +5,12 @@ import { Schema } from 'effect'
 import {
   AcnVersionRegistryJson,
   type AcnRegistration,
-} from '@magnitudedev/acn-protocol'
+} from '@x-cli/acn-protocol'
 import type { AcnInfo, KillAllAcnResult, RpcTraceSummary } from './lib/types'
 
 const PORT = Number(process.env.ACN_DASH_API_PORT ?? 4886)
 const MOTEL_URL = process.env.MAGNITUDE_MOTEL_URL ?? 'http://127.0.0.1:27686'
-const DATA_DIR = join(homedir(), '.magnitude')
+const DATA_DIR = join(homedir(), '.x-cli')
 const ACN_DIR = join(DATA_DIR, 'acn')
 const DIST_DIR = join(import.meta.dir, '..', 'dist')
 const decodeRegistry = Schema.decodeUnknownSync(AcnVersionRegistryJson)
@@ -114,7 +114,7 @@ function toRpcTraceSummary(trace: MotelTraceSummary): RpcTraceSummary | null {
 
 async function listRpcTraces(): Promise<RpcTraceSummary[]> {
   const url = new URL('/api/traces/search', MOTEL_URL)
-  url.searchParams.set('service', 'magnitude-acn')
+  url.searchParams.set('service', 'x-cli-acn')
   url.searchParams.set('operation', 'RpcServer.')
   url.searchParams.set('lookback', '4h')
   url.searchParams.set('limit', '40')
@@ -136,7 +136,7 @@ async function probeAcn(registration: AcnRegistration, registryPath: string): Pr
       schedulerElapsedMs?: number
     }
     health = {
-      ok: value.service === 'magnitude-acn',
+      ok: value.service === 'x-cli-acn',
       service: value.service,
       version: value.version,
       pid: value.pid,

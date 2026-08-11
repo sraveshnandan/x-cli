@@ -4,8 +4,8 @@ import { testRender } from "@opentui/react/test-utils"
 
 const saveApiKey = vi.fn()
 
-vi.mock("@magnitudedev/client-common", async (importOriginal) => ({
-  ...await importOriginal<typeof import("@magnitudedev/client-common")>(),
+vi.mock("@x-cli/client-common", async (importOriginal) => ({
+  ...await importOriginal<typeof import("@x-cli/client-common")>(),
   useSettingsState: () => ({
     apiKey: { status: "none" },
     keyAlreadySet: false,
@@ -31,7 +31,7 @@ vi.mock("../../hooks/use-theme", () => ({
 
 const { CloudModelsScreen } = await import("./screen")
 
-test("standalone cloud setup saves the shared Magnitude API key", async () => {
+test("standalone cloud setup saves the shared x-cli API key", async () => {
   saveApiKey.mockClear()
   const view = await testRender(
     <CloudModelsScreen onExit={() => {}} />,

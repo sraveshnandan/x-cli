@@ -2,7 +2,7 @@ import {
   OpenApiEffectConfig,
   OutputLayout,
   StreamTransport,
-} from "@magnitudedev/openapi-effect";
+} from "@x-cli/openapi-effect";
 
 export const config = new OpenApiEffectConfig({
   apiName: "IcnApi",
@@ -14,5 +14,5 @@ export const config = new OpenApiEffectConfig({
     index: "index.ts",
     manifest: "manifest.json",
   }),
-  transports: [new StreamTransport({ extension: "x-magnitude-stream" })],
+  transports: [new StreamTransport({ extension: "x-x-cli-stream" })],
 });

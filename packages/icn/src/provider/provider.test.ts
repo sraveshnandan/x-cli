@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { Effect } from "effect"
-import { ProviderModelIdSchema, type ProviderModelId } from "@magnitudedev/ai"
+import { ProviderModelIdSchema, type ProviderModelId } from "@x-cli/ai"
 import { createLocalProvider, PROVIDER_ID, type LocalProviderSource } from "./provider"
 
 describe("local provider", () => {

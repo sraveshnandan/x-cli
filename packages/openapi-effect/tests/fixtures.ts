@@ -156,7 +156,7 @@ export const ndjsonDocument = {
       post: {
         operationId: "generate",
         tags: ["generation"],
-        "x-magnitude-stream": {
+        "x-x-cli-stream": {
           version: 1,
           responseStatus: 200,
           framing: "ndjson",
@@ -202,7 +202,7 @@ export const sseDocument = {
       post: {
         operationId: "chatCompletions",
         tags: ["generation"],
-        "x-magnitude-stream": {
+        "x-x-cli-stream": {
           version: 1,
           responseStatus: 200,
           framing: "sse",
@@ -241,7 +241,7 @@ export const sseDocument = {
       get: {
         operationId: "watchLifecycle",
         tags: ["lifecycle"],
-        "x-magnitude-stream": {
+        "x-x-cli-stream": {
           version: 1,
           responseStatus: 200,
           framing: "sse",

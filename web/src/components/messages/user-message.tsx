@@ -4,7 +4,7 @@
  * Compact right-aligned bubble. Attachments row. Metadata with copy + timestamp.
  */
 import { useState, type ReactNode } from "react"
-import type { UserMessage as UserMessageType, DisplayAttachment } from "@magnitudedev/sdk"
+import type { UserMessage as UserMessageType, DisplayAttachment } from "@x-cli/sdk"
 import { CopyButton, Timestamp, AttachmentPill } from "./shared"
 
 export function UserMessage({ message }: { message: UserMessageType }): ReactNode {

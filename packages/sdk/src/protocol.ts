@@ -10,14 +10,14 @@ import { FetchHttpClient } from "@effect/platform"
 import { HttpClient } from "@effect/platform/HttpClient"
 import { Context, Effect, Layer } from "effect"
 import type { Scope } from "effect/Scope"
-import { MagnitudeRpcs } from "@magnitudedev/acn-protocol"
+import { XCliRpcs } from "@x-cli/acn-protocol"
 
 const { Protocol } = RpcClient
 
-export { MagnitudeRpcs } from "@magnitudedev/acn-protocol"
-export type * from "@magnitudedev/acn-protocol"
+export { XCliRpcs } from "@x-cli/acn-protocol"
+export type * from "@x-cli/acn-protocol"
 
-export type AcnClient = RpcClient.FromGroup<typeof MagnitudeRpcs, RpcClientError.RpcClientError>
+export type AcnClient = RpcClient.FromGroup<typeof XCliRpcs, RpcClientError.RpcClientError>
 
 export class AcnClientTag extends Context.Tag("AcnClient")<
   AcnClientTag,
@@ -70,7 +70,7 @@ export const connect = (
   url: string,
   onTransportError?: () => void,
 ): Effect.Effect<AcnClient, never, Scope> =>
-  RpcClient.make(MagnitudeRpcs).pipe(
+  RpcClient.make(XCliRpcs).pipe(
     Effect.provide(
       onTransportError
         ? protocolLayerWithRecovery(url, onTransportError)
@@ -82,6 +82,6 @@ export const connect = (
  * Client layer for a known daemon URL.
  */
 export const makeClientLayer = (url: string): Layer.Layer<AcnClientTag, never, never> =>
-  Layer.scoped(AcnClientTag, RpcClient.make(MagnitudeRpcs)).pipe(
+  Layer.scoped(AcnClientTag, RpcClient.make(XCliRpcs)).pipe(
     Layer.provide(protocolLayer(url)),
   )

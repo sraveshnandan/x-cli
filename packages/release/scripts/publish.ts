@@ -61,7 +61,7 @@ const assetSha256 = async (asset: GithubReleaseAsset): Promise<string> => {
 const candidate = resolve(process.argv[2] ?? "release-candidate")
 const manifest = Schema.decodeUnknownSync(
   Schema.parseJson(ReleaseManifestSchema),
-)(await readFile(resolve(candidate, "magnitude-release.json"), "utf8"))
+)(await readFile(resolve(candidate, "x-cli-release.json"), "utf8"))
 const changelog = await readFile(
   resolve(import.meta.dir, "../../cli/CHANGELOG.md"),
   "utf8",
@@ -94,7 +94,7 @@ if (manifest.sourceCommit !== sourceCommit) {
 const prerelease = manifest.version.includes("-alpha.") ||
   manifest.version.includes("-beta.")
 const expectedNames = new Set([
-  "magnitude-release.json",
+  "x-cli-release.json",
   ...manifest.artifacts.map((artifact) => artifact.filename),
 ])
 const localNames = new Set(await readdir(candidate))

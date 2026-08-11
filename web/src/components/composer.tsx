@@ -26,7 +26,7 @@ import {
   type MentionFileItem,
   type SlashCommandDefinition,
   type MentionSearchClient,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import { useAtomValue, useAtomSet, useAtomMount, Atom } from "@effect-atom/atom-react"
 import { Effect } from "effect"
 import { toGenericKeyEvent, isSendKey, isEscapeKey } from "../utils/keyboard"
@@ -35,8 +35,8 @@ import {
   composerTextAtom,
   composerAttachmentsAtom,
   composerHistoryIndexAtom,
-} from "@magnitudedev/client-common"
-import type { MentionAttachment, RawMentionOccurrence } from "@magnitudedev/sdk"
+} from "@x-cli/client-common"
+import type { MentionAttachment, RawMentionOccurrence } from "@x-cli/sdk"
 
 export interface ComposerProps {
   /** Current role label (e.g. "Leader") */

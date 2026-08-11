@@ -8,7 +8,7 @@ import { useAnimationStep } from '../../hooks/use-animation-time'
 
 import { Button } from '../../components/button'
 import { RecentChatEntry } from './recent-chat-entry'
-import type { RecentChat } from '@magnitudedev/client-common'
+import type { RecentChat } from '@x-cli/client-common'
 
 interface RecentChatsOverlayProps {
   onClose: () => void

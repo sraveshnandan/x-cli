@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { messageAdvisorTool } from '../tools/advisor'
 import { MessageAdvisorStateSchema, type MessageAdvisorState } from './tool-state'

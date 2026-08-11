@@ -1,7 +1,7 @@
 import { readFile, stat } from 'fs/promises'
 import { relative, resolve } from 'path'
 import { Context, Data, Effect, Layer } from 'effect'
-import { resolveRgPath } from '@magnitudedev/ripgrep'
+import { resolveRgPath } from '@x-cli/ripgrep'
 import { walk } from '../util/walk'
 import { resolveFileRefPath } from '../scratchpad/file-ref-resolution'
 

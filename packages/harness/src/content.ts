@@ -1,4 +1,4 @@
-import type { TextPart, ImagePart, ToolResultPart } from '@magnitudedev/ai'
+import type { TextPart, ImagePart, ToolResultPart } from '@x-cli/ai'
 
 /** Builder for assembling content parts with text coalescing */
 export class ContentBuilder {

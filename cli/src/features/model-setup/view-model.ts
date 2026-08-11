@@ -1,12 +1,12 @@
 import { Option } from "effect"
-import type { OnboardingModelSubmission } from "@magnitudedev/client-common"
+import type { OnboardingModelSubmission } from "@x-cli/client-common"
 import type {
   LocalModelCatalogCandidate,
   LocalModelsState,
   ModelSlotsState,
   ProviderModelId,
   ReasoningEffort,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 export type OnboardingModelSetupView =
   | { readonly _tag: "Inactive" }

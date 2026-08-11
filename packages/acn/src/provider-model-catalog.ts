@@ -11,7 +11,7 @@ import {
   type ProviderCatalogFailure,
   type ProviderModelCatalogEntry,
   type ProviderModelCatalogState,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   ProviderClient,
   type ProviderCatalogOutcome,
@@ -19,8 +19,8 @@ import {
   type ProviderModel,
   type ProviderRegistryInfo,
   type ReasoningEffort,
-} from "@magnitudedev/sdk"
-import { PROVIDER_ID as LOCAL_PROVIDER_ID } from "@magnitudedev/icn/provider"
+} from "@x-cli/sdk"
+import { PROVIDER_ID as LOCAL_PROVIDER_ID } from "@x-cli/icn/provider"
 import { makeMirroredState, MirroredStateChanges } from "./mirrored-state"
 import { LocalProviderOfferingProjection } from "./local-provider-offering-projection"
 import { AcnActivityTracker } from "./activity-tracker"

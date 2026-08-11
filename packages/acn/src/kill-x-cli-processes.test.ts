@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest"
 import {
-  classifyMagnitudeProcess,
+  classifyXCliProcess,
   parseProcessList,
 } from "../../../scripts/kill-all"
 
-describe("classifyMagnitudeProcess", () => {
+describe("classifyXCliProcess", () => {
   it.each([
     ["/tmp/bin/x-cli-icn serve --port 1234", "ICN"],
     ["target/debug/icn-server serve --fake", "ICN"],
@@ -16,7 +16,7 @@ describe("classifyMagnitudeProcess", () => {
     ["bun run cli/src/index.tsx --debug", "CLI"],
     ["node packages/cli/bin/x-cli.js", "CLI"],
   ] as const)("classifies %s as %s", (command, expected) => {
-    expect(classifyMagnitudeProcess(command)).toBe(expected)
+    expect(classifyXCliProcess(command)).toBe(expected)
   })
 
   it.each([
@@ -26,7 +26,7 @@ describe("classifyMagnitudeProcess", () => {
     "rg x-cli-cli packages",
     "npm run dev",
   ])("does not classify unrelated command %s", (command) => {
-    expect(classifyMagnitudeProcess(command)).toBeUndefined()
+    expect(classifyXCliProcess(command)).toBeUndefined()
   })
 })
 

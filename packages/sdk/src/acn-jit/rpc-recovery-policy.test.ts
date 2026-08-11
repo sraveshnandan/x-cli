@@ -1,10 +1,10 @@
-import { MagnitudeRpcs, acnRpcRecoveryPolicy } from "@magnitudedev/acn-protocol"
+import { XCliRpcs, acnRpcRecoveryPolicy } from "@x-cli/acn-protocol"
 import { describe, expect, it } from "vitest"
 import { acnSubscriptionProtocol } from "./acn-subscription-protocol"
 
 describe("ACN RPC recovery policy", () => {
   it("classifies every finite RPC exactly once", () => {
-    for (const tag of MagnitudeRpcs.requests.keys()) {
+    for (const tag of XCliRpcs.requests.keys()) {
       if (acnSubscriptionProtocol.isStream(tag)) continue
       expect(["ReplaySafe", "AtMostOnce"]).toContain(acnRpcRecoveryPolicy(tag))
     }

@@ -37,7 +37,7 @@ export const BunDetachedChildProcessSpawner: ChildProcessSpawner = {
         stdio: ["pipe", "ignore", "pipe"],
         env: globalThis.process.env,
       }),
-      catch: (cause) => spawnFailure("Failed to spawn Magnitude", cause),
+      catch: (cause) => spawnFailure("Failed to spawn x-cli", cause),
     })
     const stderr = readStderrTail(child.stderr)
     const exited = Effect.promise(async () => ({

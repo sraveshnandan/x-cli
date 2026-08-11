@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { Deferred, Effect, Fiber, Ref } from "effect"
 import { FetchHttpClient } from "@effect/platform"
-import type { ProviderAuth } from "@magnitudedev/acn-protocol"
+import type { ProviderAuth } from "@x-cli/acn-protocol"
 import {
   ModelDiscoveryOperationIdSchema,
   ModelFamilyIdSchema,
@@ -11,7 +11,7 @@ import {
   ReasoningProperty,
   VisionProperty,
   type ProviderClientShape,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
   nextToolAvailability,
   makeDelegatingProviderClient,
@@ -65,7 +65,7 @@ describe("endpoint provider auth resolution", () => {
 
 const providerClient = (
   label: string,
-  webSearchSource: "magnitude" | "exa" | "unavailable" = "unavailable",
+  webSearchSource: "x-cli" | "exa" | "unavailable" = "unavailable",
 ): ProviderClientShape => ({
   catalog: {
     list: Effect.succeed([{
@@ -122,7 +122,7 @@ describe("delegating provider client", () => {
       const started = yield* Deferred.make<void>()
       const release = yield* Deferred.make<void>()
       const first: ProviderClientShape = {
-        ...providerClient("first", "magnitude"),
+        ...providerClient("first", "x-cli"),
         webSearch: () => Effect.gen(function* () {
           yield* Deferred.succeed(started, undefined)
           yield* Deferred.await(release)
@@ -152,14 +152,14 @@ describe("tool availability values", () => {
     const initial = toolAvailabilityFromSource("unavailable")
     const unchanged = nextToolAvailability(initial, "unavailable")
     const exa = nextToolAvailability(unchanged, "exa")
-    const cloud = nextToolAvailability(exa, "magnitude")
+    const cloud = nextToolAvailability(exa, "x-cli")
 
     expect(unchanged).toBe(initial)
     expect(exa).toEqual({
       webSearch: { _tag: "Available", source: "exa" },
     })
     expect(cloud).toEqual({
-      webSearch: { _tag: "Available", source: "magnitude" },
+      webSearch: { _tag: "Available", source: "x-cli" },
     })
   })
 })

@@ -52,12 +52,12 @@ describe("Fireworks MiniMax with reasoning effort", () => {
 })
 
 // ---------------------------------------------------------------------------
-// 2. Magnitude gateway — Kimi K2.6 with grammar
+// 2. x-cli gateway — Kimi K2.6 with grammar
 // ---------------------------------------------------------------------------
-describe("Magnitude gateway — Kimi K2.6 with grammar", () => {
+describe("x-cli gateway — Kimi K2.6 with grammar", () => {
   const kimiK26 = NativeChatCompletions.model({
     modelId: "kimi-k2.6",
-    endpoint: "https://app.magnitude.dev/api/v1",
+    endpoint: "https://app.x-cli.dev/api/v1",
     options: {
       ...NativeChatCompletions.options,
       grammar: Option.define(

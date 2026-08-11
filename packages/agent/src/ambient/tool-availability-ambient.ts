@@ -1,9 +1,9 @@
-import { Ambient } from '@magnitudedev/event-core'
+import { Ambient } from '@x-cli/event-core'
 import { Effect, Schema } from 'effect'
 
 export const WebSearchAvailabilitySchema = Schema.Union(
   Schema.TaggedStruct('Available', {
-    source: Schema.Literal('magnitude', 'exa'),
+    source: Schema.Literal('x-cli', 'exa'),
   }),
   Schema.TaggedStruct('Unavailable', {}),
 )

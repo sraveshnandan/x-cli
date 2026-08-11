@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { webSearchTool } from '../tools/web-search'
 import { WebSearchSourceSchema, WebSearchStateSchema, type WebSearchSource, type WebSearchState } from './tool-state'

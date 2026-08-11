@@ -4,8 +4,8 @@ import { Duration, Effect, Layer, Option, Ref } from "effect";
 import {
   type AcnInstallationPlan,
   type AcnStartupProgress,
-} from "@magnitudedev/acn-protocol";
-import type { ArtifactInstallationEvent } from "@magnitudedev/release";
+} from "@x-cli/acn-protocol";
+import type { ArtifactInstallationEvent } from "@x-cli/release";
 import {
   IcnBinaryResolutionConfig,
   IcnLifecycleConfig,
@@ -19,7 +19,7 @@ import {
   IcnInstancesLive,
   IcnStorageConfig,
   IcnPreparationReporter,
-} from "@magnitudedev/icn";
+} from "@x-cli/icn";
 import { ACN_VERSION } from "../version";
 import { resolveHuggingFaceCacheRoots } from "./hugging-face-cache";
 import { AcnServiceLifecycle } from "../service-lifecycle";
@@ -43,7 +43,7 @@ const artifactProgress = (
     attempt: Option.some(event.progress.attempt),
   };
 };
-const defaultDataDir = () => join(homedir(), ".magnitude");
+const defaultDataDir = () => join(homedir(), ".x-cli");
 
 const binarySource = (dataDir: string) => {
   const explicit = process.env.MAGNITUDE_ICN_PATH?.trim();
@@ -68,7 +68,7 @@ const binarySource = (dataDir: string) => {
     dataDir,
     releaseBaseUrl: (
       process.env.MAGNITUDE_RELEASE_BASE_URL ??
-      "https://github.com/magnitudedev/magnitude/releases/download"
+      "https://github.com/x-clidev/x-cli/releases/download"
     ).replace(/\/+$/, ""),
   };
 };
@@ -193,7 +193,7 @@ export const makeAcnIcn = (dataDir: string = defaultDataDir()) => {
                 return yield* lifecycle.reportStarting(
                   {
                     _tag: "Installing",
-                    phase: "StartingMagnitude",
+                    phase: "StartingXCli",
                     plan: current.plan.value,
                   },
                   Option.none()

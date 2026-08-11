@@ -1,5 +1,5 @@
 import { Schema } from "effect"
-import { JsonValueSchema } from "@magnitudedev/utils/schema"
+import { JsonValueSchema } from "@x-cli/utils/schema"
 
 /** Cadence at which the ACN emits keepalive controls on open subscriptions. */
 export const ACN_SUBSCRIPTION_KEEPALIVE_INTERVAL_MS = 5_000

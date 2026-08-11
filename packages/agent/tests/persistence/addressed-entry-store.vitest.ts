@@ -4,17 +4,17 @@ import { join } from 'node:path'
 import { describe, expect, test, beforeEach, afterEach } from 'vitest'
 import { Effect, Layer, Option } from 'effect'
 import { BunFileSystem, BunPath } from '@effect/platform-bun'
-import { Addressed, type EventCursor } from '@magnitudedev/event-core'
+import { Addressed, type EventCursor } from '@x-cli/event-core'
 import {
   GlobalStorage,
-  MagnitudeStorage,
+  XCliStorage,
   ProjectStorage,
   StorageLive,
   Version,
   makeGlobalStoragePaths,
   makeProjectStoragePaths
-} from '@magnitudedev/storage'
-import type { Timestamped } from '@magnitudedev/event-core'
+} from '@x-cli/storage'
+import type { Timestamped } from '@x-cli/event-core'
 import type { AppEvent } from '../../src/events'
 import {
   ChatPersistence,
@@ -74,7 +74,7 @@ describe('addressed entry store persistence binding', () => {
   let tmpDir: string
 
   beforeEach(async () => {
-    tmpDir = await mkdtemp(join(tmpdir(), 'magnitude-agent-addressed-store-'))
+    tmpDir = await mkdtemp(join(tmpdir(), 'x-cli-agent-addressed-store-'))
   })
 
   afterEach(async () => {
@@ -86,7 +86,7 @@ describe('addressed entry store persistence binding', () => {
 
     await Effect.runPromise(
       Effect.gen(function* () {
-        const storage = yield* MagnitudeStorage
+        const storage = yield* XCliStorage
         const layer = Layer.provideMerge(
           makeChatAddressedEntryStoreLayer(storage),
           Layer.succeed(ChatPersistence, makePersistence(metadataCalls))
@@ -122,7 +122,7 @@ describe('addressed entry store persistence binding', () => {
   test('maps session metadata lookup failure into addressed store errors', async () => {
     await Effect.runPromise(
       Effect.gen(function* () {
-        const storage = yield* MagnitudeStorage
+        const storage = yield* XCliStorage
         const failingPersistence: ChatPersistenceService = {
           ...makePersistence([]),
           getSessionMetadata: () =>

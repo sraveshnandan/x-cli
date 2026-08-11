@@ -7,8 +7,8 @@ import {
   type Timestamped,
   makeAmbientServiceLayer,
   makeProjectionBusLayer,
-} from '@magnitudedev/event-core'
-import type { ProviderToolCallId, ToolCallId } from '@magnitudedev/ai'
+} from '@x-cli/event-core'
+import type { ProviderToolCallId, ToolCallId } from '@x-cli/ai'
 import type { AppEvent } from '../src/events'
 import { HarnessStateProjection, type HarnessTurnState } from '../src/projections/harness-state'
 import { toToolKeyErased } from '../src/tools/toolkits'

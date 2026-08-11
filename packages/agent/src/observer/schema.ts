@@ -6,8 +6,8 @@
  */
 
 import { Effect, Schema } from 'effect'
-import { defineHarnessTool, defineToolkit } from '@magnitudedev/harness'
-import { NoInputSchema } from '@magnitudedev/utils/schema'
+import { defineHarnessTool, defineToolkit } from '@x-cli/harness'
+import { NoInputSchema } from '@x-cli/utils/schema'
 import type { ObserverJustification } from './justifications'
 
 // =============================================================================

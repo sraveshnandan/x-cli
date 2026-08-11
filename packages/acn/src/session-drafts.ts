@@ -7,7 +7,7 @@ import {
   type SessionError,
   type SessionMetadata as ProtocolSessionMetadata,
   type SessionOptions,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import { AgentRuntime, type RuntimeStartRequest } from "./agent-runtime"
 import { sessionErrorMessage } from "./session-errors"
 import { SessionRuntimeOptionsStore, type SessionRuntimeOptions } from "./session-runtime-options"

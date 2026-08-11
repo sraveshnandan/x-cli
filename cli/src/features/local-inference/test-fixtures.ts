@@ -24,7 +24,7 @@ import {
   type LocalModelCatalogCandidate,
   type LocalModelRecommendation,
   type ProviderModelCatalogState,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 export const GIB = 1024 ** 3
 export const LOCAL_PROVIDER_ID = ProviderIdSchema.make("local")

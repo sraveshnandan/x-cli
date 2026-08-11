@@ -4,7 +4,7 @@ import { join } from "node:path"
 import { tmpdir } from "node:os"
 import { BunFileSystem, BunPath } from "@effect/platform-bun"
 import { Effect, Layer, Option } from "effect"
-import { ProviderIdSchema, ProviderModelIdSchema, ReasoningEffortSchema } from "@magnitudedev/ai"
+import { ProviderIdSchema, ProviderModelIdSchema, ReasoningEffortSchema } from "@x-cli/ai"
 import { SlotIdSchema } from "../types/config"
 import { makeGlobalStoragePaths } from "../paths"
 import { GlobalStorage } from "../services"
@@ -26,7 +26,7 @@ describe("config storage onboarding state", () => {
   )
 
   beforeEach(async () => {
-    root = await mkdtemp(join(tmpdir(), "magnitude-onboarding-config-"))
+    root = await mkdtemp(join(tmpdir(), "x-cli-onboarding-config-"))
   })
 
   afterEach(async () => {

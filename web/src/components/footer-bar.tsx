@@ -3,8 +3,8 @@
  *
  * Bottom dock status row: cwd, model, and radial context usage.
  */
-import { formatCwdForDisplay } from "@magnitudedev/client-common"
-import type { ContextUsageDisplay } from "@magnitudedev/sdk"
+import { formatCwdForDisplay } from "@x-cli/client-common"
+import type { ContextUsageDisplay } from "@x-cli/sdk"
 import { ContextUsageIndicator } from "./context-usage-indicator"
 
 export interface FooterBarProps {

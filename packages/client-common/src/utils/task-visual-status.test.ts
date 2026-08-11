@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import type { TaskDisplayRow } from '@magnitudedev/sdk'
+import type { TaskDisplayRow } from '@x-cli/sdk'
 import { Option } from 'effect'
 import {
   computeInheritedVisualStatusMap,

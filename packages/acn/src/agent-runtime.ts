@@ -12,13 +12,13 @@ import {
   Scope,
   Stream,
 } from "effect"
-import { DEFAULT_CHAT_NAME, type SessionWorkStatus } from "@magnitudedev/agent"
+import { DEFAULT_CHAT_NAME, type SessionWorkStatus } from "@x-cli/agent"
 import {
   SessionNotFound,
   SessionOperationFailed,
   type SessionError,
-} from "@magnitudedev/acn-protocol"
-import type { StoredSessionMeta } from "@magnitudedev/storage"
+} from "@x-cli/acn-protocol"
+import type { StoredSessionMeta } from "@x-cli/storage"
 import { AcnServiceLifecycle } from "./service-lifecycle"
 import { AcnActivityTracker } from "./activity-tracker"
 import { AgentFactory } from "./agent-factory"

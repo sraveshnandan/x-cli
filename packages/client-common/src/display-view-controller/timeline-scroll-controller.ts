@@ -62,7 +62,7 @@
  * invariant-preserving compaction path.
  */
 
-import type { DisplayTimeline } from '@magnitudedev/sdk'
+import type { DisplayTimeline } from '@x-cli/sdk'
 import { getFork } from '../sync/get-fork'
 import type { DisplayReader } from '../sync/display-view-store'
 import {

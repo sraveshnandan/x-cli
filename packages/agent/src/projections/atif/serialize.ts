@@ -12,8 +12,8 @@ import type {
   AtifAgent,
 } from './types'
 import { toolDefinitionsFromToolkit } from './tool-definitions'
-import type { JsonValue } from '@magnitudedev/ai'
-import type { Toolkit } from '@magnitudedev/harness'
+import type { JsonValue } from '@x-cli/ai'
+import type { Toolkit } from '@x-cli/harness'
 
 // =============================================================================
 // Helpers

@@ -3,7 +3,7 @@ import { Effect, Option, Schema } from "effect"
 import {
   DownloadAttempt as NativeDownloadAttemptSchema,
   ModelPackage as NativeModelPackageSchema,
-} from "@magnitudedev/icn-protocol/schemas"
+} from "@x-cli/icn-protocol/schemas"
 import {
   downloadAttemptFromIcn,
   modelPackageFromIcn,

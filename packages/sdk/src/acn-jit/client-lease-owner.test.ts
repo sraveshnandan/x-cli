@@ -1,4 +1,4 @@
-import { ClientIdSchema, type ClientId } from "@magnitudedev/acn-protocol";
+import { ClientIdSchema, type ClientId } from "@x-cli/acn-protocol";
 import { Duration, Effect, TestClock, TestContext } from "effect";
 import { describe, expect, it } from "vitest";
 import { makeAcnClientLeaseOwner } from "./acn-recovering-client";

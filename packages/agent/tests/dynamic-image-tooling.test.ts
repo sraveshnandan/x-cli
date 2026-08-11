@@ -6,8 +6,8 @@ import {
   ProviderIdSchema,
   ProviderModelIdSchema,
   ReasoningEffortSchema,
-} from '@magnitudedev/ai'
-import { AmbientServiceTag, EventEngine } from '@magnitudedev/event-core'
+} from '@x-cli/ai'
+import { AmbientServiceTag, EventEngine } from '@x-cli/event-core'
 import { Effect } from 'effect'
 import type { AppEvent } from '../src/events'
 import { AgentLifecycleProjection } from '../src/projections/agent-lifecycle'
@@ -48,7 +48,7 @@ function config(primary: boolean, secondary: boolean): ConfigState {
 }
 
 const toolAvailability: ToolAvailabilityState = {
-  webSearch: { _tag: 'Available', source: 'magnitude' },
+  webSearch: { _tag: 'Available', source: 'x-cli' },
 }
 
 function imageTools(state: ConfigState, role: 'leader' | 'advisor' = 'leader'): string[] {

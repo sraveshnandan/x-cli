@@ -14,7 +14,7 @@ import { OpenApiDocument } from "./schemas/openapi.js";
 export class GenerationManifest extends Schema.Class<GenerationManifest>(
   "OpenApiEffect.GenerationManifest"
 )({
-  generator: Schema.Literal("@magnitudedev/openapi-effect"),
+  generator: Schema.Literal("@x-cli/openapi-effect"),
   generatorVersion: Schema.String,
   protocolHash: Schema.String,
   configHash: Schema.String,
@@ -72,7 +72,7 @@ export const compileOpenApi = (
       )
     );
     const manifest = new GenerationManifest({
-      generator: "@magnitudedev/openapi-effect",
+      generator: "@x-cli/openapi-effect",
       generatorVersion: "0.0.1",
       protocolHash: sha256(
         emittedEntries.map(([path, source]) => `${path}\0${source}`).join("\0")

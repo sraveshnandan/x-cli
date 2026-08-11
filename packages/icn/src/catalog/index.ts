@@ -9,7 +9,7 @@ import {
   Stream,
 } from "effect"
 import { IcnClient, type IcnClientService } from "../client.js"
-import { RecommendableModelCatalog as RecommendableModelCatalogSchema } from "@magnitudedev/icn-protocol/schemas"
+import { RecommendableModelCatalog as RecommendableModelCatalogSchema } from "@x-cli/icn-protocol/schemas"
 import { makeIcnObservedState, type IcnObservedSnapshot } from "../observed-state.js"
 
 type CatalogReadError = Effect.Effect.Error<
@@ -23,7 +23,7 @@ export interface IcnCatalogService {
   readonly refresh: Effect.Effect<void, CatalogReadError>
 }
 
-export class IcnCatalog extends Context.Tag("@magnitudedev/icn/IcnCatalog")<
+export class IcnCatalog extends Context.Tag("@x-cli/icn/IcnCatalog")<
   IcnCatalog,
   IcnCatalogService
 >() {}

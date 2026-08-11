@@ -7,7 +7,7 @@ import { SingleLineInput } from '../composer/single-line-input'
 import { BOX_CHARS } from '../../utils/ui-constants'
 import { writeTextToClipboard } from '../../utils/clipboard'
 
-const MAGNITUDE_URL = 'https://app.magnitude.dev'
+const MAGNITUDE_URL = 'https://app.x-cli.dev'
 
 function useCopyFeedback() {
   const [copied, setCopied] = useState(false)
@@ -89,10 +89,10 @@ export const CloudModelsConnectScreen = memo(function CloudModelsConnectScreen({
             <span attributes={TextAttributes.BOLD}>CLOUD MODELS</span>
           </text>
           <text style={{ fg: theme.foreground }}>
-            <span attributes={TextAttributes.BOLD}>Connect hosted models with Magnitude Pro</span>
+            <span attributes={TextAttributes.BOLD}>Connect hosted models with x-cli Pro</span>
           </text>
           <text style={{ fg: theme.muted }}>
-            Magnitude Pro lets you:
+            x-cli Pro lets you:
           </text>
           <box style={{ flexDirection: 'column', paddingTop: 1, paddingLeft: 2 }}>
             <text style={{ fg: theme.foreground }}>• Connect cloud models too large to run on this machine</text>
@@ -100,7 +100,7 @@ export const CloudModelsConnectScreen = memo(function CloudModelsConnectScreen({
           </box>
           <box style={{ paddingTop: 1 }}>
             <text style={{ fg: theme.muted }}>
-              Magnitude Pro is $10 for the first month, then $20/month.
+              x-cli Pro is $10 for the first month, then $20/month.
             </text>
           </box>
         </box>

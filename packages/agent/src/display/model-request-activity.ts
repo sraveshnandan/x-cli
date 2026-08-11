@@ -1,5 +1,5 @@
-import { Projection } from '@magnitudedev/event-core'
-import { forkIdToKey } from '@magnitudedev/acn-protocol'
+import { Projection } from '@x-cli/event-core'
+import { forkIdToKey } from '@x-cli/acn-protocol'
 import { Schema } from 'effect'
 import type { AppEvent } from '../events'
 import {

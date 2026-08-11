@@ -30,7 +30,7 @@ import {
   getSystemMessagesSnapshot,
   TimelineScrollController,
   type TimelineScrollAdapter,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 import { safeRenderableAccess } from '../../utils/safe-renderable-access'
 import { subscribeScrollboxActivity } from '../../utils/scroll-helpers'
 import { useTheme } from '../../hooks/use-theme'

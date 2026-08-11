@@ -9,9 +9,9 @@
  */
 
 import { Context, Data, Effect, Layer, Option, Stream } from 'effect'
-import { Ambient, EventEngine, Introspection, Surface } from '@magnitudedev/event-core'
-import { AmbientServiceTag, HydrationContext, WorkerBusTag, type AmbientService } from '@magnitudedev/event-core'
-import type { FrameworkError } from '@magnitudedev/event-core'
+import { Ambient, EventEngine, Introspection, Surface } from '@x-cli/event-core'
+import { AmbientServiceTag, HydrationContext, WorkerBusTag, type AmbientService } from '@x-cli/event-core'
+import type { FrameworkError } from '@x-cli/event-core'
 import type { AppEvent, SessionContext } from './events'
 import type { AgentIntrospection, AgentIntrospectionError } from './introspection/session'
 
@@ -62,7 +62,7 @@ import { ObserverStateLive } from './observer/state'
 import { CompactionWorker } from './compaction/worker'
 import { isRoleId, type RoleId } from './agents/role-validation'
 import { getForkInfo } from './agents/registry'
-import { ROLE_TO_SLOT } from '@magnitudedev/roles'
+import { ROLE_TO_SLOT } from '@x-cli/roles'
 import { FileMentionResolver } from './workers/file-mention-resolver'
 import { ChatTitleServiceLive } from './workers/chat-title-service'
 import { ChatTitleWorker } from './workers/chat-title-worker'
@@ -97,17 +97,17 @@ import { AgentModelResolverLive } from './model/model-resolver'
 import type { PrepareModelRequest } from './model/model-request-preparation'
 
 // Config & Auth
-import { ProviderClient, SlotIdSchema, type ProviderClientShape } from '@magnitudedev/sdk'
-import type { DisplayViewShape, DisplayViewSnapshot } from '@magnitudedev/acn-protocol'
+import { ProviderClient, SlotIdSchema, type ProviderClientShape } from '@x-cli/sdk'
+import type { DisplayViewShape, DisplayViewSnapshot } from '@x-cli/acn-protocol'
 import type { ForkTurnState } from './projections/turn'
 import type { AgentLifecycleState } from './projections/agent-lifecycle'
 import { deriveSessionWorkStatus, type SessionWorkStatus } from './session-work-status'
 
-import { MagnitudeStorage, type MagnitudeStorageShape } from '@magnitudedev/storage'
-import { initLogger, logger } from '@magnitudedev/logger'
+import { XCliStorage, type XCliStorageShape } from '@x-cli/storage'
+import { initLogger, logger } from '@x-cli/logger'
 import { BunFileSystem, BunPath } from '@effect/platform-bun'
-import { initTraceSession } from '@magnitudedev/tracing'
-import { MAGNITUDE_VERSION } from '@magnitudedev/version'
+import { initTraceSession } from '@x-cli/tracing'
+import { X_CLI_VERSION } from '@x-cli/version'
 
 import { publishSessionOptions, SessionOptionsAmbient } from './ambient/session-ambient'
 import {
@@ -121,7 +121,7 @@ import {
   sameToolAvailabilityState,
   type ToolAvailabilityState,
 } from './ambient/tool-availability-ambient'
-import { loadSkills, skillLoadDiagnosticLogFields, type Skill, type SkillLoadDiagnostic } from '@magnitudedev/skills'
+import { loadSkills, skillLoadDiagnosticLogFields, type Skill, type SkillLoadDiagnostic } from '@x-cli/skills'
 import { publishSkills } from './ambient/skills-ambient'
 import { publishAtifConfig, DEFAULT_ATIF_CONFIG } from './ambient/atif-ambient'
 import { publishInitialTask as publishInitialTaskAmbient } from './ambient/initial-task-ambient'
@@ -140,7 +140,7 @@ const loadRuntimeSkills = (cwd: string) =>
 
 export const CodingAgent = EventEngine.make<AppEvent>()({
   name: 'CodingAgent',
-  schemaVersion: MAGNITUDE_VERSION,
+  schemaVersion: X_CLI_VERSION,
 
   projections: [
     SessionContextProjection,
@@ -223,10 +223,10 @@ export interface CreateClientOptions {
   /**
    * Storage shape for config, sessions, memory, and logs.
    */
-  storage: MagnitudeStorageShape
+  storage: XCliStorageShape
 
   /**
-   * Enable LLM call tracing to ~/.magnitude/traces/
+   * Enable LLM call tracing to ~/.x-cli/traces/
    */
   debug?: boolean
 
@@ -364,7 +364,7 @@ function makeCodingAgentLive(options: CreateClientOptions) {
       const conversationProjection = yield* ConversationProjection.Tag
       const displayTimelineProjection = yield* DisplayTimelineProjection.Tag
       const harnessStateProjection = yield* HarnessStateProjection.Tag
-      const magnitudeClient = yield* ProviderClient
+      const xCliClient = yield* ProviderClient
       const addressedIntrospectionRegistry = yield* Effect.serviceOption(Introspection.AddressedIntrospectionRegistry)
       const runtimeIntrospector = yield* Effect.serviceOption(Introspection.RuntimeIntrospector)
       const provideAmbient = <A, E>(effect: Effect.Effect<A, E, AmbientService>): Effect.Effect<A, E> =>
@@ -799,7 +799,7 @@ export function createCodingAgentSession(options: CreateClientOptions) {
     FsLive,
     introspectionLayer,
     persistenceServicesLayer,
-    Layer.succeed(MagnitudeStorage, options.storage),
+    Layer.succeed(XCliStorage, options.storage),
     BunFileSystem.layer,
     BunPath.layer,
     ToolUniverseSourceLive,

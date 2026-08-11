@@ -2,7 +2,7 @@ import { CHARS_PER_TOKEN_UPPER } from '../constants'
 import { allocateBudget, charsToTokensUpper } from './budget'
 import { measureBounded } from './json/measure'
 import { truncate } from './json/truncate'
-import type { JsonValue } from '@magnitudedev/ai'
+import type { JsonValue } from '@x-cli/ai'
 
 export function truncateXmlBodyString(value: string, budgetTokens: number): string {
   if (charsToTokensUpper(value.length) <= budgetTokens) return value

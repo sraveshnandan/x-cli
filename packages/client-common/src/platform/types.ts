@@ -9,7 +9,7 @@
 
 import type { Layer } from "effect"
 import { RpcClient } from "@effect/rpc"
-import type { AcnClientCloseResult, AcnStartup } from "@magnitudedev/sdk"
+import type { AcnClientCloseResult, AcnStartup } from "@x-cli/sdk"
 import type { MenuAction } from "../types/menu-action"
 
 export type { MenuAction }

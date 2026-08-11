@@ -10,7 +10,7 @@ import {
   ProviderIdSchema,
   ProviderModelCatalogMirror,
   type ProviderModelId,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { useAgentClient } from "../state/agent-client-context"
 import { useMirroredStateAtom } from "./use-mirrored-state"
 import { useModelSlotActions } from "./use-local-inference-state"

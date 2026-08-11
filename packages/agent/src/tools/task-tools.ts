@@ -1,6 +1,6 @@
 import { Effect, Option, Schema } from 'effect'
-import { defineHarnessTool, StreamValidationError } from '@magnitudedev/harness'
-import { Fork, WorkerBusTag } from '@magnitudedev/event-core'
+import { defineHarnessTool, StreamValidationError } from '@x-cli/harness'
+import { Fork, WorkerBusTag } from '@x-cli/event-core'
 import { ExecutionManager } from '../execution/types'
 import { TaskGraphStateReaderTag } from './task-reader'
 import { AgentStateReaderTag } from './fork'

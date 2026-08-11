@@ -2,7 +2,7 @@
  * Compaction prompt construction.
  */
 
-import { Prompt } from '@magnitudedev/ai'
+import { Prompt } from '@x-cli/ai'
 
 export const COMPACTION_REFLECTION_PROMPT = `--- CONVERSATION END ---
 --- COMPACTION ---
@@ -10,7 +10,7 @@ export const COMPACTION_REFLECTION_PROMPT = `--- CONVERSATION END ---
 <system>
 The conversation is out of context. Your sole purpose now is to compact the conversation into a summary, reflection, and key files.
 
-FROM THIS POINT FORWARD, YOU ARE NO LONGER MAGNITUDE. YOU ARE A COMPACTOR.
+FROM THIS POINT FORWARD, YOU ARE NO LONGER X-CLI. YOU ARE A COMPACTOR.
 YOU ARE NO LONGER INTERACTING WITH THE USER.
 YOU HAVE EXACTLY ONE TURN TO PERFORM COMPACTION
 YOU MUST NOT THINK, MESSAGE, OR USE ANY TOOLS OTHER THAN \`compact\` FOR ANY REASON.

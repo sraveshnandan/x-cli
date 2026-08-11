@@ -1,69 +1,162 @@
-# Magnitude
+# x-cli
 
-<a href="https://docs.magnitude.dev" target="_blank"><img src="https://img.shields.io/badge/📕-Docs-0369a1?style=flat-square&labelColor=0369a1&color=gray" alt="Documentation" /></a>
-<a href="https://discord.gg/EHt48pPWdC" target="_blank"><img src="https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white&labelColor=5865F2&color=gray" alt="Discord" /></a> <a href="https://x.com/usemagnitude" target="_blank"><img src="https://img.shields.io/badge/Twitter-Follow-000000?style=flat-square&logo=x&logoColor=white&labelColor=000000&color=gray" alt="Follow Magnitude on Twitter" /></a>
+<a href="https://discord.gg/EHt48pPWdC" target="_blank"><img src="https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white&labelColor=5865F2&color=gray" alt="Discord" /></a> <a href="https://x.com/usemagnitude" target="_blank"><img src="https://img.shields.io/badge/Twitter-Follow-000000?style=flat-square&logo=x&logoColor=white&labelColor=000000&color=gray" alt="Follow x-cli on Twitter" /></a>
 
-Open source agent built on local models, with its own inference engine. 100% private and offline. No token costs. No API keys. No rate limits.
+**x-cli** is a high-performance open-source AI coding agent built with native local model support and multi-provider cloud connectivity. 100% private, offline-capable, with zero rate limits or token costs for local execution.
 
-![Magnitude running a local model](docs/maglocaldemo.gif)
+![x-cli logo](docs/logo.svg)
 
-## Get started
+---
+
+## Quick Start
 
 ```sh
-npm install -g @magnitudedev/cli
+# Install x-cli globally
+npm install -g @x-cli/cli
+
+# Run in any workspace directory
 cd your-project
-magnitude
+x-cli
 ```
 
-Magnitude supports macOS and Linux. Windows is supported through WSL.
+`x-cli` natively supports Linux and macOS. Windows is supported via WSL2.
 
-## What you can use it for
+---
 
-- Analyze sensitive data
-- Manage private notes
-- Review code and logs
-- Search and organize files
-- Build docs or slides
-- Create automation scripts
+## Unlocking x-cli to its Full Potential
 
-Out of the box it can use your shell, edit files, and run scripts. Add skills and it can work with Excel, PowerPoint, PDFs or Chrome.
+### 1. Model Setup & Multi-Provider Configuration
 
-## Add skills
+`x-cli` automatically profiles your hardware (GPU, VRAM, RAM) on first launch to recommend optimal local models. You can easily switch between **Local Hardware Models** and **Online Cloud Providers** at any time.
 
-Skills are reusable capabilities for your agent. A good way to get them is
-[skills.sh](https://www.skills.sh), a skills directory from Vercel.
+#### A. Interactive Model Switcher & Setup
+Inside the TUI or Web UI:
+* Press `Ctrl+P` or open **Settings** to open the **Model Setup Chooser**.
+* Choose between **Local Models** (Balanced, Best Quality, Fastest, Lightweight) or **Online Providers**.
 
-Skills we recommend:
+#### B. Connecting External Providers via Configuration
+You can configure external model providers and API keys globally in `~/.x-cli/config.json`:
+
+```json
+{
+  "models": {
+    "providers": {
+      "openai": {
+        "apiKey": "sk-...",
+        "baseUrl": "https://api.openai.com/v1"
+      },
+      "anthropic": {
+        "apiKey": "sk-ant-..."
+      },
+      "nvidia": {
+        "apiKey": "nvapi-...",
+        "baseUrl": "https://integrate.api.nvidia.com/v1"
+      },
+      "ollama": {
+        "baseUrl": "http://localhost:11434/v1"
+      },
+      "custom-openai": {
+        "apiKey": "your-key",
+        "baseUrl": "https://your-custom-endpoint/v1"
+      }
+    },
+    "slots": {
+      "primary": {
+        "providerId": "openai",
+        "modelId": "gpt-4o"
+      }
+    }
+  }
+}
+```
+
+---
+
+### 2. Model Context Protocol (MCP) & Custom Skills
+
+`x-cli` provides an extensible skill system and support for **Model Context Protocol (MCP)** tool extensions.
+
+#### A. Installing Pre-built Skills
+You can install pre-built skills from directories like [skills.sh](https://www.skills.sh):
 
 ```sh
-npx skills add vercel-labs/agent-browser   # drive your logged-in Chrome browser
-npx skills add anthropics/skills/xlsx      # read and build Excel spreadsheets
-npx skills add anthropics/skills/pptx      # build PowerPoint decks
-npx skills add anthropics/skills/docx      # read and write Word documents
-npx skills add anthropics/skills/pdf       # read, fill, and create PDFs
+npx skills add vercel-labs/agent-browser   # Drive your Chrome browser
+npx skills add anthropics/skills/xlsx      # Read & build Excel spreadsheets
+npx skills add anthropics/skills/pptx      # Build PowerPoint decks
+npx skills add anthropics/skills/docx      # Read & write Word documents
+npx skills add anthropics/skills/pdf       # Fill & generate PDFs
 ```
 
-## How it works
+#### B. Creating Custom Workspace Skills & MCP Extensions
+Add custom skills to your workspace under `.agents/skills/<skill-name>/SKILL.md` or globally under `~/.x-cli/skills/`:
 
-### Automatic model setup
+```markdown
+---
+name: database-query
+description: Execute read-only SQL queries against the local PostgreSQL dev container
+---
 
-Magnitude profiles your hardware and recommends the best models your machine can run. Choose Balanced, Best Quality, Fastest, or Lightweight, and Magnitude handles the download and configuration.
+# Database Query Skill
 
-### An inference engine built for agent work
+When asked to query the database, run the helper script in `scripts/query.py`.
 
-Magnitude includes a custom inference engine written in Rust on top of llama.cpp. It offers verified model configurations, calculates memory requirements before loading, and tunes acceleration, placement, and batching for your hardware. Parallel agents retain full context windows, model switching preserves consistent tool use, and new requests remain responsive while other work is running.
+## Available Commands:
+- `python scripts/query.py --sql "<query>"`
+```
 
-### An agent built around local models
+`x-cli` automatically loads skills at runtime, parsing frontmatter metadata, tool schemas, and background execution scripts into the agent context.
 
-Magnitude can inspect and edit files, run commands, work with images, and manage long sessions. Because local inference is built in, it also manages model loading and switching and surfaces native prefill, cache reuse, and generation performance directly in the agent UI. Nothing leaves your machine.
+---
 
-## Learn more
+### 3. Interactive Slash Commands
 
-- [Documentation](https://docs.magnitude.dev)
-- [CLI reference](https://docs.magnitude.dev/reference)
-- [Discord](https://discord.gg/EHt48pPWdC)
-- [Report an issue](https://github.com/magnitudedev/magnitude/issues)
+Maximize efficiency in your terminal workflow with built-in slash commands:
+
+| Command | Usage |
+| :--- | :--- |
+| `/plan` | Formulate step-by-step implementation plans before executing code edits |
+| `/goal` | Execute long-running background goals thoroughly without stopping |
+| `/schedule` | Set recurring background timers or cron schedules for tasks |
+| `/grill-me` | Interactive design alignment interview to resolve architecture decisions |
+| `/learn` | Persist corrections or setup details into memory for future sessions |
+
+---
+
+### 4. Telemetry & Observability
+
+`x-cli` integrates a local OpenTelemetry collector (**Motel**) for deep observability into AI calls, token consumption, and span traces.
+
+```sh
+# Launch live telemetry & tracing dashboard
+bun run dash
+```
+Open `http://127.0.0.1:27686` to inspect prompt payloads, completion timings, and subagent spans live.
+
+---
+
+### 5. Session History & Inspection
+
+All agent turns, tool calls, and addressed states are preserved as structured JSONL logs in `~/.x-cli/sessions/`:
+
+```sh
+bun session list                     # List recent sessions and message summaries
+bun session events <id>              # Stream events for a specific session ID
+bun session search <keyword>         # Search event payloads across sessions
+bun session projection <id> Window   # Inspect replayed projection state
+```
+
+---
+
+## How It Works
+
+### Custom Local Inference Engine
+`x-cli` includes a custom Rust inference engine powered by `llama.cpp`. It pre-calculates VRAM & RAM overhead before loading models, optimizes KV-cache reuse, and manages GPU layer offloading. Nothing leaves your machine when running locally.
+
+### Multi-Agent Workspace Runtime
+`x-cli` uses Effect-TS native event-sourcing and addressed worker roles (Leader, Architect, Engineer, Scout, Critic) to manage multi-step reasoning, background shell tasks, and tool execution cleanly.
+
+---
 
 ## License
 
-Magnitude is licensed under the [Apache License 2.0](https://github.com/magnitudedev/magnitude/blob/main/LICENSE).
+`x-cli` is licensed under the [Apache License 2.0](LICENSE).

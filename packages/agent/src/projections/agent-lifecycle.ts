@@ -5,12 +5,12 @@
  * Also owns root work state (phase, chain timer, activity, child count).
  */
 
-import { Projection, Signal } from '@magnitudedev/event-core'
+import { Projection, Signal } from '@x-cli/event-core'
 import { outcomeWillChainContinue } from '../events'
 import type { AppEvent } from '../events'
 import { ROLE_IDS, type RoleId } from '../agents/role-validation'
 import { Option, Schema } from 'effect'
-import type { WorkSummaryPerformance } from '@magnitudedev/acn-protocol'
+import type { WorkSummaryPerformance } from '@x-cli/acn-protocol'
 import { ModelRequestActivityAmbient } from '../model/model-request-activity'
 
 export const AgentLifecycleSchema = Schema.Literal('working', 'idle', 'killed')

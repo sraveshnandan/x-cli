@@ -1,5 +1,5 @@
 import type { CompletedTurn } from '../window/types'
-import type { ToolResult } from '@magnitudedev/harness'
+import type { ToolResult } from '@x-cli/harness'
 import { Option } from 'effect'
 import { renderFeedbackText } from '../prompts/feedback-text'
 import { estimateText, estimateImageTokens, DEFAULT_IMAGE_TOKENS } from '../truncation/estimate'

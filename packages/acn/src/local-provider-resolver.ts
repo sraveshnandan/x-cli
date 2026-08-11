@@ -2,8 +2,8 @@ import { Effect, Layer, Option } from "effect"
 import {
   IcnProviderModelResolver,
   type IcnProviderModelResolution,
-} from "@magnitudedev/icn/provider"
-import { ProviderModelIdSchema } from "@magnitudedev/sdk"
+} from "@x-cli/icn/provider"
+import { ProviderModelIdSchema } from "@x-cli/sdk"
 import { LocalProviderOfferings } from "./local-provider-offerings"
 
 export const LocalProviderResolverLive: Layer.Layer<

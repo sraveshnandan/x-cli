@@ -71,7 +71,7 @@ export function formatCwdForDisplay(
   return '…/' + parts.slice(-2).join('/')
 }
 
-import type { SessionMetadata } from "@magnitudedev/sdk"
+import type { SessionMetadata } from "@x-cli/sdk"
 
 /** Map daemon session metadata to the client RecentChat view model. */
 export function sessionsToRecentChats(sessions: readonly SessionMetadata[]): RecentChat[] {

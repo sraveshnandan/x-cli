@@ -5,7 +5,7 @@ import { Cause, Chunk, Effect, Fiber, TestClock, TestContext } from "effect"
 import { describe, expect, it } from "vitest"
 import { createXCliProvider } from "./provider"
 
-describe("Magnitude provider authentication", () => {
+describe("x-cli provider authentication", () => {
   it("represents missing authentication through each operation's typed failure channel", async () => {
     const instance = createXCliProvider({ apiKey: " " })
 

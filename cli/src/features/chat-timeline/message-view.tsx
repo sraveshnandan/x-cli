@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { Option } from 'effect'
 import type { ActionId } from '../../types/ui-actions'
-import type { DisplayMessage } from '@magnitudedev/sdk'
+import type { DisplayMessage } from '@x-cli/sdk'
 import { UserMessage } from './messages/user-message'
 import { QueuedUserMessage } from './messages/queued-user-message'
 import { AssistantMessage } from './messages/assistant-message'

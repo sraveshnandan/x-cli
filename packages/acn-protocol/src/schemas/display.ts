@@ -1,5 +1,5 @@
 import { Schema, Option } from "effect"
-import { JsonValueSchema } from "@magnitudedev/utils/schema"
+import { JsonValueSchema } from "@x-cli/utils/schema"
 import { DisplayAttachment as DisplayAttachmentSchema, ImageAttachment, MentionAttachment } from "./attachments"
 import type { DisplayAttachment } from "./attachments"
 

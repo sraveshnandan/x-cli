@@ -21,7 +21,7 @@ Nothing outside this document is a cross-version coordination prerequisite.
 
 ## Filesystem and database surface
 
-For Magnitude data root `D`, the complete shared filesystem surface is:
+For x-cli data root `D`, the complete shared filesystem surface is:
 
 ```text
 D/acn/coordination.sqlite

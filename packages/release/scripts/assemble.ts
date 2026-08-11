@@ -15,7 +15,7 @@ import {
   ReleaseManifestSchema,
   type ReleaseArtifact,
 } from "../src/contracts"
-import { ACN_COORDINATION_REVISION } from "@magnitudedev/version"
+import { ACN_COORDINATION_REVISION } from "@x-cli/version"
 import {
   acnArchive,
   backendArchive,
@@ -267,7 +267,7 @@ const manifest = Schema.decodeUnknownSync(ReleaseManifestSchema)({
   schemaVersion: 2,
   version,
   acnRevision: ACN_COORDINATION_REVISION,
-  tag: `@magnitudedev/cli@${version}`,
+  tag: `@x-cli/cli@${version}`,
   sourceCommit,
   artifacts: artifacts
     .slice()
@@ -280,7 +280,7 @@ const manifestBytes = new TextEncoder().encode(
 
 await rm(output, { recursive: true, force: true })
 await mkdir(output, { recursive: true, mode: 0o700 })
-await writeFile(resolve(output, "magnitude-release.json"), manifestBytes)
+await writeFile(resolve(output, "x-cli-release.json"), manifestBytes)
 for (const artifact of artifacts) {
   await copyFile(archiveById.get(artifact.id)!, resolve(output, artifact.filename))
 }

@@ -3,7 +3,7 @@
  * doesn't depend on the vanilla client. Each app provides its own impl
  * from its agent client.
  */
-import type { SkillListEntry } from "@magnitudedev/sdk"
+import type { SkillListEntry } from "@x-cli/sdk"
 
 export interface SkillLoader {
   listSkills(cwd: string): Promise<readonly SkillListEntry[]>
@@ -35,16 +35,21 @@ export async function loadSkillCommands(
 }
 
 const SLASH_COMMANDS: SlashCommandDefinition[] = [
-  { id: 'new',      label: 'new',      description: 'Start a new conversation' },
-  { id: 'resume',   label: 'resume',   description: 'Resume a previous conversation' },
-  { id: 'exit',     label: 'exit',     description: 'Exit Magnitude', aliases: ['quit', 'q'] },
-  { id: 'bash',     label: 'bash',     description: 'Enter bash mode' },
-  { id: 'init',     label: 'init',     description: 'Generate AGENTS.md for this project' },
-  { id: 'settings', label: 'settings', description: 'Open model settings', aliases: ['s'] },
+  { id: 'new',        label: 'new',        description: 'Start a new conversation' },
+  { id: 'resume',     label: 'resume',     description: 'Resume a previous conversation' },
+  { id: 'exit',       label: 'exit',       description: 'Exit x-cli', aliases: ['quit', 'q'] },
+  { id: 'bash',       label: 'bash',       description: 'Enter bash mode' },
+  { id: 'init',       label: 'init',       description: 'Generate AGENTS.md for this project' },
+  { id: 'settings',   label: 'settings',   description: 'Open model settings', aliases: ['s'] },
   { id: 'transcript', label: 'transcript', description: 'Toggle transcript display mode' },
-  // Cloud is disabled.
-  // { id: 'usage', label: 'usage', description: 'View cloud subscription, limits, and recent usage', aliases: ['limits'] },
-  { id: 'autopilot',     label: 'autopilot',     description: 'Toggle autopilot mode', featureFlag: 'MAGNITUDE_ENABLE_AUTOPILOT' },
+  { id: 'connect',    label: 'connect',    description: 'Manage cloud & model provider connections', aliases: ['cloud'] },
+  { id: 'mcp',        label: 'mcp',        description: 'Manage Model Context Protocol (MCP) servers and tools' },
+  { id: 'plan',       label: 'plan',       description: 'Formulate a step-by-step implementation plan' },
+  { id: 'goal',       label: 'goal',       description: 'Execute an autonomous long-running task until completion' },
+  { id: 'schedule',   label: 'schedule',   description: 'Set recurring background timers or cron tasks' },
+  { id: 'grill-me',   label: 'grill-me',   description: 'Interactive design alignment interview' },
+  { id: 'learn',      label: 'learn',      description: 'Persist developer corrections into memory' },
+  { id: 'autopilot',  label: 'autopilot',  description: 'Toggle autopilot mode', featureFlag: 'MAGNITUDE_ENABLE_AUTOPILOT' },
 ]
 
 let skillCommands: SlashCommandDefinition[] = []

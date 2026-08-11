@@ -1,0 +1,52 @@
+---
+title: Model Setup & Cloud Fallback
+description: Configuring local models and external cloud provider API keys (OpenAI, Anthropic, Ollama, NVIDIA).
+---
+
+# Model Setup & Multi-Provider Configuration
+
+`x-cli` seamlessly unifies local hardware models and external cloud API providers into a single provider-agnostic runtime.
+
+---
+
+## Interactive Model Switcher
+
+Press `Ctrl+P` inside the TUI or open **Settings** in the Web UI to open the **Model Setup Chooser**:
+
+- **Local Hardware Models**: Balanced, Best Quality, Fast, or Lightweight GGUF models.
+- **Online Cloud Providers**: Switch active model slots to external providers.
+
+---
+
+## Configuring Provider Keys (`~/.x-cli/config.json`)
+
+You can define provider endpoints and API keys globally in `~/.x-cli/config.json`:
+
+```json
+{
+  "models": {
+    "providers": {
+      "openai": {
+        "apiKey": "sk-...",
+        "baseUrl": "https://api.openai.com/v1"
+      },
+      "anthropic": {
+        "apiKey": "sk-ant-..."
+      },
+      "nvidia": {
+        "apiKey": "nvapi-...",
+        "baseUrl": "https://integrate.api.nvidia.com/v1"
+      },
+      "ollama": {
+        "baseUrl": "http://localhost:11434/v1"
+      }
+    },
+    "slots": {
+      "primary": {
+        "providerId": "openai",
+        "modelId": "gpt-4o"
+      }
+    }
+  }
+}
+```

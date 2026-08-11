@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { treeTool } from '../tools/fs'
 import { FileTreeStateSchema, TreeEntrySchema, type FileTreeState, type TreeEntry } from './tool-state'

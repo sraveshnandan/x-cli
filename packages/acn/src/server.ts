@@ -28,15 +28,15 @@ import {
 import {
   StorageLive,
   GlobalStorage,
-  MagnitudeStorage,
+  XCliStorage,
   makeGlobalStorage,
   ProjectStorageLiveFromCwd,
   VersionLive,
-} from "@magnitudedev/storage"
+} from "@x-cli/storage"
 import {
   AcnHealthResponseSchema,
-  MagnitudeRpcs,
-} from "@magnitudedev/acn-protocol"
+  XCliRpcs,
+} from "@x-cli/acn-protocol"
 import {
   ExactProcessController,
   ExactProcessControllerLive,
@@ -47,9 +47,9 @@ import {
   type AcnOwnerStore,
   type AcnRevisionStore,
   type ExactProcess,
-} from "@magnitudedev/acn-protocol/coordination"
-import { BunSqliteDriverLayer } from "@magnitudedev/acn-protocol/coordination/bun"
-import { IcnProcess, makeIcnProvider } from "@magnitudedev/icn"
+} from "@x-cli/acn-protocol/coordination"
+import { BunSqliteDriverLayer } from "@x-cli/acn-protocol/coordination/bun"
+import { IcnProcess, makeIcnProvider } from "@x-cli/icn"
 import { HandlersLive } from "./handlers"
 import { defaultDataDir } from "./data-dir"
 import { AgentFactoryLive } from "./agent-factory"
@@ -57,7 +57,7 @@ import { AgentRuntimeLive } from "./agent-runtime"
 import { ProviderModelCatalogLive } from "./provider-model-catalog"
 import { ProviderCredentialsLive } from "./provider-credentials"
 import { ModelSlotControllerLive } from "./model-slot-controller"
-import { MagnitudeCloudUsageLive } from "./magnitude-cloud-usage"
+import { XCliCloudUsageLive } from "./x-cli-cloud-usage"
 import {
   ProviderClientRegistryLive,
   SharedProviderClientLive,
@@ -177,7 +177,7 @@ const acnServerUrl = (address: HttpServer.Address): string => {
 }
 
 const CORS_ALLOWED_HEADERS =
-  "Content-Type, Content-Length, x-magnitude-acn-id, traceparent, tracestate, baggage, b3, x-b3-traceid, x-b3-spanid, x-b3-parentspanid, x-b3-sampled, x-b3-flags"
+  "Content-Type, Content-Length, x-x-cli-acn-id, traceparent, tracestate, baggage, b3, x-b3-traceid, x-b3-spanid, x-b3-parentspanid, x-b3-sampled, x-b3-flags"
 const LOCAL_HTTP_ORIGIN =
   /^https?:\/\/(?:localhost|127\.0\.0\.1|\[::1\])(?::\d+)?$/
 
@@ -347,7 +347,7 @@ const makeAcnServicesBase = (debug: boolean, dataDir: string) => {
     withCatalog
   )
   const withCloudUsage = Layer.provideMerge(
-    MagnitudeCloudUsageLive,
+    XCliCloudUsageLive,
     withCredentials
   )
   const withModelSlots = Layer.provideMerge(
@@ -547,7 +547,7 @@ export const launchAcnServer = (options: AcnServerOptions = {}) =>
     ))
     yield* router.add("POST", "/rpc", Effect.gen(function* () {
       const request = yield* HttpServerRequest.HttpServerRequest
-      return request.headers["x-magnitude-acn-id"] === ACN_INSTANCE_ID
+      return request.headers["x-x-cli-acn-id"] === ACN_INSTANCE_ID
         ? yield* lifecycle.dispatchRpc
         : HttpServerResponse.empty({ status: 409 })
     }))
@@ -617,7 +617,7 @@ export const launchAcnServer = (options: AcnServerOptions = {}) =>
       const protocol = yield* makeAcnSubscriptionProtocol(rawProtocol).pipe(
         Effect.provide(applicationContext),
       )
-      yield* RpcServer.make(MagnitudeRpcs).pipe(
+      yield* RpcServer.make(XCliRpcs).pipe(
         Effect.provideService(RpcServer.Protocol, protocol),
         Effect.provide(applicationContext),
         Effect.forkIn(applicationScope),
@@ -636,7 +636,7 @@ export const launchAcnServer = (options: AcnServerOptions = {}) =>
       Effect.timeout(Duration.minutes(5)),
       Effect.tapErrorCause((cause) => lifecycle.beginStopping({
         reason: "startup-failed",
-        detail: "Magnitude could not prepare local inference",
+        detail: "x-cli could not prepare local inference",
       }).pipe(Effect.zipRight(Effect.logError("ACN application startup failed").pipe(
         Effect.annotateLogs({ cause: Cause.pretty(cause) }),
       )))),

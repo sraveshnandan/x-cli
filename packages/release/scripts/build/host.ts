@@ -13,7 +13,7 @@ import {
   BackendEligibilityReport,
   IcnInstallationDeclaration,
   IcnStartupRecord,
-} from "@magnitudedev/icn-protocol"
+} from "@x-cli/icn-protocol"
 import {
   type ReleaseArtifact,
 } from "../../src/contracts"
@@ -34,7 +34,7 @@ import {
   verifyOwnedLoaderPaths,
 } from "./common"
 import { buildIcnBinary } from "../../../../inference/scripts/compile"
-import { ACN_COORDINATION_REVISION } from "@magnitudedev/version"
+import { ACN_COORDINATION_REVISION } from "@x-cli/version"
 
 const PROJECT_ROOT = resolve(import.meta.dir, "../../../..")
 
@@ -161,7 +161,7 @@ export const smokeHostArchives = async (
   icnArchivePath: string,
   icnArtifact: ReleaseArtifact,
 ): Promise<void> => {
-  const root = await mkdtemp(resolve(tmpdir(), `magnitude-${host.id}-`))
+  const root = await mkdtemp(resolve(tmpdir(), `x-cli-${host.id}-`))
   try {
     const [cliRoot, acnRoot, icnRoot] = ["cli", "acn", "icn"].map((name) =>
       resolve(root, name)

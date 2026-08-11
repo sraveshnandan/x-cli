@@ -5,7 +5,7 @@ import type { JsonError } from '../io/storage'
 import type { ResolvedContextLimitPolicy } from '../types/config'
 import type {
   ContextLimitPolicy,
-  MagnitudeConfig,
+  XCliConfig,
   ModelPackageId,
   OnboardingConfig,
   PersistedLocalProviderOffering,
@@ -14,11 +14,11 @@ import type {
 } from '../types'
 
 export interface ConfigStorageShape {
-  readonly load: () => Effect.Effect<MagnitudeConfig, PlatformError | JsonError>
-  readonly save: (config: MagnitudeConfig) => Effect.Effect<void, PlatformError | JsonError>
+  readonly load: () => Effect.Effect<XCliConfig, PlatformError | JsonError>
+  readonly save: (config: XCliConfig) => Effect.Effect<void, PlatformError | JsonError>
   readonly update: (
-    f: (config: MagnitudeConfig) => MagnitudeConfig
-  ) => Effect.Effect<MagnitudeConfig, PlatformError | JsonError>
+    f: (config: XCliConfig) => XCliConfig
+  ) => Effect.Effect<XCliConfig, PlatformError | JsonError>
 
   readonly getContextLimitPolicy: () => Effect.Effect<ResolvedContextLimitPolicy, PlatformError | JsonError>
   readonly setContextLimitPolicy: (

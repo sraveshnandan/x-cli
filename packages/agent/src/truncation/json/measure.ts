@@ -1,7 +1,7 @@
 import { CHARS_PER_TOKEN_UPPER } from '../../constants'
 import { charsToTokensUpper } from '../budget'
 import type { Measurement } from '../budget'
-import type { JsonValue } from '@magnitudedev/ai'
+import type { JsonValue } from '@x-cli/ai'
 
 /**
  * Count the JSON-escaped length of a single character by char code.

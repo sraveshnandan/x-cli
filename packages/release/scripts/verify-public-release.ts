@@ -19,7 +19,7 @@ const download = async (name: string, maximum: number): Promise<Uint8Array> => {
   if (bytes.byteLength > maximum) throw new Error(`${name} exceeds its size bound`)
   return bytes
 }
-const manifest = await download("magnitude-release.json", 16 * 1024 * 1024)
+const manifest = await download("x-cli-release.json", 16 * 1024 * 1024)
 const release = await Effect.runPromise(
   validateReleaseManifestBytes(manifest),
 )

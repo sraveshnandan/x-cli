@@ -1,4 +1,4 @@
-import { type ClientId, type ClientLeaseMutationResult } from "@magnitudedev/acn-protocol"
+import { type ClientId, type ClientLeaseMutationResult } from "@x-cli/acn-protocol"
 import { Clock, Context, Deferred, Duration, Effect, Fiber, Layer, Option, Ref, Scope } from "effect"
 import {
   dueClientLeases,
@@ -66,7 +66,7 @@ export const makeClientLeaseManager = (
             Effect.zipRight(
               lifecycle.beginStopping({
                 reason: "fatal",
-                detail: "Magnitude could not establish the local-model residency policy",
+                detail: "x-cli could not establish the local-model residency policy",
               })
             ),
             Effect.zipRight(Effect.interrupt)

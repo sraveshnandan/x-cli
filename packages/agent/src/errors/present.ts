@@ -11,7 +11,7 @@ import type {
   ConnectionFailureDetail,
   SafetyStopReason,
 } from '../events'
-import type { ModelAttemptFailureSnapshot } from '@magnitudedev/ai'
+import type { ModelAttemptFailureSnapshot } from '@x-cli/ai'
 
 export type ErrorSurface = 'inline' | 'toast' | 'silent'
 export type ErrorSeverity = 'error' | 'warning' | 'info'
@@ -37,9 +37,9 @@ export interface ErrorPresentation {
   readonly retryable: boolean
 }
 
-const CLOUD_USAGE_CTA: ErrorCta = { kind: 'url', label: 'View cloud usage', url: 'https://app.magnitude.dev/billing' }
-const MAGNITUDE_PRO_CTA: ErrorCta = { kind: 'url', label: 'Start Magnitude Pro', url: 'https://app.magnitude.dev/billing' }
-const UPDATE_MAGNITUDE_CTA: ErrorCta = { kind: 'url', label: 'Update Magnitude', url: 'https://docs.magnitude.dev/get-started' }
+const CLOUD_USAGE_CTA: ErrorCta = { kind: 'url', label: 'View cloud usage', url: 'https://app.x-cli.dev/billing' }
+const MAGNITUDE_PRO_CTA: ErrorCta = { kind: 'url', label: 'Start x-cli Pro', url: 'https://app.x-cli.dev/billing' }
+const UPDATE_MAGNITUDE_CTA: ErrorCta = { kind: 'url', label: 'Update x-cli', url: 'https://docs.x-cli.dev/get-started' }
 const OPEN_SETTINGS_CTA: ErrorCta = { kind: 'action', label: 'Open settings', actionId: 'open-settings', chord: 'ctrl+s' }
 
 const SILENT: ErrorPresentation = {
@@ -64,7 +64,7 @@ function presentProviderNotReady(detail: ProviderNotReadyDetail): ErrorPresentat
       return {
         surface: 'inline',
         severity: 'error',
-        message: 'Magnitude is out of sync with the server. Try updating to the latest version.',
+        message: 'x-cli is out of sync with the server. Try updating to the latest version.',
         cta: UPDATE_MAGNITUDE_CTA,
         llmFeedback: 'Out-of-sync error from server. The CLI may need to be updated.',
         retryable: false,

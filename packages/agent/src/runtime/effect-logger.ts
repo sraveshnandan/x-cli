@@ -2,12 +2,12 @@
  * Effect Logger → file logger bridge.
  *
  * Effect's default logger writes to stderr, which corrupts the TUI rendering.
- * This layer replaces it with one that forwards to @magnitudedev/logger
+ * This layer replaces it with one that forwards to @x-cli/logger
  * (which writes to the active session's logs.jsonl). Nothing hits stderr.
  */
 
 import { Cause, HashMap, Layer, Logger } from 'effect'
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 
 const fileLogger = Logger.make(({ logLevel, message, annotations, cause }) => {
   const data: Record<string, unknown> = {}
@@ -52,6 +52,6 @@ const fileLogger = Logger.make(({ logLevel, message, annotations, cause }) => {
 /**
  * Layer that replaces Effect's default logger with one that writes to the
  * file logger only. Mount in the agent runtime so all Effect.log* calls
- * inside workers/projections route through @magnitudedev/logger.
+ * inside workers/projections route through @x-cli/logger.
  */
 export const EffectLoggerLayer = Logger.replace(Logger.defaultLogger, fileLogger)

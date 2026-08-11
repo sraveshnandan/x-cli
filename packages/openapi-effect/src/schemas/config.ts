@@ -22,7 +22,7 @@ export class StreamTransport extends Schema.Class<StreamTransport>(
   "OpenApiEffect.StreamTransport"
 )({
   extension: Schema.optionalWith(ExtensionKey, {
-    default: () => "x-magnitude-stream" as const,
+    default: () => "x-x-cli-stream" as const,
   }),
 }) {}
 

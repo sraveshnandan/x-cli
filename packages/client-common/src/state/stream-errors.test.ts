@@ -1,7 +1,7 @@
 import { RpcClientError } from "@effect/rpc"
 import { Cause } from "effect"
 import { describe, expect, it } from "vitest"
-import { DownloadFailed } from "@magnitudedev/sdk"
+import { DownloadFailed } from "@x-cli/sdk"
 import { classifyStreamError } from "./stream-errors"
 
 describe("stream error classification", () => {

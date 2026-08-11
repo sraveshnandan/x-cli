@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { StreamStartOperationalFailure } from '@magnitudedev/ai'
+import { StreamStartOperationalFailure } from '@x-cli/ai'
 import {
   agentModelStartRetryability,
   finalizeAgentModelStartFailure,

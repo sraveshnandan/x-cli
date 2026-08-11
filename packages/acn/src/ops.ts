@@ -5,8 +5,8 @@ import { Effect, Stream, Option, Ref, Schedule, Chunk } from "effect"
 import * as Command from "@effect/platform/Command"
 import * as CommandExecutor from "@effect/platform/CommandExecutor"
 import * as FileSystem from "@effect/platform/FileSystem"
-import { loadSkills } from "@magnitudedev/skills"
-import { resolveRgPath } from "@magnitudedev/ripgrep"
+import { loadSkills } from "@x-cli/skills"
+import { resolveRgPath } from "@x-cli/ripgrep"
 import type {
   ReadFileResult,
   ResolvePathResult,
@@ -18,8 +18,8 @@ import type {
   SessionError,
   SkillContent,
   SkillListEntry,
-} from "@magnitudedev/acn-protocol"
-import { SessionOperationFailed } from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
+import { SessionOperationFailed } from "@x-cli/acn-protocol"
 
 // ---------------------------------------------------------------------------
 // Helpers

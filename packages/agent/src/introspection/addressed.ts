@@ -1,5 +1,5 @@
 import { Effect, Option } from 'effect'
-import { Introspection } from '@magnitudedev/event-core'
+import { Introspection } from '@x-cli/event-core'
 
 export type AddressedSpaceIntrospection = Introspection.AddressedSpaceIntrospection
 export type AddressedResidentIntrospection = Introspection.AddressedResidentIntrospection

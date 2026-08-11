@@ -108,7 +108,7 @@ E4 and E5 include the arm and repetition in a cache namespace inside the prompt.
 within-sample exact/partial/shared prefixes remain identical, while state from an earlier arm or
 repetition cannot satisfy a later request accidentally. This is required because llama.cpp's slot
 erase API clears resident slot state but does not clear its process-wide RAM prompt cache, and ICN
-does not expose a public cache-administration endpoint. Until Magnitude's planned global radix
+does not expose a public cache-administration endpoint. Until x-cli's planned global radix
 cache exists, scheduler/KV parity runs start llama-server with `--cache-ram 0`; both sides then
 compare resident sequence caching rather than a feature implemented by only one target.
 

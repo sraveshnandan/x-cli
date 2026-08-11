@@ -1,9 +1,9 @@
-import type { ProviderToolCallId, ToolCallId } from '@magnitudedev/ai'
-import { createToolHandle as harnessCreateToolHandle, type ToolHandle } from '@magnitudedev/harness'
-import type { Toolkit } from '@magnitudedev/harness'
+import type { ProviderToolCallId, ToolCallId } from '@x-cli/ai'
+import { createToolHandle as harnessCreateToolHandle, type ToolHandle } from '@x-cli/harness'
+import type { Toolkit } from '@x-cli/harness'
 import { Option } from 'effect'
 
-export type { ToolHandle } from '@magnitudedev/harness'
+export type { ToolHandle } from '@x-cli/harness'
 
 export function createToolHandleFromToolkit(
   toolCallId: ToolCallId,

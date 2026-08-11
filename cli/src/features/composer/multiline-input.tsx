@@ -38,10 +38,10 @@ import type {
   InputMentionSegment,
   InputPasteSegment,
   InputValue,
-} from '@magnitudedev/client-common'
-import { applyTextEditWithPastesAndMentions } from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
+import { applyTextEditWithPastesAndMentions } from '@x-cli/client-common'
 import { decodeNativePasteText } from './paste-events'
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 import type {
   KeyEvent,
   LineInfo,

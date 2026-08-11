@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import type { ApiKeyState } from '@magnitudedev/client-common'
+import type { ApiKeyState } from '@x-cli/client-common'
 import type { AuthSource } from '../../state/cli-atoms'
 import { deriveSettingsAuthInfo } from './auth-display'
 

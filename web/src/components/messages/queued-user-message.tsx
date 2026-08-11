@@ -4,7 +4,7 @@
  * Identical to user message but dimmed text, Clock icon + "Queued".
  */
 import { useState, type ReactNode } from "react"
-import type { QueuedUserMessage as QueuedUserMessageType, DisplayAttachment } from "@magnitudedev/sdk"
+import type { QueuedUserMessage as QueuedUserMessageType, DisplayAttachment } from "@x-cli/sdk"
 import { CopyButton, QueuedIndicator, AttachmentPill } from "./shared"
 
 export function QueuedUserMessage({ message }: { message: QueuedUserMessageType }): ReactNode {

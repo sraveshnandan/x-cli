@@ -65,7 +65,7 @@ export interface Service {
   readonly events: Stream.Stream<QueryClientEvent>
 }
 
-export class QueryClient extends Context.Tag("@magnitudedev/effect-query/QueryClient")<QueryClient, Service>() {}
+export class QueryClient extends Context.Tag("@x-cli/effect-query/QueryClient")<QueryClient, Service>() {}
 
 function awaitQuery<Input, Data, Error, Requirements>(
   registry: AtomRegistry.Registry,

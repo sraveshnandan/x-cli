@@ -3,8 +3,8 @@
  */
 import { useState, type ReactNode } from "react"
 import { Copy, Check, Clock, FileText, Folder, Image as ImageIcon } from "lucide-react"
-import type { DisplayAttachment } from "@magnitudedev/sdk"
-import { formatShortTimestamp } from "@magnitudedev/client-common"
+import type { DisplayAttachment } from "@x-cli/sdk"
+import { formatShortTimestamp } from "@x-cli/client-common"
 
 /** Copy button with icon-swap feedback */
 export function CopyButton({ text, label = "Copy" }: { text: string; label?: string }): ReactNode {

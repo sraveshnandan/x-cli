@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { ModelAttemptFailureSnapshot } from '@magnitudedev/ai'
+import type { ModelAttemptFailureSnapshot } from '@x-cli/ai'
 import { present } from '../src/errors/present'
 
 const failure = (providerMessage?: string): ModelAttemptFailureSnapshot => ({

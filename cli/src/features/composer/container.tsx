@@ -29,11 +29,11 @@ import {
   useModelConfig,
   useLocalModels,
   useModelSlots,
-} from '@magnitudedev/client-common'
-import type { RawImageAttachment, RawMentionOccurrence } from '@magnitudedev/sdk'
-import { addEphemeralMessage } from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
+import type { RawImageAttachment, RawMentionOccurrence } from '@x-cli/sdk'
+import { addEphemeralMessage } from '@x-cli/client-common'
 import { Option } from 'effect'
-import { PRIMARY_SLOT_ID } from '@magnitudedev/sdk'
+import { PRIMARY_SLOT_ID } from '@x-cli/sdk'
 import { modelMenuStateAtom, showRecentChatsOverlayAtom } from '../../state/cli-atoms'
 import { useTheme } from '../../hooks/use-theme'
 import { INIT_PROMPT } from '../../commands/init-prompt'
@@ -98,6 +98,7 @@ export function ComposerContainer({
     toggleTranscript: togglePresentationMode,
     openUsage: () => setUsageOpen(true),
     openCloud: () => setMenu({ open: true, root: 'cloud' }),
+    openMcp: () => { addSystemMessage("MCP (Model Context Protocol): Managed via ~/.x-cli/mcp.json") },
     toggleAutopilot: () => { /* disabled */ },
   }), [startNewSession, setShowRecentChats, setBashMode, setMenu, setUsageOpen, togglePresentationMode])
 

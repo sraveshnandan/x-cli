@@ -64,9 +64,9 @@ export interface ProviderModelBindOptions {
   readonly agentId?: string
   /** Role ID — used by providers that support tracing/metadata. Ignored by others. */
   readonly roleId?: string
-  /** Traits — Magnitude-specific, ignored by other providers. */
+  /** Traits — x-cli-specific, ignored by other providers. */
   readonly traits?: readonly string[]
-  /** Prefer a specific upstream provider — Magnitude-specific, ignored by others. */
+  /** Prefer a specific upstream provider — x-cli-specific, ignored by others. */
   readonly preferProvider?: string
 }
 

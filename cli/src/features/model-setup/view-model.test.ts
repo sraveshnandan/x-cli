@@ -5,7 +5,7 @@ import {
   ModelInstanceIdSchema,
   ModelSlotConfiguredLocal,
   PRIMARY_SLOT_ID,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
   LOCAL_PROVIDER_ID,
   TEST_CONFIGURATION_ID,

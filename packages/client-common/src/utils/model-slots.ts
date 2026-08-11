@@ -12,7 +12,7 @@ import {
   type ProviderModelCatalogEntry,
   type ProviderModelCatalogState,
   type SlotId,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 export const deriveSelectedLocalModelCandidate = (
   models: LocalModelsState,

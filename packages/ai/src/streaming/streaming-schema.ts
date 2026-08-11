@@ -5,7 +5,7 @@ import {
   type SchemaShape,
   type SchemaShapeIndex,
   type SchemaShapeRef,
-} from "@magnitudedev/utils/schema"
+} from "@x-cli/utils/schema"
 import type { ParsedValue } from "./types"
 import { parsedValueToJson } from "./values"
 

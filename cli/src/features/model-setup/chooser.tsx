@@ -8,7 +8,7 @@ import {
   type LocalInferenceHardwareResult,
   type OnboardingConfigurationChoice,
   type OnboardingLoadModelChoice,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import type {
   LocalModelCatalogCandidate,
   LocalModelRecommendationProgressStep,
@@ -16,8 +16,8 @@ import type {
   ModelSlotsState,
   ProviderModelId,
   ProviderModelCatalogState,
-} from "@magnitudedev/sdk"
-import { ReasoningEffortSchema } from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
+import { ReasoningEffortSchema } from "@x-cli/sdk"
 import { Button } from "../../components/button"
 import { spinnerFrameAt, useSpinnerFrame } from "../../hooks/use-spinner-frame"
 import { useTheme } from "../../hooks/use-theme"

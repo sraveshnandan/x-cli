@@ -5,7 +5,7 @@ import {
   getAnimationTimeSnapshot,
   subscribeAnimationClock,
   subscribeAnimationNoop,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 
 export const useAnimationTime = (active: boolean): number => useSyncExternalStore(
   active ? subscribeAnimationClock : subscribeAnimationNoop,

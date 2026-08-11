@@ -3,7 +3,7 @@
  */
 
 /** Default chat name before title generation */
-export const DEFAULT_CHAT_NAME = 'New Magnitude Chat'
+export const DEFAULT_CHAT_NAME = 'New x-cli Chat'
 
 /** Characters per token upper bound (for truncation budgets — higher = fewer tokens per char = more conservative truncation) */
 export const CHARS_PER_TOKEN_UPPER = 4

@@ -21,9 +21,9 @@ describe("Exa web search", () => {
         return Response.json({
           requestId: "request-1",
           results: [{
-            id: "https://magnitude.dev",
-            title: "Magnitude",
-            url: "https://magnitude.dev",
+            id: "https://x-cli.dev",
+            title: "x-cli",
+            url: "https://x-cli.dev",
             highlights: ["AI coding agents"],
             ignored: "extra fields are allowed",
           }],
@@ -32,8 +32,8 @@ describe("Exa web search", () => {
             grounding: [{
               field: "answer",
               citations: [{
-                url: "https://magnitude.dev",
-                title: "Magnitude",
+                url: "https://x-cli.dev",
+                title: "x-cli",
               }],
               confidence: "high",
             }],
@@ -54,7 +54,7 @@ describe("Exa web search", () => {
         endpoint: `http://127.0.0.1:${server.port}/search`,
       })
       const result = await Effect.runPromise(
-        instance.webSearch("magnitude", {
+        instance.webSearch("x-cli", {
           type: "object",
           properties: { answer: { type: "number" } },
         }).pipe(Effect.provide(FetchHttpClient.layer)),
@@ -63,7 +63,7 @@ describe("Exa web search", () => {
       expect(captured).toEqual({
         apiKey: "exa_test",
         body: {
-          query: "magnitude",
+          query: "x-cli",
           type: "auto",
           numResults: 10,
           contents: { highlights: true },
@@ -74,8 +74,8 @@ describe("Exa web search", () => {
         },
       })
       expect(result).toEqual({
-        text: "## Magnitude\nAI coding agents",
-        sources: [{ title: "Magnitude", url: "https://magnitude.dev" }],
+        text: "## x-cli\nAI coding agents",
+        sources: [{ title: "x-cli", url: "https://x-cli.dev" }],
         data: { answer: 42 },
       })
     } finally {
@@ -98,7 +98,7 @@ describe("Exa web search", () => {
         endpoint: `http://127.0.0.1:${server.port}/search`,
       })
       const result = await Effect.runPromise(
-        Effect.either(instance.webSearch("magnitude")).pipe(
+        Effect.either(instance.webSearch("x-cli")).pipe(
           Effect.provide(FetchHttpClient.layer),
         ),
       )
@@ -119,7 +119,7 @@ describe("Exa web search", () => {
 
   it("reports missing configuration without a generic cause envelope", async () => {
     const result = await Effect.runPromise(
-      Effect.either(createExaWebSearch({ apiKey: " " }).webSearch("magnitude")).pipe(
+      Effect.either(createExaWebSearch({ apiKey: " " }).webSearch("x-cli")).pipe(
         Effect.provide(FetchHttpClient.layer),
       ),
     )
@@ -143,7 +143,7 @@ describe("Exa web search", () => {
     const result = await Effect.runPromise(
       Effect.gen(function* () {
         const search = yield* Effect.fork(
-          Effect.either(createExaWebSearch({ apiKey: "exa_test" }).webSearch("magnitude")),
+          Effect.either(createExaWebSearch({ apiKey: "exa_test" }).webSearch("x-cli")),
         )
         yield* Effect.yieldNow()
         yield* TestClock.adjust("10 seconds")

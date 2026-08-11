@@ -4,7 +4,7 @@ import {
   Auth,
   NativeChatCompletions,
   type ToolCallId,
-} from "@magnitudedev/ai"
+} from "@x-cli/ai"
 import {
   defineHarnessTool,
   defineToolkit,

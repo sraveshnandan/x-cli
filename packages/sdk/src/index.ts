@@ -51,11 +51,12 @@ export {
 export { TracingLayer, makeTracingLayer, type MakeTracingLayerOptions } from "./tracing"
 
 export {
+  AcnInstanceIdSchema,
   DisplayState as DisplayStateSchema,
   DisplayTimeline as DisplayTimelineSchema,
   DisplayViewSnapshot,
   DisplayViewShape as DisplayViewShapeSchema,
-  MagnitudeRpcs,
+  XCliRpcs,
   StreamEvent as StreamEventSchema,
   canonicalExtensionForImageMediaType,
   filenameWithImageExtension,
@@ -109,7 +110,7 @@ export {
   ModelAssessmentIdSchema,
   AssessmentEnvironmentIdSchema,
   LocalModelsStateSchema,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 
 export type {
   DownloadAttemptId,
@@ -191,11 +192,11 @@ export type {
   SpawnWorkerPresentation,
   GenericToolPresentation,
   QueryImagePresentation,
-} from "@magnitudedev/acn-protocol"
-export type * from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
+export type * from "@x-cli/acn-protocol"
 
-export { createRoles, isRoleId, ROLE_IDS, ROLE_TO_SLOT, DEFAULT_REASONING_EFFORT, SLOT_IDS, SLOT_DISPLAY_NAMES, SLOT_DESCRIPTIONS } from "@magnitudedev/roles"
-export type { RoleId } from "@magnitudedev/roles"
+export { createRoles, isRoleId, ROLE_IDS, ROLE_TO_SLOT, DEFAULT_REASONING_EFFORT, SLOT_IDS, SLOT_DISPLAY_NAMES, SLOT_DESCRIPTIONS } from "@x-cli/roles"
+export type { RoleId } from "@x-cli/roles"
 
 export { resolveBinaryCommand, defaultBinaryPath, defaultDataDir, type ResolveBinaryOptions, type ResolvedBinaryCommand } from "./binary"
 export { SDK_VERSION, SDK_REVISION, SDK_ACN_TARGET } from "./version"
@@ -212,7 +213,7 @@ export {
   type WatchFileFailure,
 } from "./errors"
 
-export { isEnvFlagOn } from "@magnitudedev/utils"
+export { isEnvFlagOn } from "@x-cli/utils"
 export { normalizeReferencedPath } from "./path-utils"
 
 // =============================================================================
@@ -257,9 +258,9 @@ export {
   ReasoningEffortSchema,
   ReasoningProperty,
   VisionProperty,
-  type MagnitudeModelInfo,
-  type MagnitudeCallOptions,
-  type MagnitudeAdditionalOptions,
+  type XCliModelInfo,
+  type XCliCallOptions,
+  type XCliAdditionalOptions,
   type WebSearchResult,
   type WebSearchError,
   type WebSearchSource,
@@ -270,13 +271,13 @@ export {
   type FetchUsageOptions,
   type UsagePeriod,
   makeFileBackedModelCatalog,
-  createMagnitudeCompatibleSpec,
-  MagnitudeModelListResponseSchema,
-  toMagnitudeModelInfo,
-  classifyMagnitudeRejectedResponse,
+  createXCliCompatibleSpec,
+  XCliModelListResponseSchema,
+  toXCliModelInfo,
+  classifyXCliRejectedResponse,
   classifyModelFamilyFromEvidence,
   tryParseErrorBody,
-  type ParsedMagnitudeApiError,
+  type ParsedXCliApiError,
 } from "./provider-client"
 
 export {
@@ -300,4 +301,4 @@ export {
   streamStartFailureFromRejectedResponse,
   toCauseInfo,
   nativeChatCompletionsCodec,
-} from "@magnitudedev/ai"
+} from "@x-cli/ai"

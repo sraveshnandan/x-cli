@@ -15,7 +15,7 @@ applies_to:
 
 # Model-management terminology
 
-This document defines the canonical vocabulary for Magnitude's local-model domain. More specific
+This document defines the canonical vocabulary for x-cli's local-model domain. More specific
 documents define behavior and lifecycle. An unqualified `model` is presentation language, not an
 identity-bearing domain type.
 
@@ -53,7 +53,7 @@ may run now. A cached assessment never authorizes a load.
 | Term | Meaning |
 |---|---|
 | **Recommendable model** | One curated offering target plus presentation, capability, and recommendation evidence. |
-| **Recommendable model catalog** | The release-bound set of targets Magnitude is willing to assess and recommend. Membership implies no assessment result, installation, offering, selection, or residency. |
+| **Recommendable model catalog** | The release-bound set of targets x-cli is willing to assess and recommend. Membership implies no assessment result, installation, offering, selection, or residency. |
 | **Recommendation candidate** | An algorithm-local eligible assessed configuration enriched with ranking inputs. It has no independent lifecycle or persisted identity. |
 | **Catalog candidate** | ACN's presentation projection of one eligible assessed configuration, joined with acquisition and availability state. Its stable identity is the configuration identity. |
 | **Recommendation** | A policy-selected configuration labeled with an intent and explanation. |

@@ -1,19 +1,19 @@
-import { Ambient } from '@magnitudedev/event-core'
+import { Ambient } from '@x-cli/event-core'
 import { Effect, Schema } from 'effect'
 
-import type { ModelSlotsState, ProviderModelCatalogEntry } from '@magnitudedev/sdk'
-import { type SlotId } from '@magnitudedev/roles'
+import type { ModelSlotsState, ProviderModelCatalogEntry } from '@x-cli/sdk'
+import { type SlotId } from '@x-cli/roles'
 import {
   ProviderIdSchema,
   ProviderModelIdSchema,
   ReasoningEffortSchema,
-} from '@magnitudedev/ai'
+} from '@x-cli/ai'
 import {
   computeContextLimits,
   DEFAULT_CONTEXT_LIMIT_POLICY,
   type ResolvedContextLimitPolicy,
-} from '@magnitudedev/storage'
-import { ROLE_TO_SLOT, type RoleId } from '@magnitudedev/roles'
+} from '@x-cli/storage'
+import { ROLE_TO_SLOT, type RoleId } from '@x-cli/roles'
 
 import { OUTPUT_TOKEN_RESERVE } from '../constants'
 

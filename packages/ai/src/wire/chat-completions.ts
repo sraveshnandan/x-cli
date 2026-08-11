@@ -1,5 +1,5 @@
 import { Schema } from "effect"
-import type { JsonSchemaObject } from "@magnitudedev/utils/schema"
+import type { JsonSchemaObject } from "@x-cli/utils/schema"
 
 export type ChatMessageRole = "system" | "user" | "assistant" | "tool"
 

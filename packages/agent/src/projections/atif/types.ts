@@ -1,10 +1,10 @@
 /**
  * ATIF (Agent Trajectory Interchange Format) v1.7 types
- * Native Magnitude projection types mirroring the Harbor ATIF spec.
+ * Native x-cli projection types mirroring the Harbor ATIF spec.
  */
 
 import { Option, Schema } from 'effect'
-import { JsonValueSchema } from '@magnitudedev/ai'
+import { JsonValueSchema } from '@x-cli/ai'
 import { ROLE_IDS } from '../../agents/role-validation'
 
 // =============================================================================
@@ -191,7 +191,7 @@ export const PendingToolCallSchema = Schema.Struct({
 })
 export type PendingToolCall = typeof PendingToolCallSchema.Type
 
-/** In-progress agent turn keyed by Magnitude turnId, not by ATIF step_id. */
+/** In-progress agent turn keyed by x-cli turnId, not by ATIF step_id. */
 export const ActiveAtifTurnSchema = Schema.Struct({
   turnId: Schema.String,
   chainId: Schema.String,

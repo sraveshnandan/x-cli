@@ -1,4 +1,4 @@
-import type { ProviderModelCatalogEntry, ReasoningEffort } from "@magnitudedev/sdk"
+import type { ProviderModelCatalogEntry, ReasoningEffort } from "@x-cli/sdk"
 
 export interface ReasoningEffortOption {
   readonly value: ReasoningEffort

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest"
-import type { DisplayTimeline, DisplayViewSnapshot } from "@magnitudedev/sdk"
+import type { DisplayTimeline, DisplayViewSnapshot } from "@x-cli/sdk"
 import { displayShapeFor, EMPTY_DISPLAY_VIEW_SHAPE, INITIAL_ROOT_PAGE_SIZE, INCREMENTAL_ROOT_PAGE_SIZE } from "../sync/index"
 import { EMPTY_DISPLAY_STATE } from "../state/empty-display-state"
 import type { DisplayReader } from "../sync/display-view-store"

@@ -7,7 +7,7 @@
 import { useState, type ReactNode } from "react"
 import { Option } from "effect"
 import { Mail, ChevronDown } from "lucide-react"
-import type { AgentCommunicationMessage as AgentCommType } from "@magnitudedev/sdk"
+import type { AgentCommunicationMessage as AgentCommType } from "@x-cli/sdk"
 import { MarkdownContent } from "../markdown-content"
 
 function capitalize(s: string): string {

@@ -2,7 +2,7 @@
  * Generate CSS custom properties from palette.ts — the single source of truth.
  *
  * Spec §7.2 defines the semantic CSS variable names. This module maps each
- * one to a palette value from `@magnitudedev/client-common`. No hex values
+ * one to a palette value from `@x-cli/client-common`. No hex values
  * are hardcoded here — they all come from palette.ts.
  *
  * At app startup, call `injectCssVars()` to set these as custom properties
@@ -19,7 +19,7 @@ import {
   appSurface,
   accentAliases,
   parseHexColorToRgb,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 
 /** Convert a hex palette color to rgba string with given alpha */
 function hexToRgba(hex: string, alpha: number): string {

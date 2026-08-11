@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it, vi } from 'vitest'
-import type { DisplayMessage } from '@magnitudedev/sdk'
+import type { DisplayMessage } from '@x-cli/sdk'
 import { Option } from 'effect'
 import { MessageView } from './message-view'
 

@@ -25,7 +25,7 @@ import {
   useSessionActions,
   useActiveSessionStatusesSubscription,
   activeSessionStatusesAtom,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import { SessionsSidebar } from "./components/sessions-sidebar"
 import { ChatTimeline } from "./components/chat-timeline"
 import { WorkStatusBar } from "./components/work-status-bar"
@@ -44,7 +44,7 @@ import {
   usageOpenAtom,
   bashModeAtom,
   nextEscWillKillAllAtom,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import {
   sidebarSearchAtom,
   sidebarCwdFilterAtom,
@@ -61,7 +61,7 @@ import {
   findSlotProfile,
   type SlotProfile,
   type SlotProfiles,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import {
   isRoleId,
   PRIMARY_SLOT_ID,
@@ -69,15 +69,15 @@ import {
   SECONDARY_SLOT_ID,
   SLOT_DISPLAY_NAMES,
   SLOT_DESCRIPTIONS,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import type {
   DisplayActor,
   ListSessionsResult,
   ReadFileResult,
   SessionCwdSummary,
   SessionMetadata,
-} from "@magnitudedev/sdk"
-import type { SlotId } from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
+import type { SlotId } from "@x-cli/sdk"
 
 const SESSION_PAGE_SIZE = 50
 type SessionPageState = {
@@ -227,7 +227,7 @@ function SessionsSidebarContainer(props?: { overlay?: boolean; onCloseOverlay?: 
   const sessions = sessionPage.sessions
   // Cloud is disabled.
 
-  // Listen for __magnitude:focus-search custom event → focus the search input
+  // Listen for __x-cli:focus-search custom event → focus the search input
   const focusSearchAtom = useMemo(
     () =>
       Atom.make(
@@ -236,9 +236,9 @@ function SessionsSidebarContainer(props?: { overlay?: boolean; onCloseOverlay?: 
             const input = document.getElementById("sidebar-search-input")
             if (input) input.focus()
           }
-          window.addEventListener("__magnitude:focus-search", handler)
+          window.addEventListener("__x-cli:focus-search", handler)
           yield* Effect.addFinalizer(() =>
-            Effect.sync(() => window.removeEventListener("__magnitude:focus-search", handler)),
+            Effect.sync(() => window.removeEventListener("__x-cli:focus-search", handler)),
           )
         }),
       ),
@@ -506,7 +506,7 @@ function ComposerContainer({ docked = false }: { docked?: boolean }): ReactNode 
       if (sidebarVisible === false) {
         setSidebarVisible(true)
       }
-      window.dispatchEvent(new CustomEvent("__magnitude:focus-search"))
+      window.dispatchEvent(new CustomEvent("__x-cli:focus-search"))
     },
     enterBashMode: () => setBashMode(true),
     activateSkill: (skillName: string, _skillPath: string | undefined, args: string) => {
@@ -518,6 +518,8 @@ function ComposerContainer({ docked = false }: { docked?: boolean }): ReactNode 
     },
     openSettings: () => setSettingsOpen(true),
     openUsage: () => setUsageOpen(true),
+    openCloud: () => setSettingsOpen(true),
+    openMcp: () => showToast("info", "MCP (Model Context Protocol): Servers configured via ~/.x-cli/mcp.json"),
     toggleAutopilot: () => {
       showToast("info", "Autopilot mode is not yet available in the web app.")
     },
@@ -647,7 +649,7 @@ function ChatTitleBar(): ReactNode {
   )
 }
 
-/** Listen for __magnitude:interrupt-all custom event → Interrupt RPC with target: all */
+/** Listen for __x-cli:interrupt-all custom event → Interrupt RPC with target: all */
 function useInterruptAllListener(): void {
   const client = useAgentClient()
   const selectedSessionId = useSelectedSessionId()
@@ -666,9 +668,9 @@ function useInterruptAllListener(): void {
               },
             })
           }
-          window.addEventListener("__magnitude:interrupt-all", handler)
+          window.addEventListener("__x-cli:interrupt-all", handler)
           yield* Effect.addFinalizer(() =>
-            Effect.sync(() => window.removeEventListener("__magnitude:interrupt-all", handler)),
+            Effect.sync(() => window.removeEventListener("__x-cli:interrupt-all", handler)),
           )
         }),
       ),
@@ -817,10 +819,38 @@ function AuthenticatedAppContent({ isNarrow }: { isNarrow: boolean }): ReactNode
   )
 }
 
+import { LandingPage } from "./components/landing/LandingPage"
+
 export function App(): ReactNode {
+  const [viewMode, setViewMode] = useState<"landing" | "app">(() => {
+    if (typeof window !== "undefined") {
+      const path = window.location.pathname
+      if (path === "/app") return "app"
+      if (path === "/landing" || path === "/") return "landing"
+    }
+    return "landing"
+  })
+
+  if (viewMode === "landing") {
+    return (
+      <LandingPage
+        onLaunchApp={() => {
+          setViewMode("app")
+          if (typeof window !== "undefined") {
+            window.history.pushState({}, "", "/app")
+          }
+        }}
+        onOpenDocs={() => {
+          window.open("http://localhost:3000", "_blank")
+        }}
+      />
+    )
+  }
+
   return (
     <DisplayViewControllerProvider>
       <AppInner />
     </DisplayViewControllerProvider>
   )
 }
+

@@ -10,8 +10,8 @@
  * Translates AppEvents → HarnessEvents and steps the composed reducer.
  */
 
-import { Projection } from '@magnitudedev/event-core'
-import type { ResponseUsage } from '@magnitudedev/ai'
+import { Projection } from '@x-cli/event-core'
+import type { ResponseUsage } from '@x-cli/ai'
 import {
   createTurnReducer,
   defineToolkit,
@@ -22,7 +22,7 @@ import {
   type Toolkit,
   type TurnStateForToolHandle,
   type TurnOutcome as HarnessTurnOutcome,
-} from '@magnitudedev/harness'
+} from '@x-cli/harness'
 import type { AppEvent, TurnOutcomeEvent } from '../events'
 import { ToolUniverseAmbient } from '../ambient/tool-universe-ambient'
 import { ToolHandleSchema, type ToolHandleFromSchema } from '../models/tool-handle-schema'

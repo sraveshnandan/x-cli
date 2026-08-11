@@ -7,7 +7,7 @@
  */
 
 import type { Layer } from 'effect'
-import type { Fork } from '@magnitudedev/event-core'
+import type { Fork } from '@x-cli/event-core'
 import type { ToolInterceptorTag } from './permission-gate'
 import type { WorkingDirectoryTag } from './working-directory'
 import type { AgentStateReaderTag } from '../tools/fork'
@@ -18,7 +18,7 @@ import type { TaskGraphStateReaderTag } from '../tools/task-reader'
 import type { PolicyContextProviderTag } from '../agents/types'
 import type { ProjectionReaderTag } from '../observables/projection-reader'
 import type { ChatPersistence } from '../persistence/chat-persistence-service'
-import type { ShadowVcs } from '@magnitudedev/vcs'
+import type { ShadowVcs } from '@x-cli/vcs'
 
 /**
  * Union of all service identifiers provided by a fork-scoped layer.

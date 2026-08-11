@@ -1,8 +1,8 @@
-import type { JsonEncodedSchema } from "@magnitudedev/utils/schema"
-import type { ToolDefinition, ValidationIssue } from "@magnitudedev/ai"
+import type { JsonEncodedSchema } from "@x-cli/utils/schema"
+import type { ToolDefinition, ValidationIssue } from "@x-cli/ai"
 import type { Schema } from "effect"
 import { Data, type Effect } from "effect"
-import type { StreamingPartial } from "@magnitudedev/ai"
+import type { StreamingPartial } from "@x-cli/ai"
 
 // --- StreamValidationError ---
 

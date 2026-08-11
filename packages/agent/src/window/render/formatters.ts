@@ -5,9 +5,9 @@
  * createAgentFormatter: wraps with <permission_rejected> for denied tool calls.
  */
 
-import type { ToolResultPart } from '@magnitudedev/ai'
-import type { ToolResultEntry, ToolResult } from '@magnitudedev/harness'
-import { isImageValue, type ToolResultFormatter } from '@magnitudedev/harness'
+import type { ToolResultPart } from '@x-cli/ai'
+import type { ToolResultEntry, ToolResult } from '@x-cli/harness'
+import { isImageValue, type ToolResultFormatter } from '@x-cli/harness'
 import { describeShape, estimateText } from '../../truncation'
 import { TRUNCATION_TOKEN_LIMIT } from '../../constants'
 import { renderContextParts, type ContextImageResult } from '../../content'

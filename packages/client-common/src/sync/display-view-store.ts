@@ -6,7 +6,7 @@ import {
   type DisplayTimeline,
   type DisplayTimelineEntry,
   type DisplayViewShape,
-} from "@magnitudedev/sdk";
+} from "@x-cli/sdk";
 import {
   compilePatchMap,
   diffDecoded,
@@ -14,7 +14,7 @@ import {
   type DecodedPatchOp,
   type DecodedValue,
   type Path,
-} from "@magnitudedev/utils/patch";
+} from "@x-cli/utils/patch";
 
 type Mutable<T> = T extends (...args: any[]) => any
   ? T
@@ -82,7 +82,7 @@ const nextSpeculativeId = (): string =>
 // Compile the patch map once for decoded-level diffing.
 const patchMap = compilePatchMap(DisplayViewSnapshot);
 
-import type { DecodedSome, DecodedNone } from "@magnitudedev/utils/patch";
+import type { DecodedSome, DecodedNone } from "@x-cli/utils/patch";
 
 function isDecodedOption(v: DecodedValue): v is DecodedSome | DecodedNone {
   return (

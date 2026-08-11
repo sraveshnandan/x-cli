@@ -9,7 +9,7 @@ import {
   type DisplayTimeline,
   type DisplayViewShape,
   type StreamEvent,
-} from '@magnitudedev/sdk'
+} from '@x-cli/sdk'
 import { applyStreamEvent } from '../apply-stream-event'
 import { appendMessageToTimeline, createDisplayViewStore } from '../display-view-store'
 

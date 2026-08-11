@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { Effect, Layer, Stream } from 'effect'
 import { FetchHttpClient } from '@effect/platform'
-import { EventEngine } from '@magnitudedev/event-core'
+import { EventEngine } from '@x-cli/event-core'
 import {
   createStreamingFieldParser,
   ModelStreamTerminal,
@@ -13,8 +13,8 @@ import {
   type ResponseStreamEvent,
   type ToolCallId,
   type ToolDefinition,
-} from '@magnitudedev/ai'
-import type { BaseCallOptions, ProviderRejection } from '@magnitudedev/sdk'
+} from '@x-cli/ai'
+import type { BaseCallOptions, ProviderRejection } from '@x-cli/sdk'
 
 import type { AppEvent, TurnOutcomeEvent } from '../src/events'
 import { AgentModelResolver } from '../src/model/model-resolver'
@@ -225,7 +225,7 @@ function makeModelResolver(escalateOnCalls: Set<number>) {
     modelSource: { slotId: 'secondary' },
     modelId: 'util/observer',
     modelDisplayName: 'Observer',
-    providerId: 'magnitude',
+    providerId: 'x-cli',
     profile,
     debug: false,
     agentId: 'observer',

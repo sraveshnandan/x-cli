@@ -7,12 +7,12 @@
  * pairs so the model sees its own past tool calls as actual tool history.
  */
 
-import { Prompt, type Message as AiMessage, createToolCallId } from '@magnitudedev/ai'
-import type { ProviderToolCallId } from '@magnitudedev/ai'
+import { Prompt, type Message as AiMessage, createToolCallId } from '@x-cli/ai'
+import type { ProviderToolCallId } from '@x-cli/ai'
 import { Option } from 'effect'
-import { ContentBuilder } from '@magnitudedev/harness'
+import { ContentBuilder } from '@x-cli/harness'
 import { renderContextParts, type ContextPart } from '../content'
-import { observerPrompt } from '@magnitudedev/roles'
+import { observerPrompt } from '@x-cli/roles'
 import type { ForkWindowState, WindowEntry, CompletedTurn } from '../window/types'
 import type { TimelineEntry } from '../window/inbox/types'
 import {
@@ -234,7 +234,7 @@ function renderTurnTools(turn: CompletedTurn): string | null {
 }
 
 function assistantTurnToObserverMessage(turn: CompletedTurn): AiMessage | null {
-  const parts: string[] = ['<magnitude>']
+  const parts: string[] = ['<x-cli>']
 
   const reasoning = Option.getOrElse(turn.assistant.reasoning, () => null)
   if (reasoning && reasoning.length > 0) {
@@ -254,7 +254,7 @@ function assistantTurnToObserverMessage(turn: CompletedTurn): AiMessage | null {
     parts.push(`<feedback from="user">\n${feedback}\n</feedback>`)
   }
 
-  parts.push('</magnitude>')
+  parts.push('</x-cli>')
   if (parts.length <= 2) return null
   return textMessage(parts.join('\n'))
 }
@@ -366,7 +366,7 @@ export function observerWindowToPrompt(input: ObserverWindowPromptInput): Prompt
       case 'attempt_feedback': {
         const feedback = renderFeedbackText(msg.feedback)
         if (feedback) {
-          messages.push(textMessage(`<magnitude>\n<feedback from="user">\n${feedback}\n</feedback>\n</magnitude>`))
+          messages.push(textMessage(`<x-cli>\n<feedback from="user">\n${feedback}\n</feedback>\n</x-cli>`))
         }
         break
       }

@@ -99,13 +99,13 @@ const AcnNeutralRpcs = RpcGroup.make(
   ClientLease.ReleaseClientLease,
 ).annotateRpcs(AcnRpcRecoveryPolicyTag, "ReplaySafe")
 
-export const MagnitudeRpcs = AcnNeutralRpcs.merge(
+export const XCliRpcs = AcnNeutralRpcs.merge(
   AcnSubscriptions,
   AcnDemandRpcs,
 )
 
 export const acnRpcRecoveryPolicy = (tag: string) => {
-  const rpc = MagnitudeRpcs.requests.get(tag)
+  const rpc = XCliRpcs.requests.get(tag)
   if (rpc === undefined) throw new TypeError(`Unknown ACN RPC ${tag}`)
   const policy = Context.getOption(rpc.annotations, AcnRpcRecoveryPolicyTag)
   if (policy._tag === "None") throw new TypeError(`Finite ACN RPC ${tag} has no recovery policy`)

@@ -4,7 +4,7 @@ import {
   AcnSubscriptionTerminated,
   ACN_SUBSCRIPTION_KEEPALIVE_INTERVAL_MS,
   type AcnSubscriptionControl,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import { Context, Effect, Fiber, Layer, Option, Ref, Scope } from "effect"
 
 export interface AcnSubscriptionRegistration {

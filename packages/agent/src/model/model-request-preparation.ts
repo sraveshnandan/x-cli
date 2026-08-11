@@ -3,9 +3,9 @@ import type {
   ProviderId,
   ProviderModelId,
   SlotId,
-} from '@magnitudedev/sdk'
-import type { ModelRequestProgress, StreamStartFailure } from '@magnitudedev/ai'
-import { ModelReleaseReasonSchema } from '@magnitudedev/acn-protocol'
+} from '@x-cli/sdk'
+import type { ModelRequestProgress, StreamStartFailure } from '@x-cli/ai'
+import { ModelReleaseReasonSchema } from '@x-cli/acn-protocol'
 
 export class ModelRequestPreparationFailed extends Schema.TaggedError<ModelRequestPreparationFailed>()(
   'ModelRequestPreparationFailed',

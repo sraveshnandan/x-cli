@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test'
 import type { KeyEvent } from '@opentui/core'
 import { createPasteFallbackController } from './use-paste-handler'
-import { isPasteFallbackKey } from '@magnitudedev/client-common'
+import { isPasteFallbackKey } from '@x-cli/client-common'
 
 function createKey(overrides: Partial<KeyEvent> = {}): KeyEvent {
   return {

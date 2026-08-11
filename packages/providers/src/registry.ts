@@ -12,8 +12,8 @@ import type {
   ModelPropertyDiscoveryRequest,
   ModelDiscoveryOperationId,
   ModelPropertyDiscoveryError,
-} from "@magnitudedev/ai"
-import type { MagnitudeProviderInstance } from "./magnitude/provider"
+} from "@x-cli/ai"
+import type { XCliProviderInstance } from "./x-cli/provider"
 import { inspectProviderCatalogs, makeAggregatedCatalog, type ProviderCatalogOutcome } from "./catalog-aggregator"
 
 export type AuthStatus =
@@ -73,20 +73,20 @@ export class ProviderRegistry extends Context.Tag("ProviderRegistry")<
  * Only non-null instances are activated.
  */
 export function makeProviderRegistry(config: {
-  readonly magnitude: MagnitudeProviderInstance | null
+  readonly xCli: XCliProviderInstance | null
   readonly discoverableProviders?: readonly DiscoverableProviderInstance[]
 }): ProviderRegistryService {
   const providers = new Map<ProviderId, Pick<Provider, "id" | "bindModel" | "catalog" | "discoverModelProperties">>()
   const providerInfos: ProviderInfo[] = []
 
-  if (config.magnitude) {
-    providers.set(config.magnitude.provider.id, config.magnitude.provider)
+  if (config.xCli) {
+    providers.set(config.xCli.provider.id, config.xCli.provider)
     providerInfos.push({
-      id: config.magnitude.provider.id,
-      displayName: "Magnitude",
-      authStatus: config.magnitude.authentication._tag === "Configured"
+      id: config.xCli.provider.id,
+      displayName: "x-cli",
+      authStatus: config.xCli.authentication._tag === "Configured"
         ? { _tag: "authenticated" }
-        : { _tag: "not_configured", reason: "Magnitude authentication is not configured" },
+        : { _tag: "not_configured", reason: "x-cli authentication is not configured" },
     })
   }
 
@@ -137,6 +137,6 @@ export function makeProviderRegistry(config: {
 }
 
 export const ProviderRegistryLive = (config: {
-  readonly magnitude: MagnitudeProviderInstance | null
+  readonly xCli: XCliProviderInstance | null
   readonly discoverableProviders?: readonly DiscoverableProviderInstance[]
 }) => Layer.succeed(ProviderRegistry, makeProviderRegistry(config))

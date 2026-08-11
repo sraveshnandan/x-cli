@@ -7,10 +7,10 @@
  * Composes shared helpers from ./shared.ts and formatters from ./formatters.ts.
  */
 
-import { Prompt, type Message as AiMessage, type TerminalMessages } from '@magnitudedev/ai'
+import { Prompt, type Message as AiMessage, type TerminalMessages } from '@x-cli/ai'
 import type { ForkWindowState } from '../types'
-import type { ToolResultEntry } from '@magnitudedev/harness'
-import type { ToolResultFormatter } from '@magnitudedev/harness'
+import type { ToolResultEntry } from '@x-cli/harness'
+import type { ToolResultFormatter } from '@x-cli/harness'
 import { createTruncatingFormatter } from './formatters'
 import {
   systemEntryToMessages,

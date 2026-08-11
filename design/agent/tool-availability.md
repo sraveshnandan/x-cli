@@ -94,7 +94,7 @@ Keys never enter ambients, events, projections, display state, introspection, or
 
 ## Acceptance criteria
 
-1. Exa selects direct Exa regardless of stored or environment Magnitude credentials.
+1. Exa selects direct Exa regardless of stored or environment x-cli credentials.
 2. Without Exa, `web_search` is removed from model tool definitions.
 3. Current unavailability never prevents historical web-search events from replaying.
 4. Resident sessions reflect availability changes in their next effective toolkit, while searches

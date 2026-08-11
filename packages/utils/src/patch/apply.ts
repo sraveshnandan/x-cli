@@ -97,7 +97,7 @@ function replaceOrAdd(
     if (unwrapped === null) {
       // For replace ops, navigating into Option.none or null is an error
       if (!isAdd) {
-        return yield* Effect.fail(new PatchNavigationError({ path: fullPath, reason: 'option_none' }))
+        return yield* new PatchNavigationError({ path: fullPath, reason: 'option_none' })
       }
       // For add ops, auto-create container for new paths
       if (typeof key === 'number') {
@@ -119,7 +119,7 @@ function replaceOrAdd(
     }
 
     if (!isArray(unwrapped) && !isRecord(unwrapped)) {
-      return yield* Effect.fail(new PatchNavigationError({ path: fullPath, reason: 'non_container' }))
+      return yield* new PatchNavigationError({ path: fullPath, reason: 'non_container' })
     }
 
     const isOptionWrapped = isDecodedOption(current)
@@ -169,7 +169,7 @@ function removeAt(
 ): Effect.Effect<DecodedValue, PatchApplyError> {
   return Effect.gen(function* () {
     if (path.length === 0) {
-      return yield* Effect.fail(new PatchNavigationError({ path: fullPath, reason: 'cannot_remove_root' }))
+      return yield* new PatchNavigationError({ path: fullPath, reason: 'cannot_remove_root' })
     }
 
     const key = path[0]
@@ -177,11 +177,11 @@ function removeAt(
 
     const unwrapped = unwrapOption(current)
     if (unwrapped === null) {
-      return yield* Effect.fail(new PatchNavigationError({ path: fullPath, reason: 'option_none' }))
+      return yield* new PatchNavigationError({ path: fullPath, reason: 'option_none' })
     }
 
     if (!isArray(unwrapped) && !isRecord(unwrapped)) {
-      return yield* Effect.fail(new PatchNavigationError({ path: fullPath, reason: 'non_container' }))
+      return yield* new PatchNavigationError({ path: fullPath, reason: 'non_container' })
     }
 
     const isOptionWrapped = isDecodedOption(current)
@@ -259,7 +259,7 @@ function moveOp(
     for (const key of from) {
       const unwrapped = unwrapOption(value)
       if (unwrapped === null || (!isArray(unwrapped) && !isRecord(unwrapped))) {
-        return yield* Effect.fail(new PatchNavigationError({ path: from, reason: 'move_source_missing' }))
+        return yield* new PatchNavigationError({ path: from, reason: 'move_source_missing' })
       }
       value = isArray(unwrapped)
         ? (unwrapped[toIndex(key)] ?? Option.none())
@@ -267,7 +267,7 @@ function moveOp(
     }
     const extracted = unwrapOption(value)
     if (extracted === null) {
-      return yield* Effect.fail(new PatchNavigationError({ path: from, reason: 'move_source_none' }))
+      return yield* new PatchNavigationError({ path: from, reason: 'move_source_none' })
     }
 
     // Remove from source

@@ -11,7 +11,7 @@ import {
   makeAmbientServiceLayer,
   FrameworkErrorPubSubLive,
   FrameworkErrorReporterLive,
-} from '@magnitudedev/event-core'
+} from '@x-cli/event-core'
 import type { AppEvent } from '../src/events'
 import { DetachedProcessProjection, type DetachedProcessState } from '../src/projections/detached-process'
 import { TurnProjection, type TurnIdle, type TurnLifecycleState } from '../src/projections/turn'
@@ -109,7 +109,7 @@ const makeWindowState = async (events: AppEvent[]): Promise<ForkWindowState> => 
     const bus = yield* ProjectionBusTag<AppEvent>()
     const projection = yield* WindowProjection.Tag
 
-    const ambientService = yield* (yield* Effect.promise(() => import('@magnitudedev/event-core'))).AmbientServiceTag
+    const ambientService = yield* (yield* Effect.promise(() => import('@x-cli/event-core'))).AmbientServiceTag
     yield* ambientService.register(SkillsAmbient)
     yield* ambientService.update(SkillsAmbient, new Map())
 

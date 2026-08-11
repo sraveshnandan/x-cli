@@ -15,7 +15,7 @@ import {
   buildConfigStateFromSlots,
   sameConfigStateValue,
   type ConfigState,
-} from "@magnitudedev/agent"
+} from "@x-cli/agent"
 import {
   LocalModelMutationFailed,
   modelOfferingTargetPackageIds,
@@ -50,19 +50,19 @@ import {
   type ProviderModelIdentity,
   type SlotId,
   type SlotSelection,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   CurrentModelInstance,
   IcnClient,
   IcnInstances,
-} from "@magnitudedev/icn"
-import type * as Generated from "@magnitudedev/icn-protocol/schemas"
+} from "@x-cli/icn"
+import type * as Generated from "@x-cli/icn-protocol/schemas"
 import {
   ReasoningEffortSchema,
   type ProviderId,
   type ProviderModelId,
-} from "@magnitudedev/sdk"
-import { PROVIDER_ID as LOCAL_PROVIDER_ID } from "@magnitudedev/icn/provider"
+} from "@x-cli/sdk"
+import { PROVIDER_ID as LOCAL_PROVIDER_ID } from "@x-cli/icn/provider"
 import { ModelConfiguration } from "./model-configuration"
 import { MirroredStateChanges } from "./mirrored-state"
 import { LocalModelPackages } from "./local-model-packages"

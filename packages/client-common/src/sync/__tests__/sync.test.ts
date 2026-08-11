@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { DisplayMessage, DisplayState as SdkDisplayState, DisplayViewShape } from '@magnitudedev/sdk'
+import type { DisplayMessage, DisplayState as SdkDisplayState, DisplayViewShape } from '@x-cli/sdk'
 import { createDisplayViewStore } from '../display-view-store'
 
 describe('createDisplayViewStore', () => {

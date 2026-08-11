@@ -13,7 +13,7 @@ import {
   type ProviderModelIdentity,
   type SlotId,
   type SlotSelection,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { useAgentClient } from "../state/agent-client-context"
 import { useMirroredState } from "./use-mirrored-state"
 

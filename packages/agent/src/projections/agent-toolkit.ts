@@ -1,6 +1,6 @@
-import { Projection, type WorkerReadFn } from '@magnitudedev/event-core'
+import { Projection, type WorkerReadFn } from '@x-cli/event-core'
 import { Effect, Schema } from 'effect'
-import type { Toolkit } from '@magnitudedev/harness'
+import type { Toolkit } from '@x-cli/harness'
 import type { AppEvent } from '../events'
 import {
   ConfigAmbient,

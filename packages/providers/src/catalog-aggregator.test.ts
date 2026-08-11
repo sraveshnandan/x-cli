@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { Cause, Chunk, Effect } from "effect"
 import { FetchHttpClient } from "@effect/platform"
-import { ModelCatalogError, ProviderIdSchema, ProviderModelIdSchema, ReasoningEffortSchema, ReasoningProperty, VisionProperty, type ModelCatalog, type ProviderModel } from "@magnitudedev/ai"
+import { ModelCatalogError, ProviderIdSchema, ProviderModelIdSchema, ReasoningEffortSchema, ReasoningProperty, VisionProperty, type ModelCatalog, type ProviderModel } from "@x-cli/ai"
 import { inspectProviderCatalogs, makeAggregatedCatalog } from "./catalog-aggregator"
 
 const catalog = (list: ModelCatalog<ProviderModel>["list"]): ModelCatalog<ProviderModel> => ({

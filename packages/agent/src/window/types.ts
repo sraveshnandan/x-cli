@@ -1,5 +1,5 @@
-import { AssistantMessageSchema } from '@magnitudedev/ai'
-import { ToolResultEntrySchema } from '@magnitudedev/harness'
+import { AssistantMessageSchema } from '@x-cli/ai'
+import { ToolResultEntrySchema } from '@x-cli/harness'
 import { Schema, Option } from 'effect'
 import { TimelineEntrySchema } from './inbox/types'
 import { ContextPartSchema } from '../content'

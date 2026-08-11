@@ -23,11 +23,11 @@
 import { Context, Effect, Layer, Deferred, Scope, Cause, Option, Exit, Queue, Stream, SubscriptionRef, Runtime } from 'effect'
 import type { ReadableSubprocess, FileSink } from 'bun'
 import { DetachedShellRegistry, type DetachedShellRegistryService, type ExecuteDetachedOutput, type ShellOutputChunk } from './detached-process-registry'
-import type { WorkerBusService } from '@magnitudedev/event-core'
+import type { WorkerBusService } from '@x-cli/event-core'
 import type { AppEvent } from '../events'
 import { mkdirSync, readFileSync, rmSync } from 'fs'
 import * as path from 'path'
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 import { discoverDescendants } from './ps-tree'
 
 // ── Types ────────────────────────────────────────────────────────────

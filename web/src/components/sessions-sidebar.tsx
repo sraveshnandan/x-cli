@@ -13,12 +13,12 @@
 import { useCallback, useMemo, useRef, useState, type ReactNode } from "react"
 import { Loader2, Plus, Search, X, GripVertical, Pencil, Trash2, Settings, BarChart3, ChevronDown } from "lucide-react"
 import { useAtomValue, useAtomSet } from "@effect-atom/atom-react"
-import { formatCwdForDisplay, formatRelativeTime } from "@magnitudedev/client-common"
+import { formatCwdForDisplay, formatRelativeTime } from "@x-cli/client-common"
 import {
   useAgentClient,
   useSelectedSessionId,
   useSessionActions,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import {
   sidebarSearchAtom,
   sidebarWidthAtom,

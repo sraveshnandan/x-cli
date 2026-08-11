@@ -15,7 +15,7 @@ import {
   injectCssVars,
   createBrowserPlatform,
   stopDisplayViewController,
-} from "@magnitudedev/web"
+} from "@x-cli/web"
 import "./styles/vars.css"
 import "./styles/globals.css"
 

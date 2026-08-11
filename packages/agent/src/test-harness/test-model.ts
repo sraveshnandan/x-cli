@@ -1,5 +1,5 @@
 import { Effect, Stream } from 'effect'
-import type { BoundModel, ModelSpec, ModelStreamResult, ResponseStreamEvent } from '@magnitudedev/ai'
+import type { BoundModel, ModelSpec, ModelStreamResult, ResponseStreamEvent } from '@x-cli/ai'
 
 /**
  * Configuration for a test BoundModel.

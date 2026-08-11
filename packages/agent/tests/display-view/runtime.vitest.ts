@@ -3,9 +3,9 @@ import {
   Addressed,
   AmbientServiceTag,
   EventEngine,
-} from '@magnitudedev/event-core'
+} from '@x-cli/event-core'
 import { Duration, Effect, Fiber, Layer, Queue, Stream } from 'effect'
-import type { DisplayViewShape } from '@magnitudedev/acn-protocol'
+import type { DisplayViewShape } from '@x-cli/acn-protocol'
 import type { AppEvent } from '../../src/events'
 import { AgentRoutingProjection } from '../../src/projections/agent-routing'
 import { AgentLifecycleProjection } from '../../src/projections/agent-lifecycle'

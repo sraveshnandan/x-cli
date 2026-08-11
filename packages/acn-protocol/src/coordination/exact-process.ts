@@ -26,7 +26,7 @@ export interface ExactProcessController {
 }
 
 export const ExactProcessController = Context.GenericTag<ExactProcessController>(
-  "@magnitudedev/acn-protocol/coordination/ExactProcessController",
+  "@x-cli/acn-protocol/coordination/ExactProcessController",
 )
 
 const failed = (pid: number, operation: string, cause: unknown) =>

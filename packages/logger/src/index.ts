@@ -1,14 +1,14 @@
 // Browser-safe logger — spec §6.5
 //
-// In Node (CLI/ACN), logs are persisted to disk via @magnitudedev/storage.
+// In Node (CLI/ACN), logs are persisted to disk via @x-cli/storage.
 // In the browser (web/desktop renderer), we skip disk persistence entirely
 // and only emit to console + in-memory subscribers.
 //
-// The key constraint: @magnitudedev/storage imports node:os, node:path,
+// The key constraint: @x-cli/storage imports node:os, node:path,
 // node:crypto — all Node-only. We must NOT import it at module load time
 // in browser contexts.
 
-import type { GlobalStoragePaths } from '@magnitudedev/storage'
+import type { GlobalStoragePaths } from '@x-cli/storage'
 
 // Detect browser: window exists, process is undefined or is the Vite stub
 const isBrowser =
@@ -16,14 +16,14 @@ const isBrowser =
   typeof (globalThis as unknown as { window?: unknown }).window !== 'undefined'
 
 // Storage module reference — lazily loaded in Node
-let storageModule: typeof import('@magnitudedev/storage') | null = null
+let storageModule: typeof import('@x-cli/storage') | null = null
 
 // Eagerly load storage in Node environments
 if (!isBrowser) {
   try {
     // Use dynamic import — works in both Bun and Node ESM
     // The await is safe because Bun/Node support top-level await in ESM
-    storageModule = await import('@magnitudedev/storage')
+    storageModule = await import('@x-cli/storage')
   } catch {
     // Storage not available — logger works in console-only mode
   }

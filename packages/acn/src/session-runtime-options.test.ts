@@ -9,7 +9,7 @@ import {
   Version,
   makeGlobalStoragePaths,
   makeProjectStoragePaths,
-} from "@magnitudedev/storage";
+} from "@x-cli/storage";
 import { Effect, Layer } from "effect";
 import { afterEach, beforeEach, describe, expect, test } from "vitest";
 import {
@@ -62,7 +62,7 @@ describe("SessionRuntimeOptionsStore", () => {
 
   beforeEach(async () => {
     tmpDir = await mkdtemp(
-      join(tmpdir(), "magnitude-acn-session-runtime-options-")
+      join(tmpdir(), "x-cli-acn-session-runtime-options-")
     );
     paths = makeGlobalStoragePaths(tmpDir);
   });

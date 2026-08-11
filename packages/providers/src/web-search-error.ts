@@ -1,6 +1,6 @@
 import { Schema } from "effect"
 
-export const WebSearchProviderSchema = Schema.Literal("magnitude", "exa")
+export const WebSearchProviderSchema = Schema.Literal("x-cli", "exa")
 export type WebSearchProvider = typeof WebSearchProviderSchema.Type
 
 const PayloadSampleSchema = Schema.Struct({
@@ -75,7 +75,7 @@ export type WebSearchError =
   | WebSearchInvalidResponse
 
 const providerName = (provider: WebSearchProvider): string =>
-  provider === "magnitude" ? "Magnitude Cloud" : "Exa"
+  provider === "x-cli" ? "x-cli Cloud" : "Exa"
 
 export function formatWebSearchError(error: WebSearchError): string {
   switch (error._tag) {

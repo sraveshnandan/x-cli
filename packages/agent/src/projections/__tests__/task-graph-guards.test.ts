@@ -6,7 +6,7 @@ import {
   makeAmbientServiceLayer,
   makeProjectionBusLayer,
   ProjectionBusTag,
-} from '@magnitudedev/event-core'
+} from '@x-cli/event-core'
 import type { AppEvent, TaskAssigned, TaskCreated, TaskUpdated } from '../../events'
 import { AgentLifecycleProjection } from '../agent-lifecycle'
 import { TaskGraphProjection, type TaskGraphState } from '../task-graph'

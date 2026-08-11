@@ -1,19 +1,19 @@
 import {
-  MagnitudeRpcs,
+  XCliRpcs,
   LocalModelMutationFailed,
   SessionOperationFailed,
   ModelSlotMutationRejected,
   type DisplayViewShape,
   type ModelOfferingTargetId,
   type SessionError,
-} from "@magnitudedev/acn-protocol";
+} from "@x-cli/acn-protocol";
 import { Cause, Chunk, Effect, Option, Stream } from "effect";
 import { SessionCommands } from "./session-commands";
 import { SessionLifecycle } from "./session-lifecycle";
 import { ProviderCredentials } from "./provider-credentials";
 import { ProviderModelCatalog } from "./provider-model-catalog";
 import { ModelSlotController } from "./model-slot-controller";
-import { MagnitudeCloudUsage } from "./magnitude-cloud-usage";
+import { XCliCloudUsage } from "./x-cli-cloud-usage";
 import { ActiveSessionStatusesService } from "./active-session-statuses";
 import { DisplayViewStreams } from "./display-view-streams";
 import { ACN_VERSION } from "./version";
@@ -34,8 +34,8 @@ import {
   searchMentions,
   watchFile,
 } from "./ops";
-import { UserBashCommandId, type AppEvent } from "@magnitudedev/agent";
-import { createId } from "@magnitudedev/generate-id";
+import { UserBashCommandId, type AppEvent } from "@x-cli/agent";
+import { createId } from "@x-cli/generate-id";
 import { Onboarding } from "./onboarding";
 import { MirroredStateChanges } from "./mirrored-state";
 import { LocalInferenceHardware } from "./local-inference-hardware";
@@ -43,7 +43,7 @@ import { LocalModelPackages } from "./local-model-packages";
 import { LocalModels } from "./local-models";
 import { LocalProviderOfferings } from "./local-provider-offerings";
 import { LocalModelRecommendations } from "./local-model-recommendations";
-import { modelOfferingTargetPackageIds } from "@magnitudedev/acn-protocol";
+import { modelOfferingTargetPackageIds } from "@x-cli/acn-protocol";
 import { ClientLeaseManager } from "./client-lease-manager";
 
 const MAX_BASH_OUTPUT_LENGTH = 50_000;
@@ -53,7 +53,7 @@ const normalizeBashOutput = (output: string): string =>
     ? `${output.slice(0, MAX_BASH_OUTPUT_LENGTH)}\n[truncated]`
     : output;
 
-export const HandlersLive = MagnitudeRpcs.toLayer(
+export const HandlersLive = XCliRpcs.toLayer(
   Effect.gen(function* () {
     const lifecycle = yield* AcnServiceLifecycle;
     const sessionCommands = yield* SessionCommands;
@@ -61,7 +61,7 @@ export const HandlersLive = MagnitudeRpcs.toLayer(
     const providerCredentials = yield* ProviderCredentials;
     const providerModelCatalog = yield* ProviderModelCatalog;
     const modelSlots = yield* ModelSlotController;
-    const cloudUsage = yield* MagnitudeCloudUsage;
+    const cloudUsage = yield* XCliCloudUsage;
     const activeSessionStatuses = yield* ActiveSessionStatusesService;
     const displayStreams = yield* DisplayViewStreams;
     const onboarding = yield* Onboarding;

@@ -6,7 +6,7 @@ import {
   type StreamingSchemaResult,
 } from '../../ai/src/streaming/streaming-schema'
 import { createStreamingFieldParser } from '../../ai/src/streaming/field-parser'
-import { JsonValueSchema } from '@magnitudedev/utils/schema'
+import { JsonValueSchema } from '@x-cli/utils/schema'
 import { webSearchTool } from '../src/tools/web-search'
 import type { ParsedValue } from '../../ai/src/streaming/types'
 

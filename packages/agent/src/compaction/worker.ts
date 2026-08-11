@@ -7,8 +7,8 @@
  */
 
 import { Effect } from 'effect'
-import { Worker, AmbientServiceTag } from '@magnitudedev/event-core'
-import { logger } from '@magnitudedev/logger'
+import { Worker, AmbientServiceTag } from '@x-cli/event-core'
+import { logger } from '@x-cli/logger'
 
 import type { AppEvent } from '../events'
 

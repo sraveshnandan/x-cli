@@ -2,7 +2,7 @@
  * Electron main entry — spec §5.1
  *
  * Responsibilities:
- * 1. Bundle path discovery — find the magnitude-acn binary
+ * 1. Bundle path discovery — find the x-cli-acn binary
  * 2. ACN process management through one Effect-native service
  * 3. OS shell integration — BrowserWindow, preload, menu shortcuts
  *
@@ -35,7 +35,7 @@ import {
   AcnEnsuranceFailed,
   SDK_ACN_TARGET,
   type AcnInstanceManager as AcnInstanceManagerService,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 // ESM doesn't have __dirname — polyfill it
 const __dirname = nodePath.dirname(fileURLToPath(import.meta.url))
@@ -74,7 +74,7 @@ const nodeSpawn: ChildProcessSpawner = {
           const onError = (cause: Error) => {
             cleanup()
             resume(Effect.fail(new AcnEnsuranceFailed({
-                reason: `Failed to spawn Magnitude: ${cause.message}`,
+                reason: `Failed to spawn x-cli: ${cause.message}`,
             })))
           }
           proc.once("spawn", onSpawn)
@@ -229,7 +229,7 @@ function storageRemove(key: string): void {
 }
 
 /**
- * Find the magnitude-acn binary path.
+ * Find the x-cli-acn binary path.
  * In production, it's bundled in process.resourcesPath.
  * In development, let the SDK or source launch command resolve the binary.
  */
@@ -237,13 +237,13 @@ function findBinaryPath(): Option.Option<string> {
   // Check for bundled binary in resources (production)
   const resourcesPath = process.resourcesPath
   if (resourcesPath) {
-    const bundledPath = nodePath.join(resourcesPath, "magnitude-acn")
+    const bundledPath = nodePath.join(resourcesPath, "x-cli-acn")
     if (nodeFs.existsSync(bundledPath)) {
       return Option.some(bundledPath)
     }
     // Also check platform-specific subdirectory
     const platformName = `${process.platform}-${process.arch}`
-    const platformPath = nodePath.join(resourcesPath, "bin", platformName, "magnitude-acn")
+    const platformPath = nodePath.join(resourcesPath, "bin", platformName, "x-cli-acn")
     if (nodeFs.existsSync(platformPath)) {
       return Option.some(platformPath)
     }
@@ -405,7 +405,7 @@ function createWindow(): void {
     mainWindow.loadFile(nodePath.join(__dirname, "../renderer/index.html"))
   }
 
-  // On window close, the renderer sends __magnitude:interrupt-stream
+  // On window close, the renderer sends __x-cli:interrupt-stream
   // to notify main that the stream should be cleaned up (§5.6)
   mainWindow.on("closed", () => {
     mainWindow = null

@@ -3,7 +3,7 @@ export const UNCLOSED_THINK_REMINDER = 'Your response had an unclosed thinking b
 export const UNCLOSED_TASK_REMINDER = 'Your response had an unclosed task block. Be careful to use structural tags correctly and avoid referencing them in your thinking or prose.'
 
 export function formatSpawnNoMessageReminder(taskId: string, taskTitle: string, role: string): string {
-  return `Worker \`${role}\` was spawned on task ${taskId} ("${taskTitle}") but has no instructions yet — it is idle until it receives a message. Send a \`<magnitude:message to="${taskId}">\` to assign it work.`
+  return `Worker \`${role}\` was spawned on task ${taskId} ("${taskTitle}") but has no instructions yet — it is idle until it receives a message. Send a \`<x-cli:message to="${taskId}">\` to assign it work.`
 }
 
 export function formatNonexistentAgentError(destList: string): string {

@@ -52,5 +52,5 @@ export interface ChildProcessSpawner {
 }
 
 export const ChildProcessSpawner = Context.GenericTag<ChildProcessSpawner>(
-  "@magnitudedev/sdk/ChildProcessSpawner",
+  "@x-cli/sdk/ChildProcessSpawner",
 )

@@ -20,7 +20,7 @@ export interface AcnOwnerStore {
 }
 
 export const AcnOwnerStore = Context.GenericTag<AcnOwnerStore>(
-  "@magnitudedev/acn-protocol/coordination/AcnOwnerStore",
+  "@x-cli/acn-protocol/coordination/AcnOwnerStore",
 )
 
 export const makeAcnOwnerStore = (

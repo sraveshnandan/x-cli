@@ -67,7 +67,7 @@ export const WindowsWarningScreen = memo(function WindowsWarningScreen({
       >
         <box style={{ paddingBottom: 1 }}>
           <text style={{ fg: theme.foreground }}>
-            Magnitude requires a Unix-like shell environment and does not run
+            x-cli requires a Unix-like shell environment and does not run
             on native Windows. Please use WSL (Windows Subsystem for Linux) instead.
           </text>
         </box>
@@ -90,11 +90,11 @@ export const WindowsWarningScreen = memo(function WindowsWarningScreen({
             </text>
           </box>
           <box style={{ paddingBottom: 1 }}>
-            <text style={{ fg: theme.muted }}>3. Inside the WSL shell, install Magnitude:</text>
+            <text style={{ fg: theme.muted }}>3. Inside the WSL shell, install x-cli:</text>
           </box>
           <box style={{ paddingLeft: 2, paddingBottom: 1 }}>
             <text style={{ fg: theme.foreground }}>
-              <span attributes={TextAttributes.BOLD}>npm i -g @magnitudedev/cli</span>
+              <span attributes={TextAttributes.BOLD}>npm i -g @x-cli/cli</span>
             </text>
           </box>
           <box style={{ paddingBottom: 1 }}>
@@ -102,7 +102,7 @@ export const WindowsWarningScreen = memo(function WindowsWarningScreen({
           </box>
           <box style={{ paddingLeft: 2, paddingBottom: 1 }}>
             <text style={{ fg: theme.foreground }}>
-              <span attributes={TextAttributes.BOLD}>magnitude</span>
+              <span attributes={TextAttributes.BOLD}>x-cli</span>
             </text>
           </box>
         </box>

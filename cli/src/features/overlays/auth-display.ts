@@ -1,4 +1,4 @@
-import type { ApiKeyState } from '@magnitudedev/client-common'
+import type { ApiKeyState } from '@x-cli/client-common'
 import type { AuthSource } from '../../state/cli-atoms'
 
 type AuthAction = (key: string) => void

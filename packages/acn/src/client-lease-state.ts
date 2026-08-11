@@ -1,4 +1,4 @@
-import type { ClientId } from "@magnitudedev/acn-protocol"
+import type { ClientId } from "@x-cli/acn-protocol"
 
 export interface ClientLease {
   readonly renewalGeneration: number

@@ -13,7 +13,7 @@ describe("recoverable JSONL storage", () => {
   let tmpDir: string
 
   beforeEach(async () => {
-    tmpDir = await mkdtemp(join(tmpdir(), "magnitude-jsonl-storage-"))
+    tmpDir = await mkdtemp(join(tmpdir(), "x-cli-jsonl-storage-"))
   })
 
   afterEach(async () => {

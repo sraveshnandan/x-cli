@@ -1,4 +1,4 @@
-import { Projection, Signal } from '@magnitudedev/event-core'
+import { Projection, Signal } from '@x-cli/event-core'
 import type { AppEvent, ImageAttachment, MentionOccurrence, MentionResolution } from '../events'
 import { Schema } from 'effect'
 import { AgentImageAttachmentSchema, MentionOccurrenceSchema } from '../attachments'

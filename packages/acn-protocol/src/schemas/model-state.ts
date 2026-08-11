@@ -4,8 +4,8 @@ import {
   ProviderIdSchema,
   ProviderModelIdSchema,
   ReasoningEffortSchema,
-} from "@magnitudedev/ai/provider/model"
-import { FSM } from "@magnitudedev/utils"
+} from "@x-cli/ai/provider/model"
+import { FSM } from "@x-cli/utils"
 
 const { defineFSM } = FSM
 

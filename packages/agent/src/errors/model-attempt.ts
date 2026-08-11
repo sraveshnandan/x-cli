@@ -7,7 +7,7 @@ import {
   type ModelAttemptFailureSnapshot,
   type RetryAfter as RetryAfterType,
   type UpstreamRetryability,
-} from '@magnitudedev/ai'
+} from '@x-cli/ai'
 import type { AttemptCommitPolicy, TurnOutcome } from '../events'
 import { TERMINAL_RETRY_EXHAUSTED_MESSAGE } from '../util/retry-backoff'
 import { present, type ErrorPresentation } from './present'

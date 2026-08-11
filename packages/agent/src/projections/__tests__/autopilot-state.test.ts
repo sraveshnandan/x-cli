@@ -6,7 +6,7 @@ import {
   makeAmbientServiceLayer,
   FrameworkErrorPubSubLive,
   FrameworkErrorReporterLive,
-} from '@magnitudedev/event-core'
+} from '@x-cli/event-core'
 import type { AppEvent } from '../../events'
 import { AutopilotStateProjection, type AutopilotState } from '../autopilot-state'
 import { UserMessageResolutionProjection } from '../user-message-resolution'

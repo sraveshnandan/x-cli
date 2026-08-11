@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { StreamOperationalFailure, acceptedHttpResponse, snapshotModelAttemptFailure, type ProviderCall } from '@magnitudedev/ai'
+import { StreamOperationalFailure, acceptedHttpResponse, snapshotModelAttemptFailure, type ProviderCall } from '@x-cli/ai'
 
 describe('snapshotModelAttemptFailure', () => {
   it('captures stream operational failure details without response headers', () => {

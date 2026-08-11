@@ -27,7 +27,7 @@ use tracing_subscriber::filter::EnvFilter;
 use tracing_subscriber::layer::SubscriberExt as _;
 use tracing_subscriber::util::SubscriberInitExt as _;
 
-pub const SERVICE_NAME: &str = "magnitude-icn";
+pub const SERVICE_NAME: &str = "x-cli-icn";
 const MOTEL_BASE_URL: &str = "http://127.0.0.1:27686";
 const EXPORT_INTERVAL: Duration = Duration::from_secs(1);
 
@@ -89,7 +89,7 @@ pub fn init(export: bool) -> anyhow::Result<TelemetryGuard> {
         .with_service_name(SERVICE_NAME)
         .with_attributes([
             KeyValue::new("service.version", env!("CARGO_PKG_VERSION")),
-            KeyValue::new("process.executable.name", "magnitude-icn"),
+            KeyValue::new("process.executable.name", "x-cli-icn"),
         ])
         .build();
 

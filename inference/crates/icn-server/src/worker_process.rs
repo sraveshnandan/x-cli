@@ -172,9 +172,9 @@ mod tests {
         for (path, contents) in [
             (
                 root.path().join("bin").join(if cfg!(windows) {
-                    "magnitude-icn.exe"
+                    "x-cli-icn.exe"
                 } else {
-                    "magnitude-icn"
+                    "x-cli-icn"
                 }),
                 b"executable".as_slice(),
             ),

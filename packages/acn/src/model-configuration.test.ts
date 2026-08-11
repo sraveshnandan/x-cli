@@ -1,12 +1,12 @@
 import { Effect, Option, Ref } from "effect"
 import { describe, expect, it } from "vitest"
-import { ProviderIdSchema, ProviderModelIdSchema, ReasoningEffortSchema } from "@magnitudedev/ai"
-import { PRIMARY_SLOT_ID } from "@magnitudedev/acn-protocol"
-import type { MagnitudeConfig } from "@magnitudedev/storage"
+import { ProviderIdSchema, ProviderModelIdSchema, ReasoningEffortSchema } from "@x-cli/ai"
+import { PRIMARY_SLOT_ID } from "@x-cli/acn-protocol"
+import type { XCliConfig } from "@x-cli/storage"
 import { makeModelConfiguration } from "./model-configuration"
 
 const selection = (model: string) => ({
-  providerId: ProviderIdSchema.make("magnitude"),
+  providerId: ProviderIdSchema.make("x-cli"),
   providerModelId: ProviderModelIdSchema.make(model),
   reasoningEffort: ReasoningEffortSchema.make("high"),
 })
@@ -22,9 +22,9 @@ const modelIdentity = (provider: string, model: string) => ({
   providerModelId: ProviderModelIdSchema.make(model),
 })
 
-const updateStorage = (state: Ref.Ref<MagnitudeConfig>) => ({
+const updateStorage = (state: Ref.Ref<XCliConfig>) => ({
   load: () => Ref.get(state),
-  update: (update: (current: MagnitudeConfig) => MagnitudeConfig) => Ref.modify(state, (current) => {
+  update: (update: (current: XCliConfig) => XCliConfig) => Ref.modify(state, (current) => {
     const next = update(current)
     return [next, next]
   }),
@@ -33,7 +33,7 @@ const updateStorage = (state: Ref.Ref<MagnitudeConfig>) => ({
 describe("model configuration ownership", () => {
   it("updates one addressed slot without replacing its sibling", async () => {
     const result = await Effect.runPromise(Effect.gen(function* () {
-      const state = yield* Ref.make<MagnitudeConfig>({
+      const state = yield* Ref.make<XCliConfig>({
         onboarding: Option.none(),
         models: {
           slots: {
@@ -58,7 +58,7 @@ describe("model configuration ownership", () => {
 
   it("records local model use as bounded per-slot recency", async () => {
     const state = await Effect.runPromise(Effect.gen(function* () {
-      const stored = yield* Ref.make<MagnitudeConfig>({
+      const stored = yield* Ref.make<XCliConfig>({
         onboarding: Option.none(),
         models: {
           slots: {
@@ -85,14 +85,14 @@ describe("model configuration ownership", () => {
 
   it("persists provider-qualified model favorites", async () => {
     const state = await Effect.runPromise(Effect.gen(function* () {
-      const stored = yield* Ref.make<MagnitudeConfig>({ onboarding: Option.none() })
+      const stored = yield* Ref.make<XCliConfig>({ onboarding: Option.none() })
       const configuration = yield* makeModelConfiguration(updateStorage(stored))
       yield* configuration.setFavorite(modelIdentity("local", "shared"), true)
-      yield* configuration.setFavorite(modelIdentity("magnitude", "shared"), true)
+      yield* configuration.setFavorite(modelIdentity("x-cli", "shared"), true)
       yield* configuration.setFavorite(modelIdentity("local", "shared"), false)
       return yield* configuration.get
     }))
 
-    expect(state.favoriteModels).toEqual([modelIdentity("magnitude", "shared")])
+    expect(state.favoriteModels).toEqual([modelIdentity("x-cli", "shared")])
   })
 })

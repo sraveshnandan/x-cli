@@ -11,7 +11,7 @@ import {
   ProviderModelIdSchema,
   ReasoningEffortSchema,
   type DisplayRootStatus,
-} from '@magnitudedev/sdk'
+} from '@x-cli/sdk'
 
 vi.mock('../../hooks/use-theme', () => ({
   useTheme: () => ({ primary: 'cyan', foreground: 'white', muted: 'gray', warning: 'yellow' }),

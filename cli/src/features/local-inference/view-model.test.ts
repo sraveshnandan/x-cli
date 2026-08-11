@@ -7,7 +7,7 @@ import {
   ModelServingConfigurationIdSchema,
   ProviderModelIdSchema,
   RecommendationIdSchema,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
   buildLocalInferenceSelections,
   describeLocalHardware,

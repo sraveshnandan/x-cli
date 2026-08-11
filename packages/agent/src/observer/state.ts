@@ -6,7 +6,7 @@
  */
 
 import { Context, Data, Ref, Layer, Fiber } from 'effect'
-import { FSM } from '@magnitudedev/utils'
+import { FSM } from '@x-cli/utils'
 import type { AppEvent } from '../events'
 
 const { defineFSM } = FSM

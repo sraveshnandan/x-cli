@@ -48,7 +48,7 @@ describe("session storage", () => {
   const sessionId = "session-1";
 
   beforeEach(async () => {
-    tmpDir = await mkdtemp(join(tmpdir(), "magnitude-storage-sessions-"));
+    tmpDir = await mkdtemp(join(tmpdir(), "x-cli-storage-sessions-"));
     paths = makeGlobalStoragePaths(tmpDir);
   });
 

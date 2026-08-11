@@ -15,7 +15,7 @@ import {
   ModelOfferingTargetIdSchema,
   ModelServingConfigurationIdSchema,
   type ModelOfferingTarget,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 
 const packageTarget = (maximumContextLength: number): ModelOfferingTarget => ({
   _tag: "Package",

@@ -8,7 +8,7 @@ import {
   makeShadowVcsLayer,
   ShadowVcs,
   VcsFsLive,
-} from "@magnitudedev/vcs"
+} from "@x-cli/vcs"
 import { mkdir, rm, writeFile, readFile, stat } from "node:fs/promises"
 import * as path from "node:path"
 import * as os from "node:os"
@@ -19,7 +19,7 @@ describe("E2E: VCS checkpoint flow", () => {
 
   beforeEach(async () => {
     projectDir = os.tmpdir() + "/e2e-vcs-" + Date.now()
-    scratchpadPath = path.join(projectDir, ".magnitude")
+    scratchpadPath = path.join(projectDir, ".x-cli")
     await mkdir(projectDir, { recursive: true })
     await writeFile(path.join(projectDir, "README.md"), "# test\n")
   })

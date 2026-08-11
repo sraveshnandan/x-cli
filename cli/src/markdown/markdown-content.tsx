@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { buildMarkdownColorPalette } from '../utils/theme'
-import { parseMarkdownToMdast } from '@magnitudedev/client-common'
+import { parseMarkdownToMdast } from '@x-cli/client-common'
 import { renderDocumentToBlocks, type HighlightRange } from './blocks'
 import { useStreamingMarkdownCache } from './streaming'
 import { useTheme } from '../hooks/use-theme'

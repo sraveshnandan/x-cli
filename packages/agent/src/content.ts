@@ -4,7 +4,7 @@ import type {
   ImagePart as AiImagePart,
   TextPart as AiTextPart,
   UserPart as AiUserPart,
-} from '@magnitudedev/ai'
+} from '@x-cli/ai'
 
 export const ContextTextPartSchema = Schema.TaggedStruct('ContextText', {
   text: Schema.String,

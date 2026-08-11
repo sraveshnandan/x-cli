@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import type { ProviderToolCallId, ToolCallId } from '@magnitudedev/ai'
+import type { ProviderToolCallId, ToolCallId } from '@x-cli/ai'
 import { Option } from 'effect'
 import { computeProvisionalEditDiffs, fileEditModel } from './file-edit'
 

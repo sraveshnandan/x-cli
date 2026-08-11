@@ -5,16 +5,16 @@ import {
   LocalModelMutationFailed,
   ModelInstanceIdSchema,
   ModelServingConfigurationIdSchema,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   ProviderIdSchema,
   ProviderModelIdSchema,
-} from "@magnitudedev/sdk"
-import type { ModelRequestProgress } from "@magnitudedev/ai"
+} from "@x-cli/sdk"
+import type { ModelRequestProgress } from "@x-cli/ai"
 import { makeModelRequestPreparation } from "./model-request-preparation"
 
 const localProviderId = ProviderIdSchema.make("local")
-const remoteProviderId = ProviderIdSchema.make("magnitude")
+const remoteProviderId = ProviderIdSchema.make("x-cli")
 const modelId = ProviderModelIdSchema.make("model")
 const ready = {
   _tag: "Ready" as const,

@@ -16,8 +16,8 @@ import type {
   TableCell,
   Text,
 } from 'mdast'
-import { normalizeReferencedPath } from '@magnitudedev/sdk'
-import type { MarkdownPalette } from '@magnitudedev/client-common'
+import { normalizeReferencedPath } from '@x-cli/sdk'
+import type { MarkdownPalette } from '@x-cli/client-common'
 
 import { tryHighlight } from './highlight-file'
 

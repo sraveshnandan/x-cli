@@ -1,4 +1,4 @@
-import { FSM } from "@magnitudedev/utils";
+import { FSM } from "@x-cli/utils";
 import { Schema } from "effect";
 import { AcnIdentitySchema, AcnInstanceIdSchema } from "../acn-identity";
 import { AcnRevisionSchema } from "../acn-revision";
@@ -24,7 +24,7 @@ export type AcnStartupProgress = typeof AcnStartupProgressSchema.Type;
 export const AcnInstallationPhaseSchema = Schema.Literal(
   "DownloadingDaemon",
   "DownloadingInferenceEngine",
-  "StartingMagnitude"
+  "StartingXCli"
 );
 export type AcnInstallationPhase = typeof AcnInstallationPhaseSchema.Type;
 
@@ -103,7 +103,7 @@ export const AcnHealthStateSchema = Schema.Union(AcnStarting, AcnReady, AcnStopp
 export type AcnHealthState = typeof AcnHealthStateSchema.Type;
 
 export const AcnHealthResponseSchema = Schema.Struct({
-  service: Schema.Literal("magnitude-acn"),
+  service: Schema.Literal("x-cli-acn"),
   version: AcnIdentitySchema,
   revision: AcnRevisionSchema,
   id: AcnInstanceIdSchema,

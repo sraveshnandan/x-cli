@@ -174,7 +174,7 @@ describe('ChatPersistenceService - JSON Backend', () => {
 
   beforeEach(async () => {
     // Create temp directory for tests
-    testDir = join(tmpdir(), `magnitude-test-${createId()}`)
+    testDir = join(tmpdir(), `x-cli-test-${createId()}`)
     await mkdir(testDir, { recursive: true })
     persistence = new JsonChatPersistence(testDir)
     sessionId = createId()
@@ -198,7 +198,7 @@ describe('ChatPersistenceService - JSON Backend', () => {
           forkId: null,
           context: {
             cwd: '/test',
-            scratchpadPath: '/test/.magnitude',
+            scratchpadPath: '/test/.x-cli',
             platform: 'macos',
             shell: 'zsh',
             timezone: 'UTC',

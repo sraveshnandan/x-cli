@@ -9,7 +9,7 @@ import {
   SubscriptionRef,
 } from "effect"
 import { IcnClient, type IcnClientService } from "../client.js"
-import type { ModelInstancesSnapshot } from "@magnitudedev/icn-protocol/schemas"
+import type { ModelInstancesSnapshot } from "@x-cli/icn-protocol/schemas"
 
 type InstancesReadError = Effect.Effect.Error<
   ReturnType<IcnClientService["models"]["getModelInstances"]>
@@ -25,7 +25,7 @@ export interface IcnInstancesService {
   readonly refresh: Effect.Effect<void, InstancesReadError>
 }
 
-export class IcnInstances extends Context.Tag("@magnitudedev/icn/IcnInstances")<
+export class IcnInstances extends Context.Tag("@x-cli/icn/IcnInstances")<
   IcnInstances,
   IcnInstancesService
 >() {}

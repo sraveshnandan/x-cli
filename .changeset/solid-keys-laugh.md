@@ -1,5 +1,5 @@
 ---
-"@magnitudedev/cli": patch
+"@x-cli/cli": patch
 ---
 
 fix render crash

@@ -1,5 +1,5 @@
 import { Option } from "effect"
-import { ModelFamilyIdSchema, type ModelFamily, type ModelFamilyId } from "@magnitudedev/ai"
+import { ModelFamilyIdSchema, type ModelFamily, type ModelFamilyId } from "@x-cli/ai"
 import { dot, lit, num, opt, sep, ver } from "./classifier/symbols"
 import type { Family } from "./classifier/classify"
 import { classify } from "./classifier/classify"

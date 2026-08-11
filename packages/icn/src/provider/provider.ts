@@ -10,8 +10,8 @@ import type {
   Provider,
   ProviderModelBindOptions,
   ProviderModelId,
-} from "@magnitudedev/ai"
-import { ProviderIdSchema } from "@magnitudedev/ai"
+} from "@x-cli/ai"
+import { ProviderIdSchema } from "@x-cli/ai"
 import type { LocalModelInfo } from "./contract"
 
 export const PROVIDER_ID = ProviderIdSchema.make("local")

@@ -1,4 +1,4 @@
-import { animationStep } from '@magnitudedev/client-common'
+import { animationStep } from '@x-cli/client-common'
 import { useAnimationStep } from './use-animation-time'
 
 const SPINNER_FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"] as const

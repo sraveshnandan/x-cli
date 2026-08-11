@@ -2,7 +2,7 @@ import { memo } from 'react'
 import { TextAttributes } from '@opentui/core'
 import { useTheme } from '../../hooks/use-theme'
 import { Button } from '../../components/button'
-import type { SlashCommandDefinition } from '@magnitudedev/client-common'
+import type { SlashCommandDefinition } from '@x-cli/client-common'
 
 interface SlashCommandMenuProps {
   commands: SlashCommandDefinition[]

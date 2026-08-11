@@ -1,5 +1,5 @@
 import { Schema } from 'effect'
-import { ProviderModelIdSchema } from '@magnitudedev/ai'
+import { ProviderModelIdSchema } from '@x-cli/ai'
 import {
   ModelOfferingTargetIdSchema,
   ProviderModelIdentitySchema,
@@ -9,7 +9,7 @@ import {
   SlotSelectionSchema,
   type ModelPackageId,
   type SlotId,
-} from '@magnitudedev/acn-protocol'
+} from '@x-cli/acn-protocol'
 
 const NullableOptional = <A, I, R>(schema: Schema.Schema<A, I, R>) =>
   Schema.optionalWith(Schema.NullishOr(schema), {
@@ -73,13 +73,13 @@ export const OnboardingConfigSchema = Schema.Struct({
 })
 export type OnboardingConfig = Schema.Schema.Type<typeof OnboardingConfigSchema>
 
-export const MagnitudeConfigSchema = Schema.Struct({
+export const XCliConfigSchema = Schema.Struct({
   contextLimits: Schema.optional(ContextLimitPolicySchema),
   models: Schema.optional(ModelConfigSchema),
   onboarding: Schema.optionalWith(OnboardingConfigSchema, { as: 'Option', exact: true }),
 })
 
-export type MagnitudeConfig = Schema.Schema.Type<typeof MagnitudeConfigSchema>
+export type XCliConfig = Schema.Schema.Type<typeof XCliConfigSchema>
 
 // =============================================================================
 // Context limit policy defaults and helpers
@@ -96,7 +96,7 @@ export interface ResolvedContextLimitPolicy {
 }
 
 export function resolveContextLimitPolicy(
-  config: MagnitudeConfig
+  config: XCliConfig
 ): ResolvedContextLimitPolicy {
   return {
     softCapRatio:

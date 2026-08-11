@@ -8,7 +8,7 @@ import {
   type BaseCallOptions,
   type BoundModel,
   type ModelStreamResult,
-} from '@magnitudedev/ai'
+} from '@x-cli/ai'
 import { makeAgentBoundModel } from '../src/model/agent-model'
 import { ModelRequestPreparationFailed } from '../src/model/model-request-preparation'
 

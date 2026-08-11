@@ -2129,7 +2129,7 @@ fn props_response(properties: ModelProperties) -> PropsResponse {
             .collect(),
     };
     PropsResponse {
-        build_info: format!("magnitude-icn {}", env!("CARGO_PKG_VERSION")),
+        build_info: format!("x-cli-icn {}", env!("CARGO_PKG_VERSION")),
         model_path: properties.model_path.display().to_string(),
         model_size_bytes: properties.model_size_bytes,
         general_name: properties.name,

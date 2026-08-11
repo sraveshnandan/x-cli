@@ -1,4 +1,4 @@
-import { registerClientCommands } from "@magnitudedev/client-common"
+import { registerClientCommands } from "@x-cli/client-common"
 
 export function registerCliCommands(): void {
   registerClientCommands([
@@ -17,11 +17,16 @@ export function registerCliCommands(): void {
       label: "hardware",
       description: "Inspect local inference hardware",
     },
-    // Cloud is disabled.
-    // {
-    //   id: "cloud",
-    //   label: "cloud",
-    //   description: "Manage Magnitude Cloud connection",
-    // },
+    {
+      id: "connect",
+      label: "connect",
+      description: "Manage x-cli Cloud & model provider connections",
+      aliases: ["cloud"],
+    },
+    {
+      id: "mcp",
+      label: "mcp",
+      description: "Inspect and manage MCP server tools and context",
+    },
   ])
 }

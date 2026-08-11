@@ -1,1 +1,1 @@
-export { MAGNITUDE_VERSION as CLI_VERSION } from '@magnitudedev/version'
+export { X_CLI_VERSION as CLI_VERSION } from '@x-cli/version'

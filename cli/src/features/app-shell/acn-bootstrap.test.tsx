@@ -30,9 +30,9 @@ vi.mock("../../hooks/use-theme", () => ({
 const { AcnBootstrapScreen } = await import("./acn-bootstrap")
 
 test.each([
-  ["Discovering", "Looking for Magnitude"],
-  ["WaitingForOwner", "Waiting for previous Magnitude process"],
-  ["LaunchingAcn", "Starting Magnitude"],
+  ["Discovering", "Looking for x-cli"],
+  ["WaitingForOwner", "Waiting for previous x-cli process"],
+  ["LaunchingAcn", "Starting x-cli"],
   ["ResolvingLocalInference", "Preparing local inference"],
   ["LaunchingLocalInference", "Starting local inference"],
 ] as const)("renders the %s startup phase", async (phase, label) => {
@@ -144,7 +144,7 @@ test("renders exactly one empty row between the installation title and bar", asy
     await act(view.renderOnce)
     const lines = view.captureCharFrame().split("\n")
     const titleRow = lines.findIndex((line) =>
-      line.includes("Installing Magnitude"),
+      line.includes("Installing x-cli"),
     )
     const barRow = lines.findIndex((line) => line.includes("88%"))
 

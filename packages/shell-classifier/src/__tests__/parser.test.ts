@@ -513,7 +513,7 @@ describe('shell-parser', () => {
     })
 
     test('complex session inspection command', () => {
-      const input = "latest=$(ls -t ~/.magnitude/sessions | head -1); echo $latest; ls -la ~/.magnitude/sessions/$latest; echo '--- meta.json ---'; cat ~/.magnitude/sessions/$latest/meta.json; echo '--- first 20 events ---'; head -20 ~/.magnitude/sessions/$latest/events.jsonl; echo '--- first 20 logs ---'; head -20 ~/.magnitude/sessions/$latest/logs.jsonl"
+      const input = "latest=$(ls -t ~/.x-cli/sessions | head -1); echo $latest; ls -la ~/.x-cli/sessions/$latest; echo '--- meta.json ---'; cat ~/.x-cli/sessions/$latest/meta.json; echo '--- first 20 events ---'; head -20 ~/.x-cli/sessions/$latest/events.jsonl; echo '--- first 20 logs ---'; head -20 ~/.x-cli/sessions/$latest/logs.jsonl"
       const result = parseShellCommand(input)
       expect(result.length).toBe(9)
       expect(result[0].assignments[0].name).toBe('latest')

@@ -1,0 +1,44 @@
+---
+title: Getting Started with x-cli
+description: Introduction, installation, and initial setup for x-cli AI coding agent platform.
+---
+
+# Getting Started with x-cli
+
+**x-cli** is a high-performance open-source AI coding agent built with native local model support and multi-provider cloud connectivity. 100% private, offline-capable, with zero rate limits or token costs for local execution.
+
+---
+
+## Installation
+
+Install `x-cli` globally using `npm` or `bun`:
+
+```bash
+npm install -g @x-cli/cli
+```
+
+### Launching in Your Workspace
+
+Navigate to any repository or code directory and launch `x-cli`:
+
+```bash
+cd /path/to/your/project
+x-cli
+```
+
+On first launch, `x-cli` automatically profiles your system (GPU VRAM, System RAM, and CPU threads) to recommend and load optimal local GGUF models.
+
+---
+
+## Operating Systems & Platform Support
+
+- **Linux**: Native support (x86_64, arm64).
+- **macOS**: Native support with Apple Silicon Metal GPU acceleration.
+- **Windows**: Supported via WSL2 (Windows Subsystem for Linux).
+
+---
+
+## Interface Options
+
+1. **Terminal UI (TUI)**: Rich interactive terminal experience with real-time markdown streaming, syntax highlighting, and keyboard shortcuts.
+2. **Web Studio (Vite UI)**: Responsive web application providing visual workspace navigation, diff previews, worker detail cards, and interactive composer.

@@ -6,7 +6,7 @@ import {
   type ProviderCall,
   type ProviderRejection,
   type RejectedHttpResponse,
-} from '@x-cli/ai'
+} from "@x-cli/ai"
 import type {
   BillingWindowBudget,
   XCliApiError,
@@ -48,35 +48,35 @@ const ERROR_CODES: readonly XCliErrorCode[] = [
 ]
 
 type XCliErrorBase = Omit<XCliApiError["error"], "code" | "details">
-type UsageLimitCode = Extract<XCliErrorCode, `usage_limit_exceeded_${string}`>
-type SubscriptionRequiredCode = Extract<XCliErrorCode, "subscription_required">
+type XCliUsageLimitCode = Extract<XCliErrorCode, `usage_limit_exceeded_${string}`>
+type XCliSubscriptionRequiredCode = Extract<XCliErrorCode, "subscription_required">
 
-const USAGE_LIMIT_CODES: readonly UsageLimitCode[] = [
+const USAGE_LIMIT_CODES: readonly XCliUsageLimitCode[] = [
   "usage_limit_exceeded_five_hour",
   "usage_limit_exceeded_weekly",
   "usage_limit_exceeded_monthly",
 ]
 
-function isUsageLimitCode(code: XCliErrorCode): code is UsageLimitCode {
-  return USAGE_LIMIT_CODES.includes(code as UsageLimitCode)
+function isXCliUsageLimitCode(code: XCliErrorCode): code is XCliUsageLimitCode {
+  return USAGE_LIMIT_CODES.includes(code as XCliUsageLimitCode)
 }
 
 export type ParsedXCliApiError =
   | {
       readonly error: XCliErrorBase & {
-        readonly code: SubscriptionRequiredCode
+        readonly code: XCliSubscriptionRequiredCode
         readonly details: SubscriptionRequiredDetails
       }
     }
   | {
       readonly error: XCliErrorBase & {
-        readonly code: UsageLimitCode
+        readonly code: XCliUsageLimitCode
         readonly details: UsageLimitDetails
       }
     }
   | {
       readonly error: XCliErrorBase & {
-        readonly code: Exclude<XCliErrorCode, UsageLimitCode | SubscriptionRequiredCode>
+        readonly code: Exclude<XCliErrorCode, XCliUsageLimitCode | XCliSubscriptionRequiredCode>
       }
     }
 
@@ -154,7 +154,7 @@ export function tryParseErrorBody(body: string): ParsedXCliApiError | null {
     param: error.param,
   }
 
-  if (isUsageLimitCode(error.code)) {
+  if (isXCliUsageLimitCode(error.code)) {
     if (!isUsageLimitDetails(error.details)) return null
     return {
       error: {
@@ -179,7 +179,7 @@ export function tryParseErrorBody(body: string): ParsedXCliApiError | null {
   return {
     error: {
       ...base,
-      code: error.code as Exclude<XCliErrorCode, UsageLimitCode | SubscriptionRequiredCode>,
+      code: error.code as Exclude<XCliErrorCode, XCliUsageLimitCode | XCliSubscriptionRequiredCode>,
     },
   }
 }
@@ -195,7 +195,7 @@ function isContextLimit(message: string): boolean {
   ].some((pattern) => text.includes(pattern))
 }
 
-function classifyMagnitudeError(
+function classifyXCliError(
   response: RejectedHttpResponse,
   parsed: ParsedXCliApiError,
 ): ProviderRejection {
@@ -205,7 +205,7 @@ function classifyMagnitudeError(
   }
 
   if (
-    isUsageLimitCode(error.code)
+    isXCliUsageLimitCode(error.code)
     && "details" in error
     && error.details.category === "usage_limit_exceeded"
   ) {
@@ -276,7 +276,7 @@ export function classifyXCliRejectedResponse(
         _tag: "InvalidErrorEnvelope",
         status: response.status,
         body: payloadSample(response.body),
-        issue: { message: "Magnitude error response did not match the expected envelope shape" },
+        issue: { message: "XCli error response did not match the expected envelope shape" },
       },
     })
   }
@@ -284,6 +284,6 @@ export function classifyXCliRejectedResponse(
   return new StreamStartProviderRejection({
     call,
     response,
-    rejection: classifyMagnitudeError(response, parsed),
+    rejection: classifyXCliError(response, parsed),
   })
 }

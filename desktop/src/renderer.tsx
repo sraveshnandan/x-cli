@@ -1,7 +1,7 @@
 /**
  * Desktop renderer entry — spec §5.2
  *
- * Reads `window.__magnitudeDesktop`, creates the DesktopPlatform,
+ * Reads `window.__x-cliDesktop`, creates the DesktopPlatform,
  * creates the AgentClient AtomRpc tag with the desktop daemon services, and mounts App
  * inside PlatformProvider + RegistryProvider + AgentClientProvider.
  *
@@ -12,15 +12,15 @@
  */
 import { createRoot } from "react-dom/client"
 import { RegistryProvider } from "@effect-atom/atom-react"
-import { App, PlatformProvider, createAgentClient, AgentClientProvider, injectCssVars, stopDisplayViewController } from "@magnitudedev/web"
-import { DaemonConnectionError } from "@magnitudedev/web"
+import { App, PlatformProvider, createAgentClient, AgentClientProvider, injectCssVars, stopDisplayViewController } from "@x-cli/web"
+import { DaemonConnectionError } from "@x-cli/web"
 import { createDesktopPlatform } from "./platform"
 import "@web-styles/vars.css"
 import "@web-styles/globals.css"
 
 injectCssVars()
 
-const desktopApi = window.__magnitudeDesktop
+const desktopApi = window.__x-cliDesktop
 const root = createRoot(document.getElementById("root")!)
 let activePlatform: Awaited<ReturnType<typeof createDesktopPlatform>> | undefined
 
@@ -38,7 +38,7 @@ function renderLoading() {
       fontFamily: "var(--font-sans)",
       fontSize: 14,
     }}>
-      Connecting to Magnitude daemon...
+      Connecting to x-cli daemon...
     </div>
   )
 }

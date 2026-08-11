@@ -8,7 +8,7 @@ import {
   type SqliteDriverError,
   type SqliteDriverService,
   SqliteDriverFailure,
-} from "@magnitudedev/sdk/sqlite-driver"
+} from "@x-cli/sdk/sqlite-driver"
 
 interface Sqlite3Error extends Error {
   readonly code: string

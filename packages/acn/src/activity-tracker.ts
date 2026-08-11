@@ -1,5 +1,5 @@
 import { Context, Effect, Layer, Option } from "effect"
-import { AcnRpcDemand } from "@magnitudedev/acn-protocol"
+import { AcnRpcDemand } from "@x-cli/acn-protocol"
 import {
   type ResourceUseGateSnapshot,
   type ResourceRetired,

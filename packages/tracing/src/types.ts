@@ -1,6 +1,6 @@
-import type { ModelCallTrace, AssembledToolCall, TokenLogprob, RawInputToken, RawOutputToken, RawLogprobEntry } from "@magnitudedev/ai"
+import type { ModelCallTrace, AssembledToolCall, TokenLogprob, RawInputToken, RawOutputToken, RawLogprobEntry } from "@x-cli/ai"
 
-export type { ModelCallTrace, AssembledToolCall, TokenLogprob, RawInputToken, RawOutputToken, RawLogprobEntry } from "@magnitudedev/ai"
+export type { ModelCallTrace, AssembledToolCall, TokenLogprob, RawInputToken, RawOutputToken, RawLogprobEntry } from "@x-cli/ai"
 
 export interface AgentCallTrace extends ModelCallTrace {
   readonly traceId: string

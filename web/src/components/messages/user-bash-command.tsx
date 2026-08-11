@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import type { UserBashCommandMessage } from "@magnitudedev/sdk"
+import type { UserBashCommandMessage } from "@x-cli/sdk"
 import { CopyButton, Timestamp } from "./shared"
 
 export function UserBashCommand({ message }: { message: UserBashCommandMessage }): ReactNode {

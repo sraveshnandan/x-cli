@@ -1,5 +1,5 @@
 import type { CliRenderer } from '@opentui/core'
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 
 let cleanupRan = false
 

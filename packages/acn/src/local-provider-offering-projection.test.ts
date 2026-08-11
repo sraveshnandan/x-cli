@@ -5,9 +5,9 @@ import {
   ModelServingConfigurationIdSchema,
   type LocalProviderOffering,
   type ModelPackageEntry,
-} from "@magnitudedev/acn-protocol"
-import { ProviderModelIdSchema } from "@magnitudedev/sdk"
-import { IcnCatalog, IcnHardware } from "@magnitudedev/icn"
+} from "@x-cli/acn-protocol"
+import { ProviderModelIdSchema } from "@x-cli/sdk"
+import { IcnCatalog, IcnHardware } from "@x-cli/icn"
 import {
   LocalModelAssessments,
   type LocalModelAssessmentsApi,

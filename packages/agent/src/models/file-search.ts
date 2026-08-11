@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { grepTool } from '../tools/fs'
 import { FileSearchStateSchema, SearchMatchSchema, type FileSearchState, type SearchMatch } from './tool-state'

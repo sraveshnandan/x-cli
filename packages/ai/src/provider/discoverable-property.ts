@@ -1,5 +1,5 @@
 import { Schema } from "effect"
-import { FSM } from "@magnitudedev/utils"
+import { FSM } from "@x-cli/utils"
 
 export const ModelDiscoveryOperationIdSchema = Schema.String.pipe(
   Schema.minLength(1),

@@ -1,4 +1,4 @@
-import { parseMarkdownToMdast } from '@magnitudedev/client-common'
+import { parseMarkdownToMdast } from '@x-cli/client-common'
 import {
   renderDocumentToBlocks,
   spansToText,

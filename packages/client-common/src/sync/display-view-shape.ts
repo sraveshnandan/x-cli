@@ -1,4 +1,4 @@
-import { forkIdToKey, type DisplayTimelinePresentationMode, type DisplayViewShape } from '@magnitudedev/sdk'
+import { forkIdToKey, type DisplayTimelinePresentationMode, type DisplayViewShape } from '@x-cli/sdk'
 
 export const INITIAL_ROOT_PAGE_SIZE = 50
 export const INCREMENTAL_ROOT_PAGE_SIZE = 50

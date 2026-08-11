@@ -61,7 +61,7 @@ function classifyNvidiaNimError(
       message: error.message,
       retryPolicy: {
         retry: true,
-        retryAfterMs: response.retryAfterMs,
+        retryAfterMs: Option.fromNullable(response.retryAfterMs),
       },
     }
   }

@@ -11,7 +11,7 @@
  */
 import { Atom } from "@effect-atom/atom-react"
 import { Option } from "effect"
-import type { SessionOptions } from "@magnitudedev/sdk"
+import type { SessionOptions } from "@x-cli/sdk"
 import type { InputMentionSegment } from "../types/store"
 
 /**

@@ -1,4 +1,4 @@
-export type { Phase, BaseState } from '@magnitudedev/harness'
+export type { Phase, BaseState } from '@x-cli/harness'
 export type { EditDiff } from './edit-diff'
 
 import type { ToolStateFromSchema } from './tool-state'

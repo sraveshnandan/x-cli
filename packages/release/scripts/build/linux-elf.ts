@@ -130,7 +130,7 @@ export const verifyLinuxElfComposition = async (
   capabilities: readonly string[] = []
 ): Promise<void> => {
   if (!host.startsWith("linux-")) return
-  const root = await mkdtemp(resolve(tmpdir(), `magnitude-elf-${host}-`))
+  const root = await mkdtemp(resolve(tmpdir(), `x-cli-elf-${host}-`))
   try {
     const extracted = await Promise.all(
       archives.map(async (archive, index) => {

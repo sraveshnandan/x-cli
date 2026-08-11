@@ -1,4 +1,4 @@
-import type { AgentIntrospection } from "@magnitudedev/agent"
+import type { AgentIntrospection } from "@x-cli/agent"
 import type { AcnActivityState } from "../activity-tracker"
 import type { SessionRetirementSnapshot } from "../agent-runtime"
 import type { ResourceUseGateSnapshot } from "../resource-use-gate"

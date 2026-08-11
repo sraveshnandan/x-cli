@@ -10,8 +10,8 @@ import {
   GlobalStorageLive,
   VersionLive,
   ProjectStorageLiveFromCwd,
-  MagnitudeStorage,
-} from '@magnitudedev/storage'
+  XCliStorage,
+} from '@x-cli/storage'
 
 import {
   MEMORY_RELATIVE_PATH,
@@ -43,7 +43,7 @@ describe('memory-file', () => {
 
     const [p, text] = await Effect.runPromise(
       Effect.gen(function* () {
-        const storage = yield* MagnitudeStorage
+        const storage = yield* XCliStorage
         const p = yield* ensureMemoryFile(storage)
         const text = yield* readMemory(storage)
         return [p, text] as const

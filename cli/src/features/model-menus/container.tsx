@@ -30,7 +30,7 @@ import {
   usePreviewModelLoad,
   useModelConfig,
   useSettingsState,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 import {
   PRIMARY_SLOT_ID,
   ProviderIdSchema,
@@ -41,7 +41,7 @@ import {
   type LocalModelRecommendation,
   type ProviderModelId,
   type ProviderModelCatalogEntry,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { Button } from "../../components/button"
 import { HardwareMemoryDomain } from "../../components/hardware-memory-domain"
 import { useSpinnerFrame } from "../../hooks/use-spinner-frame"
@@ -79,7 +79,7 @@ const ROOT_LABELS: Record<ModelMenuRoot, string> = {
 }
 const MENU_HEIGHT = 32
 const LOCAL_PROVIDER_ID = ProviderIdSchema.make("local")
-const MAGNITUDE_CLOUD_URL = "https://app.magnitude.dev"
+const MAGNITUDE_CLOUD_URL = "https://app.x-cli.dev"
 type CloudActionId = "add" | "update" | "disconnect" | "link"
 const EMPTY_MODEL_ACTIONS = [
   { label: "Find a local model", root: "catalog" },
@@ -1666,7 +1666,7 @@ const CloudMenu = memo(function CloudMenu({
                 setKeyValue(value)
                 setValidationError(null)
               }}
-              placeholder="Paste Magnitude Cloud API key"
+              placeholder="Paste x-cli Cloud API key"
               focused
             />
           </box>
@@ -1690,7 +1690,7 @@ const CloudMenu = memo(function CloudMenu({
           hints="↑↓ navigate · Enter choose · Esc back"
         />
         <box style={{ flexGrow: 1, flexDirection: "column", paddingLeft: 2, paddingRight: 2, paddingTop: 1 }}>
-          <text style={{ fg: theme.foreground }}>Disconnect Magnitude Cloud?</text>
+          <text style={{ fg: theme.foreground }}>Disconnect x-cli Cloud?</text>
           <text style={{ fg: theme.muted }}>Cloud models will no longer be available in Models.</text>
           <box style={{ paddingTop: 1, flexDirection: "column" }}>
             <MenuAction
@@ -1721,10 +1721,10 @@ const CloudMenu = memo(function CloudMenu({
 
   return (
     <>
-      <MenuHeader title="Cloud" subtitle="Manage Magnitude Cloud connection" summary={connected ? "Connected" : "Not connected"} hints="↑↓ navigate" />
+      <MenuHeader title="Cloud" subtitle="Manage x-cli Cloud connection" summary={connected ? "Connected" : "Not connected"} hints="↑↓ navigate" />
       <box style={{ flexGrow: 1, flexDirection: "column", paddingLeft: 2, paddingRight: 2, paddingTop: 1 }}>
         {auth.source === "none" && (
-          <text style={{ fg: theme.muted }}>Magnitude Cloud provides hosted models and hosted research features.</text>
+          <text style={{ fg: theme.muted }}>x-cli Cloud provides hosted models and hosted research features.</text>
         )}
         {auth.source === "config" && (
           <text style={{ fg: theme.success }}>● Connected via API key {auth.maskedKey ? `(${auth.maskedKey})` : ""}</text>

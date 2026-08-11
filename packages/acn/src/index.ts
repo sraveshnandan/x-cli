@@ -3,7 +3,7 @@ export { HandlersLive } from "./handlers"
 export { ProviderCredentials, ProviderCredentialsLive } from "./provider-credentials"
 export { ProviderModelCatalog, ProviderModelCatalogLive } from "./provider-model-catalog"
 export { ModelSlotController, ModelSlotControllerLive } from "./model-slot-controller"
-export { MagnitudeCloudUsage, MagnitudeCloudUsageLive } from "./magnitude-cloud-usage"
+export { XCliCloudUsage, XCliCloudUsageLive } from "./x-cli-cloud-usage"
 export { LocalInferenceHardware, LocalInferenceHardwareLive } from "./local-inference-hardware"
 export { ActiveSessionStatusesService, ActiveSessionStatusesLive } from "./active-session-statuses"
 export {

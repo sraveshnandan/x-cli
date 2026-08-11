@@ -4,11 +4,11 @@
 
 import { access, readFile } from 'fs/promises'
 import { join } from 'path'
-import type { MagnitudeStorageShape } from '@magnitudedev/storage'
+import type { XCliStorageShape } from '@x-cli/storage'
 
 import type { SessionContext, GitContext } from '../events'
-import { loadSkills, skillLoadDiagnosticLogFields, type SkillLoadDiagnostic } from '@magnitudedev/skills'
-import { logger } from '@magnitudedev/logger'
+import { loadSkills, skillLoadDiagnosticLogFields, type SkillLoadDiagnostic } from '@x-cli/skills'
+import { logger } from '@x-cli/logger'
 import { FOLDER_TREE_BUDGET_TOKENS, MAX_VCS_STATUS_LINES } from '../constants'
 import { runGitCommand } from './git-command'
 import { knapsackFolderTree } from './folder-tree-knapsack'
@@ -171,7 +171,7 @@ async function readAgentsFile(cwd: string): Promise<{ filename: string; content:
 
 export interface CollectSessionContextOptions {
   cwd?: string
-  storage?: MagnitudeStorageShape
+  storage?: XCliStorageShape
 }
 
 export async function collectSessionContext(opts?: CollectSessionContextOptions): Promise<Omit<SessionContext, 'scratchpadPath'>> {

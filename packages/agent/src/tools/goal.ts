@@ -1,6 +1,6 @@
 import { Context, Effect, Schema } from 'effect'
-import { defineHarnessTool } from '@magnitudedev/harness'
-import { Fork, WorkerBusTag } from '@magnitudedev/event-core'
+import { defineHarnessTool } from '@x-cli/harness'
+import { Fork, WorkerBusTag } from '@x-cli/event-core'
 import type { AppEvent } from '../events'
 import type { GoalState } from '../projections/goal'
 import { ToolErrorSchema } from './errors'

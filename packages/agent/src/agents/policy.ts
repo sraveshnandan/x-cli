@@ -11,13 +11,13 @@ import {
   isGitAllowed,
   isPathWithin,
   writesStayWithin,
-} from '@magnitudedev/shell-classifier'
+} from '@x-cli/shell-classifier'
 import { resolve } from 'node:path'
 import type { PolicyContext } from './types'
 import { agentEnv } from '../util/agent-env'
 import { editTool, writeTool } from '../tools/fs'
 import { shellTool } from '../tools/shell'
-import { expandScratchpadPath } from '@magnitudedev/scratchpad'
+import { expandScratchpadPath } from '@x-cli/scratchpad'
 
 type ShellInput = Schema.Schema.Type<typeof shellTool.definition.inputSchema>
 type FileWriteInput = Schema.Schema.Type<typeof writeTool.definition.inputSchema>

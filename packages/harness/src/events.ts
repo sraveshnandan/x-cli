@@ -1,5 +1,5 @@
-import type { JsonValue } from "@magnitudedev/utils/schema"
-import type { GenerationPerformance, ProviderToolCallId, ResponseUsage, ToolCallId, ValidationIssue, ModelStreamTerminal } from "@magnitudedev/ai"
+import type { JsonValue } from "@x-cli/utils/schema"
+import type { GenerationPerformance, ProviderToolCallId, ResponseUsage, ToolCallId, ValidationIssue, ModelStreamTerminal } from "@x-cli/ai"
 
 // ── Tool Error ───────────────────────────────────────────────────────
 

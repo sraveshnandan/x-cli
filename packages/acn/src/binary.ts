@@ -5,7 +5,7 @@ import { FetchHttpClient } from "@effect/platform"
 import { Console, Data, Effect, Layer } from "effect"
 import { launchAcnServer } from "./server"
 import { ACN_REVISION, ACN_VERSION } from "./version"
-import { resolveRgPath } from "@magnitudedev/ripgrep"
+import { resolveRgPath } from "@x-cli/ripgrep"
 import { defaultDataDir } from "./data-dir"
 
 const debug = Options.boolean("debug")
@@ -69,13 +69,13 @@ const doctor = Command.make("doctor", {}, () =>
   ),
 ).pipe(Command.withDescription("Verify packaged ACN runtime dependencies"))
 
-const acn = Command.make("magnitude-acn", { parentBound, debug, dataDir }, launchServer).pipe(
-  Command.withDescription("Magnitude Agent Control Node"),
+const acn = Command.make("x-cli-acn", { parentBound, debug, dataDir }, launchServer).pipe(
+  Command.withDescription("x-cli Agent Control Node"),
   Command.withSubcommands([serve, server, version, coordinationRevision, doctor]),
 )
 
 const cli = Command.run(acn, {
-  name: "Magnitude ACN",
+  name: "x-cli ACN",
   version: ACN_VERSION,
 })
 

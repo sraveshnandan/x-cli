@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Effect } from 'effect'
-import { Introspection } from '@magnitudedev/event-core'
+import { Introspection } from '@x-cli/event-core'
 import type { DisplayTimelineState } from '../src/display'
 import {
   createAddressedAtlas,

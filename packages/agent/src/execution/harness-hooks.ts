@@ -6,8 +6,8 @@
  */
 
 import { Effect } from 'effect'
-import { logger } from '@magnitudedev/logger'
-import type { ExecuteHookContext, HarnessHooks, InterceptorDecision, ToolResult } from '@magnitudedev/harness'
+import { logger } from '@x-cli/logger'
+import type { ExecuteHookContext, HarnessHooks, InterceptorDecision, ToolResult } from '@x-cli/harness'
 import * as path from 'path'
 
 import { PolicyContextProviderTag } from '../agents/types'

@@ -10,7 +10,7 @@ import {
   DisplayViewControllerProvider,
   deriveCliExitNotice,
   stopDisplayViewController,
-} from "@magnitudedev/client-common";
+} from "@x-cli/client-common";
 import { CliApp, type SessionStart } from "./app";
 import type { AuthSource } from "./state/cli-atoms";
 import { getLastSessionId } from "./state/last-session";
@@ -31,7 +31,7 @@ function resolveEnvAuth(): AuthSource {
 
 async function main() {
   const program = new Command()
-    .name("magnitude")
+    .name("x-cli")
     .version(CLI_VERSION)
     .option(
       "--resume [id]",
@@ -60,13 +60,13 @@ async function main() {
 
   program
     .command("stop")
-    .description("Stop the current Magnitude daemon and release its local models")
+    .description("Stop the current x-cli daemon and release its local models")
     .action(async () => {
       try {
         await stopTerminalAcn();
-        process.stdout.write("Magnitude daemon stopped.\n");
+        process.stdout.write("x-cli daemon stopped.\n");
       } catch (error) {
-        process.stderr.write(`Failed to stop Magnitude daemon: ${String(error)}\n`);
+        process.stderr.write(`Failed to stop x-cli daemon: ${String(error)}\n`);
         process.exitCode = 1;
       }
     });
@@ -146,7 +146,7 @@ async function main() {
         const activeSessionId = getLastSessionId();
         if (activeSessionId) {
           notices.push(
-            `Resume this session with:\nmagnitude --resume ${activeSessionId}`
+            `Resume this session with:\nx-cli --resume ${activeSessionId}`
           );
         }
         if (notices.length > 0) {

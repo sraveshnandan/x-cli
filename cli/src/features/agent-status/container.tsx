@@ -12,9 +12,9 @@ import {
   useSlotProfiles,
   isDisplayRootStatusActive,
   type LocalModelLoadActivity,
-} from '@magnitudedev/client-common'
-import { type ModelInstanceId } from '@magnitudedev/sdk'
-import type { TaskDisplayRow, InterruptedMessage } from '@magnitudedev/sdk'
+} from '@x-cli/client-common'
+import { type ModelInstanceId } from '@x-cli/sdk'
+import type { TaskDisplayRow, InterruptedMessage } from '@x-cli/sdk'
 import { ActivityRail } from './activity-rail'
 import { ActivityRailSlot } from './activity-rail-slot'
 import { TaskList } from './task-list'

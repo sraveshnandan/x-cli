@@ -2,7 +2,7 @@ import * as HttpClient from "@effect/platform/HttpClient"
 import * as HttpClientRequest from "@effect/platform/HttpClientRequest"
 import {
   ClientIdSchema,
-  MagnitudeRpcs,
+  XCliRpcs,
   AcnReady,
   acnRpcRecoveryPolicy,
   type AcnInstance,
@@ -11,7 +11,7 @@ import {
   type ClientId,
   type ClientLeaseMutationResult,
   type ModelSlotsState,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import { RpcClient, RpcClientError, RpcSerialization } from "@effect/rpc"
 import {
   Cause,
@@ -188,7 +188,7 @@ export const makeAcnJitRuntime = (): Effect.Effect<
     RpcClient.layerProtocolHttp({
       url: `${instance.url}/rpc`,
       transformClient: HttpClient.mapRequest(
-        HttpClientRequest.setHeader("x-magnitude-acn-id", instance.id),
+        HttpClientRequest.setHeader("x-x-cli-acn-id", instance.id),
       ),
     }).pipe(
       Layer.provide(RpcSerialization.layerNdjson),
@@ -196,7 +196,7 @@ export const makeAcnJitRuntime = (): Effect.Effect<
     ),
     selectionScope,
   ).pipe(
-    Effect.flatMap((context) => RpcClient.make(MagnitudeRpcs).pipe(
+    Effect.flatMap((context) => RpcClient.make(XCliRpcs).pipe(
       Effect.provide(context),
       Effect.provideService(Scope.Scope, selectionScope),
     )),
@@ -376,7 +376,7 @@ export const makeAcnJitRuntime = (): Effect.Effect<
           }).pipe(Layer.provide(Layer.succeed(HttpClient.HttpClient, httpClient))),
           runtimeScope,
         )
-        const closeClient = yield* RpcClient.make(MagnitudeRpcs).pipe(
+        const closeClient = yield* RpcClient.make(XCliRpcs).pipe(
           Effect.provide(closeProtocolContext),
           Effect.provideService(Scope.Scope, runtimeScope),
         )

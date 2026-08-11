@@ -8,7 +8,7 @@ import { nextDevelopmentCounter } from "./generate-version"
 const roots: string[] = []
 
 const temporaryRoot = async (): Promise<string> => {
-  const root = await mkdtemp(resolve(tmpdir(), "magnitude-version-"))
+  const root = await mkdtemp(resolve(tmpdir(), "x-cli-version-"))
   roots.push(root)
   return root
 }

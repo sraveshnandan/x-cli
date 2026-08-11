@@ -9,7 +9,7 @@ import {
   type ReleaseArtifact,
   type ReleaseManifest,
 } from "../src/contracts"
-import { ACN_COORDINATION_REVISION } from "@magnitudedev/version"
+import { ACN_COORDINATION_REVISION } from "@x-cli/version"
 import { releaseUrl } from "../src/acquisition"
 import {
   acnArchive,
@@ -184,7 +184,7 @@ const buildCandidate = Effect.gen(function* () {
     schemaVersion: 2,
     version,
     acnRevision: ACN_COORDINATION_REVISION,
-    tag: `@magnitudedev/cli@${version}`,
+    tag: `@x-cli/cli@${version}`,
     sourceCommit,
     artifacts: [firstArtifact, ...remainingArtifacts],
   } satisfies ReleaseManifest
@@ -197,7 +197,7 @@ const buildCandidate = Effect.gen(function* () {
       )
     ),
   )
-  const manifestPath = resolve(root, "magnitude-release.json")
+  const manifestPath = resolve(root, "x-cli-release.json")
   yield* fs.writeFileString(manifestPath, `${serialized}\n`).pipe(
     Effect.mapError((cause) =>
       failure(
@@ -207,7 +207,7 @@ const buildCandidate = Effect.gen(function* () {
   )
 
   const files = new Map<string, string>([
-    ["magnitude-release.json", manifestPath],
+    ["x-cli-release.json", manifestPath],
   ])
   for (const artifact of artifacts) {
     const artifactRoot = artifactRoots.find((candidate) =>
@@ -229,7 +229,7 @@ const loadCandidate = Effect.gen(function* () {
   const host = currentHost()
   const root = resolve(BUILD_ROOT, host)
   const version = yield* readPackageVersion
-  const manifestPath = resolve(root, "magnitude-release.json")
+  const manifestPath = resolve(root, "x-cli-release.json")
   const contents = yield* fs.readFileString(manifestPath).pipe(
     Effect.mapError((cause) =>
       failure(`no local bootstrap candidate exists: ${String(cause)}`)
@@ -250,7 +250,7 @@ const loadCandidate = Effect.gen(function* () {
     )
   }
   const files = new Map<string, string>([
-    ["magnitude-release.json", manifestPath],
+    ["x-cli-release.json", manifestPath],
   ])
   for (const artifact of manifest.artifacts) {
     const candidates = [
@@ -282,7 +282,7 @@ const refreshRuntimeCandidate = (
     const host = hostById(currentHost())
     const root = resolve(BUILD_ROOT, host.id)
     const hostRoot = resolve(root, "host")
-    const manifestPath = resolve(root, "magnitude-release.json")
+    const manifestPath = resolve(root, "x-cli-release.json")
     const manifestContents = yield* fs.readFileString(manifestPath).pipe(
       Effect.mapError((cause) =>
         failure(
@@ -487,7 +487,7 @@ const serveCandidate = (candidate: Candidate) =>
           }
           const throttle =
             name.startsWith("x-cli-acn-") ||
-            name.startsWith("magnitude-icn-")
+            name.startsWith("x-cli-icn-")
           const body = (blob: Blob): Blob | ReadableStream<Uint8Array> =>
             throttle ? throttled(blob) : blob
           const etag = `"${createHash("sha256")
@@ -578,7 +578,7 @@ const launchCli = (
     const child = Bun.spawn(
       [
         "node",
-        resolve(PROJECT_ROOT, "packages/cli/bin/magnitude.js"),
+        resolve(PROJECT_ROOT, "packages/cli/bin/x-cli.js"),
         ...arguments_,
       ],
       {
@@ -639,11 +639,11 @@ const program = Effect.gen(function* () {
 
   const fs = yield* FileSystem.FileSystem
   const home = yield* fs.makeTempDirectory({
-    prefix: "magnitude-bootstrap-test-",
+    prefix: "x-cli-bootstrap-test-",
   }).pipe(
     Effect.mapError((cause) =>
       failure(
-        `unable to create an isolated Magnitude home: ${String(cause)}`,
+        `unable to create an isolated x-cli home: ${String(cause)}`,
       )
     ),
   )
@@ -668,7 +668,7 @@ const program = Effect.gen(function* () {
       )
       yield* Console.log(`\nBootstrap state preserved at ${home}`)
       if (exitCode !== 0) {
-        return yield* failure(`Magnitude exited with code ${exitCode}`)
+        return yield* failure(`x-cli exited with code ${exitCode}`)
       }
     }),
   )

@@ -18,7 +18,7 @@ export {
   type Dialogs,
   type TerminalCapabilities,
   stopDisplayViewController,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 export { createBrowserPlatform } from "./platform/browser"
 export { DaemonConnectionError } from "./components/daemon-connection-error"
 export { injectCssVars, generateCssVars, generateCssVarsString } from "./styles/generate-css-vars"

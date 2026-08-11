@@ -68,9 +68,9 @@ use worker_process::{NativeRuntimeAuthority, NativeWorkerArgs, NativeWorkerLaunc
 
 #[derive(Debug, Parser)]
 #[command(
-    name = "magnitude-icn",
+    name = "x-cli-icn",
     version,
-    about = "Magnitude inference control node"
+    about = "x-cli inference control node"
 )]
 struct Cli {
     #[command(subcommand)]
@@ -6338,7 +6338,7 @@ mod tests {
     #[test]
     fn inventory_flag_aliases_parse() {
         let aliases = Cli::try_parse_from([
-            "magnitude-icn",
+            "x-cli-icn",
             "serve",
             "--fake",
             "--models-dir",
@@ -6362,7 +6362,7 @@ mod tests {
     #[test]
     fn managed_parent_pipe_flag_parses() {
         let managed =
-            Cli::try_parse_from(["magnitude-icn", "serve", "--fake", "--exit-on-stdin-eof"])
+            Cli::try_parse_from(["x-cli-icn", "serve", "--fake", "--exit-on-stdin-eof"])
                 .expect("managed parent-pipe flag should parse");
         let Command::Serve {
             exit_on_stdin_eof, ..

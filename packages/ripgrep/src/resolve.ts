@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { homedir } from 'node:os'
 import { getTarget, getVersion, isWindows } from './platform'
 
-const BIN_DIR = join(homedir(), '.magnitude', 'bin')
+const BIN_DIR = join(homedir(), '.x-cli', 'bin')
 const VERSION_MARKER = join(BIN_DIR, 'rg.version')
 
 let cachedPath: string | null = null

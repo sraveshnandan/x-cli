@@ -1,12 +1,12 @@
 import { memo, useMemo, useState } from 'react'
 import { Option } from 'effect'
-import type { DisplayMessage } from '@magnitudedev/sdk'
+import type { DisplayMessage } from '@x-cli/sdk'
 import { Button } from '../../../components/button'
 import { useTheme } from '../../../hooks/use-theme'
 import { useTerminalWidth } from '../../../hooks/use-terminal-width'
 import { TextAttributes } from '@opentui/core'
 import { MarkdownContent } from '../../../markdown/markdown-content'
-import { PREVIEW_LINE_CAP } from '@magnitudedev/client-common'
+import { PREVIEW_LINE_CAP } from '@x-cli/client-common'
 
 const EXPANDED_LINE_CAP = 300
 

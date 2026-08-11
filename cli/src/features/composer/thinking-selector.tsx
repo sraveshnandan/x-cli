@@ -1,5 +1,5 @@
 import { TextAttributes } from '@opentui/core'
-import type { ReasoningEffort } from '@magnitudedev/sdk'
+import type { ReasoningEffort } from '@x-cli/sdk'
 import stringWidth from 'string-width'
 import { violet } from '../../utils/theme'
 import { useTheme } from '../../hooks/use-theme'

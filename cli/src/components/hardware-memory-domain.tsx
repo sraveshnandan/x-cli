@@ -1,4 +1,4 @@
-import type { HardwareMemoryDomainView } from '@magnitudedev/client-common'
+import type { HardwareMemoryDomainView } from '@x-cli/client-common'
 import { TextAttributes } from '@opentui/core'
 import { useTheme } from '../hooks/use-theme'
 import { StackedBar } from './stacked-bar'

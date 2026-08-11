@@ -25,14 +25,14 @@ import {
   type ModelOfferingTargetId,
   type RecommendableModel,
   modelOfferingTargetPackageIds,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   IcnCatalog,
   IcnClient,
   IcnDownloads,
   IcnInstalledModels,
-} from "@magnitudedev/icn"
-import { MagnitudeStorage } from "@magnitudedev/storage"
+} from "@x-cli/icn"
+import { XCliStorage } from "@x-cli/storage"
 import { makeObservedState } from "./mirrored-state"
 import {
   downloadAttemptFromIcn,
@@ -154,13 +154,13 @@ export class LocalModelPackages extends Context.Tag("LocalModelPackages")<
 export const LocalModelPackagesLive: Layer.Layer<
   LocalModelPackages,
   never,
-  IcnCatalog | IcnClient | IcnDownloads | IcnInstalledModels | MagnitudeStorage
+  IcnCatalog | IcnClient | IcnDownloads | IcnInstalledModels | XCliStorage
 > = Layer.scoped(LocalModelPackages, Effect.gen(function* () {
   const catalog = yield* IcnCatalog
   const installed = yield* IcnInstalledModels
   const downloads = yield* IcnDownloads
   const client = yield* IcnClient
-  const storage = yield* MagnitudeStorage
+  const storage = yield* XCliStorage
   const mirror = yield* makeObservedState<ModelPackagesState>({ entries: [] })
   const equivalent: Equivalence.Equivalence<ModelPackagesState> =
     Schema.equivalence(ModelPackagesStateSchema)

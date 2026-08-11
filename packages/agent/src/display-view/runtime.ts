@@ -1,10 +1,10 @@
 import { Context, Data, Effect, Exit, Fiber, Layer, PubSub, Scope, Stream, SynchronizedRef } from 'effect'
-import { Addressed, AmbientServiceTag, Projection, ProjectionBusTag } from '@magnitudedev/event-core'
+import { Addressed, AmbientServiceTag, Projection, ProjectionBusTag } from '@x-cli/event-core'
 import {
   sameDisplayViewShape,
   type DisplayViewShape,
   type DisplayViewSnapshot,
-} from '@magnitudedev/acn-protocol'
+} from '@x-cli/acn-protocol'
 import { buildDisplayViewSnapshot } from './snapshot'
 
 export class DisplayViewNotFoundError extends Data.TaggedError('DisplayViewNotFoundError')<{

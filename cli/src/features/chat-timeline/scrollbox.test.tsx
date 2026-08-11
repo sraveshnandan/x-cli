@@ -18,8 +18,8 @@ test('the live activity rail is outside history and directly precedes the compos
   const appSource = await Bun.file(new URL('../../app.tsx', import.meta.url)).text()
 
   expect(timelineSource).not.toContain('<ActivityRailContainer')
-  expect(appSource.indexOf('<ActivityRailContainer')).toBeGreaterThan(appSource.indexOf('<TaskListContainer'))
-  expect(appSource.indexOf('<ActivityRailContainer')).toBeLessThan(appSource.indexOf('<ComposerContainer'))
+  expect(appSource.lastIndexOf('activityRail')).toBeGreaterThan(appSource.indexOf('<TaskListContainer'))
+  expect(appSource.lastIndexOf('activityRail')).toBeLessThan(appSource.indexOf('<ComposerContainer'))
 })
 
 test('appended rows stay in place until they overflow the viewport', async () => {

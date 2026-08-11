@@ -7,8 +7,8 @@ import { useTheme } from '../../hooks/use-theme'
 import { Button } from '../../components/button'
 import { SingleLineInput } from '../composer/single-line-input'
 import type { AuthInfo } from './auth-display'
-import { deriveHardwareMemoryView, modelSlotResidentAllocation, reasoningEffortControl, reasoningPropertyLabel, selectedSlotModel, useLocalInferenceHardware, useModelSlots, visionPropertyLabel, type UseModelConfigResult } from '@magnitudedev/client-common'
-import { PRIMARY_SLOT_ID, ProviderModelCatalogLifecycle, SLOT_DISPLAY_NAMES, SLOT_DESCRIPTIONS, type ProviderCatalogFailure, type ProviderId, type ProviderModelId, type ReasoningEffort, type SlotId } from '@magnitudedev/sdk'
+import { deriveHardwareMemoryView, modelSlotResidentAllocation, reasoningEffortControl, reasoningPropertyLabel, selectedSlotModel, useLocalInferenceHardware, useModelSlots, visionPropertyLabel, type UseModelConfigResult } from '@x-cli/client-common'
+import { PRIMARY_SLOT_ID, ProviderModelCatalogLifecycle, SLOT_DISPLAY_NAMES, SLOT_DESCRIPTIONS, type ProviderCatalogFailure, type ProviderId, type ProviderModelId, type ReasoningEffort, type SlotId } from '@x-cli/sdk'
 import { getInferenceSourceAction, INFERENCE_SOURCE_ACTIONS } from './inference-source-actions'
 import { getCatalogFailureNotice } from './catalog-failure-notice'
 import { describeLocalHardware } from '../local-inference/view-model'
@@ -16,7 +16,7 @@ import { writeTextToClipboard } from '../../utils/clipboard'
 import { BOX_CHARS } from '../../utils/ui-constants'
 import { HardwareMemoryDomain } from '../../components/hardware-memory-domain'
 
-const MAGNITUDE_CLOUD_URL = 'https://app.magnitude.dev'
+const MAGNITUDE_CLOUD_URL = 'https://app.x-cli.dev'
 const SETTINGS_SECTION_WIDTH = 72
 const SETTINGS_SECTION_LABEL_GAP = 2
 const settingsSectionRule = (label: string): string =>
@@ -379,10 +379,10 @@ export const SettingsOverlay = memo(function SettingsOverlay({
         <text style={{ fg: theme.border }}>{'─'.repeat(60)}</text>
       </box>
 
-      {/* Magnitude Cloud section */}
+      {/* x-cli Cloud section */}
       <box style={{ paddingLeft: 2, paddingRight: 2, paddingTop: 1, flexShrink: 0 }}>
         <text style={{ fg: theme.foreground }}>
-          <span attributes={TextAttributes.BOLD}>Magnitude Cloud</span>
+          <span attributes={TextAttributes.BOLD}>x-cli Cloud</span>
         </text>
       </box>
 
@@ -469,7 +469,7 @@ export const SettingsOverlay = memo(function SettingsOverlay({
         {mode === 'edit' && (
           <box style={{ flexDirection: 'column' }}>
             <box style={{ borderStyle: 'single', borderColor: displayedAuthError ? theme.error : theme.primary, paddingLeft: 1, paddingRight: 1, flexShrink: 0, width: 80 }}>
-              <SingleLineInput value={inputValue} onChange={(v) => { setInputValue(v); setError(null) }} placeholder="Paste Magnitude Cloud API key" focused={true} />
+              <SingleLineInput value={inputValue} onChange={(v) => { setInputValue(v); setError(null) }} placeholder="Paste x-cli Cloud API key" focused={true} />
             </box>
             <box style={{ flexDirection: 'row' }}>
               <Button onClick={handleSave} onMouseOver={() => setSaveHovered(true)} onMouseOut={() => setSaveHovered(false)}>
@@ -502,7 +502,7 @@ export const SettingsOverlay = memo(function SettingsOverlay({
 
         {mode === 'confirm-disconnect' && (
           <box style={{ flexDirection: 'column' }}>
-            <text style={{ fg: theme.foreground }}>Disconnect Magnitude Cloud? Cloud models will no longer be available.</text>
+            <text style={{ fg: theme.foreground }}>Disconnect x-cli Cloud? Cloud models will no longer be available.</text>
             <box style={{ flexDirection: 'row', paddingTop: 1 }}>
               <Button onClick={handleConfirmDisconnect} onMouseOver={() => setConfirmHovered(true)} onMouseOut={() => setConfirmHovered(false)}>
                 <text style={{ fg: confirmHovered ? theme.error : theme.foreground }}>{auth.saving ? '[Disconnecting...]' : '[Yes, disconnect]'}</text>

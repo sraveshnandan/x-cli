@@ -4,11 +4,11 @@ import {
   PromptBuilder,
   ProviderModelIdSchema,
   type ModelRequestProgress,
-} from "@magnitudedev/ai"
+} from "@x-cli/ai"
 import { Effect, Exit, Layer, Option, Stream } from "effect"
 import { describe, expect, it } from "vitest"
 import { IcnClient } from "../client.js"
-import { makeIcnApiClient } from "@magnitudedev/icn-protocol/client"
+import { makeIcnApiClient } from "@x-cli/icn-protocol/client"
 import { IcnProvider, IcnProviderModelResolver, makeIcnProvider } from "./source.js"
 import { CurrentModelInstance } from "./contract.js"
 

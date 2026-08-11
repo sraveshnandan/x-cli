@@ -3,8 +3,8 @@ import {
   ModelRequestPreparationCancelled,
   ModelRequestPreparationFailed,
   type PrepareModelRequest,
-} from "@magnitudedev/agent"
-import { PROVIDER_ID as LOCAL_PROVIDER_ID } from "@magnitudedev/icn/provider"
+} from "@x-cli/agent"
+import { PROVIDER_ID as LOCAL_PROVIDER_ID } from "@x-cli/icn/provider"
 import type { ModelSlotControllerApi } from "./model-slot-controller"
 
 export const makeModelRequestPreparation = (

@@ -5,8 +5,8 @@
  */
 
 import { Effect, Schedule, Schema } from 'effect'
-import { defineHarnessTool } from '@magnitudedev/harness'
-import { extractHtml } from '@magnitudedev/dom-extract'
+import { defineHarnessTool } from '@x-cli/harness'
+import { extractHtml } from '@x-cli/dom-extract'
 import { ToolErrorSchema } from './errors'
 
 const MAX_RESPONSE_SIZE = 5 * 1024 * 1024 // 5MB

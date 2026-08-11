@@ -1,6 +1,6 @@
 import { Effect, Layer, Option } from 'effect'
-import { Addressed } from '@magnitudedev/event-core'
-import type { MagnitudeStorageShape } from '@magnitudedev/storage'
+import { Addressed } from '@x-cli/event-core'
+import type { XCliStorageShape } from '@x-cli/storage'
 import { ChatPersistence } from './chat-persistence-service'
 
 const toAddressedStoreError =
@@ -18,7 +18,7 @@ const toAddressedStoreError =
     })
 
 export const makeChatAddressedEntryStoreLayer = (
-  storage: MagnitudeStorageShape,
+  storage: XCliStorageShape,
   sessionId?: string
 ): Layer.Layer<Addressed.AddressedEntryStore, never, ChatPersistence> =>
   Layer.effect(

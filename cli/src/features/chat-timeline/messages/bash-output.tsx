@@ -4,7 +4,7 @@ import { useTheme } from '../../../hooks/use-theme'
 import { orange } from '../../../utils/theme'
 
 import { BOX_CHARS } from '../../../utils/ui-constants'
-import type { UserBashCommandMessage } from '@magnitudedev/sdk'
+import type { UserBashCommandMessage } from '@x-cli/sdk'
 
 const BASH_ACCENT = orange[400]
 const BASH_BOX_CHARS = { ...BOX_CHARS, vertical: '▎' }

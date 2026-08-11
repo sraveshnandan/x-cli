@@ -11,8 +11,8 @@
  */
 
 import { Effect, SubscriptionRef } from 'effect'
-import { Worker, AmbientServiceTag } from '@magnitudedev/event-core'
-import { logger } from '@magnitudedev/logger'
+import { Worker, AmbientServiceTag } from '@x-cli/event-core'
+import { logger } from '@x-cli/logger'
 import * as fs from 'node:fs/promises'
 import * as nodePath from 'node:path'
 

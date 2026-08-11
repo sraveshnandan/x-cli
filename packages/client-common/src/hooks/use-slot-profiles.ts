@@ -12,7 +12,7 @@ import {
   type ProviderModelCatalogEntry,
   type ReasoningEffort,
   type SlotId,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { useDisplayState } from "../state/display-state-store"
 import { useAgentClient } from "../state/agent-client-context"
 import { useMirroredState } from "./use-mirrored-state"

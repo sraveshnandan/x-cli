@@ -5,7 +5,7 @@ import {
   type BoundModel,
   type BaseCallOptions,
   type ToolChoice as AiToolChoice,
-} from '@x-cli/ai'
+} from "@x-cli/ai"
 import { classifyXCliRejectedResponse } from "./errors"
 import type { XCliAdditionalOptions } from "./contract"
 
@@ -19,22 +19,22 @@ export interface XCliCompatibleSpecConfig {
 
 /**
  * Internal call options for the x-cli provider.
- * `xCliAdditionalOptions` is baked in at bind time — callers only see
+ * `XCliAdditionalOptions` is baked in at bind time — callers only see
  * `BaseCallOptions`.
  */
 export type XCliCallOptions = {
   maxTokens?: number
   toolChoice?: AiToolChoice
-  xCliAdditionalOptions?: XCliAdditionalOptions
+  XCliAdditionalOptions?: XCliAdditionalOptions
   reasoningEffort?: string
 }
 
-const xCliOptions = {
+const XCliOptions = {
   maxTokens: NativeChatCompletions.options.maxTokens,
   toolChoice: Option.define(
     (v: AiToolChoice) => ({ tool_choice: v }),
   ),
-  xCliAdditionalOptions: Option.define(
+  XCliAdditionalOptions: Option.define(
     (v: XCliAdditionalOptions) => ({ x_cli_additional_options: v }),
   ),
   reasoningEffort: Option.define(
@@ -46,14 +46,14 @@ export function createXCliCompatibleSpec(config: XCliCompatibleSpecConfig) {
   return NativeChatCompletions.model({
     modelId: config.modelId,
     endpoint: config.endpoint,
-    options: xCliOptions,
+    options: XCliOptions,
     classifyRejectedResponse: classifyXCliRejectedResponse,
   })
 }
 
 /**
  * Wrap an internal `BoundModel<XCliCallOptions>` to accept
- * `BaseCallOptions` from the caller. `xCliAdditionalOptions` is baked
+ * `BaseCallOptions` from the caller. `XCliAdditionalOptions` is baked
  * in at bind time and invisible to the caller.
  */
 export function wrapAsBaseModel(
@@ -64,7 +64,7 @@ export function wrapAsBaseModel(
     stream: (prompt, tools, options) =>
       internal.stream(prompt, tools, {
         ...options,
-        xCliAdditionalOptions: {
+        XCliAdditionalOptions: {
           ...bakedOptions,
         },
       }),

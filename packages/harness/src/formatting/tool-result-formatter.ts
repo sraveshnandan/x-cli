@@ -19,12 +19,12 @@
  *   }
  */
 
-import type { ToolResultPart } from '@magnitudedev/ai'
+import type { ToolResultPart } from '@x-cli/ai'
 import type { ToolResultEntry, ToolResult } from '../events'
 import type { Toolkit } from '../tool/toolkit'
 import type { Schema } from 'effect'
 import { renderToolOutput, isImageValue, toImagePart, renderTagged } from './helpers'
-import { renderSchemaParams } from '@magnitudedev/utils/schema'
+import { renderSchemaParams } from '@x-cli/utils/schema'
 
 // ---------------------------------------------------------------------------
 // Type

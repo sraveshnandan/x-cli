@@ -1,0 +1,30 @@
+---
+title: Local Inference Engine
+description: Architecture of the native Rust llama.cpp inference engine and hardware profiling system.
+---
+
+# Local Inference Engine & Hardware Profiling
+
+`x-cli` features a custom native Rust inference engine powered by `llama.cpp` bindings. It provides zero-cost, privacy-first local LLM execution.
+
+---
+
+## Key Capabilities
+
+- **Automatic VRAM & RAM Profiling**: Calculates exact memory headroom before loading GGUF models into GPU layers.
+- **Metal & CUDA Offloading**: Fully leverages Apple Silicon Metal and NVIDIA CUDA for high-throughput inference.
+- **KV-Cache Optimization**: Reuses context prefix tokens across conversation turns to eliminate redundant prompt evaluation time.
+- **Air-gapped Privacy**: Zero code or prompts leave your machine when executing locally.
+
+---
+
+## Hardware Profiling Pipeline
+
+```
+[System Memory Audit] -> [GPU VRAM Check] -> [Model Quantization Match] -> [Layer Offload Allocation]
+```
+
+When `x-cli` starts:
+1. Queries system memory and active GPU devices.
+2. Evaluates model candidate sizes (Lightweight, Balanced, Quality).
+3. Allocates optimal GPU layer offloads to prevent Out-Of-Memory (OOM) panics.

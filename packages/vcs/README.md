@@ -4,7 +4,7 @@ A private checkpoint system for AI agents. It creates periodic, lightweight snap
 
 ## What it is
 
-Most Magnitude agents work directly in the user's project directory. That creates a risk: an agent might make a series of edits, realize the approach was wrong, and need to revert cleanly. The Shadow VCS solves this by maintaining a **separate, agent-owned git repository** that checkpoints the worktree at every turn boundary and tool call boundary.
+Most x-cli agents work directly in the user's project directory. That creates a risk: an agent might make a series of edits, realize the approach was wrong, and need to revert cleanly. The Shadow VCS solves this by maintaining a **separate, agent-owned git repository** that checkpoints the worktree at every turn boundary and tool call boundary.
 
 The user's `git` history is never touched. The shadow repo lives in a separate `.git` directory (typically under a `storagePath`) and tracks the same worktree via a different git database. This lets the agent freely commit, diff, and revert without corrupting the user's working state.
 

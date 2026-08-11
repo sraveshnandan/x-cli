@@ -25,8 +25,8 @@
  */
 
 import { Effect, Duration, Option } from 'effect'
-import { Worker } from '@magnitudedev/event-core'
-import { logger } from '@magnitudedev/logger'
+import { Worker } from '@x-cli/event-core'
+import { logger } from '@x-cli/logger'
 import type { AppEvent } from '../events'
 import { TurnProjection } from '../projections/turn'
 

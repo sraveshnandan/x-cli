@@ -1,12 +1,12 @@
 import { Schema } from "effect"
-import { JsonValueSchema, type JsonValue } from "@magnitudedev/utils/schema"
+import { JsonValueSchema, type JsonValue } from "@x-cli/utils/schema"
 export {
   JsonRecordSchema,
   JsonValueSchema,
   type JsonPrimitive,
   type JsonRecord,
   type JsonValue,
-} from "@magnitudedev/utils/schema"
+} from "@x-cli/utils/schema"
 import { ProviderToolCallIdSchema, ToolCallIdSchema, type ProviderToolCallId, type ToolCallId } from "./ids"
 
 export interface TextPart {

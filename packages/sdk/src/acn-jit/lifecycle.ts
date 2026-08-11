@@ -6,8 +6,8 @@ import {
   type AcnInstallationPlan,
   type AcnStartupProgress,
   type AcnHealthState,
-} from "@magnitudedev/acn-protocol";
-import { FSM } from "@magnitudedev/utils";
+} from "@x-cli/acn-protocol";
+import { FSM } from "@x-cli/utils";
 import { Clock, Duration, Effect, Option, Schema, Stream, SubscriptionRef } from "effect";
 import type { AcnEnsuranceError } from "./errors";
 
@@ -217,7 +217,7 @@ const phaseRange = (
       return { start: 0, end: daemonEnd };
     case "DownloadingInferenceEngine":
       return { start: daemonEnd, end: DOWNLOAD_SHARE };
-    case "StartingMagnitude":
+    case "StartingXCli":
       return { start: DOWNLOAD_SHARE, end: 1 };
   }
 };
@@ -233,7 +233,7 @@ const phaseFractionAt = (
   installation: ClientAcnInstallingAuthority,
   now: number
 ): number =>
-  installation.phase === "StartingMagnitude"
+  installation.phase === "StartingXCli"
     ? Math.min(
         0.999_999,
         1 -
@@ -302,21 +302,21 @@ const ensuranceErrorMessage = (error: AcnEnsuranceError): string => {
     case "AcnEnsuranceFailed":
       return error.reason;
     case "BinaryNotFound":
-      return `Magnitude executable was not found at ${error.path}`;
+      return `x-cli executable was not found at ${error.path}`;
     case "BinaryVersionMismatch":
-      return `Magnitude executable ${error.path} has version ${error.actual}; expected ${error.expected}`;
+      return `x-cli executable ${error.path} has version ${error.actual}; expected ${error.expected}`;
     case "BinaryRevisionMismatch":
-      return `Magnitude executable ${error.path} has ACN revision ${error.actual}; expected ${error.expected}`;
+      return `x-cli executable ${error.path} has ACN revision ${error.actual}; expected ${error.expected}`;
     case "DownloadFailed":
       return error.reason;
     case "ChecksumMismatch":
-      return "Downloaded Magnitude artifact failed integrity verification";
+      return "Downloaded x-cli artifact failed integrity verification";
   }
 };
 
 const nonEmptyFailureMessage = (error: AcnEnsuranceError): string => {
   const message = ensuranceErrorMessage(error).trim();
-  return message.length > 0 ? message : "Magnitude is unavailable";
+  return message.length > 0 ? message : "x-cli is unavailable";
 };
 
 export const makeAcnLifecycle = (): Effect.Effect<AcnLifecycleOwner> =>
@@ -333,7 +333,7 @@ export const makeAcnLifecycle = (): Effect.Effect<AcnLifecycleOwner> =>
           const current = Stream.fromEffect(renderState(state));
           if (
             state._tag !== "Installing" ||
-            state.phase !== "StartingMagnitude"
+            state.phase !== "StartingXCli"
           ) {
             return current;
           }

@@ -17,8 +17,8 @@
 
 import { Effect, Cause } from 'effect'
 import * as HttpClient from '@effect/platform/HttpClient'
-import { Worker } from '@magnitudedev/event-core'
-import { logger } from '@magnitudedev/logger'
+import { Worker } from '@x-cli/event-core'
+import { logger } from '@x-cli/logger'
 
 import type { AppEvent } from '../events'
 import { AgentLifecycleProjection } from '../projections/agent-lifecycle'

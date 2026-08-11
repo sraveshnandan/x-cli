@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { writeTool } from '../tools/fs'
 import { FileWriteStateSchema, type FileWriteState } from './tool-state'

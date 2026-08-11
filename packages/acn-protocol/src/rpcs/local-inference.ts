@@ -1,6 +1,6 @@
 import { Rpc } from "@effect/rpc"
 import { Schema } from "effect"
-import { ProviderModelIdSchema } from "@magnitudedev/ai/provider/model"
+import { ProviderModelIdSchema } from "@x-cli/ai/provider/model"
 import { LocalInferenceError } from "../errors"
 import {
   DownloadAttemptIdSchema,

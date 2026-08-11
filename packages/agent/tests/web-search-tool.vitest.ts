@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest"
 import {
   ProviderClient,
   createProviderClient,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { webSearchTool } from "../src/tools/web-search"
 
 describe("web search tool", () => {
@@ -14,20 +14,20 @@ describe("web search tool", () => {
       fetch: () => Response.json({
         requestId: "request-1",
         results: [{
-          id: "https://magnitude.dev/",
-          title: "Magnitude",
-          url: "https://magnitude.dev/",
+          id: "https://x-cli.dev/",
+          title: "x-cli",
+          url: "https://x-cli.dev/",
           highlights: ["The coding agent for open models."],
         }],
         output: {
           content: {
-            officialWebsite: "https://magnitude.dev/",
+            officialWebsite: "https://x-cli.dev/",
           },
           grounding: [{
             field: "officialWebsite",
             citations: [{
-              url: "https://magnitude.dev/",
-              title: "Magnitude",
+              url: "https://x-cli.dev/",
+              title: "x-cli",
             }],
             confidence: "high",
           }],
@@ -51,7 +51,7 @@ describe("web search tool", () => {
       })
       const result = await Effect.runPromise(
         webSearchTool.execute({
-          query: "Magnitude coding agent",
+          query: "x-cli coding agent",
           schema: Option.some({
             type: "object",
             properties: {
@@ -67,11 +67,11 @@ describe("web search tool", () => {
       )
 
       expect(Option.getOrUndefined(result.data)).toEqual({
-        officialWebsite: "https://magnitude.dev/",
+        officialWebsite: "https://x-cli.dev/",
       })
       expect(result.sources).toEqual([{
-        title: "Magnitude",
-        url: "https://magnitude.dev/",
+        title: "x-cli",
+        url: "https://x-cli.dev/",
       }])
     } finally {
       server.stop(true)

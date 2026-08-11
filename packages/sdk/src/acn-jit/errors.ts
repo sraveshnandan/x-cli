@@ -1,6 +1,6 @@
 import { Schema } from "effect"
 import { Rpc, RpcClientError } from "@effect/rpc"
-import { StreamDisplayView, WatchFile } from "@magnitudedev/acn-protocol"
+import { StreamDisplayView, WatchFile } from "@x-cli/acn-protocol"
 
 export class AcnEnsuranceFailed extends Schema.TaggedError<AcnEnsuranceFailed>()(
   "AcnEnsuranceFailed",

@@ -5,8 +5,8 @@ import type {
 } from "@effect/rpc/RpcMessage"
 import {
   AcnSubscriptionMetadataTag,
-  MagnitudeRpcs,
-} from "@magnitudedev/acn-protocol"
+  XCliRpcs,
+} from "@x-cli/acn-protocol"
 import { Context, Effect, Layer, Option, Ref, Schema } from "effect"
 import { AcnSubscriptions } from "./acn-subscriptions"
 
@@ -19,7 +19,7 @@ const SessionScopedPayload = Schema.Struct({ sessionId: Schema.String })
 const decodeSessionScopedPayload = Schema.decodeUnknown(SessionScopedPayload)
 
 const subscriptionMetadata = (tag: string) => {
-  const rpc = MagnitudeRpcs.requests.get(tag)
+  const rpc = XCliRpcs.requests.get(tag)
   return rpc
     ? Context.getOption(rpc.annotations, AcnSubscriptionMetadataTag)
     : Option.none()

@@ -2,7 +2,7 @@
  * Permission Rejection Types
  *
  * Typed gate rejection reasons for the permission system.
- * js-act carries these through generically — Magnitude defines the vocabulary and policy.
+ * js-act carries these through generically — x-cli defines the vocabulary and policy.
  *
  * Cancellation policy (handled in execution-manager.ts GateRejected handler):
  * - ReadonlyMode → cancelled: false (agent adjusts, continues planning)

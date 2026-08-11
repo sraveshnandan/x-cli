@@ -38,7 +38,7 @@ export function getRetryAfterHint(outcome: TurnOutcome): number | undefined {
 }
 
 export const TERMINAL_RETRY_EXHAUSTED_MESSAGE =
-  'Lost connection to Magnitude. Check your network and try again.'
+  'Lost connection to x-cli. Check your network and try again.'
 
 /**
  * Effect Schedule for connection-failure retries.

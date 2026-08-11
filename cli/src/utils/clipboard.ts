@@ -310,7 +310,7 @@ async function tryReadImageBackend(backend: ClipboardReadImageBackend): Promise<
       }
     }
     case 'osascript-image': {
-      const tmpfile = path.join(tmpdir(), 'magnitude-clipboard.png')
+      const tmpfile = path.join(tmpdir(), 'x-cli-clipboard.png')
       try {
         await $`osascript -e 'set imageData to the clipboard as "PNGf"' -e 'set fileRef to open for access POSIX file "${tmpfile}" with write permission' -e 'set eof fileRef to 0' -e 'write imageData to fileRef' -e 'close access fileRef'`
           .nothrow()

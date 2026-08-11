@@ -8,7 +8,7 @@ import {
   convertRgbToHsl,
   formatRgbToHex,
   parseHexColorToRgb,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 import { useAnimationStep } from '../hooks/use-animation-time'
 
 const buildPaletteFromPrimaryColor = (

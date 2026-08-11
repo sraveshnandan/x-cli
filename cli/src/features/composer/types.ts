@@ -1,4 +1,4 @@
-import type { DisplayMessage, DisplayTimeline, LocalModelsState, ModelSlotsState, ProviderId, RawImageAttachment, RawMentionOccurrence, ReasoningEffort, SlotId } from '@magnitudedev/sdk'
+import type { DisplayMessage, DisplayTimeline, LocalModelsState, ModelSlotsState, ProviderId, RawImageAttachment, RawMentionOccurrence, ReasoningEffort, SlotId } from '@x-cli/sdk'
 import type { KeyEvent } from '@opentui/core'
 import type { ChatTheme } from '../../types/theme-system'
 

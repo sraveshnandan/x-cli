@@ -1,7 +1,7 @@
 import type { KeyEvent } from '@opentui/core'
 import { useCallback, useRef } from 'react'
-import { createPasteIngestCoordinator, isPasteFallbackKey } from '@magnitudedev/client-common'
-import type { PasteEventLike } from '@magnitudedev/client-common'
+import { createPasteIngestCoordinator, isPasteFallbackKey } from '@x-cli/client-common'
+import type { PasteEventLike } from '@x-cli/client-common'
 
 interface UsePasteHandlerOptions {
   enabled?: boolean

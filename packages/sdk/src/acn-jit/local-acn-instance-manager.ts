@@ -9,7 +9,7 @@ import {
   type AcnHealthResponse,
   type AcnInstance,
   type AcnTarget,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   ExactProcessController,
   ExactProcessControllerLive,
@@ -24,8 +24,8 @@ import {
   type AcnProcessStoreError,
   type ExactProcess,
   type ExactProcessController as ExactProcessControllerService,
-} from "@magnitudedev/acn-protocol/coordination"
-import type { ArtifactInstallationEvent } from "@magnitudedev/release"
+} from "@x-cli/acn-protocol/coordination"
+import type { ArtifactInstallationEvent } from "@x-cli/release"
 import {
   Array as Arr,
   Clock,

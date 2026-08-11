@@ -3,7 +3,7 @@ import { TextAttributes, type KeyEvent } from "@opentui/core"
 import { useKeyboard } from "@opentui/react"
 import { Atom, useAtomMount, useAtomValue } from "@effect-atom/atom-react"
 import { Effect } from "effect"
-import { useSettingsState } from "@magnitudedev/client-common"
+import { useSettingsState } from "@x-cli/client-common"
 import { authSourceAtom } from "../../state/cli-atoms"
 import { Button } from "../../components/button"
 import { useTheme } from "../../hooks/use-theme"
@@ -66,7 +66,7 @@ const CloudConfiguredScreen = memo(function CloudConfiguredScreen({
   return (
     <box style={{ height: "100%", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
       <text style={{ fg: theme.primary }} attributes={TextAttributes.BOLD}>CLOUD MODELS</text>
-      <text style={{ fg: theme.success }} attributes={TextAttributes.BOLD}>Magnitude Cloud is configured.</text>
+      <text style={{ fg: theme.success }} attributes={TextAttributes.BOLD}>x-cli Cloud is configured.</text>
       <text style={{ fg: theme.muted }}>Cloud models are ready.</text>
       <box style={{ paddingTop: 1 }}>
         <Button

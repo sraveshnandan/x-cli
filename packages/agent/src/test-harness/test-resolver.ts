@@ -3,7 +3,7 @@ import { AgentModelResolver } from '../model/model-resolver'
 import { makeAgentBoundModel } from '../model/agent-model'
 import { createTestBoundModel, type TestModelConfig } from './test-model'
 import type { RoleId } from '../agents/role-validation'
-import { ROLE_TO_SLOT } from '@magnitudedev/roles'
+import { ROLE_TO_SLOT } from '@x-cli/roles'
 
 const DEFAULT_TEST_PROFILE = {
   contextWindow: 200_000,

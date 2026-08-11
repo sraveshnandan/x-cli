@@ -1,6 +1,6 @@
 import { Option } from "effect"
-import type { ReleaseArtifact, ReleaseManifest } from "@magnitudedev/release"
-import type { HostId } from "@magnitudedev/release/targets"
+import type { ReleaseArtifact, ReleaseManifest } from "@x-cli/release"
+import type { HostId } from "@x-cli/release/targets"
 
 const imageApplies = (
   image: {

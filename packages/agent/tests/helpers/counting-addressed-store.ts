@@ -1,4 +1,4 @@
-import { Addressed } from '@magnitudedev/event-core'
+import { Addressed } from '@x-cli/event-core'
 import { Effect, Option, Ref } from 'effect'
 
 const keyFor = (namespace: string, address: string) => `${namespace}\u0000${address}`

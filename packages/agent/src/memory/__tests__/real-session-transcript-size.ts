@@ -88,7 +88,7 @@ async function loadSessionStats(sessionId: string, sessionsDir: string): Promise
 }
 
 async function main() {
-  const sessionsDir = join(homedir(), ".magnitude", "sessions");
+  const sessionsDir = join(homedir(), ".x-cli", "sessions");
   const dirEntries = await readdir(sessionsDir, { withFileTypes: true });
   const sessionIds = dirEntries
     .filter((entry) => entry.isDirectory())

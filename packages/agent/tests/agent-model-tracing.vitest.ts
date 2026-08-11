@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { Effect, Stream } from 'effect'
 import * as HttpClient from '@effect/platform/HttpClient'
-import { Fork } from '@magnitudedev/event-core'
+import { Fork } from '@x-cli/event-core'
 import {
   Prompt,
   TraceListener,
@@ -11,16 +11,16 @@ import {
   type ModelStreamResult,
   type StreamStartFailure,
   type ToolDefinition,
-} from '@magnitudedev/ai'
+} from '@x-cli/ai'
 import type { AgentModelStartFailure } from '../src/model/model-request-preparation'
-import type { BaseCallOptions, ProviderRejection } from '@magnitudedev/sdk'
+import type { BaseCallOptions, ProviderRejection } from '@x-cli/sdk'
 
 const traceMock = vi.hoisted(() => ({
   sessionId: 'session-1' as string | null,
   traces: [] as unknown[],
 }))
 
-vi.mock('@magnitudedev/tracing', () => ({
+vi.mock('@x-cli/tracing', () => ({
   getTraceSessionId: () => traceMock.sessionId,
   writeTrace: (trace: unknown) => {
     traceMock.traces.push(trace)
@@ -114,7 +114,7 @@ describe('makeAgentBoundModel tracing', () => {
       modelSource: { slotId: 'primary' },
       modelId: 'role/leader',
       modelDisplayName: 'Leader',
-      providerId: 'magnitude',
+      providerId: 'x-cli',
       profile,
       debug: true,
       agentId: 'agent-1',
@@ -152,7 +152,7 @@ describe('makeAgentBoundModel tracing', () => {
       modelSource: { slotId: 'secondary' },
       modelId: 'util/observer',
       modelDisplayName: 'Observer',
-      providerId: 'magnitude',
+      providerId: 'x-cli',
       profile,
       debug: true,
       agentId: 'observer',
@@ -195,7 +195,7 @@ describe('makeAgentBoundModel tracing', () => {
       modelSource: { slotId: 'secondary' },
       modelId: 'util/title',
       modelDisplayName: 'Title',
-      providerId: 'magnitude',
+      providerId: 'x-cli',
       profile,
       debug: true,
       agentId: 'title-gen',

@@ -5,7 +5,7 @@ import type {
   MemoryAssessment,
   ModelInstanceAllocation,
   ProviderModelCatalogEntry,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 export interface ModelMemoryConditions {
   readonly exceedsCapacity: boolean

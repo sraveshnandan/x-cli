@@ -1,4 +1,4 @@
-// Barrel export for @magnitudedev/client-common
+// Barrel export for @x-cli/client-common
 
 // State
 export * from './state/stream-errors'

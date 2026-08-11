@@ -9,7 +9,7 @@ const REVISION_FILE = resolve(PROJECT_ROOT, "packages/version/acn-revision.json"
 const OUTPUT_FILE = resolve(PROJECT_ROOT, "packages/version/src/version.generated.ts")
 const DEVELOPMENT_COUNTER_FILE = resolve(
   homedir(),
-  ".magnitude/acn/development-revision-counter",
+  ".x-cli/acn/development-revision-counter",
 )
 
 const isDev = process.argv.includes("--dev")
@@ -88,7 +88,7 @@ async function main() {
     (developmentCounter === undefined
       ? ""
       : `// Local development counter: ${developmentCounter}\n`) +
-    `export const MAGNITUDE_VERSION = ${JSON.stringify(version)}\n` +
+    `export const X_CLI_VERSION = ${JSON.stringify(version)}\n` +
     `export const ACN_COORDINATION_REVISION = ${revision}\n`
 
   await Bun.write(OUTPUT_FILE, contents)

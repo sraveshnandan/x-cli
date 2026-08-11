@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { Effect } from 'effect'
-import type { EventCursor, ProjectionSnapshotRestorePlan, Timestamped } from '@magnitudedev/event-core'
+import type { EventCursor, ProjectionSnapshotRestorePlan, Timestamped } from '@x-cli/event-core'
 import type { AppEvent } from '../src/events'
 import type { ChatPersistenceService, SessionMetadata } from '../src/persistence/chat-persistence-service'
 import { loadProjectionSnapshotHydrationEvents } from '../src/runtime/projection-snapshot-hydration'

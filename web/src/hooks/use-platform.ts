@@ -1,1 +1,1 @@
-export { usePlatform } from "@magnitudedev/client-common"
+export { usePlatform } from "@x-cli/client-common"

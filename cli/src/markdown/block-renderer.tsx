@@ -22,7 +22,7 @@ import { useStableCallback } from '../hooks/use-stable-callback'
 import { useTheme } from '../hooks/use-theme'
 import { safeRenderableAccess, safeRenderableCall } from '../utils/safe-renderable-access'
 import { buildMarkdownColorPalette } from '../utils/theme'
-import { useCopyFeedback, type MarkdownPalette } from '@magnitudedev/client-common'
+import { useCopyFeedback, type MarkdownPalette } from '@x-cli/client-common'
 import { writeTextToClipboard } from '../utils/clipboard'
 import { BOX_CHARS } from '../utils/ui-constants'
 

@@ -7,7 +7,7 @@ import {
   type AcnStartupProgress,
   type AcnStopping,
   type AcnStoppingReason,
-} from "@magnitudedev/acn-protocol";
+} from "@x-cli/acn-protocol";
 import { HttpServerRequest, HttpServerResponse } from "@effect/platform";
 import {
   Context,
@@ -75,7 +75,7 @@ export class AcnServiceLifecycle extends Context.Tag("AcnServiceLifecycle")<
 
 const unavailable = (state: AcnHealthState) =>
   HttpServerResponse.text(
-    state._tag === "Stopping" ? "Magnitude is stopping" : "Magnitude is starting",
+    state._tag === "Stopping" ? "x-cli is stopping" : "x-cli is starting",
     {
       status: 503,
       headers: { "retry-after": "1" },

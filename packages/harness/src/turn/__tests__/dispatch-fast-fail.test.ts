@@ -5,8 +5,8 @@ import { dispatch, TurnAbort } from '../dispatcher'
 import { defineHarnessTool } from '../../tool/tool'
 import { defineToolkit } from '../../tool/toolkit'
 import type { HarnessEvent } from '../../events'
-import type { ProviderToolCallId, ToolCallId, StreamingFieldParser } from '@magnitudedev/ai'
-import { createStreamingFieldParser, ModelStreamTerminal, StreamProviderCorrectnessViolation } from '@magnitudedev/ai'
+import type { ProviderToolCallId, ToolCallId, StreamingFieldParser } from '@x-cli/ai'
+import { createStreamingFieldParser, ModelStreamTerminal, StreamProviderCorrectnessViolation } from '@x-cli/ai'
 
 // ── Test tools ────────────────────────────────────────────────────────
 
@@ -36,7 +36,7 @@ const toolkit = defineToolkit({ succeed: succeedEntry, fail: failEntry })
 
 // ── Stream builder ───────────────────────────────────────────────────
 
-type StreamEvent = import('@magnitudedev/ai').ResponseStreamEvent
+type StreamEvent = import('@x-cli/ai').ResponseStreamEvent
 
 function toolCallEvents(id: string, name: string): StreamEvent[] {
   const toolCallId = id as ToolCallId

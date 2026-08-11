@@ -7,19 +7,19 @@ import {
   AcnReady,
   AcnRevisionSchema,
   type AcnTarget,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   ExactProcessControllerLive,
   makeAcnOwnerStore,
   makeAcnRevisionStore,
-} from "@magnitudedev/acn-protocol/coordination"
+} from "@x-cli/acn-protocol/coordination"
 import { Duration, Effect, Exit, Fiber, Layer, Option, TestClock, TestContext } from "effect"
 import { describe, expect, it } from "vitest"
 import { runAcnEnsure } from "./acn-instance-manager"
 import { ChildProcessSpawner } from "./child-process"
 import { AcnEnsuranceFailed } from "./errors"
 import { makeLocalAcnInstanceManager } from "./local-acn-instance-manager"
-import { BunSqliteDriverLayer } from "@magnitudedev/acn-protocol/coordination/bun"
+import { BunSqliteDriverLayer } from "@x-cli/acn-protocol/coordination/bun"
 import { SDK_ACN_TARGET, SDK_VERSION } from "../version"
 
 const platform = Layer.mergeAll(BunContext.layer, FetchHttpClient.layer, BunSqliteDriverLayer)
@@ -44,7 +44,7 @@ describe("LocalAcnInstanceManager", () => {
         hostname: "127.0.0.1",
         port: 0,
         fetch: () => Response.json({
-          service: "magnitude-acn",
+          service: "x-cli-acn",
           version: identity,
           revision: selected,
           id,
@@ -78,7 +78,7 @@ describe("LocalAcnInstanceManager", () => {
         hostname: "127.0.0.1",
         port: 0,
         fetch: () => Response.json({
-          service: "magnitude-acn",
+          service: "x-cli-acn",
           version: SDK_VERSION,
           revision: selected,
           id: AcnInstanceIdSchema.make("obsolete-owner"),
@@ -115,7 +115,7 @@ describe("LocalAcnInstanceManager", () => {
         hostname: "127.0.0.1",
         port: 0,
         fetch: () => Response.json({
-          service: "magnitude-acn",
+          service: "x-cli-acn",
           version: SDK_VERSION,
           revision: SDK_ACN_TARGET.revision,
           id,

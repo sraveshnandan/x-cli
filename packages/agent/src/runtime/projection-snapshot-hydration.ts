@@ -1,5 +1,5 @@
 import { Effect } from 'effect'
-import type { ProjectionSnapshotRestorePlan, Timestamped } from '@magnitudedev/event-core'
+import type { ProjectionSnapshotRestorePlan, Timestamped } from '@x-cli/event-core'
 import type { AppEvent } from '../events'
 import type { ChatPersistenceService, PersistenceError } from '../persistence/chat-persistence-service'
 

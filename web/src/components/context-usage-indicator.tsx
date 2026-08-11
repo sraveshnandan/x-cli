@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react"
-import { formatTokensCompact } from "@magnitudedev/client-common"
-import type { ContextUsageDisplay } from "@magnitudedev/sdk"
+import { formatTokensCompact } from "@x-cli/client-common"
+import type { ContextUsageDisplay } from "@x-cli/sdk"
 
 export interface ContextUsageIndicatorProps {
   context: ContextUsageDisplay | null

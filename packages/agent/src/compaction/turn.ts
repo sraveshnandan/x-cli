@@ -4,9 +4,9 @@
 
 import { Data, Effect, Layer, Option, Stream, Ref } from 'effect'
 
-import { AmbientServiceTag } from '@magnitudedev/event-core'
-import { logger } from '@magnitudedev/logger'
-import { createHarness } from '@magnitudedev/harness'
+import { AmbientServiceTag } from '@x-cli/event-core'
+import { logger } from '@x-cli/logger'
+import { createHarness } from '@x-cli/harness'
 
 import type { AppEvent } from '../events'
 
@@ -19,7 +19,7 @@ import { getAgentDefinition } from '../agents/registry'
 import { materializeAgentToolkit } from '../tools/toolkits'
 import { buildSystemPrompt } from '../prompts/system-prompt-builder'
 import { buildCompactionPrompt } from './prompt'
-import { createToolResultFormatter } from '@magnitudedev/harness'
+import { createToolResultFormatter } from '@x-cli/harness'
 import { createAgentFormatter, windowToPrompt } from '../prompts/window-to-prompt'
 
 import { CompactionContextTag, type CompactResult } from './context'

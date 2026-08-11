@@ -5,15 +5,15 @@ import type {
   ProviderToolCallId,
   ResponseUsage,
   JsonValue,
-} from "@magnitudedev/ai"
+} from "@x-cli/ai"
 import {
   AssistantMessageSchema,
   JsonValueSchema,
   ToolCallPartSchema,
   ProviderToolCallIdSchema as AiProviderToolCallIdSchema,
   ToolCallIdSchema as AiToolCallIdSchema,
-} from "@magnitudedev/ai"
-import { makeSchemaUnionFromEntries, type NonEmptySchemaEntries } from "@magnitudedev/utils/schema"
+} from "@x-cli/ai"
+import { makeSchemaUnionFromEntries, type NonEmptySchemaEntries } from "@x-cli/utils/schema"
 import type {
   HarnessEvent,
   StreamFailedTerminal,
@@ -24,7 +24,7 @@ import type {
 import type { Toolkit } from "../tool/toolkit"
 import { BaseStateSchema, type BaseState, type StateModel } from "../tool/state-model"
 import { createToolHandle, interruptToolHandle, processToolHandle, type ToolHandle } from "../tool/tool-handle"
-import type { StreamingPartial } from "@magnitudedev/ai"
+import type { StreamingPartial } from "@x-cli/ai"
 import { applyFieldChunk, extractStreamingPartialValues } from "../tool/streaming-partial"
 import { Schema, Option } from "effect"
 

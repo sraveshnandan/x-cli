@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test'
 import { hasOddFenceCount } from './streaming'
-import { parseMarkdownToMdast } from '@magnitudedev/client-common'
+import { parseMarkdownToMdast } from '@x-cli/client-common'
 import { renderDocumentToBlocks } from './blocks'
 import { baseOptions, blockTypes } from '../utils/test-markdown-helpers'
 

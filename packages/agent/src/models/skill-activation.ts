@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { skillTool } from '../tools/skill-tool'
 import { SkillActivationStateSchema, type SkillActivationState } from './tool-state'

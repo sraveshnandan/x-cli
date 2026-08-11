@@ -1,19 +1,19 @@
 import { Rpc, RpcClient, RpcClientError, RpcGroup } from "@effect/rpc"
 import { Schema } from "effect"
-import { MenuActionSchema, type MenuAction } from "@magnitudedev/client-common/src/types/menu-action"
+import { MenuActionSchema, type MenuAction } from "@x-cli/client-common/src/types/menu-action"
 import {
   AcnEnsureEventSchema,
   AcnEnsureRequestSchema,
   AcnEnsuranceError,
   type AcnEnsureEvent,
   type AcnEnsureRequest,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 export type { MenuAction }
 
 export const DesktopRpcChannel = {
-  request: "__magnitude:desktop-rpc:request",
-  response: "__magnitude:desktop-rpc:response",
+  request: "__x-cli:desktop-rpc:request",
+  response: "__x-cli:desktop-rpc:response",
 } as const
 
 const Unit = Schema.Struct({})

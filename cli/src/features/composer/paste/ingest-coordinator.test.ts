@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'bun:test'
 import type { KeyEvent } from '@opentui/core'
-import { createPasteIngestCoordinator, isPasteFallbackKey } from '@magnitudedev/client-common'
-import type { PasteIngestOutcome } from '@magnitudedev/client-common'
+import { createPasteIngestCoordinator, isPasteFallbackKey } from '@x-cli/client-common'
+import type { PasteIngestOutcome } from '@x-cli/client-common'
 
 function createKey(overrides: Partial<KeyEvent> = {}): KeyEvent {
   return {

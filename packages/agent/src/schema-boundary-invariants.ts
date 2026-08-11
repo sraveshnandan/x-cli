@@ -1,10 +1,10 @@
 import { Option, Schema } from 'effect'
-import type { JsonEncoded, JsonEncodedSchema, JsonValue } from '@magnitudedev/utils/schema'
+import type { JsonEncoded, JsonEncodedSchema, JsonValue } from '@x-cli/utils/schema'
 import {
   DisplayState as DisplayStateSchema,
   type DisplayState,
   type ToolMessage,
-} from '@magnitudedev/acn-protocol'
+} from '@x-cli/acn-protocol'
 import { ToolStateSchema, type ToolStateFromSchema } from './models/tool-state'
 import type { ToolHandleFromSchema } from './models/tool-handle-schema'
 

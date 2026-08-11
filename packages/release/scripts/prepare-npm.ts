@@ -6,7 +6,7 @@ import { run } from "./build/common"
 const PACKAGE_ROOT = resolve(import.meta.dir, "../../cli")
 const EXPECTED_FILES = [
   "package/README.md",
-  "package/bin/magnitude.js",
+  "package/bin/x-cli.js",
   "package/lib/download.js",
   "package/lib/release-runtime.cjs",
   "package/package.json",

@@ -1,24 +1,24 @@
 import { Context, Effect, Layer, Ref, Schema, Stream, SubscriptionRef } from "effect"
-import type { ToolAvailabilityState } from "@magnitudedev/agent"
+import type { ToolAvailabilityState } from "@x-cli/agent"
 import {
   ProviderClient,
   createProviderClient,
   type ProviderClientShape,
   type WebSearchSource,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
-  MagnitudeStorage,
+  XCliStorage,
   type AuthStorageShape,
-  type MagnitudeStorageShape,
-} from "@magnitudedev/storage"
-import { IcnProvider, createLocalProvider } from "@magnitudedev/icn/provider"
+  type XCliStorageShape,
+} from "@x-cli/storage"
+import { IcnProvider, createLocalProvider } from "@x-cli/icn/provider"
 import { ModelConfiguration } from "./model-configuration"
-import { SlotIdSchema } from "@magnitudedev/acn-protocol"
+import { SlotIdSchema } from "@x-cli/acn-protocol"
 
-const resolveMagnitudeApiKey = (
-  storage: MagnitudeStorageShape,
+const resolveXCliApiKey = (
+  storage: XCliStorageShape,
 ): Effect.Effect<string | null> => Effect.gen(function* () {
-  const auth = yield* storage.auth.get("magnitude").pipe(Effect.orElseSucceed(() => null))
+  const auth = yield* storage.auth.get("x-cli").pipe(Effect.orElseSucceed(() => null))
   if (auth?.type === "api" && auth.key.trim()) return auth.key
   const environmentKey = process.env.MAGNITUDE_API_KEY
   return environmentKey?.trim() ? environmentKey : null
@@ -115,18 +115,18 @@ export class ProviderClientRegistry extends Context.Tag("ProviderClientRegistry"
 export const ProviderClientRegistryLive: Layer.Layer<
   ProviderClientRegistry,
   never,
-  MagnitudeStorage | IcnProvider | ModelConfiguration
+  XCliStorage | IcnProvider | ModelConfiguration
 > = Layer.effect(
   ProviderClientRegistry,
   Effect.gen(function* () {
-    const storage = yield* MagnitudeStorage
+    const storage = yield* XCliStorage
     const local = createLocalProvider(yield* IcnProvider)
     const modelConfiguration = yield* ModelConfiguration
     const entries = yield* Ref.make<ReadonlyMap<string, ProviderClientEntry>>(new Map())
     const lock = yield* Effect.makeSemaphore(1)
 
     const makeConcrete = (sessionId: string | null) => Effect.gen(function* () {
-      const apiKey = yield* resolveMagnitudeApiKey(storage)
+      const apiKey = yield* resolveXCliApiKey(storage)
       const client = createProviderClient({
         ...(apiKey ? { apiKey } : {}),
         ...(sessionId ? { sessionId } : {}),

@@ -1,8 +1,8 @@
 import type {
   ArtifactInstallationEvent,
   ReleaseBundleSizes,
-} from "@magnitudedev/release"
-import type { IcnStartupBackend } from "@magnitudedev/icn-protocol"
+} from "@x-cli/release"
+import type { IcnStartupBackend } from "@x-cli/icn-protocol"
 import { Context, Effect } from "effect"
 
 export type IcnPreparationBackend =
@@ -46,5 +46,5 @@ export interface IcnPreparationReporter {
 
 export const IcnPreparationReporter =
   Context.GenericTag<IcnPreparationReporter>(
-    "@magnitudedev/icn/IcnPreparationReporter",
+    "@x-cli/icn/IcnPreparationReporter",
   )

@@ -1,4 +1,4 @@
-import type { JsonEncodedSchema, JsonObjectEncodedSchema } from "@magnitudedev/utils/schema"
+import type { JsonEncodedSchema, JsonObjectEncodedSchema } from "@x-cli/utils/schema"
 import type { Schema } from "effect"
 
 /**

@@ -32,7 +32,7 @@ describe("REPRO: harness afterExecute VCS integration", () => {
 
   beforeEach(async () => {
     projectDir = os.tmpdir() + "/repro-harness-vcs-" + Date.now()
-    storagePath = path.join(projectDir, ".magnitude", ".vcs")
+    storagePath = path.join(projectDir, ".x-cli", ".vcs")
     await mkdir(projectDir, { recursive: true })
     await mkdir(path.join(projectDir, "src"), { recursive: true })
     await writeFile(path.join(projectDir, "foo.txt"), "Hello World\n")

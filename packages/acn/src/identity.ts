@@ -1,11 +1,11 @@
-import { createId } from "@magnitudedev/generate-id";
+import { createId } from "@x-cli/generate-id";
 import {
   AcnInstanceIdSchema,
   AcnIdentitySchema,
   AcnRevisionSchema,
   type AcnHealthResponse,
   type AcnHealthState,
-} from "@magnitudedev/acn-protocol";
+} from "@x-cli/acn-protocol";
 import { ACN_REVISION } from "./version";
 
 /** Stable for the lifetime of this ACN process and unique across candidates. */
@@ -18,7 +18,7 @@ export const makeHealthResponse = (
   pid: number = process.pid,
   revision: number = ACN_REVISION,
 ): AcnHealthResponse => ({
-  service: "magnitude-acn",
+  service: "x-cli-acn",
   version: AcnIdentitySchema.make(version),
   revision: AcnRevisionSchema.make(revision),
   id: AcnInstanceIdSchema.make(id),

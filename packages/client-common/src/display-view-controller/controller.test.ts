@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { Effect, Layer } from "effect"
 import { RpcClient } from "@effect/rpc"
-import type { DisplayTimeline } from "@magnitudedev/sdk"
+import type { DisplayTimeline } from "@x-cli/sdk"
 import {
   createDisplayViewStore,
   displayShapeFor,

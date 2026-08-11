@@ -1,4 +1,4 @@
-import type { SyntaxColors } from '@magnitudedev/client-common'
+import type { SyntaxColors } from '@x-cli/client-common'
 
 export type ThemeName = 'dark' | 'light'
 

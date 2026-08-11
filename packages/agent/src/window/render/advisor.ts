@@ -6,10 +6,10 @@
  * tool output.
  *
  * User messages are wrapped in <user> tags.
- * Assistant turns ("Magnitude" turns) are wrapped in <magnitude> blocks
+ * Assistant turns ("x-cli" turns) are wrapped in <x-cli> blocks
  * with <tools> counts and <message> tags.
  * If the turn contains a message_advisor tool call, a <message_advisor>
- * tag is included inside the <magnitude> block.
+ * tag is included inside the <x-cli> block.
  * Advisor's own past responses are rendered as native AssistantMessage.
  * Synthetic (autopilot-originated) user messages are rendered as
  * AssistantMessage (the advisor sees its own autopilot output as its own
@@ -19,7 +19,7 @@
  * when the autopilot state differs from what the advisor last knew.
  */
 
-import { Prompt, type Message as AiMessage } from '@magnitudedev/ai'
+import { Prompt, type Message as AiMessage } from '@x-cli/ai'
 import { Option } from 'effect'
 import type { ForkWindowState, CompletedTurn, WindowEntry } from '../types'
 import type { TimelineEntry } from '../inbox/types'
@@ -137,7 +137,7 @@ function renderToolWorkSummary(summary: ToolWorkSummary): string {
 }
 
 // ---------------------------------------------------------------------------
-// Magnitude turn rendering
+// x-cli turn rendering
 // ---------------------------------------------------------------------------
 
 /**
@@ -154,8 +154,8 @@ function getMessageAdvisorInput(turn: CompletedTurn): string | null {
   return null
 }
 
-function buildMagnitudeBlock(turn: CompletedTurn, toolSummary: ToolWorkSummary): string {
-  const parts: string[] = ['<magnitude>']
+function buildXCliBlock(turn: CompletedTurn, toolSummary: ToolWorkSummary): string {
+  const parts: string[] = ['<x-cli>']
 
   if (hasToolWork(toolSummary)) {
     parts.push(renderToolWorkSummary(toolSummary))
@@ -171,7 +171,7 @@ function buildMagnitudeBlock(turn: CompletedTurn, toolSummary: ToolWorkSummary):
     parts.push(`<message_advisor>\n${advisorInput}\n</message_advisor>`)
   }
 
-  parts.push('</magnitude>')
+  parts.push('</x-cli>')
   return parts.join('\n')
 }
 
@@ -193,7 +193,7 @@ export interface AdvisorWindowPromptInput {
  * Two-pass approach:
  * 1. Scan all entries to find which assistant_turns have content (text or
  *    message_advisor). These become the terminal messages for tool accumulation.
- * 2. Walk through entries, accumulating tools, and emit a <magnitude> block
+ * 2. Walk through entries, accumulating tools, and emit a <x-cli> block
  *    when we hit a content turn (with the accumulated tools inside it).
  */
 export function advisorWindowToPrompt(input: AdvisorWindowPromptInput): Prompt {
@@ -234,9 +234,9 @@ export function advisorWindowToPrompt(input: AdvisorWindowPromptInput): Prompt {
         addTurnWork(pendingWork, turn)
 
         if (contentTurnIndices.has(i)) {
-          // This turn has content — emit a <magnitude> block with the
+          // This turn has content — emit a <x-cli> block with the
           // accumulated tools and the turn's content.
-          messages.push(textMessage(buildMagnitudeBlock(turn, pendingWork)))
+          messages.push(textMessage(buildXCliBlock(turn, pendingWork)))
           pendingWork = createToolWorkSummary()
         }
         // If not a content turn, tools accumulate silently.
@@ -290,30 +290,30 @@ export function advisorWindowToPrompt(input: AdvisorWindowPromptInput): Prompt {
   // const shouldShowToggle = advisorLastAutopilotKnowledge !== autopilotEnabled
   const shouldShowToggle = false
   if (shouldShowToggle) {
-    // Find the last <magnitude> UserMessage and insert the toggle before it.
-    let lastMagnitudeIndex = -1
+    // Find the last <x-cli> UserMessage and insert the toggle before it.
+    let lastXCliIndex = -1
     for (let i = messages.length - 1; i >= 0; i--) {
       const msg = messages[i]
       if (msg?._tag === 'UserMessage' &&
           msg.parts.length === 1 &&
           msg.parts[0]?._tag === 'TextPart' &&
-          msg.parts[0].text.startsWith('<magnitude>')) {
-        lastMagnitudeIndex = i
+          msg.parts[0].text.startsWith('<x-cli>')) {
+        lastXCliIndex = i
         break
       }
     }
 
-    if (lastMagnitudeIndex >= 0) {
-      messages.splice(lastMagnitudeIndex, 0, textMessage(`<autopilot_toggled enabled="${autopilotEnabled}" />`))
+    if (lastXCliIndex >= 0) {
+      messages.splice(lastXCliIndex, 0, textMessage(`<autopilot_toggled enabled="${autopilotEnabled}" />`))
     } else {
-      // No magnitude block found — append before the terminal placeholder.
+      // No x-cli block found — append before the terminal placeholder.
       messages.push(textMessage(`<autopilot_toggled enabled="${autopilotEnabled}" />`))
     }
   }
 
   // Inject the <message_advisor> tag for a manual message_advisor invocation.
   if (input.messageAdvisorText) {
-    messages.push(textMessage(`<magnitude>\n<message_advisor>\n${input.messageAdvisorText}\n</message_advisor>\n</magnitude>`))
+    messages.push(textMessage(`<x-cli>\n<message_advisor>\n${input.messageAdvisorText}\n</message_advisor>\n</x-cli>`))
   }
 
   return Prompt.from({

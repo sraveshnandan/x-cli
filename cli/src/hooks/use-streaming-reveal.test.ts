@@ -29,8 +29,8 @@ vi.mock('react', async () => {
 
 let animationTime = 0
 
-vi.mock('@magnitudedev/client-common', async () => {
-  const actual = await vi.importActual<typeof import('@magnitudedev/client-common')>('@magnitudedev/client-common')
+vi.mock('@x-cli/client-common', async () => {
+  const actual = await vi.importActual<typeof import('@x-cli/client-common')>('@x-cli/client-common')
   return {
     ...actual,
     subscribeAnimationClock: () => () => {},
@@ -38,7 +38,7 @@ vi.mock('@magnitudedev/client-common', async () => {
   }
 })
 
-import { subscribeAnimationClock, subscribeAnimationNoop } from '@magnitudedev/client-common'
+import { subscribeAnimationClock, subscribeAnimationNoop } from '@x-cli/client-common'
 import { useStreamingReveal } from './use-streaming-reveal'
 
 function render(

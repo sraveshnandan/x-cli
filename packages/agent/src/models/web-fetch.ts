@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { webFetchTool } from '../tools/web-fetch-tool'
 import { WebFetchStateSchema, type WebFetchState } from './tool-state'

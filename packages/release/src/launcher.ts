@@ -35,7 +35,7 @@ const smokeCli = (
     Effect.timeout("10 seconds"),
     Effect.mapError(() => new ReleaseAcquisitionError({
       stage: "verify",
-      message: "Magnitude CLI identity probe failed",
+      message: "x-cli CLI identity probe failed",
       transient: false,
     })),
     Effect.flatMap((actual) =>
@@ -43,7 +43,7 @@ const smokeCli = (
         ? Effect.void
         : Effect.fail(new ReleaseAcquisitionError({
           stage: "verify",
-          message: `Magnitude CLI version mismatch: ${actual.trim()}`,
+          message: `x-cli CLI version mismatch: ${actual.trim()}`,
           transient: false,
         }))
     ),

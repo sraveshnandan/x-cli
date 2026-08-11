@@ -48,7 +48,7 @@ export const makeTracingLayer = (options?: MakeTracingLayerOptions): Layer.Layer
     ? Layer.mergeAll(
         Otlp.layerJson({
           baseUrl: otelEndpoint,
-          resource: { serviceName: "magnitude-cli" },
+          resource: { serviceName: "x-cli-cli" },
           tracerExportInterval: "1 seconds",
           loggerExportInterval: "1 seconds",
         }).pipe(Layer.provide(FetchHttpClient.layer)),

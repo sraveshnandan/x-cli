@@ -27,7 +27,7 @@ const config = (host: "127.0.0.1" | "::1" = "127.0.0.1") =>
     binary: new IcnBinaryResolutionConfig({
       source: {
         _tag: "Installation",
-        path: "/opt/magnitude/installation.json",
+        path: "/opt/x-cli/installation.json",
       },
       supportedApiVersion: 1,
       expectedNativeBuild: Option.none(),
@@ -53,7 +53,7 @@ describe("ICN managed launch", () => {
     const args = renderIcnArguments(
       config(),
       "instance-1",
-      "/opt/magnitude/installation.json",
+      "/opt/x-cli/installation.json",
     );
     expect(args).toEqual([
       "serve",
@@ -63,7 +63,7 @@ describe("ICN managed launch", () => {
       "instance-1",
       "--exit-on-stdin-eof",
       "--installation",
-      "/opt/magnitude/installation.json",
+      "/opt/x-cli/installation.json",
       "--model-store",
       "/data/models",
       "--cache-root",
@@ -82,7 +82,7 @@ describe("ICN managed launch", () => {
       renderIcnArguments(
         config("::1"),
         "instance-2",
-        "/opt/magnitude/installation.json",
+        "/opt/x-cli/installation.json",
       ).slice(0, 3)
     ).toEqual(["serve", "--bind", "[::1]:0"]);
   });
@@ -91,7 +91,7 @@ describe("ICN managed launch", () => {
     "resolves and verifies an explicit binary before publication",
     async () => {
       const directory = await mkdtemp(join(tmpdir(), "icn-resolver-test-"));
-      const executable = join(directory, "bin", "magnitude-icn");
+      const executable = join(directory, "bin", "x-cli-icn");
       const installation = join(directory, "installation.json");
       await mkdir(join(directory, "bin"), { recursive: true });
       await mkdir(join(directory, "runtime"), { recursive: true });

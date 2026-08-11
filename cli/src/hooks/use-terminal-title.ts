@@ -10,7 +10,7 @@ export function terminalTitleForSession(
   sessionId: string | null,
   sessionTitle: string | null | undefined,
 ): string {
-  return sessionId ? (sessionTitle ?? 'Magnitude') : 'Magnitude'
+  return sessionId ? (sessionTitle ?? 'x-cli') : 'x-cli'
 }
 
 /**
@@ -35,7 +35,7 @@ export function useTerminalTitle(
 
   const cleanupTitleAtom = useMemo(
     () => Atom.make(Effect.addFinalizer(() =>
-      Effect.sync(() => renderer.setTerminalTitle('Magnitude')),
+      Effect.sync(() => renderer.setTerminalTitle('x-cli')),
     )),
     [renderer],
   )

@@ -1,4 +1,4 @@
-import { LocalModelMutationFailed } from "@magnitudedev/acn-protocol"
+import { LocalModelMutationFailed } from "@x-cli/acn-protocol"
 import { describe, expect, it } from "vitest"
 
 import { localModelPackageMutationFailure } from "./local-model-packages"

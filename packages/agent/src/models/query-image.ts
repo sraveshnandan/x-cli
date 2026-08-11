@@ -1,4 +1,4 @@
-import { defineStateModel } from '@magnitudedev/harness'
+import { defineStateModel } from '@x-cli/harness'
 import { Option } from 'effect'
 import { queryImageTool } from '../tools/query-image'
 import { QueryImageStateSchema, type QueryImageState } from './tool-state'

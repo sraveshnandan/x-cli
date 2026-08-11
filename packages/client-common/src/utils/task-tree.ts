@@ -1,4 +1,4 @@
-import type { TaskDisplayRow } from '@magnitudedev/sdk'
+import type { TaskDisplayRow } from '@x-cli/sdk'
 import { Option } from 'effect'
 
 type TaskRecord = {

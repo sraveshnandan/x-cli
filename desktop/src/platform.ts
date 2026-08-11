@@ -1,7 +1,7 @@
 /**
  * Desktop Platform implementation — spec §5.3
  *
- * Wraps the `__magnitudeDesktop` DesktopApi exposed by the preload bridge.
+ * Wraps the `__x-cliDesktop` DesktopApi exposed by the preload bridge.
  * ACN ensurance remains one contract across the Electron boundary.
  */
 import { Effect, Exit, Layer, Schema, Scope, Stream } from "effect"
@@ -14,8 +14,8 @@ import {
   makeAcnJitRuntime,
   type AcnEnsureEvent,
   type AcnInstanceManager as AcnInstanceManagerService,
-} from "@magnitudedev/sdk"
-import type { Platform, Storage, Clipboard, Notification, Dialogs } from "@magnitudedev/client-common"
+} from "@x-cli/sdk"
+import type { Platform, Storage, Clipboard, Notification, Dialogs } from "@x-cli/client-common"
 import type { DesktopApi, MenuAction } from "./desktop-rpc"
 
 const DEFAULT_SERVER_KEY = "default-server"

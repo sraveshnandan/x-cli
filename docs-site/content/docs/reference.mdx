@@ -1,0 +1,40 @@
+---
+title: Commands & CLI Reference
+description: Complete reference for interactive slash commands, session management, and Motel telemetry.
+---
+
+# Commands & CLI Reference
+
+## Interactive Slash Commands
+
+| Command | Description |
+| :--- | :--- |
+| `/plan` | Formulate step-by-step implementation plan before modifying files |
+| `/goal` | Execute long-running autonomous background tasks until completion |
+| `/schedule` | Set recurring background timers or cron tasks |
+| `/grill-me` | Interactive design alignment interview to resolve architecture decisions |
+| `/learn` | Persist developer corrections into memory for future sessions |
+
+---
+
+## Session History Inspection (`bun session`)
+
+All agent turns, tool invocations, and addressed states are stored as structured JSONL logs in `~/.x-cli/sessions/`:
+
+```bash
+bun session list                    # List recent sessions
+bun session events <id>             # Show events for session ID
+bun session search <keyword>        # Search event payloads across sessions
+bun session projection <id> Window  # Inspect replayed projection state
+```
+
+---
+
+## Motel Observability Dashboard
+
+Inspect live OpenTelemetry traces, token stats, and subagent call trees:
+
+```bash
+bun run dash
+```
+Open `http://127.0.0.1:27686` in your browser.

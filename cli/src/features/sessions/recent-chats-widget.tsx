@@ -3,7 +3,7 @@ import { TextAttributes } from '@opentui/core'
 import { useTheme } from '../../hooks/use-theme'
 import { Button } from '../../components/button'
 import { RecentChatEntry } from './recent-chat-entry'
-import type { RecentChat } from '@magnitudedev/client-common'
+import type { RecentChat } from '@x-cli/client-common'
 
 interface RecentChatsWidgetProps {
   chats: RecentChat[]

@@ -4,7 +4,7 @@
  * Plain text, --fg-secondary, font-mono. No background, border, or icon.
  */
 import { type ReactNode } from "react"
-import type { StatusIndicatorMessage as StatusIndicatorType } from "@magnitudedev/sdk"
+import type { StatusIndicatorMessage as StatusIndicatorType } from "@x-cli/sdk"
 
 export function StatusIndicator({ message }: { message: StatusIndicatorType }): ReactNode {
   return (

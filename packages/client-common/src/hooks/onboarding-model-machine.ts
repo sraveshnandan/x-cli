@@ -1,6 +1,6 @@
 import { Data, Effect, Option, Stream } from "effect"
 import { Result } from "@effect-atom/atom-react"
-import { FSM } from "@magnitudedev/utils"
+import { FSM } from "@x-cli/utils"
 import type {
   DownloadAttemptId,
   LocalModelsState,
@@ -10,7 +10,7 @@ import type {
   ModelSlotsState,
   ProviderModelId,
   ReasoningEffort,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 
 interface OnboardingModelChoiceBase {
   readonly displayName: string

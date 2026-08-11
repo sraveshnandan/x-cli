@@ -45,7 +45,7 @@ export const XCliCloudUsageLive: Layer.Layer<
     // Cloud is disabled.
     get: (_query) => Effect.fail(new SessionOperationFailed({
       operation: "get cloud usage",
-      reason: "Magnitude Cloud is disabled",
+      reason: "x-cli Cloud is disabled",
     })),
     // get: (query) => authenticatedClient.pipe(
     //   Effect.flatMap((authenticated) => authenticated.usage(query).pipe(Effect.provide(FetchHttpClient.layer))),

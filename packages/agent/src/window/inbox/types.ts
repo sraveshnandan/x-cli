@@ -1,4 +1,4 @@
-import { type AssistantMessage, type ToolResultMessage } from '@magnitudedev/ai'
+import { type AssistantMessage, type ToolResultMessage } from '@x-cli/ai'
 import { Schema, Option } from 'effect'
 import { ContextPartSchema } from '../../content'
 import { MentionOccurrenceSchema } from '../../attachments'

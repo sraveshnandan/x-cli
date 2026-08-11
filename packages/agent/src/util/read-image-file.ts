@@ -1,4 +1,4 @@
-import type { ImageMediaType } from '@magnitudedev/ai'
+import type { ImageMediaType } from '@x-cli/ai'
 
 export interface ReadImageFileOptions {
   readonly maxLongEdge?: number
@@ -32,6 +32,22 @@ export async function readImageFileForModel(
 
   const fileBuffer = await Bun.file(absolutePath).arrayBuffer()
   const buf = new Uint8Array(fileBuffer)
+
+  if (typeof Bun === 'undefined' || typeof Bun.Image !== 'function') {
+    const mediaType = absolutePath.endsWith('.jpeg') || absolutePath.endsWith('.jpg')
+      ? 'image/jpeg'
+      : absolutePath.endsWith('.webp')
+        ? 'image/webp'
+        : absolutePath.endsWith('.gif')
+          ? 'image/gif'
+          : 'image/png'
+    return {
+      base64: Buffer.from(buf).toString('base64'),
+      mediaType,
+      width: 0,
+      height: 0,
+    }
+  }
 
   // Detect format via Bun.Image metadata (no pixel decode needed)
   const meta = await new Bun.Image(buf).metadata().catch(() => null)

@@ -1,1 +1,1 @@
-export type { TaskAssignee, TaskDisplayRow } from '@magnitudedev/sdk'
+export type { TaskAssignee, TaskDisplayRow } from '@x-cli/sdk'

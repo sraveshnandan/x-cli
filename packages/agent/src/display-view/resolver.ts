@@ -1,5 +1,5 @@
-import { forkKeyToForkId, type ForkKey } from '@magnitudedev/acn-protocol'
-import { Addressed } from '@magnitudedev/event-core'
+import { forkKeyToForkId, type ForkKey } from '@x-cli/acn-protocol'
+import { Addressed } from '@x-cli/event-core'
 import type { DisplayTimelineWindowShape, DisplayViewShape } from './shape'
 
 type AddressedSequenceIndex = Addressed.AddressedSequenceIndex

@@ -1,4 +1,4 @@
-import { Projection, Signal } from '@magnitudedev/event-core'
+import { Projection, Signal } from '@x-cli/event-core'
 import { Schema } from 'effect'
 import type { AppEvent } from '../events'
 

@@ -1,7 +1,7 @@
 import { test, expect, vi } from 'vitest'
 import { renderToStaticMarkup } from 'react-dom/server'
 import type { ReactNode } from 'react'
-import type { DisplayActor, DisplayWorkerStatus, TaskDisplayRow } from '@magnitudedev/sdk'
+import type { DisplayActor, DisplayWorkerStatus, TaskDisplayRow } from '@x-cli/sdk'
 import { Option } from 'effect'
 const testTheme = {
   foreground: '#ffffff',

@@ -1,0 +1,38 @@
+---
+title: Troubleshooting & FAQ
+description: Solutions for common hardware, memory, and connectivity questions.
+---
+
+# Troubleshooting & FAQ
+
+## 1. Out of Memory (OOM) Errors on Local Models
+
+If local inference crashes or runs out of GPU memory:
+- Open Settings (`Ctrl+P`) and switch to a lighter GGUF quantization (e.g. `Q4_K_M` or `Lightweight`).
+- Reduce context window size or clear unused background processes using `gpu-stat`.
+
+## 2. Connecting behind a Corporate Proxy
+
+Add custom `baseUrl` and proxy configurations to `~/.x-cli/config.json`:
+
+```json
+{
+  "models": {
+    "providers": {
+      "corporate-proxy": {
+        "apiKey": "your-key",
+        "baseUrl": "https://proxy.internal.company.com/v1"
+      }
+    }
+  }
+}
+```
+
+## 3. Resetting Session & State Cache
+
+To clear onboarding state or derived cache:
+
+```bash
+bun run onboarding:reset
+bun run cache:clear:all
+```

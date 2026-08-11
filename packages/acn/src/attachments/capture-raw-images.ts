@@ -1,15 +1,15 @@
 import { Effect, Option } from "effect"
 import * as FileSystem from "@effect/platform/FileSystem"
 import * as Path from "@effect/platform/Path"
-import { createId } from "@magnitudedev/generate-id"
-import { captureContextImageFromFile, type ContextImagePart } from "@magnitudedev/agent"
+import { createId } from "@x-cli/generate-id"
+import { captureContextImageFromFile, type ContextImagePart } from "@x-cli/agent"
 import {
   SessionOperationFailed,
   canonicalExtensionForImageMediaType,
   filenameWithImageExtension,
   type RawImageAttachment,
   type SessionError,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import { uploadAttachment } from "../attachment-upload"
 
 export interface CaptureRawImagesInput {

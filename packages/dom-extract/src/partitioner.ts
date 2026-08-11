@@ -4,7 +4,7 @@
  */
 
 import * as cheerio from 'cheerio';
-import { createId } from '@magnitudedev/generate-id';
+import { createId } from '@x-cli/generate-id';
 import type { AnyNode } from 'domhandler';
 
 

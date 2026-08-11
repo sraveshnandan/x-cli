@@ -6,7 +6,7 @@ import {
   PRIMARY_SLOT_ID,
   ProviderIdSchema,
   SECONDARY_SLOT_ID,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
   GIB,
   LOCAL_PROVIDER_ID,
@@ -184,7 +184,7 @@ test("cloud selection exposes the model with no local runtime status", () => {
     null,
     null,
     "Claude Max",
-    ProviderIdSchema.make("magnitude"),
+    ProviderIdSchema.make("x-cli"),
     PRIMARY_SLOT_ID,
   )).toEqual({
     modelName: "Claude Max",

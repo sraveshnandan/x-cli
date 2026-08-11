@@ -9,7 +9,7 @@ import {
   type EventCursor,
   type EventSinkService,
   type Timestamped,
-} from '@magnitudedev/event-core'
+} from '@x-cli/event-core'
 
 import type { AppEvent } from '../src/events'
 import {

@@ -1,11 +1,11 @@
-import { BaseStateSchema } from '@magnitudedev/harness'
-export type { BaseState, Phase } from '@magnitudedev/harness'
+import { BaseStateSchema } from '@x-cli/harness'
+export type { BaseState, Phase } from '@x-cli/harness'
 import {
   defineJsonEncodedSchemaEntries,
   makeSchemaUnionFromEntries,
   schemaMapFromEntries,
-} from '@magnitudedev/utils/schema'
-import { CheckpointChangesStateSchema, CheckpointRollbackStateSchema } from '@magnitudedev/vcs'
+} from '@x-cli/utils/schema'
+import { CheckpointChangesStateSchema, CheckpointRollbackStateSchema } from '@x-cli/vcs'
 import { Schema } from 'effect'
 import { EditDiffSchema } from './edit-diff'
 

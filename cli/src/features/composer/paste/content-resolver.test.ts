@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test'
-import { resolvePasteIntent } from '@magnitudedev/client-common'
+import { resolvePasteIntent } from '@x-cli/client-common'
 
 describe('resolvePasteIntent', () => {
   test('prefers event text over clipboard text', async () => {

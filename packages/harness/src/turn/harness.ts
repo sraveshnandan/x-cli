@@ -8,8 +8,8 @@ import {
   createToolCallId,
   createStreamingFieldParser,
   type ToolCallId,
-} from "@magnitudedev/ai"
-import { renderSchemaParams } from "@magnitudedev/utils/schema"
+} from "@x-cli/ai"
+import { renderSchemaParams } from "@x-cli/utils/schema"
 import type { HarnessEvent } from "../events"
 import type { HarnessHooks } from "../hooks"
 import type { Toolkit, ToolkitRequirements } from "../tool/toolkit"

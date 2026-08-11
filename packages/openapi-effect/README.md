@@ -1,6 +1,6 @@
 # `@magnitudedev/openapi-effect`
 
-Strict, Effect-native OpenAPI 3.1 compilation for Magnitude packages.
+Strict, Effect-native OpenAPI 3.1 compilation for x-cli packages.
 
 The package decodes an OpenAPI document with Effect Schema, normalizes it into a typed protocol IR,
 and emits Effect Schema declarations, Effect `HttpApi` declarations, operation descriptors, and a

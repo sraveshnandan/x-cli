@@ -1,4 +1,4 @@
-export { MagnitudeRpcs, acnRpcRecoveryPolicy } from "./group"
+export { XCliRpcs, acnRpcRecoveryPolicy } from "./group"
 export * from "./agent"
 export * from "./session"
 export * from "./connection"

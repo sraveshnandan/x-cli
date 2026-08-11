@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest"
 import { Option } from "effect"
 import {
   ProviderModelIdSchema,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import {
   availabilityFromProviderProjection,
 } from "./local-models"

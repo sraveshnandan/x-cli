@@ -1,6 +1,6 @@
 import { Cause, Context, Duration, Effect, Layer, Schema, Stream } from "effect"
 import { IcnClient, type IcnClientService } from "../client.js"
-import { HardwareSnapshot as HardwareSnapshotSchema } from "@magnitudedev/icn-protocol/schemas"
+import { HardwareSnapshot as HardwareSnapshotSchema } from "@x-cli/icn-protocol/schemas"
 import {
   makeIcnObservedState,
   type IcnObservedSnapshot,
@@ -17,7 +17,7 @@ export interface IcnHardwareService extends IcnObservedState<HardwareSnapshotSch
   readonly assessmentChanges: Stream.Stream<IcnObservedSnapshot<HardwareSnapshotSchema>>
 }
 
-export class IcnHardware extends Context.Tag("@magnitudedev/icn/IcnHardware")<
+export class IcnHardware extends Context.Tag("@x-cli/icn/IcnHardware")<
   IcnHardware,
   IcnHardwareService
 >() {}

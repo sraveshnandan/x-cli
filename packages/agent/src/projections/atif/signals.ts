@@ -2,7 +2,7 @@
  * ATIF projection signals
  */
 
-import { Signal } from '@magnitudedev/event-core'
+import { Signal } from '@x-cli/event-core'
 import type { AtifStep } from './types'
 
 export const atifSignals = {

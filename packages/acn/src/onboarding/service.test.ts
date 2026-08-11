@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest"
 import { Effect, Layer, Option, Ref } from "effect"
 import {
-  MagnitudeStorage,
-  type MagnitudeStorageShape,
+  XCliStorage,
+  type XCliStorageShape,
   type OnboardingConfig,
-} from "@magnitudedev/storage"
+} from "@x-cli/storage"
 import { MirroredStateChangesLive } from "../mirrored-state"
 import { makeOnboarding, Onboarding, OnboardingLive } from "./service"
 
@@ -51,9 +51,9 @@ describe("Onboarding", () => {
         updateOnboardingState: (completed: boolean) =>
           Ref.set(stored, Option.some({ completed })),
       }
-      const storage = { config } as unknown as MagnitudeStorageShape
+      const storage = { config } as unknown as XCliStorageShape
       const layer = OnboardingLive.pipe(Layer.provide(Layer.mergeAll(
-        Layer.succeed(MagnitudeStorage, storage),
+        Layer.succeed(XCliStorage, storage),
         MirroredStateChangesLive,
       )))
       return yield* Effect.gen(function* () {

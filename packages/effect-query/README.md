@@ -80,12 +80,12 @@ second cache:
 import * as AtomRpc from "@effect-atom/atom/AtomRpc"
 import { FetchHttpClient } from "@effect/platform"
 import { RpcClient, RpcSerialization } from "@effect/rpc"
-import { MagnitudeRpcs } from "./protocol.js"
+import { x-cliRpcs } from "./protocol.js"
 
 class AcnClient {}
 
 const Acn = AtomRpc.Tag<AcnClient>()("AcnClient", {
-  group: MagnitudeRpcs,
+  group: x-cliRpcs,
   protocol: RpcClient.layerProtocolHttp({ url: "http://127.0.0.1:3030/rpc" }).pipe(
     Layer.provide(RpcSerialization.layerNdjson),
     Layer.provide(FetchHttpClient.layer)

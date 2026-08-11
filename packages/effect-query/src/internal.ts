@@ -20,8 +20,8 @@ import {
   type QueryMetadata
 } from "./Model.js"
 
-export const QueryEntryTypeId: unique symbol = Symbol.for("@magnitudedev/effect-query/QueryEntry")
-export const MutationInternalTypeId: unique symbol = Symbol.for("@magnitudedev/effect-query/MutationInternal")
+export const QueryEntryTypeId: unique symbol = Symbol.for("@x-cli/effect-query/QueryEntry")
+export const MutationInternalTypeId: unique symbol = Symbol.for("@x-cli/effect-query/MutationInternal")
 
 export interface ErasedQueryEntry {
   readonly stateAtom: Atom.Atom<QueryEntryState>

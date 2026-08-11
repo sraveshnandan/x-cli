@@ -5,7 +5,7 @@ import {
   payloadSample,
   type WebSearchExtension,
   type WebSearchResult,
-} from "@magnitudedev/ai"
+} from "@x-cli/ai"
 import {
   ExaSearchErrorResponseSchema,
   ExaSearchRequestSchema,

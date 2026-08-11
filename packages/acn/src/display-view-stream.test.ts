@@ -4,7 +4,7 @@ import {
   StreamEvent as StreamEventSchema,
   type DisplayState,
   type DisplayViewShape,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import { makeDisplayViewStream, type DisplayViewStreamInput } from "./display-view-stream"
 
 const shape: DisplayViewShape = {

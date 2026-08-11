@@ -4,7 +4,7 @@ import {
   type JsonSchemaJsonObject,
   type JsonSchemaObject,
   type JsonSchemaValue,
-} from "@magnitudedev/utils/schema"
+} from "@x-cli/utils/schema"
 
 function asObject(value: JsonSchemaValue | undefined): JsonSchemaJsonObject | undefined {
   if (value === null || typeof value !== "object" || Array.isArray(value)) return undefined

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { Effect, Layer, Stream, Option } from 'effect'
 import { FetchHttpClient } from '@effect/platform'
-import { ModelFamilyIdSchema, ProviderIdSchema, ProviderModelIdSchema, ReasoningEffortSchema } from '@magnitudedev/ai'
-import { AmbientServiceTag, Fork, type AmbientService } from '@magnitudedev/event-core'
+import { ModelFamilyIdSchema, ProviderIdSchema, ProviderModelIdSchema, ReasoningEffortSchema } from '@x-cli/ai'
+import { AmbientServiceTag, Fork, type AmbientService } from '@x-cli/event-core'
 import {
   ModelStreamTerminal,
   Prompt,
@@ -14,19 +14,19 @@ import {
   type ToolCallId,
   type ProviderToolCallId,
   type ToolDefinition,
-} from '@magnitudedev/ai'
+} from '@x-cli/ai'
 import type {
   BaseCallOptions,
   ProviderRejection,
-} from '@magnitudedev/sdk'
+} from '@x-cli/sdk'
 import {
   ModelSlotConfiguredRemote,
   PRIMARY_SLOT_ID,
   SECONDARY_SLOT_ID,
   type ModelSlotsState,
   type ProviderModelCatalogEntry,
-} from '@magnitudedev/sdk'
-import type { JsonValue } from '@magnitudedev/ai'
+} from '@x-cli/sdk'
+import type { JsonValue } from '@x-cli/ai'
 import { advisorWindowToPrompt } from '../src/window/render'
 import type { ForkWindowState, WindowEntry } from '../src/window'
 import { executeMessageAdvisor } from '../src/tools/advisor'
@@ -244,7 +244,7 @@ function makeResolver(model: BoundModel<BaseCallOptions>) {
     modelSource: { slotId: 'primary' },
     modelId: 'role/advisor',
     modelDisplayName: 'Advisor',
-    providerId: 'magnitude',
+    providerId: 'x-cli',
     profile,
     debug: false,
     agentId: 'advisor',
@@ -343,7 +343,7 @@ describe('message_advisor execution', () => {
 
 describe('messageAdvisor toolkit registration', () => {
   it('keeps static advisor registration but removes it from effective toolkits while disabled', () => {
-    const providerId = ProviderIdSchema.make('magnitude')
+    const providerId = ProviderIdSchema.make('x-cli')
     const reasoningEffort = ReasoningEffortSchema.make('none')
     const catalogModel = (
       providerModelId: string,
@@ -407,7 +407,7 @@ describe('messageAdvisor toolkit registration', () => {
     expect(leaderToolkit.entries.messageAdvisor).toBeDefined()
     expect(isToolKey('messageAdvisor')).toBe(true)
     const toolAvailability = {
-      webSearch: { _tag: 'Available', source: 'magnitude' },
+      webSearch: { _tag: 'Available', source: 'x-cli' },
     } as const
     expect(selectAgentToolKeys({
       roleId: 'leader',

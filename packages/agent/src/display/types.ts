@@ -31,8 +31,8 @@ import type {
   WorkerResumedMessage,
   WorkerUserKilledMessage,
   ForkResultMessage,
-} from '@magnitudedev/acn-protocol'
-import { Addressed } from '@magnitudedev/event-core'
+} from '@x-cli/acn-protocol'
+import { Addressed } from '@x-cli/event-core'
 import { Schema } from 'effect'
 import type { PendingInboundCommunication } from '../projections/turn'
 import { PendingInboundCommunicationSchema } from '../projections/turn'

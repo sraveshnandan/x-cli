@@ -8,7 +8,7 @@ import { Option } from "effect"
 import { useMemo } from "react"
 import { useAtomValue, Result } from "@effect-atom/atom-react"
 import { useAgentClient } from "../state/agent-client-context"
-import type { SessionMetadata } from "@magnitudedev/sdk"
+import type { SessionMetadata } from "@x-cli/sdk"
 
 export interface UseSessionsListParams {
   /** Filter by CWD. If undefined, lists all sessions across all CWDs. */

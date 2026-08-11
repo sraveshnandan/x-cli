@@ -8,9 +8,9 @@ import {
   IcnBinaryIdentity,
   IcnStartupProgressRecord,
   IcnStartupRecord,
-} from "@magnitudedev/icn-protocol";
-import { GeneratedClientTransportError } from "@magnitudedev/openapi-effect/client-runtime";
-import { FSM } from "@magnitudedev/utils";
+} from "@x-cli/icn-protocol";
+import { GeneratedClientTransportError } from "@x-cli/openapi-effect/client-runtime";
+import { FSM } from "@x-cli/utils";
 import { dirname, join } from "node:path";
 import {
   Context,
@@ -32,7 +32,7 @@ import {
 import { installationLoaderEnvironment } from "./installation-environment.js";
 import {
   makeIcnApiClient,
-} from "@magnitudedev/icn-protocol/client";
+} from "@x-cli/icn-protocol/client";
 import { resolveReleaseIcnInstallation } from "./release-installation.js";
 import {
   IcnPreparationReporter,
@@ -175,7 +175,7 @@ const resolveCandidate = (
         path: join(
           root,
           "bin",
-          `magnitude-icn${process.platform === "win32" ? ".exe" : ""}`,
+          `x-cli-icn${process.platform === "win32" ? ".exe" : ""}`,
         ),
         installation: source.path,
         environment: installationLoaderEnvironment(join(root, "runtime")),
@@ -209,7 +209,7 @@ export interface IcnBinaryResolverService {
 }
 
 export class IcnBinaryResolver extends Context.Tag(
-  "@magnitudedev/icn/IcnBinaryResolver"
+  "@x-cli/icn/IcnBinaryResolver"
 )<IcnBinaryResolver, IcnBinaryResolverService>() {}
 
 export const makeIcnBinaryResolver = () => Layer.effect(
@@ -427,7 +427,7 @@ export interface IcnProcessService {
   readonly shutdown: Effect.Effect<void, IcnLifecycleError>;
 }
 
-export class IcnProcess extends Context.Tag("@magnitudedev/icn/IcnProcess")<
+export class IcnProcess extends Context.Tag("@x-cli/icn/IcnProcess")<
   IcnProcess,
   IcnProcessService
 >() {}

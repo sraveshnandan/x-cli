@@ -5,7 +5,7 @@
  * Each fork has independent message history and token budget tracking.
  */
 
-import { Projection, Signal } from '@magnitudedev/event-core'
+import { Projection, Signal } from '@x-cli/event-core'
 import { outcomeWillChainContinue, type AppEvent, type StrategyId } from '../events'
 import { present } from '../errors'
 import { getAgentByForkId, AgentLifecycleProjection, hasActiveWorkers } from '../projections/agent-lifecycle'
@@ -297,7 +297,7 @@ function findTaskForAgent(state: TaskGraphState, args: { agentId: string, forkId
 }
 
 import type { TrackedProcess, DetachedProcessState } from '../projections/detached-process'
-import type { ForkedState } from '@magnitudedev/event-core'
+import type { ForkedState } from '@x-cli/event-core'
 
 /** Merge all fork processes into a single map (for root fork view). */
 function mergeAllForkProcesses(

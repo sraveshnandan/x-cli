@@ -3,10 +3,10 @@
  */
 
 import { Effect, Option, Schema } from 'effect'
-import { defineHarnessTool } from '@magnitudedev/harness'
-import { Fork, WorkerBusTag } from '@magnitudedev/event-core'
+import { defineHarnessTool } from '@x-cli/harness'
+import { Fork, WorkerBusTag } from '@x-cli/event-core'
 import { TurnContextTag } from '../engine/turn-context'
-import { createId } from '@magnitudedev/generate-id'
+import { createId } from '@x-cli/generate-id'
 import type { AppEvent } from '../events'
 
 const { ForkContext } = Fork

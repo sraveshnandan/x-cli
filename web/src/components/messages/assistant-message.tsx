@@ -5,8 +5,8 @@
  * Interrupted state shows a divider below the partial response.
  */
 import { type ReactNode } from "react"
-import type { AssistantMessage as AssistantMessageType } from "@magnitudedev/sdk"
-import { stripTrailingLineBreaks } from "@magnitudedev/client-common"
+import type { AssistantMessage as AssistantMessageType } from "@x-cli/sdk"
+import { stripTrailingLineBreaks } from "@x-cli/client-common"
 import { MarkdownContent } from "../markdown-content"
 import { InterruptedDivider } from "./interrupted"
 

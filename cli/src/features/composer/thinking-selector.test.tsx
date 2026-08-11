@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server'
 import { describe, expect, it, vi } from 'vitest'
-import { ReasoningEffortSchema } from '@magnitudedev/sdk'
+import { ReasoningEffortSchema } from '@x-cli/sdk'
 import {
   moveThinkingPreview,
   thinkingSelectorWidth,

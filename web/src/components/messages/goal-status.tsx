@@ -7,7 +7,7 @@
 import { type ReactNode } from "react"
 import { Option } from "effect"
 import { Target, CheckCircle2 } from "lucide-react"
-import type { GoalStatusMessage as GoalStatusType } from "@magnitudedev/sdk"
+import type { GoalStatusMessage as GoalStatusType } from "@x-cli/sdk"
 
 export function GoalStatus({ message }: { message: GoalStatusType }): ReactNode {
   const objective = Option.getOrNull(message.objective)

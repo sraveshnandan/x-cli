@@ -3,13 +3,13 @@
  */
 
 import { Effect, Option, Schema } from 'effect'
-import { defineHarnessTool, StreamValidationError } from '@magnitudedev/harness'
+import { defineHarnessTool, StreamValidationError } from '@x-cli/harness'
 import { resolve } from 'path'
 import { validateAndApply } from '../util/edit'
 import { WorkingDirectoryTag } from '../execution/working-directory'
 import { captureContextImageFromFile } from '../util/capture-context-image'
 import { ContextImageResultSchema } from '../content'
-import { expandScratchpadPath } from '@magnitudedev/scratchpad'
+import { expandScratchpadPath } from '@x-cli/scratchpad'
 import { Fs, resolveFsPath } from '../services/fs'
 import { ToolErrorSchema } from './errors'
 

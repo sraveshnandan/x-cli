@@ -1,1 +1,1 @@
-export { createId, createShortId } from '@magnitudedev/generate-id'
+export { createId, createShortId } from '@x-cli/generate-id'

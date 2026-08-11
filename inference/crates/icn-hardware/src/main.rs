@@ -191,7 +191,7 @@ fn main() -> anyhow::Result<()> {
     let report = icn_hardware::assess_model_with_backend(&backend, &request)
         .context("model assessment failed")?;
     let output = Output {
-        implementation: "magnitude-icn",
+        implementation: "x-cli-icn",
         estimator: "pinned_native_planner",
         allocates_model_tensors: false,
         model: &request.model,

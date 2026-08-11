@@ -5,7 +5,7 @@ import {
   type Recommendation,
   type RecommendableModel,
   type ServingProfile,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 
 export const MINIMUM_EXPECTED_TOKENS_PER_SECOND = 8
 

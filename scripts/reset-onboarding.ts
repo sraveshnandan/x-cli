@@ -3,7 +3,7 @@ import * as BunRuntime from "@effect/platform-bun/BunRuntime"
 import {
   GlobalStorageLive,
   makeConfigStorage,
-} from "@magnitudedev/storage"
+} from "@x-cli/storage"
 import { Console, Effect, Option } from "effect"
 
 const resetOnboarding = Effect.gen(function* () {

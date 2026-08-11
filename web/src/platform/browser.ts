@@ -9,8 +9,8 @@ import {
   AcnInstanceManager,
   makeAcnJitRuntime,
   makeRemoteAcnInstanceManager,
-} from "@magnitudedev/sdk"
-import type { Platform, Storage, Clipboard, Notification, Dialogs } from "@magnitudedev/client-common"
+} from "@x-cli/sdk"
+import type { Platform, Storage, Clipboard, Notification, Dialogs } from "@x-cli/client-common"
 
 // Experimental File System Access API — only available in Chromium browsers.
 // This is a client-host capability, not agent-host filesystem access.
@@ -22,7 +22,7 @@ interface WindowWithFSAccess extends Window {
   showOpenFilePicker?(opts: { multiple?: boolean }): Promise<FileSystemFileHandle[]>
 }
 
-const STORAGE_KEY_PREFIX = "magnitude:"
+const STORAGE_KEY_PREFIX = "x-cli:"
 const DEFAULT_SERVER_KEY = `${STORAGE_KEY_PREFIX}default-server`
 
 const browserStorage: Storage = {

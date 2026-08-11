@@ -1,10 +1,10 @@
 /**
- * Magnitude Agent
+ * x-cli Agent
  *
  * A minimal coding agent using event-core architecture.
  */
 
-export type { MagnitudeStorageShape } from '@magnitudedev/storage'
+export type { XCliStorageShape } from '@x-cli/storage'
 
 // Agent
 export {
@@ -88,9 +88,9 @@ export { PROSE_DELIM_OPEN, PROSE_DELIM_CLOSE, DEFAULT_CHAT_NAME } from './consta
 export { collectSessionContext } from './util/collect-session-context'
 export type { CollectSessionContextOptions } from './util/collect-session-context'
 
-// Skills (loaded from @magnitudedev/skills)
-export { loadSkills } from '@magnitudedev/skills'
-export type { Skill } from '@magnitudedev/skills'
+// Skills (loaded from @x-cli/skills)
+export { loadSkills } from '@x-cli/skills'
+export type { Skill } from '@x-cli/skills'
 
 // Scratchpad
 export * from './scratchpad'
@@ -104,7 +104,7 @@ export { CompactionProjection } from './projections/compaction'
 export type { CompactionState } from './projections/compaction'
 
 export { HarnessStateProjection, getToolHandlesRecord } from './projections/harness-state'
-export type { TurnState } from '@magnitudedev/harness'
+export type { TurnState } from '@x-cli/harness'
 
 export { TaskAssignmentProjection } from './projections/task-assignment'
 export type {
@@ -305,8 +305,8 @@ export type { AgentBoundModel } from './model/model-resolver'
 export { type AgentCallUsage, fromResponseUsage } from './execution/types'
 
 // Tracing
-export { initTraceSession, getTraceSessionId } from '@magnitudedev/tracing'
-export type { TraceSessionMeta, AgentCallTrace } from '@magnitudedev/tracing'
+export { initTraceSession, getTraceSessionId } from '@x-cli/tracing'
+export type { TraceSessionMeta, AgentCallTrace } from '@x-cli/tracing'
 export {
   ContextTextPartSchema,
   ContextImagePartSchema,

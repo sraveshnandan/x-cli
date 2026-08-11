@@ -1,8 +1,8 @@
 import { FetchHttpClient } from "@effect/platform"
 import { Context, Effect, Layer, Option } from "effect"
-import { SessionOperationFailed, type ProviderAuth, type SessionError } from "@magnitudedev/acn-protocol"
-import { ProviderIdSchema, type ProviderId } from "@magnitudedev/sdk"
-import { MagnitudeStorage } from "@magnitudedev/storage"
+import { SessionOperationFailed, type ProviderAuth, type SessionError } from "@x-cli/acn-protocol"
+import { ProviderIdSchema, type ProviderId } from "@x-cli/sdk"
+import { XCliStorage } from "@x-cli/storage"
 import { ProviderModelCatalog } from "./provider-model-catalog"
 import { ProviderClientRegistry } from "./shared-client"
 
@@ -20,9 +20,9 @@ export class ProviderCredentials extends Context.Tag("ProviderCredentials")<
 export const ProviderCredentialsLive: Layer.Layer<
   ProviderCredentials,
   never,
-  MagnitudeStorage | ProviderClientRegistry | ProviderModelCatalog
+  XCliStorage | ProviderClientRegistry | ProviderModelCatalog
 > = Layer.effect(ProviderCredentials, Effect.gen(function* () {
-  const storage = yield* MagnitudeStorage
+  const storage = yield* XCliStorage
   const clients = yield* ProviderClientRegistry
   const catalog = yield* ProviderModelCatalog
   const failure = (operation: string) => (cause: unknown): SessionError => new SessionOperationFailed({

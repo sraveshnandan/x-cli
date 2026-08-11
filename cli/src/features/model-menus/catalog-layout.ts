@@ -1,7 +1,7 @@
 import {
   getDisplayWidth,
   truncateToDisplayWidth,
-} from "@magnitudedev/client-common"
+} from "@x-cli/client-common"
 
 export type CatalogLayoutMode = "full" | "quality" | "compact" | "stacked" | "minimal"
 

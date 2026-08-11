@@ -5,7 +5,7 @@ import {
   defineTool,
   NativeChatCompletions,
   PromptBuilder,
-} from "@magnitudedev/ai"
+} from "@x-cli/ai"
 import {
   defineHarnessTool,
   defineToolkit,

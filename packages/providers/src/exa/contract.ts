@@ -1,5 +1,5 @@
 import { Schema } from "effect"
-import { JsonValueSchema } from "@magnitudedev/ai"
+import { JsonValueSchema } from "@x-cli/ai"
 
 const optional = <A, I, R>(schema: Schema.Schema<A, I, R>) =>
   Schema.optionalWith(schema, { as: "Option", exact: true })

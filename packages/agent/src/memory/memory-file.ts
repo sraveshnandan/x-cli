@@ -1,8 +1,8 @@
-import type { MagnitudeStorageShape } from '@magnitudedev/storage'
+import type { XCliStorageShape } from '@x-cli/storage'
 import { Effect } from 'effect'
 import type { PlatformError } from '@effect/platform/Error'
 
-export const MEMORY_RELATIVE_PATH = '.magnitude/memory.md'
+export const MEMORY_RELATIVE_PATH = '.x-cli/memory.md'
 
 export const MEMORY_TEMPLATE = `# Codebase
 - 
@@ -52,15 +52,15 @@ function sectionKeyFromHeader(line: string): keyof ParsedMemorySections | null {
   return null
 }
 
-export function ensureMemoryFile(storage: MagnitudeStorageShape): Effect.Effect<string, PlatformError> {
+export function ensureMemoryFile(storage: XCliStorageShape): Effect.Effect<string, PlatformError> {
   return storage.memory.ensureFile(MEMORY_TEMPLATE)
 }
 
-export function readMemory(storage: MagnitudeStorageShape): Effect.Effect<string, PlatformError> {
+export function readMemory(storage: XCliStorageShape): Effect.Effect<string, PlatformError> {
   return storage.memory.read()
 }
 
-export function writeMemory(storage: MagnitudeStorageShape, content: string): Effect.Effect<void, PlatformError> {
+export function writeMemory(storage: XCliStorageShape, content: string): Effect.Effect<void, PlatformError> {
   return storage.memory.write(content)
 }
 

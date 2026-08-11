@@ -23,20 +23,20 @@ import {
   type LocalProviderOffering,
   type ProviderModelCatalogEntry,
   type SlotSelection,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import {
   ProviderIdSchema,
   ProviderModelIdSchema,
   ReasoningEffortSchema,
-} from "@magnitudedev/sdk"
-import { resolveContextLimitPolicy } from "@magnitudedev/storage"
+} from "@x-cli/sdk"
+import { resolveContextLimitPolicy } from "@x-cli/storage"
 import {
   IcnClient,
   IcnInstances,
   type IcnClientService,
-} from "@magnitudedev/icn"
-import * as Generated from "@magnitudedev/icn-protocol/schemas"
-import { PROVIDER_ID as LOCAL_PROVIDER_ID } from "@magnitudedev/icn/provider"
+} from "@x-cli/icn"
+import * as Generated from "@x-cli/icn-protocol/schemas"
+import { PROVIDER_ID as LOCAL_PROVIDER_ID } from "@x-cli/icn/provider"
 import { ModelConfiguration } from "./model-configuration"
 import { LocalModelPackages } from "./local-model-packages"
 import { LocalModelRecommendations } from "./local-model-recommendations"

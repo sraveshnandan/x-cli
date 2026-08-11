@@ -1,5 +1,5 @@
 import { Effect } from 'effect'
-import { AmbientServiceTag, Projection } from '@magnitudedev/event-core'
+import { AmbientServiceTag, Projection } from '@x-cli/event-core'
 import {
   forkKeyToForkId,
   type DisplayMessage,
@@ -9,7 +9,7 @@ import {
   type DisplayViewShape,
   type DisplayViewSnapshot,
   type ForkKey,
-} from '@magnitudedev/acn-protocol'
+} from '@x-cli/acn-protocol'
 import { SessionOptionsAmbient } from '../ambient/session-ambient'
 import { ChatTitleProjection } from '../projections/chat-title'
 import { AgentLifecycleProjection } from '../projections/agent-lifecycle'

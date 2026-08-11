@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import { Atom, useAtomMount } from '@effect-atom/atom-react'
 import { Data, Effect } from 'effect'
-import type { MentionCandidate } from '@magnitudedev/sdk'
-import type { SearchMentionsResult } from '@magnitudedev/sdk'
+import type { MentionCandidate } from '@x-cli/sdk'
+import type { SearchMentionsResult } from '@x-cli/sdk'
 import type { KeyEvent } from '../types/key-event'
 
 /**

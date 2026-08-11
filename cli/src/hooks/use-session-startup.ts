@@ -16,7 +16,7 @@ import { useMemo } from 'react'
 import { Effect, Option } from 'effect'
 import { useAtomValue, useAtomSet, Result, Atom, useAtomMount } from '@effect-atom/atom-react'
 import { useRenderer } from '@opentui/react'
-import { logger, initLogger } from '@magnitudedev/logger'
+import { logger, initLogger } from '@x-cli/logger'
 import {
   useAgentClient,
   useDisplayState,
@@ -29,7 +29,7 @@ import {
   registerSkillCommands,
   type SlashCommandDefinition,
   getDraftSessionOwnerId,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 import { setLastSessionId } from '../state/last-session'
 import { useTerminalTitle } from './use-terminal-title'
 

@@ -4,7 +4,7 @@ import {
   AcnReadyInstanceSchema,
   type AcnInstance,
   type AcnTarget,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import { Context, Duration, Effect, Option, Schema, Stream } from "effect"
 import { AcnLifecycleObservationSchema } from "./lifecycle"
 import {
@@ -35,7 +35,7 @@ export interface AcnInstanceManager {
 }
 
 export const AcnInstanceManager = Context.GenericTag<AcnInstanceManager>(
-  "@magnitudedev/sdk/AcnInstanceManager",
+  "@x-cli/sdk/AcnInstanceManager",
 )
 
 export const runAcnEnsure = (

@@ -33,7 +33,7 @@ mock.module('@opentui/react', () => ({
   useTerminalDimensions: () => ({ width: 80, height: 40 }),
 }))
 
-const { parseMarkdownToMdast } = await import('@magnitudedev/client-common')
+const { parseMarkdownToMdast } = await import('@x-cli/client-common')
 const { buildMarkdownColorPalette, chatThemes } = await import('../utils/theme')
 const { renderDocumentToBlocks } = await import('../markdown/blocks')
 type Block = import('../markdown/blocks').Block

@@ -34,7 +34,7 @@ import {
   deriveLocalModelLoadActivity,
   useAcnLifecycle,
   type OnboardingModelCommandFailed,
-} from "@magnitudedev/client-common";
+} from "@x-cli/client-common";
 import {
   ReasoningEffortSchema,
   type LocalModelsState,
@@ -42,7 +42,7 @@ import {
   type ProviderModelCatalogState,
   type SessionOptions,
   type AcnLifecycleState,
-} from "@magnitudedev/sdk";
+} from "@x-cli/sdk";
 import {
   authSourceAtom,
   modelMenuStateAtom,

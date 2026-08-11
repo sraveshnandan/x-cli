@@ -4,14 +4,14 @@
  * All agent definitions, accessible by RoleId.
  */
 
-import { createRoles, isRoleId, type RoleId, type RoleDefinition } from '@magnitudedev/roles'
+import { createRoles, isRoleId, type RoleId, type RoleDefinition } from '@x-cli/roles'
 
 import type { Effect, Layer } from 'effect'
 import type { AgentLifecycleState } from '../projections/agent-lifecycle'
 import type { ObservableConfig, ForkSetupContext } from '../observables/types'
 
 /** Default agent display name when no explicit name is available. */
-export const DEFAULT_AGENT_NAME = "magnitude" as const
+export const DEFAULT_AGENT_NAME = "x-cli" as const
 
 // Agent-package-level role definition.
 // Extends the roles-package RoleDefinition with agent-level concerns:

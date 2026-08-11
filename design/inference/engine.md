@@ -13,7 +13,7 @@ applies_to:
 
 # Inference engine design
 
-The Magnitude inference engine is a persistent, per-model serving runtime built around pinned upstream llama.cpp. It converts typed chat requests into token work, continuously batches multiple sequences, streams semantic output, and retains reusable prompt state. The engine is deliberately opinionated: one thread owns native model state, while bounded channels isolate callers and transport backpressure from that state.
+The x-cli inference engine is a persistent, per-model serving runtime built around pinned upstream llama.cpp. It converts typed chat requests into token work, continuously batches multiple sequences, streams semantic output, and retains reusable prompt state. The engine is deliberately opinionated: one thread owns native model state, while bounded channels isolate callers and transport backpressure from that state.
 
 Two subsystem documents carry the detailed policies:
 
@@ -24,9 +24,9 @@ Two subsystem documents carry the detailed policies:
 
 ## Influences
 
-The engine keeps **llama.cpp** as its native model runtime while Magnitude owns request admission,
+The engine keeps **llama.cpp** as its native model runtime while x-cli owns request admission,
 batching, streaming, and sequence assignment. Prompt reuse stays within llama.cpp's standard sequence
-state primitives; Magnitude does not duplicate the native KV representation.
+state primitives; x-cli does not duplicate the native KV representation.
 
 The engine receives per-request context separately from native physical context. A load resolved
 at sequence capacity `P` provisions `configured context × P` physical context while every request
@@ -146,7 +146,7 @@ Semantic output and terminal results retain their existing bounded backpressure 
 The engine retains committed prompt state per free native sequence and assigns the longest exact
 prefix match at admission. This avoids a second physical-cache abstraction and works for every
 architecture supported by the selected upstream llama.cpp primitives. Unified KV remains an
-ordinary native execution option, not a prerequisite for a Magnitude-specific page cache.
+ordinary native execution option, not a prerequisite for a x-cli-specific page cache.
 
 ## Scheduler loop
 

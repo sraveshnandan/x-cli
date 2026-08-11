@@ -9,7 +9,7 @@
 
 import { Effect, SubscriptionRef, Context, Layer, PubSub, Schema } from 'effect'
 import type { ParseResult } from 'effect'
-import type { EnforceJsonSafe } from '@magnitudedev/utils/schema'
+import type { EnforceJsonSafe } from '@x-cli/utils/schema'
 import { withProjectionBusReadLock, ProjectionBusTag, type ProjectionBusService, type AddressedStateInfo } from '../core/projection-bus'
 import { AmbientServiceTag } from '../core/ambient-service'
 import { type BaseEvent, type Timestamped } from '../core/event-bus-core'

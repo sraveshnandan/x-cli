@@ -25,8 +25,8 @@ import {
   type ModelServingConfiguration,
   type Recommendation,
   type RecommendableModel,
-} from "@magnitudedev/acn-protocol"
-import { IcnCatalog, IcnHardware } from "@magnitudedev/icn"
+} from "@x-cli/acn-protocol"
+import { IcnCatalog, IcnHardware } from "@x-cli/icn"
 import { makeObservedState } from "./mirrored-state"
 import {
   localModelAssessmentProfiles,

@@ -1,4 +1,4 @@
-import type { Projection } from '@magnitudedev/event-core'
+import type { Projection } from '@x-cli/event-core'
 import { Effect, Option } from 'effect'
 import type { DisplayMessage } from '../types'
 

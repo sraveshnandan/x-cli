@@ -23,7 +23,7 @@ import {
   type QueryKey
 } from "./Model.js"
 
-export const TypeId: unique symbol = Symbol.for("@magnitudedev/effect-query/Query")
+export const TypeId: unique symbol = Symbol.for("@x-cli/effect-query/Query")
 
 export interface State<Data, Error> {
   readonly result: AtomResult.Result<Data, Error>

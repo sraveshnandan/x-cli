@@ -56,7 +56,7 @@ one fact ──> one owner
 - A derived value remains derived while its inputs fully determine it.
 - A cache affects cost and latency, never meaning.
 - Presentation may retain presentation state, never a duplicate server fact.
-- External facts remain owned by the external system; Magnitude owns only its observation.
+- External facts remain owned by the external system; x-cli owns only its observation.
 
 ## Choosing the state model
 
@@ -285,7 +285,7 @@ request stop
 Timeout triggers escalation. It does not prove death, permit ownership theft, or authorize a second
 active owner.
 
-## Applications across Magnitude
+## Applications across x-cli
 
 | Area | Authority | Mutations | Queries | Critical rule |
 | --- | --- | --- | --- | --- |
@@ -399,8 +399,8 @@ hardware query ----> fit/load advice ----> fresh validation at mutation admissio
 ### Providers, files, skills, and external systems
 
 ```text
-Magnitude adapter --query--> external authority
-Magnitude adapter --mutation--> external authority
+x-cli adapter --query--> external authority
+x-cli adapter --mutation--> external authority
 ```
 
 - Reads may be cached but retain external provenance.

@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react'
-import { stripTrailingLineBreaks } from '@magnitudedev/client-common'
+import { stripTrailingLineBreaks } from '@x-cli/client-common'
 import { useStreamingReveal } from '../../../hooks/use-streaming-reveal'
 import { useTheme } from '../../../hooks/use-theme'
 import { buildMarkdownColorPalette } from '../../../utils/theme'

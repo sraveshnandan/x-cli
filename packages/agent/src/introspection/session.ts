@@ -1,4 +1,4 @@
-import { AmbientServiceTag, Introspection, type Projection } from '@magnitudedev/event-core'
+import { AmbientServiceTag, Introspection, type Projection } from '@x-cli/event-core'
 import { Data, Effect, Option, Stream } from 'effect'
 import { ConfigAmbient, getSlotConfigForRole } from '../ambient/config-ambient'
 import { getForkInfo } from '../agents/registry'

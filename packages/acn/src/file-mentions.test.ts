@@ -3,11 +3,11 @@ import { join } from "node:path"
 import { tmpdir } from "node:os"
 import { describe, expect, test } from "vitest"
 import { Effect } from "effect"
-import type { RawMentionOccurrence } from "@magnitudedev/acn-protocol"
+import type { RawMentionOccurrence } from "@x-cli/acn-protocol"
 import { collectMentionOccurrences } from "./file-mentions"
 
 async function makeCwd(): Promise<string> {
-  return mkdtemp(join(tmpdir(), "magnitude-file-mentions-"))
+  return mkdtemp(join(tmpdir(), "x-cli-file-mentions-"))
 }
 
 async function collect(

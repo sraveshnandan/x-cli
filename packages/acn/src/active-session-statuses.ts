@@ -3,7 +3,7 @@ import type {
   ActiveSessionStatus,
   ActiveSessionStatuses,
   SessionError,
-} from "@magnitudedev/acn-protocol"
+} from "@x-cli/acn-protocol"
 import { AgentRuntime } from "./agent-runtime"
 import { SessionStore } from "./session-store"
 

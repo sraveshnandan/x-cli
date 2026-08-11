@@ -6,7 +6,7 @@
  */
 
 import { Effect, Option, Schema } from "effect"
-import { BaseStateSchema, defineHarnessTool, defineStateModel, defineToolkit, type ToolkitEntry } from "@magnitudedev/harness"
+import { BaseStateSchema, defineHarnessTool, defineStateModel, defineToolkit, type ToolkitEntry } from "@x-cli/harness"
 import { ShadowVcs } from "./service"
 import { selectorToRestoreScope } from "./path-selector"
 import type { VcsFailure } from "./errors"

@@ -9,9 +9,9 @@ vi.mock('@opentui/react', () => ({
   }),
 }))
 
-vi.mock('@magnitudedev/client-common', async () => {
-  const actual = await vi.importActual<typeof import('@magnitudedev/client-common')>(
-    '@magnitudedev/client-common',
+vi.mock('@x-cli/client-common', async () => {
+  const actual = await vi.importActual<typeof import('@x-cli/client-common')>(
+    '@x-cli/client-common',
   )
   return {
     ...actual,

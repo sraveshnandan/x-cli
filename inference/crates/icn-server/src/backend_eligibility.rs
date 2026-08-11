@@ -60,7 +60,7 @@ fn vulkan() -> VulkanEligibility {
         .flatten()
         .unwrap_or(vk::API_VERSION_1_0);
     let application = vk::ApplicationInfo::default()
-        .application_name(c"magnitude-icn")
+        .application_name(c"x-cli-icn")
         .api_version(api.min(vk::API_VERSION_1_1));
     let create = vk::InstanceCreateInfo::default().application_info(&application);
     let instance = match unsafe { entry.create_instance(&create, None) } {

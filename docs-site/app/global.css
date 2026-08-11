@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-martian-mono);
+}
+
+@layer base {
+  .root {
+    isolation: isolate;
+  }
+}

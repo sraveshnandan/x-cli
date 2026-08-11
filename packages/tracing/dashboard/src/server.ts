@@ -3,7 +3,7 @@ import { join } from 'path'
 import { homedir } from 'os'
 import { watch } from 'fs'
 
-const TRACES_DIR = join(homedir(), '.magnitude', 'traces')
+const TRACES_DIR = join(homedir(), '.x-cli', 'traces')
 const PORT = 4776
 const DIST_DIR = join(import.meta.dir, '..', 'dist')
 
@@ -178,4 +178,4 @@ const server = Bun.serve({
   },
 })
 
-console.log(`Magnitude Traces dashboard running at http://localhost:${PORT}`)
+console.log(`x-cli Traces dashboard running at http://localhost:${PORT}`)

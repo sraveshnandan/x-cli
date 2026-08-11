@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { Option } from 'effect'
 import { TextAttributes } from '@opentui/core'
-import type { DisplayRootStatus, InterruptedMessage, ModelInstanceId } from '@magnitudedev/sdk'
+import type { DisplayRootStatus, InterruptedMessage, ModelInstanceId } from '@x-cli/sdk'
 import {
   displayRootStatusElapsedMs,
   animationPulse,
@@ -11,7 +11,7 @@ import {
   slate,
   useStabilizedRootDetail,
   type LocalModelLoadActivity,
-} from '@magnitudedev/client-common'
+} from '@x-cli/client-common'
 import { useTheme } from '../../hooks/use-theme'
 import { red } from '../../utils/theme'
 import { spinnerFrameForStep } from '../../hooks/use-spinner-frame'

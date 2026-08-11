@@ -6,4 +6,4 @@ export {
   type SqliteDriver as SqliteDriverService,
   type SqliteDriverError,
   SqliteDriverFailure,
-} from "@magnitudedev/acn-protocol/coordination/sqlite-driver"
+} from "@x-cli/acn-protocol/coordination/sqlite-driver"

@@ -1,4 +1,4 @@
-import type { ExecuteHookContext, InterceptorDecision } from '@magnitudedev/harness'
+import type { ExecuteHookContext, InterceptorDecision } from '@x-cli/harness'
 import type { Effect } from 'effect'
 import type { PromptTemplate } from './prompt'
 import type { SlotId, RoleId } from './constants'

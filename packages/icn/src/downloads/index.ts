@@ -3,7 +3,7 @@ import { IcnClient, type IcnClientService } from "../client.js"
 import {
   ModelDownloadsResponse as ModelDownloadsResponseSchema,
   type DownloadAttempt,
-} from "@magnitudedev/icn-protocol/schemas"
+} from "@x-cli/icn-protocol/schemas"
 import { makeIcnObservedState, type IcnObservedState } from "../observed-state.js"
 
 type DownloadsReadError = Effect.Effect.Error<
@@ -15,7 +15,7 @@ export interface IcnDownloadsService
   readonly observeAttempt: (attempt: DownloadAttempt) => Effect.Effect<void>
 }
 
-export class IcnDownloads extends Context.Tag("@magnitudedev/icn/IcnDownloads")<
+export class IcnDownloads extends Context.Tag("@x-cli/icn/IcnDownloads")<
   IcnDownloads,
   IcnDownloadsService
 >() {}

@@ -1,5 +1,5 @@
 import { FiberRef, Option, Schema } from "effect"
-import { ProviderModelFields } from "@magnitudedev/ai"
+import { ProviderModelFields } from "@x-cli/ai"
 
 export const LocalProviderId = Schema.Literal("local").pipe(Schema.brand("ProviderId"))
 

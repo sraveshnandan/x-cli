@@ -61,13 +61,13 @@ catalog entry or any installed copy.
 
 ## Stores and inventory
 
-The configured managed store is authoritative for Magnitude-owned installations. External model
+The configured managed store is authoritative for x-cli-owned installations. External model
 caches may be supplied as explicit read-only roots; they remain externally owned and are never
 silently moved, deleted, or adopted into the managed store.
 
 The standard Hugging Face cache root is resolved once by ACN from `HF_HUB_CACHE`,
 `HUGGINGFACE_HUB_CACHE`, `HF_HOME`, `XDG_CACHE_HOME`, then the user-home default, in that order, and
-is passed to ICN explicitly. Magnitude uses only credentials explicitly supplied to it; ambient
+is passed to ICN explicitly. x-cli uses only credentials explicitly supplied to it; ambient
 host-login credentials are not inherited.
 
 Installed inventory reports packages currently present in configured sources and their inspection

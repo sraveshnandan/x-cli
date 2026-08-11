@@ -13,7 +13,7 @@ import {
   type ModelSlotsState,
   type ProviderModelCatalogEntry,
   type SlotSelection,
-} from '@magnitudedev/sdk'
+} from '@x-cli/sdk'
 import { buildConfigStateFromSlots } from '../src/ambient/config-ambient'
 
 describe('agent model configuration boundary', () => {

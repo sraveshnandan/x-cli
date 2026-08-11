@@ -1,5 +1,5 @@
 import { Schema } from "effect"
-import { JsonValueSchema } from "@magnitudedev/utils/schema"
+import { JsonValueSchema } from "@x-cli/utils/schema"
 import * as Display from "./display"
 
 // ---------------------------------------------------------------------------

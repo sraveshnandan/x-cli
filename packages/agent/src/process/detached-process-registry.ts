@@ -14,9 +14,9 @@
  */
 
 import { Context, Effect, Layer, Deferred, Stream } from 'effect'
-import { type WorkerBusService } from '@magnitudedev/event-core'
+import { type WorkerBusService } from '@x-cli/event-core'
 import type { AppEvent } from '../events'
-import { logger } from '@magnitudedev/logger'
+import { logger } from '@x-cli/logger'
 
 // ── Public Types ──────────────────────────────────────────────────────
 

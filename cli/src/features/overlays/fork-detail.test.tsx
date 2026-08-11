@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, expect, mock, test } from 'bun:test'
 import { renderToStaticMarkup } from 'react-dom/server'
 import type { ReactElement } from 'react'
-import type { DisplayMessage, DisplayTimeline } from '@magnitudedev/sdk'
+import type { DisplayMessage, DisplayTimeline } from '@x-cli/sdk'
 
 mock.module('../../hooks/use-theme', () => ({
   useTheme: () => ({
@@ -83,7 +83,7 @@ beforeEach(async () => {
     },
   }))
 
-  mock.module('@magnitudedev/client-common', () => ({
+  mock.module('@x-cli/client-common', () => ({
     useAgentClient: () => null,
   }))
 

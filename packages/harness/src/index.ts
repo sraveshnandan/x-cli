@@ -1,4 +1,4 @@
-// @magnitudedev/harness
+// @x-cli/harness
 
 // Streaming partial (self-contained, no tools dependency)
 export type { StreamingLeaf, StreamingPartial, DeepPaths } from "./tool/streaming-partial"
@@ -97,7 +97,7 @@ export { ContentBuilder } from "./content"
 
 // Rendering utilities (used by agent formatting layer)
 export { isImageValue, toImagePart, isScalar, renderToolOutput, renderTagged } from "./formatting/helpers"
-export { renderSchemaParams } from "@magnitudedev/utils/schema"
+export { renderSchemaParams } from "@x-cli/utils/schema"
 export type { ToolResultFormatter } from "./formatting/tool-result-formatter"
 export { createToolResultFormatter } from "./formatting/tool-result-formatter"
 

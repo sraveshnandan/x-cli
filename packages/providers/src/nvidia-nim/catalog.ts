@@ -13,7 +13,6 @@ import {
   type ModelCatalog,
   type ModelFamilyId,
 } from '@x-cli/ai'
-import { classifyModelFamily as classifyModelFamilyRaw } from "../family-registry"
 import type { NvidiaNimModelInfo, NvidiaNimRawModel } from "./contract"
 import { NvidiaNimModelListResponseSchema } from "./contract"
 
@@ -26,13 +25,12 @@ const NIM_REASONING_EFFORTS = ["none", "low", "medium", "high", "max"].map(
 )
 
 export function toNvidiaNimModelInfo(raw: NvidiaNimRawModel): NvidiaNimModelWithoutFamily {
-  const caps = Option.getOrElse(raw.capabilities, () => ({ vision: null, structuredOutput: null }))
-  const vision = Option.fromNullable(caps.vision ?? null).pipe(
-    Option.getOrElse(() => false),
-  )
-  const structuredOutput = Option.fromNullable(caps.structuredOutput ?? null).pipe(
-    Option.getOrElse(() => false),
-  )
+  const caps = Option.getOrElse(raw.capabilities, () => ({
+    vision: Option.none<boolean>(),
+    structuredOutput: Option.none<boolean>(),
+  }))
+  const vision = Option.getOrElse(caps.vision, () => false)
+  const structuredOutput = Option.getOrElse(caps.structuredOutput, () => false)
   const pricing = Option.getOrElse(raw.pricing, () => ({ input: 0, output: 0, cached_input: null }))
 
   return {
@@ -163,8 +161,5 @@ export function createNvidiaNimCatalog(config: NvidiaNimCatalogConfig): ModelCat
     return models
   })
 
-  const classifyModelFamily = (model: Omit<NvidiaNimModelInfo, "modelFamilyId">) =>
-    classifyModelFamilyRaw(model.providerModelId)
-
-  return { list, get, refresh, classifyModelFamily }
+  return { list, get, refresh }
 }

@@ -11,11 +11,11 @@ import {
   type ProviderCatalogOutcome,
   type ProviderClientShape,
   type ProviderModel,
-} from "@magnitudedev/sdk"
+} from "@x-cli/sdk"
 import { LocalProviderOfferingProjection } from "./local-provider-offering-projection"
 import { MirroredStateChangesLive } from "./mirrored-state"
 import { ProviderModelCatalog, ProviderModelCatalogLive } from "./provider-model-catalog"
-import { ProviderClient } from "@magnitudedev/sdk"
+import { ProviderClient } from "@x-cli/sdk"
 import { AcnActivityTrackerLive } from "./activity-tracker"
 import { AcnServiceLifecycleLive } from "./service-lifecycle"
 

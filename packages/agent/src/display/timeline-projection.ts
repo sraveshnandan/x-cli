@@ -10,9 +10,9 @@
  * - Queued messages are promoted to user_message on turn_started
  */
 
-import { Signal, Projection } from '@magnitudedev/event-core'
-import { DisplayMessage as ProtocolDisplayMessageSchema } from '@magnitudedev/acn-protocol'
-import type { ToolStepPresentation } from '@magnitudedev/acn-protocol'
+import { Signal, Projection } from '@x-cli/event-core'
+import { DisplayMessage as ProtocolDisplayMessageSchema } from '@x-cli/acn-protocol'
+import type { ToolStepPresentation } from '@x-cli/acn-protocol'
 import { Effect, Option } from 'effect'
 import type { AppEvent } from '../events'
 import { outcomeWillChainContinue } from '../events'

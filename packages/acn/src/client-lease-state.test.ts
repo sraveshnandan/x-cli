@@ -1,4 +1,4 @@
-import { ClientIdSchema } from "@magnitudedev/acn-protocol"
+import { ClientIdSchema } from "@x-cli/acn-protocol"
 import { describe, expect, it } from "vitest"
 import {
   dueClientLeases,

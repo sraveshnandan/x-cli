@@ -15,7 +15,7 @@ applies_to:
 
 # JIT ACN instance management and upgrades
 
-Independent hosts sharing one Magnitude data root coordinate to obtain one usable ACN without a
+Independent hosts sharing one x-cli data root coordinate to obtain one usable ACN without a
 resident coordinator. `AcnInstanceManager` owns complete endpoint acquisition. `AcnRevisionStore`
 and `AcnOwnerStore` project the shared facts from one SQLite database; neither is a daemon or a
 generic coordination service.

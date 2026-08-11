@@ -4,7 +4,17 @@ import { source } from '@/lib/source';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <DocsLayout tree={source.pageTree} nav={{ title: 'x-cli Documentation' }}>
+    <DocsLayout
+      tree={source.pageTree}
+      nav={{
+        title: (
+          <span className="font-mono text-sm tracking-tight">
+            <span className="text-primary">x</span>
+            <span>-cli</span>
+          </span>
+        ),
+      }}
+    >
       {children}
     </DocsLayout>
   );

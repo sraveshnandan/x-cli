@@ -1,7 +1,5 @@
 # x-cli
 
-<a href="https://discord.gg/EHt48pPWdC" target="_blank"><img src="https://img.shields.io/badge/Discord-Join-5865F2?style=flat-square&logo=discord&logoColor=white&labelColor=5865F2&color=gray" alt="Discord" /></a> <a href="https://x.com/usemagnitude" target="_blank"><img src="https://img.shields.io/badge/Twitter-Follow-000000?style=flat-square&logo=x&logoColor=white&labelColor=000000&color=gray" alt="Follow x-cli on Twitter" /></a>
-
 **x-cli** is a high-performance open-source AI coding agent built with native local model support and multi-provider cloud connectivity. 100% private, offline-capable, with zero rate limits or token costs for local execution.
 
 ![x-cli logo](docs/logo.svg)

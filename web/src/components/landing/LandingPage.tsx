@@ -28,7 +28,7 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDocs }) => {
   const [copiedCmd, setCopiedCmd] = useState<string | null>(null)
-  const [installMethod, setInstallMethod] = useState<"mac" | "linux" | "windows" | "npm">("mac")
+  const [installMethod, setInstallMethod] = useState<"mac" | "linux" | "windows" | "npm" | "bun">("mac")
 
   const copyCommand = (cmd: string) => {
     navigator.clipboard.writeText(cmd)
@@ -39,13 +39,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
   const getInstallCmd = () => {
     switch (installMethod) {
       case "mac":
-        return "curl -fsSL https://x-cli.dev/install.sh | bash"
+        return "curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install.sh | bash"
       case "linux":
-        return "curl -fsSL https://x-cli.dev/install.sh | bash"
+        return "curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install.sh | bash"
       case "windows":
-        return "irm https://x-cli.dev/install.ps1 | iex"
+        return "powershell -c \"irm https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install.ps1 | iex\""
       case "npm":
         return "npm install -g @x-cli/cli"
+      case "bun":
+        return "bun install -g @x-cli/cli"
     }
   }
 
@@ -330,6 +332,12 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
             >
               📦 npm
             </button>
+            <button
+              className={`landing-platform-tab ${installMethod === "bun" ? "active" : ""}`}
+              onClick={() => setInstallMethod("bun")}
+            >
+              🥟 bun
+            </button>
           </div>
 
           <div className="landing-install-bar-mcp">
@@ -345,6 +353,54 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
                 <Copy size={16} />
               )}
             </button>
+          </div>
+
+          <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+            {installMethod === "mac" && (
+              <>
+                <a
+                  href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-darwin-arm64.tar.gz"
+                  className="landing-btn-secondary-mcp"
+                  style={{ fontSize: "0.82rem", padding: "0.45rem 1rem" }}
+                >
+                  Download macOS (Apple Silicon .tar.gz)
+                </a>
+                <a
+                  href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-darwin-x64.tar.gz"
+                  className="landing-btn-secondary-mcp"
+                  style={{ fontSize: "0.82rem", padding: "0.45rem 1rem" }}
+                >
+                  Download macOS (Intel .tar.gz)
+                </a>
+              </>
+            )}
+            {installMethod === "linux" && (
+              <>
+                <a
+                  href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-linux-x64-gnu.tar.gz"
+                  className="landing-btn-secondary-mcp"
+                  style={{ fontSize: "0.82rem", padding: "0.45rem 1rem" }}
+                >
+                  Download Linux (x86_64 .tar.gz)
+                </a>
+                <a
+                  href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-linux-arm64-gnu.tar.gz"
+                  className="landing-btn-secondary-mcp"
+                  style={{ fontSize: "0.82rem", padding: "0.45rem 1rem" }}
+                >
+                  Download Linux (ARM64 .tar.gz)
+                </a>
+              </>
+            )}
+            {installMethod === "windows" && (
+              <a
+                href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-windows-x64-msvc.exe"
+                className="landing-btn-secondary-mcp"
+                style={{ fontSize: "0.82rem", padding: "0.45rem 1rem" }}
+              >
+                Download Windows Executable (x64 .exe)
+              </a>
+            )}
           </div>
         </div>
       </section>

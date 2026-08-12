@@ -1,0 +1,101 @@
+---
+title: Cloud providers
+description: Configure OpenAI, Anthropic, NVIDIA NIM, Ollama, and custom endpoints
+---
+
+x-cli is provider-agnostic. The same agent runtime, same tool protocol, and same display machinery work against local models or any OpenAI-compatible cloud endpoint. You configure providers in `~/.x-cli/config.json` and switch between them at runtime.
+
+## Built-in providers
+
+```json
+{
+  "models": {
+    "providers": {
+      "openai":    { "apiKey": "sk-...",      "baseUrl": "https://api.openai.com/v1" },
+      "anthropic": { "apiKey": "sk-ant-..." },
+      "nvidia":    { "apiKey": "nvapi-...",    "baseUrl": "https://integrate.api.nvidia.com/v1" },
+      "ollama":    { "baseUrl": "http://localhost:11434/v1" }
+    }
+  }
+}
+```
+
+| Provider | Notes |
+| --- | --- |
+| `openai` | Default base URL is `https://api.openai.com/v1`. Any GPT-4o, GPT-4o-mini, o1, o3-mini, etc. |
+| `anthropic` | Anthropic Claude models. No base URL override needed. |
+| `nvidia` | NVIDIA NIM endpoints. Useful for hosted open models on NVIDIA's cloud. |
+| `ollama` | Local Ollama server. Defaults to `http://localhost:11434/v1`; override if your server is elsewhere. |
+
+## Custom OpenAI-compatible endpoints
+
+Anything that speaks the OpenAI Chat Completions API works as a `custom-openai` provider:
+
+```json
+{
+  "models": {
+    "providers": {
+      "custom-openai": {
+        "apiKey": "your-key",
+        "baseUrl": "https://your-custom-endpoint/v1"
+      }
+    }
+  }
+}
+```
+
+Use this for:
+
+- Self-hosted vLLM, TGI, or LM Studio
+- Other providers' OpenAI-compatible surfaces (Together, Groq, Fireworks, OpenRouter)
+- Internal gateways and proxies
+
+## Slots and binding
+
+Providers are bound to slots:
+
+```json
+{
+  "models": {
+    "slots": {
+      "primary": { "providerId": "openai", "modelId": "gpt-4o" },
+      "fast":    { "providerId": "openai", "modelId": "gpt-4o-mini" }
+    }
+  }
+}
+```
+
+- `primary` is the default model for the chat surface.
+- `fast` is used for quick sub-tasks (intent classification, prompt rewrites) so they don't burn budget on the heavy model.
+
+Skills and slash commands can also reference slots by name.
+
+## Per-project config
+
+Project-local overrides go in `.x-cli/config.json` inside the working directory. Project config is merged over the global file at startup; provider IDs in the project file override the global ones with the same ID.
+
+## API key handling
+
+API keys live only in `~/.x-cli/config.json`. They are read at startup, held in memory by the provider client, and never written to telemetry or session logs.
+
+For CI or shared machines, set the API key as an environment variable and reference it from the config:
+
+```sh
+export X_CLI_OPENAI_API_KEY="sk-..."
+```
+
+```json
+{
+  "models": {
+    "providers": {
+      "openai": { "apiKey": "${X_CLI_OPENAI_API_KEY}" }
+    }
+  }
+}
+```
+
+The config loader expands `${VAR}` references at read time.
+
+## Switching at runtime
+
+The model picker (`Ctrl+P` in the TUI) lets you swap providers and models mid-session. Switching reloads the chat surface but preserves the underlying session event log, so rewind and replay still work.

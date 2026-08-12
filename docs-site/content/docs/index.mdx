@@ -1,44 +1,33 @@
 ---
-title: Getting Started with x-cli
-description: Introduction, installation, and initial setup for x-cli AI coding agent platform.
+title: Overview
+description: x-cli — your agent, running on local models
 ---
 
-# Getting Started with x-cli
+x-cli is a high-performance open-source AI coding agent. It runs natively on macOS and Linux (and on Windows via WSL2), profiles your hardware to pick the right local model, and switches to cloud providers when you want it.
 
-**x-cli** is a high-performance open-source AI coding agent built with native local model support and multi-provider cloud connectivity. 100% private, offline-capable, with zero rate limits or token costs for local execution.
+## What you get
 
----
+- **One binary, one command.** `curl … | bash` then `x-cli`.
+- **Local by default.** A custom Rust inference engine (ICN, llama.cpp under the hood) runs models on your GPU. Nothing leaves your machine.
+- **Cloud when you want it.** OpenAI, Anthropic, NVIDIA NIM, Ollama, or any OpenAI-compatible endpoint — same runtime, same tools.
+- **Real platform.** A typed package graph with a daemon protocol (ACN), event-sourced agent runtime, and a built-in OpenTelemetry collector (Motel).
 
-## Installation
+## Where to go next
 
-Install `x-cli` globally using `npm` or `bun`:
-
-```bash
-npm install -g @x-cli/cli
-```
-
-### Launching in Your Workspace
-
-Navigate to any repository or code directory and launch `x-cli`:
-
-```bash
-cd /path/to/your/project
-x-cli
-```
-
-On first launch, `x-cli` automatically profiles your system (GPU VRAM, System RAM, and CPU threads) to recommend and load optimal local GGUF models.
-
----
-
-## Operating Systems & Platform Support
-
-- **Linux**: Native support (x86_64, arm64).
-- **macOS**: Native support with Apple Silicon Metal GPU acceleration.
-- **Windows**: Supported via WSL2 (Windows Subsystem for Linux).
-
----
-
-## Interface Options
-
-1. **Terminal UI (TUI)**: Rich interactive terminal experience with real-time markdown streaming, syntax highlighting, and keyboard shortcuts.
-2. **Web Studio (Vite UI)**: Responsive web application providing visual workspace navigation, diff previews, worker detail cards, and interactive composer.
+<Cards>
+  <Card title="Installation" href="/docs/installation">
+    Install x-cli on macOS, Linux, or WSL with one command.
+  </Card>
+  <Card title="Quickstart" href="/docs/quickstart">
+    Launch x-cli, pick a model, and run your first task.
+  </Card>
+  <Card title="Architecture" href="/docs/architecture">
+    How the package graph, daemon protocol, and inference engine fit together.
+  </Card>
+  <Card title="Local inference" href="/docs/local-inference">
+    How ICN profiles hardware, picks quantizations, and offloads layers.
+  </Card>
+  <Card title="Cloud providers" href="/docs/providers">
+    Configure OpenAI, Anthropic, NVIDIA NIM, Ollama, or custom endpoints.
+  </Card>
+</Cards>

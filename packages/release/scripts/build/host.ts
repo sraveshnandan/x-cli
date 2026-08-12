@@ -68,7 +68,7 @@ const smokeIcnServer = async (
     cacheRoot,
   ], {
     cwd: root,
-    env: { ...environment, MAGNITUDE_ICN_AUTH_TOKEN: token },
+    env: { ...environment, X_CLI_ICN_AUTH_TOKEN: token },
     stdin: "pipe",
     stdout: "pipe",
     stderr: "inherit",
@@ -87,7 +87,7 @@ const smokeIcnServer = async (
         while (newline >= 0) {
           const line = pending.slice(0, newline).trimEnd()
           pending = pending.slice(newline + 1)
-          const prefix = "MAGNITUDE_ICN_READY "
+          const prefix = "X_CLI_ICN_READY "
           if (line.startsWith(prefix)) {
             const value = Schema.decodeUnknownSync(
               Schema.parseJson(IcnStartupRecord),

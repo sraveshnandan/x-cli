@@ -87,7 +87,7 @@ if (notesStart === undefined) {
   throw new Error("CHANGELOG.md release entry has no source position")
 }
 const releaseNotes = changelog.slice(notesStart, notesEnd).trim()
-const sourceCommit = required("MAGNITUDE_SOURCE_COMMIT")
+const sourceCommit = required("X_CLI_SOURCE_COMMIT")
 if (manifest.sourceCommit !== sourceCommit) {
   throw new Error("candidate source commit differs from the workflow commit")
 }

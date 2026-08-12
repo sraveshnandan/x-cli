@@ -1,0 +1,4 @@
+{
+  "title": "Documentation",
+  "pages": ["installation", "quickstart", "---", "architecture", "local-inference", "providers"]
+}

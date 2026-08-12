@@ -42,15 +42,15 @@ const npm = async (version: string): Promise<unknown | undefined> => {
 const packageJson = JSON.parse(
   await readFile(resolve(PROJECT_ROOT, "packages/cli/package.json"), "utf8"),
 ) as { readonly version?: string }
-const version = required("MAGNITUDE_RELEASE_VERSION", packageJson.version)
-const sourceCommit = required("MAGNITUDE_SOURCE_COMMIT", process.env.GITHUB_SHA)
+const version = required("X_CLI_RELEASE_VERSION", packageJson.version)
+const sourceCommit = required("X_CLI_SOURCE_COMMIT", process.env.GITHUB_SHA)
 if (packageJson.version !== version) {
   throw new Error("requested version differs from packages/cli/package.json")
 }
 if (!/^[a-f0-9]{40}$/.test(sourceCommit)) {
   throw new Error("source commit must be a full lowercase SHA")
 }
-const releaseCommit = required("MAGNITUDE_RELEASE_COMMIT", sourceCommit)
+const releaseCommit = required("X_CLI_RELEASE_COMMIT", sourceCommit)
 if (!/^[a-f0-9]{40}$/.test(releaseCommit)) {
   throw new Error("release commit must be a full lowercase SHA")
 }
@@ -114,7 +114,7 @@ if (npmVersion) {
   action = "release"
 }
 
-if (process.env.MAGNITUDE_REQUIRE_RELEASE === "true" && action !== "release") {
+if (process.env.X_CLI_REQUIRE_RELEASE === "true" && action !== "release") {
   throw new Error("release state changed before publication")
 }
 if (action !== "complete") {

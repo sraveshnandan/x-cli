@@ -31,6 +31,9 @@ web/dist
 web/node_modules
 desktop/out
 desktop/node_modules
+docs-site/.next
+docs-site/.source
+docs-site/out
 
 packages/cli/lib/release-runtime.cjs
 

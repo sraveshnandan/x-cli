@@ -4,12 +4,12 @@ import {
 } from "../src/acquisition"
 import { Effect } from "effect"
 
-const version = process.env.MAGNITUDE_RELEASE_VERSION?.trim()
-const sourceCommit = process.env.MAGNITUDE_SOURCE_COMMIT?.trim()
+const version = process.env.X_CLI_RELEASE_VERSION?.trim()
+const sourceCommit = process.env.X_CLI_SOURCE_COMMIT?.trim()
 if (!version || !sourceCommit) {
   throw new Error("release version and source commit are required")
 }
-const baseUrl = "https://github.com/x-cli-dev/x-cli/releases/download"
+const baseUrl = "https://github.com/sraveshnandan/x-cli/releases/download"
 const download = async (name: string, maximum: number): Promise<Uint8Array> => {
   const response = await fetch(releaseUrl(baseUrl, version, name), {
     signal: AbortSignal.timeout(30_000),

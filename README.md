@@ -1,116 +1,81 @@
 # x-cli
 
-**x-cli** is a high-performance open-source AI coding agent built with native local model support and multi-provider cloud connectivity. 100% private, offline-capable, with zero rate limits or token costs for local execution.
-
-![x-cli logo](docs/logo.svg)
+**x-cli** is a high-performance open-source AI coding agent with native local model support and multi-provider cloud connectivity. 100% private, offline-capable, with zero rate limits or token costs for local execution.
 
 ---
 
 ## Quick Start
 
-```sh
-# Install x-cli globally
-npm install -g @x-cli/cli
+### One-line install (macOS, Linux, WSL)
 
-# Run in any workspace directory
+```sh
+curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install/install.sh | bash
+```
+
+This downloads the latest platform-native release into `~/.x-cli/bin` (or `~/bin` if it exists) and adds it to your `PATH` in your shell config.
+
+To install a specific version:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install/install.sh \
+  | bash -s -- --version 0.0.1-alpha.38
+```
+
+The installer supports `X_CLI_INSTALL_DIR`, `XDG_BIN_DIR`, and `X_CLI_REPO` for forks; see `install/install.sh --help`.
+
+### Run
+
+```sh
 cd your-project
 x-cli
 ```
 
-`x-cli` natively supports Linux and macOS. Windows is supported via WSL2.
+`x-cli` runs natively on Linux and macOS (Apple Silicon and Intel). Windows is supported via WSL2.
 
 ---
 
-## Unlocking x-cli to its Full Potential
+## What x-cli Does
 
-### 1. Model Setup & Multi-Provider Configuration
+`x-cli` automatically profiles your hardware (GPU, VRAM, RAM) on first launch to recommend optimal local models. You can switch between **Local Hardware Models** and **Online Cloud Providers** at any time.
 
-`x-cli` automatically profiles your hardware (GPU, VRAM, RAM) on first launch to recommend optimal local models. You can easily switch between **Local Hardware Models** and **Online Cloud Providers** at any time.
+### Models
 
-#### A. Interactive Model Switcher & Setup
-Inside the TUI or Web UI:
-* Press `Ctrl+P` or open **Settings** to open the **Model Setup Chooser**.
-* Choose between **Local Models** (Balanced, Best Quality, Fastest, Lightweight) or **Online Providers**.
+Inside the TUI:
 
-#### B. Connecting External Providers via Configuration
-You can configure external model providers and API keys globally in `~/.x-cli/config.json`:
+- Press `Ctrl+P` or open **Settings** to open the **Model Setup Chooser**.
+- Choose between **Local Models** (Balanced, Best Quality, Fastest, Lightweight) or **Online Providers**.
+
+Configure cloud providers globally in `~/.x-cli/config.json`:
 
 ```json
 {
   "models": {
     "providers": {
-      "openai": {
-        "apiKey": "sk-...",
-        "baseUrl": "https://api.openai.com/v1"
-      },
-      "anthropic": {
-        "apiKey": "sk-ant-..."
-      },
-      "nvidia": {
-        "apiKey": "nvapi-...",
-        "baseUrl": "https://integrate.api.nvidia.com/v1"
-      },
-      "ollama": {
-        "baseUrl": "http://localhost:11434/v1"
-      },
-      "custom-openai": {
-        "apiKey": "your-key",
-        "baseUrl": "https://your-custom-endpoint/v1"
-      }
+      "openai":    { "apiKey": "sk-...",      "baseUrl": "https://api.openai.com/v1" },
+      "anthropic": { "apiKey": "sk-ant-..." },
+      "nvidia":    { "apiKey": "nvapi-...",    "baseUrl": "https://integrate.api.nvidia.com/v1" },
+      "ollama":    { "baseUrl": "http://localhost:11434/v1" }
     },
     "slots": {
-      "primary": {
-        "providerId": "openai",
-        "modelId": "gpt-4o"
-      }
+      "primary": { "providerId": "openai", "modelId": "gpt-4o" }
     }
   }
 }
 ```
 
----
+### Skills
 
-### 2. Model Context Protocol (MCP) & Custom Skills
-
-`x-cli` provides an extensible skill system and support for **Model Context Protocol (MCP)** tool extensions.
-
-#### A. Installing Pre-built Skills
-You can install pre-built skills from directories like [skills.sh](https://www.skills.sh):
+Install skills from directories like [skills.sh](https://www.skills.sh) into your project:
 
 ```sh
-npx skills add vercel-labs/agent-browser   # Drive your Chrome browser
-npx skills add anthropics/skills/xlsx      # Read & build Excel spreadsheets
-npx skills add anthropics/skills/pptx      # Build PowerPoint decks
-npx skills add anthropics/skills/docx      # Read & write Word documents
-npx skills add anthropics/skills/pdf       # Fill & generate PDFs
+npx skills add vercel-labs/agent-browser
 ```
 
-#### B. Creating Custom Workspace Skills & MCP Extensions
-Add custom skills to your workspace under `.agents/skills/<skill-name>/SKILL.md` or globally under `~/.x-cli/skills/`:
+Add custom skills to `.agents/skills/<name>/SKILL.md` (project) or `~/.x-cli/skills/` (global). x-cli auto-loads them at runtime.
 
-```markdown
----
-name: database-query
-description: Execute read-only SQL queries against the local PostgreSQL dev container
----
+### Slash Commands
 
-# Database Query Skill
-
-When asked to query the database, run the helper script in `scripts/query.py`.
-
-## Available Commands:
-- `python scripts/query.py --sql "<query>"`
-```
-
-`x-cli` automatically loads skills at runtime, parsing frontmatter metadata, tool schemas, and background execution scripts into the agent context.
-
----
-
-### 3. Interactive Slash Commands
-
-Maximize efficiency in your terminal workflow with built-in slash commands:
-
-| Command | Usage |
+| Command | What it does |
 | :--- | :--- |
 | `/plan` | Formulate step-by-step implementation plans before executing code edits |
 | `/goal` | Execute long-running background goals thoroughly without stopping |
@@ -120,38 +85,48 @@ Maximize efficiency in your terminal workflow with built-in slash commands:
 
 ---
 
-### 4. Telemetry & Observability
+## How It Works
 
-`x-cli` integrates a local OpenTelemetry collector (**Motel**) for deep observability into AI calls, token consumption, and span traces.
+### Custom Local Inference Engine
+
+`x-cli` ships a custom Rust inference engine (called **ICN**) powered by `llama.cpp`. It pre-calculates VRAM & RAM overhead before loading models, optimizes KV-cache reuse, and manages GPU layer offloading. Nothing leaves your machine when running locally.
+
+### Multi-Agent Workspace Runtime
+
+The runtime is built on Effect-TS with an event-sourced core, addressed worker roles (Leader, Architect, Engineer, Scout, Critic), and a session protocol that captures every turn and tool call as durable JSONL.
+
+### Observability
+
+A local OpenTelemetry collector (**Motel**) gives deep visibility into AI calls, token consumption, and subagent spans.
 
 ```sh
-# Launch live telemetry & tracing dashboard
-bun run dash
+bun run dash   # opens http://127.0.0.1:27686
 ```
-Open `http://127.0.0.1:27686` to inspect prompt payloads, completion timings, and subagent spans live.
 
----
-
-### 5. Session History & Inspection
+### Session Inspection
 
 All agent turns, tool calls, and addressed states are preserved as structured JSONL logs in `~/.x-cli/sessions/`:
 
 ```sh
-bun session list                     # List recent sessions and message summaries
-bun session events <id>              # Stream events for a specific session ID
-bun session search <keyword>         # Search event payloads across sessions
+bun session list                     # List recent sessions
+bun session events <id>              # Stream events for a specific session
 bun session projection <id> Window   # Inspect replayed projection state
 ```
 
 ---
 
-## How It Works
+## Architecture
 
-### Custom Local Inference Engine
-`x-cli` includes a custom Rust inference engine powered by `llama.cpp`. It pre-calculates VRAM & RAM overhead before loading models, optimizes KV-cache reuse, and manages GPU layer offloading. Nothing leaves your machine when running locally.
+```
+clients (cli / web / desktop) → client-common → sdk → acn (daemon)
+```
 
-### Multi-Agent Workspace Runtime
-`x-cli` uses Effect-TS native event-sourcing and addressed worker roles (Leader, Architect, Engineer, Scout, Critic) to manage multi-step reasoning, background shell tasks, and tool execution cleanly.
+- **Clients** render the UI. They only import `@x-cli/client-common` and `@x-cli/sdk`.
+- **client-common** owns shared reactive state and AtomRpc query atoms.
+- **sdk** is the typed RPC client and daemon lifecycle (`DaemonSpawner`).
+- **acn** is the server daemon that hosts the agent runtime, sessions, file ops, and display streams.
+
+Read [`AGENTS.md`](./AGENTS.md) for the full package layering and Effect-TS conventions.
 
 ---
 

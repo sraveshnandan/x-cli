@@ -9,7 +9,7 @@ import { tmpdir } from "node:os"
 import { resolve } from "node:path"
 import { run } from "./build/common"
 
-const version = process.env.MAGNITUDE_RELEASE_VERSION?.trim()
+const version = process.env.X_CLI_RELEASE_VERSION?.trim()
 const tarball = process.argv[2]
 if (!version || !tarball) {
   throw new Error("release version and accepted npm tarball are required")
@@ -43,8 +43,8 @@ try {
         HOME: home,
         USERPROFILE: home,
         PATH: runtimeBin,
-        MAGNITUDE_RELEASE_BASE_URL:
-          "https://github.com/x-cli-dev/x-cli/releases/download",
+        X_CLI_RELEASE_BASE_URL:
+          "https://github.com/sraveshnandan/x-cli/releases/download",
       },
     })
     if (output.trim() !== version) {

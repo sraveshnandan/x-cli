@@ -1,5 +1,5 @@
-const version = process.env.MAGNITUDE_RELEASE_VERSION?.trim()
-const expectedIntegrity = process.env.MAGNITUDE_EXPECTED_NPM_INTEGRITY?.trim()
+const version = process.env.X_CLI_RELEASE_VERSION?.trim()
+const expectedIntegrity = process.env.X_CLI_EXPECTED_NPM_INTEGRITY?.trim()
 if (!version || !expectedIntegrity) {
   throw new Error("release version and expected npm integrity are required")
 }

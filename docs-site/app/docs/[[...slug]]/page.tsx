@@ -6,6 +6,14 @@ import {
   DocsDescription,
 } from 'fumadocs-ui/page';
 import { notFound } from 'next/navigation';
+import { getMDXComponents } from '@/mdx-components';
+
+interface TOCItem {
+  title: React.ReactNode;
+  url: string;
+  depth: number;
+}
+type TableOfContents = TOCItem[];
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -14,14 +22,21 @@ export default async function Page(props: {
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
-  const MDX = page.data.body;
+  const data = page.data as {
+    body: React.ComponentType<Record<string, unknown>>;
+    toc?: TableOfContents;
+    full?: boolean;
+    title: string;
+    description: string;
+  };
+  const MDX = data.body;
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
-      <DocsTitle>{page.data.title}</DocsTitle>
-      <DocsDescription>{page.data.description}</DocsDescription>
+    <DocsPage toc={data.toc} full={data.full as boolean}>
+      <DocsTitle>{data.title}</DocsTitle>
+      <DocsDescription>{data.description}</DocsDescription>
       <DocsBody>
-        <MDX />
+        <MDX components={getMDXComponents()} />
       </DocsBody>
     </DocsPage>
   );
@@ -38,8 +53,9 @@ export async function generateMetadata(props: {
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
+  const data = page.data as unknown as Record<string, unknown>;
   return {
-    title: page.data.title,
-    description: page.data.description,
+    title: data.title as string,
+    description: data.description as string,
   };
 }

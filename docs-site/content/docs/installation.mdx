@@ -1,0 +1,112 @@
+---
+title: Installation
+description: Install x-cli on macOS, Linux, or WSL
+---
+
+x-cli ships as a single platform-native binary. The installer puts it on your `PATH` and adds a small shell snippet so future sessions find it automatically.
+
+## One-line install (recommended)
+
+macOS, Linux, and WSL on Windows:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install/install.sh | bash
+```
+
+That command:
+
+1. Detects your OS and CPU architecture (`darwin-arm64`, `linux-x64-gnu`, etc.).
+2. Resolves the latest release version from the GitHub API.
+3. Downloads the matching tarball and verifies it.
+4. Extracts `x-cli` into `~/.x-cli/bin` (or `~/bin` if it exists).
+5. Adds that directory to your shell's `PATH` in `~/.zshrc` or `~/.bashrc`.
+
+Restart your shell, or `source` the modified config file, then run `x-cli --version` to confirm.
+
+## Pick a specific version
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install/install.sh \
+  | bash -s -- --version 0.0.1-alpha.38
+```
+
+The installer verifies the release exists before downloading. If the version you pass doesn't exist, it bails out cleanly with a link to the releases page.
+
+## Install from a local binary
+
+If you've already built or downloaded `x-cli-cli`:
+
+```sh
+./install/install.sh --binary /path/to/x-cli-cli
+```
+
+Useful for testing builds, air-gapped installs, or staging.
+
+## Install without touching your shell config
+
+By default the installer adds an `export PATH=...` line to your rc file. To skip that:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install/install.sh \
+  | bash -s -- --no-modify-path
+```
+
+Then add the install directory to `PATH` yourself in whatever way fits your setup (system-wide, direnv, mise, etc.).
+
+## Install directory priority
+
+The installer picks the install directory in this order:
+
+| Priority | Variable / Condition | Default location |
+| --- | --- | --- |
+| 1 | `X_CLI_INSTALL_DIR` env var | (your override) |
+| 2 | `XDG_BIN_DIR` env var | (XDG-compliant path) |
+| 3 | `~/bin` (if it exists or can be created) | `$HOME/bin` |
+| 4 | fallback | `$HOME/.x-cli/bin` |
+
+Override per-run:
+
+```sh
+X_CLI_INSTALL_DIR=/usr/local/bin \
+  curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install/install.sh | bash
+```
+
+## Install from a fork
+
+Forks and mirrors can override the GitHub repo:
+
+```sh
+X_CLI_REPO=my-org/x-cli-mirror \
+  curl -fsSL https://example.com/install.sh | bash
+```
+
+The installer reads `X_CLI_REPO` and fetches releases from `github.com/${X_CLI_REPO}/releases` instead of the default.
+
+## Supported platforms
+
+| OS | Architectures |
+| --- | --- |
+| macOS | `arm64` (Apple Silicon), `x64` (Intel, Rosetta-detected) |
+| Linux | `x86_64`, `aarch64` (glibc and musl flavors) |
+| Windows | via WSL2 (native Windows is not supported) |
+
+On `x86_64` systems without AVX2 the installer falls back to a `-baseline` build. On Alpine or other musl-based distros it falls back to a `-musl` build.
+
+## Uninstall
+
+The installer only writes to one place:
+
+- The binary at `$INSTALL_DIR/x-cli`
+- A single `export PATH=...` line in your shell rc file (skippable with `--no-modify-path`)
+
+To uninstall:
+
+```sh
+rm -f "$(which x-cli)"
+```
+
+Then remove the `export PATH=...` line from your rc file.
+
+## Updating
+
+Re-run the install command. The installer checks for an existing version and exits early if it matches; otherwise it overwrites the binary in place.

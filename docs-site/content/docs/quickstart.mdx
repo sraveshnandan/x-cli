@@ -1,0 +1,111 @@
+---
+title: Quickstart
+description: Run x-cli for the first time
+---
+
+Once x-cli is installed, you can launch it in any project directory.
+
+## First launch
+
+```sh
+cd your-project
+x-cli
+```
+
+On the first run, x-cli:
+
+1. Profiles your machine (CPU, GPU, VRAM, RAM).
+2. Recommends a set of local models that fit your hardware — labeled Balanced, Best Quality, Fastest, and Lightweight.
+3. Asks you to pick one. If you decline all local options, it falls back to a cloud provider.
+4. Downloads and prepares the chosen model, then loads it.
+5. Opens the chat surface.
+
+After the model is ready, ask x-cli to inspect files, run commands, analyze data, or complete another task in the current directory.
+
+## Switching models
+
+Inside the TUI:
+
+- Press `Ctrl+P` to open the model picker.
+- Or open **Settings → Model Setup Chooser**.
+- Choose between **Local Models** and **Online Providers**.
+
+Model switches reload the chat but preserve session history.
+
+## Configure cloud providers
+
+Cloud provider credentials live in `~/.x-cli/config.json`. Add as many providers as you want:
+
+```json
+{
+  "models": {
+    "providers": {
+      "openai":    { "apiKey": "sk-...",      "baseUrl": "https://api.openai.com/v1" },
+      "anthropic": { "apiKey": "sk-ant-..." },
+      "nvidia":    { "apiKey": "nvapi-...",    "baseUrl": "https://integrate.api.nvidia.com/v1" },
+      "ollama":    { "baseUrl": "http://localhost:11434/v1" }
+    },
+    "slots": {
+      "primary":   { "providerId": "openai", "modelId": "gpt-4o" },
+      "fast":      { "providerId": "openai", "modelId": "gpt-4o-mini" }
+    }
+  }
+}
+```
+
+Slots let you bind models to roles — `primary` is the default, `fast` is used for quick sub-tasks. Slots are referenced by name from slash commands and skill configurations.
+
+## Skills
+
+Skills are how you extend x-cli for specific work — Excel, PowerPoint, PDFs, Chrome automation, or anything you write yourself.
+
+Add skills globally in `~/.x-cli/skills/<name>/SKILL.md` or per-project in `.agents/skills/<name>/SKILL.md`:
+
+```markdown
+---
+name: database-query
+description: Execute read-only SQL queries against the local PostgreSQL dev container
+---
+
+# Database Query Skill
+
+When asked to query the database, run the helper script in `scripts/query.py`.
+
+## Available Commands:
+- `python scripts/query.py --sql "<query>"`
+```
+
+x-cli parses frontmatter, tool schemas, and any background execution scripts into the agent context at runtime.
+
+To install curated skills from external registries:
+
+```sh
+npx skills add vercel-labs/agent-browser
+npx skills add anthropics/skills/xlsx
+```
+
+## Slash commands
+
+| Command | What it does |
+| --- | --- |
+| `/plan` | Formulate step-by-step implementation plans before executing code edits |
+| `/goal` | Execute long-running background goals thoroughly without stopping |
+| `/schedule` | Set recurring background timers or cron schedules for tasks |
+| `/grill-me` | Interactive design alignment interview to resolve architecture decisions |
+| `/learn` | Persist corrections or setup details into memory for future sessions |
+
+## Where state lives
+
+- **Sessions** (turns, tool calls, projections): `~/.x-cli/sessions/<utc-timestamp>/`
+- **Config**: `~/.x-cli/config.json`
+- **Cached model binaries**: `~/.x-cli/cache/`
+- **Skills**: `~/.x-cli/skills/` and `.agents/skills/`
+- **Telemetry (Motel)**: `127.0.0.1:27686` while a session is active
+
+To inspect a past session:
+
+```sh
+bun session list                       # list recent sessions
+bun session events <id>                # stream events for one session
+bun session projection <id> Window     # replay a named projection
+```

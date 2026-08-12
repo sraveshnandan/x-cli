@@ -115,8 +115,8 @@ jobs:
         run: bun run packages/release/scripts/preflight.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MAGNITUDE_RELEASE_COMMIT: ${{ steps.source.outputs.release_commit }}
-          MAGNITUDE_SOURCE_COMMIT: ${{ steps.source.outputs.commit }}
+          X_CLI_RELEASE_COMMIT: ${{ steps.source.outputs.release_commit }}
+          X_CLI_SOURCE_COMMIT: ${{ steps.source.outputs.commit }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Validate the preflight action
         shell: bash
@@ -167,34 +167,34 @@ jobs:
         run: bun run packages/release/scripts/prepare-npm.ts release/npm-candidate
       - run: bun run packages/release/scripts/assemble.ts release-artifacts release-candidate
         env:
-          MAGNITUDE_RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
-          MAGNITUDE_SOURCE_COMMIT: ${{ needs.preflight.outputs.source_commit }}
+          X_CLI_RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
+          X_CLI_SOURCE_COMMIT: ${{ needs.preflight.outputs.source_commit }}
       - run: bun run scripts/accept-release-candidate.ts release-candidate "${{ steps.npm-candidate.outputs.tarball }}"
       - name: Commit-point recheck
         run: bun run packages/release/scripts/preflight.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MAGNITUDE_RELEASE_COMMIT: ${{ needs.preflight.outputs.release_commit }}
-          MAGNITUDE_RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
-          MAGNITUDE_SOURCE_COMMIT: ${{ needs.preflight.outputs.source_commit }}
-          MAGNITUDE_REQUIRE_RELEASE: "true"
+          X_CLI_RELEASE_COMMIT: ${{ needs.preflight.outputs.release_commit }}
+          X_CLI_RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
+          X_CLI_SOURCE_COMMIT: ${{ needs.preflight.outputs.source_commit }}
+          X_CLI_REQUIRE_RELEASE: "true"
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: bun run packages/release/scripts/publish.ts release-candidate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MAGNITUDE_SOURCE_COMMIT: ${{ needs.preflight.outputs.source_commit }}
+          X_CLI_SOURCE_COMMIT: ${{ needs.preflight.outputs.source_commit }}
       - name: Verify public CLI acquisition
         run: bun run packages/release/scripts/accept-public-cli.ts "${{ steps.npm-candidate.outputs.tarball }}"
         env:
-          MAGNITUDE_RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
+          X_CLI_RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
       - name: Publish npm through Changesets
         shell: bash
         run: |
           bun run publish -- --no-git-tag || true
           bun run packages/release/scripts/verify-npm.ts
         env:
-          MAGNITUDE_RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
-          MAGNITUDE_EXPECTED_NPM_INTEGRITY: ${{ steps.npm-candidate.outputs.integrity }}
+          X_CLI_RELEASE_VERSION: ${{ needs.preflight.outputs.version }}
+          X_CLI_EXPECTED_NPM_INTEGRITY: ${{ steps.npm-candidate.outputs.integrity }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   public-smoke:

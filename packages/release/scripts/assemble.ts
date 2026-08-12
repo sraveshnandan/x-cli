@@ -255,13 +255,13 @@ for (const host of candidateHosts.filter((candidate) => candidate.id.startsWith(
 const packageJson = JSON.parse(
   await readFile(resolve(PROJECT_ROOT, "packages/cli/package.json"), "utf8"),
 ) as { readonly version?: string }
-const version = required("MAGNITUDE_RELEASE_VERSION", packageJson.version)
+const version = required("X_CLI_RELEASE_VERSION", packageJson.version)
 if (packageJson.version !== version) {
   throw new Error("package version differs from the release version")
 }
-const sourceCommit = required("MAGNITUDE_SOURCE_COMMIT")
+const sourceCommit = required("X_CLI_SOURCE_COMMIT")
 if (!/^[a-f0-9]{40}$/.test(sourceCommit)) {
-  throw new Error("MAGNITUDE_SOURCE_COMMIT must be a full lowercase commit SHA")
+  throw new Error("X_CLI_SOURCE_COMMIT must be a full lowercase commit SHA")
 }
 const manifest = Schema.decodeUnknownSync(ReleaseManifestSchema)({
   schemaVersion: 2,

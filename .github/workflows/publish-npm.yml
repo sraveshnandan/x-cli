@@ -58,20 +58,20 @@ jobs:
           echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
       - run: bun run packages/release/scripts/verify-public-release.ts
         env:
-          MAGNITUDE_RELEASE_VERSION: ${{ inputs.version }}
-          MAGNITUDE_SOURCE_COMMIT: ${{ steps.source.outputs.commit }}
+          X_CLI_RELEASE_VERSION: ${{ inputs.version }}
+          X_CLI_SOURCE_COMMIT: ${{ steps.source.outputs.commit }}
       - id: npm-candidate
         run: bun run packages/release/scripts/prepare-npm.ts release/npm-candidate
       - name: Verify public CLI acquisition
         run: bun run packages/release/scripts/accept-public-cli.ts "${{ steps.npm-candidate.outputs.tarball }}"
         env:
-          MAGNITUDE_RELEASE_VERSION: ${{ inputs.version }}
+          X_CLI_RELEASE_VERSION: ${{ inputs.version }}
       - name: Publish npm through Changesets
         shell: bash
         run: |
           bun run publish -- --no-git-tag || true
           bun run packages/release/scripts/verify-npm.ts
         env:
-          MAGNITUDE_RELEASE_VERSION: ${{ inputs.version }}
-          MAGNITUDE_EXPECTED_NPM_INTEGRITY: ${{ steps.npm-candidate.outputs.integrity }}
+          X_CLI_RELEASE_VERSION: ${{ inputs.version }}
+          X_CLI_EXPECTED_NPM_INTEGRITY: ${{ steps.npm-candidate.outputs.integrity }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

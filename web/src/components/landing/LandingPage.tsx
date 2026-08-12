@@ -33,7 +33,7 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDocs }) => {
   const [copiedCmd, setCopiedCmd] = useState<string | null>(null)
-  const [installMethod, setInstallMethod] = useState<"mac" | "linux" | "windows" | "npm" | "bun">("mac")
+  const [installMethod, setInstallMethod] = useState<"mac" | "linux" | "npm" | "bun">("mac")
 
   const copyCommand = (cmd: string) => {
     navigator.clipboard.writeText(cmd)
@@ -44,11 +44,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
   const getInstallCmd = () => {
     switch (installMethod) {
       case "mac":
-        return "curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install.sh | bash"
+        return "curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install/install.sh | bash"
       case "linux":
-        return "curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install.sh | bash"
-      case "windows":
-        return "powershell -c \"irm https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install.ps1 | iex\""
+        return "curl -fsSL https://raw.githubusercontent.com/sraveshnandan/x-cli/master/install/install.sh | bash"
       case "npm":
         return "npm install -g @x-cli/cli"
       case "bun":
@@ -139,12 +137,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
               🐧 Linux
             </button>
             <button
-              className={`landing-tab-btn ${installMethod === "windows" ? "active" : ""}`}
-              onClick={() => setInstallMethod("windows")}
-            >
-              🪟 Windows (.exe)
-            </button>
-            <button
               className={`landing-tab-btn ${installMethod === "npm" ? "active" : ""}`}
               onClick={() => setInstallMethod("npm")}
             >
@@ -175,7 +167,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
         </div>
 
         <p style={{ fontSize: "0.82rem", color: "#94a3b8", fontFamily: "var(--font-mono)", marginBottom: "2rem" }}>
-          Open source · Apache 2.0 · macOS / Linux / Windows
+          Open source · Apache 2.0 · macOS / Linux
         </p>
 
         {/* Binary Download Buttons */}
@@ -212,14 +204,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
               </a>
             </>
           )}
-          {installMethod === "windows" && (
-            <a
-              href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-windows-x64-msvc.exe"
-              className="landing-dl-btn"
-            >
-              <Download size={14} /> Windows Executable (.exe)
-            </a>
-          )}
           {onLaunchApp && (
             <button onClick={onLaunchApp} className="landing-dl-btn" style={{ borderColor: "#3b82f6", color: "#60a5fa" }}>
               <Play size={14} /> Open Web Studio
@@ -229,7 +213,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
 
         {/* Hero Visual Mockup */}
         <div style={{ borderRadius: "12px", border: "1px solid rgba(255, 255, 255, 0.1)", overflow: "hidden", boxShadow: "0 25px 60px rgba(0,0,0,0.6)" }}>
-          <img src="/hero.jpg" alt="x-cli agent demonstration dashboard" style={{ width: "100%", height: "auto", display: "block" }} />
+          <img src="./hero.jpg" alt="x-cli agent demonstration dashboard" style={{ width: "100%", height: "auto", display: "block" }} />
         </div>
       </section>
 

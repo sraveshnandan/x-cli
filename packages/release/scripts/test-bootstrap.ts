@@ -563,10 +563,10 @@ const launchCli = (
     const excluded = new Set([
       "HOME",
       "USERPROFILE",
-      "MAGNITUDE_ACN_VERSION",
-      "MAGNITUDE_ICN_PATH",
-      "MAGNITUDE_RELEASE_BASE_URL",
-      "MAGNITUDE_USE_LOCAL",
+      "X_CLI_ACN_VERSION",
+      "X_CLI_ICN_PATH",
+      "X_CLI_RELEASE_BASE_URL",
+      "X_CLI_USE_LOCAL",
     ])
     const inherited: Record<string, string> = {}
     for (const [name, value] of Object.entries(process.env)) {
@@ -587,7 +587,7 @@ const launchCli = (
           ...inherited,
           HOME: home,
           USERPROFILE: home,
-          MAGNITUDE_RELEASE_BASE_URL: baseUrl,
+          X_CLI_RELEASE_BASE_URL: baseUrl,
         },
         stdin: "inherit",
         stdout: "inherit",

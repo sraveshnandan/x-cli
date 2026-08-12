@@ -1,0 +1,81 @@
+---
+title: Architecture
+description: How x-cli is put together
+---
+
+x-cli is split into a layered package graph. Clients never reach across layers; cross-layer dependencies always go through the SDK and the ACN protocol.
+
+## Package layering
+
+```
+clients (cli / web / desktop)
+   ↓
+client-common        — shared reactive state, AtomRpc hooks
+   ↓
+sdk                  — typed RPC client, daemon lifecycle
+   ↓
+acn (daemon)         — agent runtime, sessions, file ops, display streams
+   ↓
+agent / event-core   — event-sourced projections, addressed workers
+   ↓
+providers / ai       — provider-agnostic contract + concrete registry
+   ↓
+inference (ICN)      — Rust + llama.cpp, local model execution
+```
+
+Import direction is strictly downward. `cli/` imports from `@x-cli/client-common` and `@x-cli/sdk`; it never imports `acn`, `agent`, `providers`, or `inference` directly. To add a new client-facing capability, wire an RPC through `acn-protocol` and expose it via the SDK; the daemon hosts the implementation.
+
+## The five workspaces
+
+| Package | Role |
+| --- | --- |
+| `cli/` | React + OpenTUI terminal client |
+| `web/` | Vite-built browser client |
+| `desktop/` | Electron desktop client |
+| `inference/` | Rust crate: ICN engine + llama.cpp bindings |
+| `packages/*` | Shared library code (sdk, acn, agent, providers, …) |
+
+## ACN — the daemon protocol
+
+ACN (Agent Communication Network) is the typed RPC protocol between clients and the agent runtime. Every cross-process interaction — sending a prompt, reading a file, subscribing to display events — is a typed RPC declared in `packages/acn-protocol/src/rpcs/` and wired into `x-cliRpcs` in `group.ts`.
+
+The SDK exposes those RPCs as `AtomRpc` queries and mutations so clients can subscribe to live updates. The ACN daemon implements the handlers.
+
+## AtomRpc — reactive client state
+
+x-cli uses Effect Atom's `AtomRpc` for client state. Server state (sessions, providers, model config, daemon status) lives in RPC query atoms. UI components read those atoms directly; mutations are dispatched from event handlers.
+
+This eliminates `useState` mirrors of server facts, hand-rolled `useEffect` ref-diff synchronization, and callback-ref dep arrays. See [`packages/client-common/AGENTS.md`](https://github.com/sraveshnandan/x-cli/blob/master/packages/client-common/AGENTS.md) for the full reactive state policy.
+
+## Event-sourced agent runtime
+
+The agent runtime is built on `event-core`. Every state change — user message, tool call, model response, projection update — is an event appended to a per-session log. Projections fold those events into queryable state (`Window`, `Fork`, `TaskGraph`, `Turn`, `Display`, `Compaction`, `WorkingState`, `SessionContext`, `Proposal`, `AgentRegistry`, `Artifact`, `ChatTitle`, `Replay`).
+
+This makes every session replayable: feed the JSONL log back through the projections and you get the exact state the user saw.
+
+Workers are addressed by role — `Leader`, `Architect`, `Engineer`, `Scout`, `Critic` — defined in `packages/roles/`. Each worker subscribes to the event stream and contributes to specific projections.
+
+## Provider abstraction
+
+`packages/ai/` defines a provider-agnostic contract: `Provider`, `ModelCatalog`, `BoundModel`, `BaseCallOptions`. Concrete providers — OpenAI, Anthropic, NVIDIA NIM, Ollama, custom OpenAI-compatible endpoints — live in `packages/providers/` and register through a central registry.
+
+## Local inference engine (ICN)
+
+`inference/` is a Rust crate that builds a platform-specific binary for each release host. It wraps `llama.cpp` (via custom `llama-cpp-rs` bindings) and exposes:
+
+- VRAM/RAM profiling and fit prediction before model load
+- KV-cache reuse across prompts
+- GPU layer offloading and Metal/Vulkan/CUDA backends
+- A native model catalog with deterministic downloads and SHA256 verification
+
+The CLI spawns the ICN binary as a child process. ICN speaks a local HTTP API; the SDK's `ProviderClient` wraps it as a regular provider so the rest of the runtime is unaware it's local.
+
+## Observability
+
+A bundled OpenTelemetry collector called **Motel** runs at `127.0.0.1:27686` while a session is active. Every AI call, tool invocation, and projection fold emits a span. The dashboard is plain HTTP — no external service, no cloud roundtrip.
+
+Launch it with:
+
+```sh
+bun run dash
+```

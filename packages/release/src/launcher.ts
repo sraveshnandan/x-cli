@@ -20,8 +20,8 @@ import { makeLauncherInstallationProgress } from "./launcher-progress"
 import { currentHost } from "./targets"
 
 const releaseBaseUrl = () => (
-  process.env.MAGNITUDE_RELEASE_BASE_URL ??
-  "https://github.com/x-cli-dev/x-cli/releases/download"
+  process.env.X_CLI_RELEASE_BASE_URL ??
+  "https://github.com/sraveshnandan/x-cli/releases/download"
 ).replace(/\/+$/, "")
 
 const releaseRoot = () => `${homedir()}/.x-cli/releases`

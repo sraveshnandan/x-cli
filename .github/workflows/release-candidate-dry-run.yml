@@ -60,8 +60,8 @@ jobs:
           release-candidate
           --host linux-x64-gnu
         env:
-          MAGNITUDE_RELEASE_VERSION: ${{ steps.version.outputs.version }}
-          MAGNITUDE_SOURCE_COMMIT: ${{ github.sha }}
+          X_CLI_RELEASE_VERSION: ${{ steps.version.outputs.version }}
+          X_CLI_SOURCE_COMMIT: ${{ github.sha }}
       - name: Accept the production candidate path
         run: >-
           bun run scripts/accept-release-candidate.ts

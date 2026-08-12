@@ -1,0 +1,79 @@
+---
+title: Local inference
+description: How x-cli's local model engine works
+---
+
+x-cli ships its own Rust inference engine, **ICN** (the in-tree name), built on `llama.cpp`. It runs entirely on your machine, profiles your hardware before model load, and exposes itself to the rest of the runtime as a regular provider.
+
+## Hardware profiling
+
+On first launch in a project, ICN inspects:
+
+- CPU cores, AVX2 availability (falls back to a `-baseline` build when missing)
+- Total RAM and free RAM
+- GPU vendor and VRAM (Metal on macOS, CUDA on NVIDIA, Vulkan as a fallback)
+- The current OS and libc flavor (glibc vs musl)
+
+It then queries the catalog for every model whose memory footprint fits your machine. The result is a sorted recommendation list — Best Quality (largest model that fits), Balanced, Fastest, Lightweight — that the model picker surfaces.
+
+## Models and quantization
+
+x-cli ships a curated catalog of GGUF-format models. Each catalog entry declares:
+
+- A model family and parameter size (e.g. `qwen2.5-coder-14b-instruct`)
+- A quantization level (`Q4_K_M`, `Q5_K_M`, `Q8_0`, `F16`, …)
+- A SHA256 of the model blob for deterministic download
+- A recommended memory budget per backend
+
+Quantization controls the memory/quality tradeoff: smaller quantization = less RAM = faster inference, at a quality cost. ICN picks the highest-quality quant that fits your hardware by default.
+
+## KV cache and GPU offloading
+
+ICN pre-computes the KV-cache memory cost for a target context length before loading the model. It then partitions model layers between GPU and CPU so that the largest possible prefix of the model runs on GPU, falling back to CPU offload only when VRAM is exhausted.
+
+This avoids the common failure mode where a model "fits" on paper but runs out of VRAM mid-load and silently falls back to slow CPU inference.
+
+## Backends
+
+ICN builds per-host with one of three GPU backends:
+
+| Backend | Platforms |
+| --- | --- |
+| Metal | macOS (Apple Silicon and Intel) |
+| CUDA | Linux and Windows with NVIDIA GPUs |
+| Vulkan | Linux and Windows, AMD/Intel/NVIDIA |
+
+CPU-only inference is the default fallback when no compatible GPU is detected.
+
+## Releases and verification
+
+ICN is shipped as a platform-specific binary per release, downloaded by the launcher script and verified by SHA256. The release artifact is a tarball containing the `x-cli-cli` binary plus the catalog. The launcher:
+
+1. Resolves the latest version from the GitHub API.
+2. Downloads the matching host tarball.
+3. Verifies the SHA256 against the manifest.
+4. Extracts the binary into `~/.x-cli/releases/cli/<version>/<host>/<sha256>/bin/`.
+5. Writes a `current.txt` pointer so subsequent runs skip the download.
+
+To force a fresh download, delete `~/.x-cli/releases/cli/<version>/<host>/current.txt` (or the whole release directory).
+
+## Custom models
+
+You can register models outside the bundled catalog by pointing ICN at a local GGUF file:
+
+```json
+{
+  "models": {
+    "providers": {
+      "local": {
+        "baseUrl": "http://localhost:11434/v1"
+      }
+    },
+    "slots": {
+      "primary": { "providerId": "local", "modelId": "my-custom-model" }
+    }
+  }
+}
+```
+
+For Ollama-served models, use the `ollama` provider entry. For raw GGUF files, ICN accepts a path argument in its catalog extension format — see `inference/catalog/` for the schema.

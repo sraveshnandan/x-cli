@@ -36,6 +36,8 @@ jobs:
       - name: Build docs site
         run: bun run build
         working-directory: ./docs-site
+        env:
+          NEXT_PUBLIC_BASE_PATH: /x-cli
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

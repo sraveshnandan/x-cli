@@ -48,7 +48,7 @@ export default function HomePage() {
               </span>
             </div>
             <img
-              src="/x-cli/xcli-demo.gif"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/xcli-demo.gif`}
               alt="x-cli running in a terminal, picking a model, then editing code"
               className="block w-full"
             />

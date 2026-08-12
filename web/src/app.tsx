@@ -841,7 +841,12 @@ export function App(): ReactNode {
           }
         }}
         onOpenDocs={() => {
-          window.open("http://localhost:3000", "_blank")
+          if (typeof window !== "undefined") {
+            const docsUrl = window.location.pathname.startsWith("/x-cli")
+              ? "https://sraveshnandan.github.io/x-cli/docs"
+              : "/docs"
+            window.open(docsUrl, "_blank")
+          }
         }}
       />
     )

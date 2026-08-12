@@ -15,9 +15,14 @@ import {
   Play,
   Sparkles,
   Command,
-  CheckCircle2,
-  Box,
-  GitBranch,
+  ChevronDown,
+  Lock,
+  HardDrive,
+  FileText,
+  Search,
+  Sliders,
+  Share2,
+  Download,
 } from "lucide-react"
 import "./landing.css"
 
@@ -51,299 +56,112 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
     }
   }
 
+  const handleDocsClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    if (onOpenDocs) {
+      onOpenDocs()
+    } else {
+      window.location.href = "/docs"
+    }
+  }
+
   return (
     <div className="landing-container">
-      {/* Floating Header */}
-      <div className="landing-header-wrap">
-        <header className="landing-header">
-          <a href="#" className="landing-brand">
-            <div className="landing-brand-logo">
-              <Terminal size={18} />
-            </div>
-            <span className="landing-brand-title">x-cli</span>
+      {/* Navigation Header */}
+      <header className="landing-header">
+        <a href="#" className="landing-brand">
+          <Terminal size={22} color="#60a5fa" />
+          <span>x-cli</span>
+          <span className="landing-brand-badge">v1.0</span>
+        </a>
+
+        <nav className="landing-nav">
+          <button onClick={handleDocsClick} className="landing-nav-link">
+            Docs
+          </button>
+          <a href="#integrated-system" className="landing-nav-link">
+            Architecture
           </a>
+          <a href="#usecases" className="landing-nav-link">
+            Use Cases
+          </a>
+          <a href="#faq" className="landing-nav-link">
+            FAQ
+          </a>
+          {onLaunchApp && (
+            <button onClick={onLaunchApp} className="landing-nav-link" style={{ color: "#60a5fa", fontWeight: 600 }}>
+              Launch Studio
+            </button>
+          )}
+        </nav>
 
-          <nav className="landing-nav">
-            {onOpenDocs ? (
-              <button onClick={onOpenDocs} className="landing-nav-link">
-                Docs
-              </button>
-            ) : (
-              <a href="/docs" className="landing-nav-link">
-                Docs
-              </a>
-            )}
-            <a href="#features" className="landing-nav-link">
-              Features
-            </a>
-            <a href="#quickstart" className="landing-nav-link">
-              CLI
-            </a>
-            <a href="#architecture" className="landing-nav-link">
-              Architecture
-            </a>
-          </nav>
-
-          <div className="landing-nav-actions">
-            {onLaunchApp && (
-              <button onClick={onLaunchApp} className="landing-btn-install">
-                Launch App
-              </button>
-            )}
-            <a
-              href="https://github.com/sraveshnandan/x-cli"
-              target="_blank"
-              rel="noreferrer"
-              className="landing-nav-link"
-              title="GitHub Repository"
-              style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "36px", height: "36px", padding: 0 }}
-            >
-              <GitBranch size={16} />
-            </a>
-          </div>
-        </header>
-      </div>
-
-      {/* Hero Section */}
-      <section className="landing-hero">
-        <div className="landing-hero-card">
-          <div className="landing-pill-badge">
-            <Terminal size={13} />
-            AI Coding Agent Platform
-          </div>
-
-          <h1 className="landing-hero-title">
-            Build with local model intelligence and{" "}
-            <span className="landing-gradient-text">multi-agent autonomy</span>.
-          </h1>
-
-          <p className="landing-hero-subtitle">
-            The high-performance AI coding agent.{" "}
-            <span style={{ color: "#f1f5f9", fontWeight: 500 }}>
-              Profile hardware, run 100% private local Rust llama.cpp models, and switch to multi-provider cloud fallback
-            </span>{" "}
-            from one unified toolkit.
-          </p>
-
-          <div className="landing-hero-ctas">
-            {onOpenDocs ? (
-              <button onClick={onOpenDocs} className="landing-btn-primary-mcp">
-                Get started <ArrowRight size={15} />
-              </button>
-            ) : (
-              <a href="/docs" className="landing-btn-primary-mcp">
-                Get started <ArrowRight size={15} />
-              </a>
-            )}
-
-            {onLaunchApp && (
-              <button onClick={onLaunchApp} className="landing-btn-secondary-mcp">
-                <Play size={15} /> Launch Web Studio
-              </button>
-            )}
-          </div>
-
-          {/* Feature Pills */}
-          <div className="landing-feature-pills">
-            <span className="landing-feature-pill">
-              <Check size={13} color="#34d399" /> Native Rust Inference
-            </span>
-            <span className="landing-feature-pill">
-              <Check size={13} color="#34d399" /> Multi-Agent Worker Roles
-            </span>
-            <span className="landing-feature-pill">
-              <Check size={13} color="#34d399" /> MCP & Skills Support
-            </span>
-            <span className="landing-feature-pill">
-              <Check size={13} color="#34d399" /> bun · npm · standalone binary
-            </span>
-          </div>
-
-          {/* Terminal Showcase Card */}
-          <div className="landing-terminal-card">
-            <div className="landing-terminal-bar">
-              <span className="landing-dot dot-red"></span>
-              <span className="landing-dot dot-yellow"></span>
-              <span className="landing-dot dot-green"></span>
-              <span className="landing-terminal-tab">
-                <Sparkles size={13} /> x-cli terminal
-              </span>
-            </div>
-
-            <div className="landing-terminal-body">
-              <div style={{ color: "#34d399" }}>$ npm install -g @x-cli/cli</div>
-              <div style={{ color: "#e2e8f0" }}>$ x-cli --workspace ./my-project</div>
-              <div style={{ color: "#64748b", marginTop: "0.5rem" }}>
-                [Hardware Engine] Profiling GPU & Memory headroom...
-              </div>
-
-              <div className="landing-status-cards">
-                <div className="landing-status-item">
-                  <CheckCircle2 size={16} color="#34d399" style={{ marginTop: "2px" }} />
-                  <div>
-                    <div className="landing-status-title">Hardware Profiling</div>
-                    <div className="landing-status-desc">Detected NVIDIA GPU (24GB VRAM) — Loaded GGUF Q4_K_M</div>
-                  </div>
-                </div>
-
-                <div className="landing-status-item">
-                  <CheckCircle2 size={16} color="#34d399" style={{ marginTop: "2px" }} />
-                  <div>
-                    <div className="landing-status-title">Multi-Agent Autonomy</div>
-                    <div className="landing-status-desc">Leader, Architect, Engineer, Scout & Critic online</div>
-                  </div>
-                </div>
-
-                <div className="landing-status-item">
-                  <CheckCircle2 size={16} color="#34d399" style={{ marginTop: "2px" }} />
-                  <div>
-                    <div className="landing-status-title">MCP & Skills Ecosystem</div>
-                    <div className="landing-status-desc">Loaded skills from .agents/skills & skills.sh</div>
-                  </div>
-                </div>
-
-                <div className="landing-status-item">
-                  <CheckCircle2 size={16} color="#34d399" style={{ marginTop: "2px" }} />
-                  <div>
-                    <div className="landing-status-title">Motel Telemetry Active</div>
-                    <div className="landing-status-desc">Tracing live at http://127.0.0.1:27686</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div style={{ display: "flex", gap: "0.75rem" }}>
+          <a
+            href="https://discord.gg/EHt48pPWdC"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="landing-btn-discord"
+          >
+            Discord
+          </a>
+          <a
+            href="https://github.com/sraveshnandan/x-cli"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="landing-btn-github"
+          >
+            <Github size={16} />
+            GitHub
+          </a>
         </div>
-      </section>
+      </header>
 
-      {/* Features Grid */}
-      <section id="features" className="landing-section">
-        <div className="landing-section-header">
-          <h2 className="landing-section-title">Built for Performance & Privacy</h2>
-          <p className="landing-section-subtitle">
-            Zero token costs, native offline model loading, and multi-provider fallback.
-          </p>
-        </div>
+      {/* SECTION 1: HERO */}
+      <section className="landing-section" style={{ paddingTop: "6rem", textAlign: "center" }}>
+        <h1 className="landing-hero-title">Your actually local agent</h1>
+        <p className="landing-hero-subtitle">
+          Built on local models, 100% private and offline. Analyze sensitive data, manage private notes, review code and logs.
+        </p>
 
-        <div className="landing-cards-grid">
-          <div className="landing-feature-card">
-            <div className="landing-card-icon-wrap">
-              <Cpu size={20} />
-            </div>
-            <h3 style={{ fontSize: "1.15rem", color: "#ffffff", fontWeight: 600 }}>
-              Native Rust Inference Engine
-            </h3>
-            <p style={{ color: "#94a3b8", fontSize: "0.92rem", lineHeight: 1.6 }}>
-              Powered by native Rust bindings to <code style={{ color: "#34d399" }}>llama.cpp</code>. Automatically profiles VRAM & RAM to load optimal local models.
-            </p>
-          </div>
-
-          <div className="landing-feature-card">
-            <div className="landing-card-icon-wrap">
-              <Shield size={20} />
-            </div>
-            <h3 style={{ fontSize: "1.15rem", color: "#ffffff", fontWeight: 600 }}>
-              100% Air-Gapped Privacy
-            </h3>
-            <p style={{ color: "#94a3b8", fontSize: "0.92rem", lineHeight: 1.6 }}>
-              No prompts or source code leave your machine when executing locally. Structured JSONL logs persist turns safely.
-            </p>
-          </div>
-
-          <div className="landing-feature-card">
-            <div className="landing-card-icon-wrap">
-              <Zap size={20} />
-            </div>
-            <h3 style={{ fontSize: "1.15rem", color: "#ffffff", fontWeight: 600 }}>
-              Multi-Provider Cloud Fallback
-            </h3>
-            <p style={{ color: "#94a3b8", fontSize: "0.92rem", lineHeight: 1.6 }}>
-              Switch seamlessly between local GGUF models and cloud providers (OpenAI, Anthropic, NVIDIA, Ollama, custom endpoints).
-            </p>
-          </div>
-
-          <div className="landing-feature-card">
-            <div className="landing-card-icon-wrap">
-              <Layers size={20} />
-            </div>
-            <h3 style={{ fontSize: "1.15rem", color: "#ffffff", fontWeight: 600 }}>
-              MCP & Skills System
-            </h3>
-            <p style={{ color: "#94a3b8", fontSize: "0.92rem", lineHeight: 1.6 }}>
-              Supports Model Context Protocol (MCP) tool extensions, <code style={{ color: "#34d399" }}>skills.sh</code>, and custom workspace skills.
-            </p>
-          </div>
-
-          <div className="landing-feature-card">
-            <div className="landing-card-icon-wrap">
-              <Command size={20} />
-            </div>
-            <h3 style={{ fontSize: "1.15rem", color: "#ffffff", fontWeight: 600 }}>
-              Slash Commands
-            </h3>
-            <p style={{ color: "#94a3b8", fontSize: "0.92rem", lineHeight: 1.6 }}>
-              Drive workflow automation with <code style={{ color: "#34d399" }}>/plan</code>, <code style={{ color: "#34d399" }}>/goal</code>, <code style={{ color: "#34d399" }}>/schedule</code>, and <code style={{ color: "#34d399" }}>/learn</code>.
-            </p>
-          </div>
-
-          <div className="landing-feature-card">
-            <div className="landing-card-icon-wrap">
-              <Activity size={20} />
-            </div>
-            <h3 style={{ fontSize: "1.15rem", color: "#ffffff", fontWeight: 600 }}>
-              Motel OpenTelemetry Tracing
-            </h3>
-            <p style={{ color: "#94a3b8", fontSize: "0.92rem", lineHeight: 1.6 }}>
-              Integrated local OpenTelemetry collector at <code style={{ color: "#34d399" }}>http://127.0.0.1:27686</code> for live token & subagent span inspection.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Quickstart / Install Selector */}
-      <section id="quickstart" className="landing-section">
-        <div className="landing-install-card">
-          <h2 className="landing-section-title">Install & Get Started</h2>
-          <p className="landing-section-subtitle" style={{ marginBottom: "1.5rem" }}>
-            Choose your platform or package manager:
-          </p>
-
-          <div className="landing-platform-selector">
+        {/* Platform Tabs & Install Box — Redesigned to fix user screenshot */}
+        <div style={{ maxWidth: "36rem", margin: "0 auto 1.5rem" }}>
+          <div className="landing-tabs-wrap">
             <button
-              className={`landing-platform-tab ${installMethod === "mac" ? "active" : ""}`}
+              className={`landing-tab-btn ${installMethod === "mac" ? "active" : ""}`}
               onClick={() => setInstallMethod("mac")}
             >
               🍏 macOS
             </button>
             <button
-              className={`landing-platform-tab ${installMethod === "linux" ? "active" : ""}`}
+              className={`landing-tab-btn ${installMethod === "linux" ? "active" : ""}`}
               onClick={() => setInstallMethod("linux")}
             >
               🐧 Linux
             </button>
             <button
-              className={`landing-platform-tab ${installMethod === "windows" ? "active" : ""}`}
+              className={`landing-tab-btn ${installMethod === "windows" ? "active" : ""}`}
               onClick={() => setInstallMethod("windows")}
             >
               🪟 Windows (.exe)
             </button>
             <button
-              className={`landing-platform-tab ${installMethod === "npm" ? "active" : ""}`}
+              className={`landing-tab-btn ${installMethod === "npm" ? "active" : ""}`}
               onClick={() => setInstallMethod("npm")}
             >
               📦 npm
             </button>
             <button
-              className={`landing-platform-tab ${installMethod === "bun" ? "active" : ""}`}
+              className={`landing-tab-btn ${installMethod === "bun" ? "active" : ""}`}
               onClick={() => setInstallMethod("bun")}
             >
               🥟 bun
             </button>
           </div>
 
-          <div className="landing-install-bar-mcp">
-            <span>$ {getInstallCmd()}</span>
+          <div className="landing-install-box">
+            <code className="landing-install-code">$ {getInstallCmd()}</code>
             <button
-              className="landing-copy-btn"
+              className="landing-copy-icon-btn"
               onClick={() => copyCommand(getInstallCmd())}
               title="Copy command"
             >
@@ -354,54 +172,219 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
               )}
             </button>
           </div>
+        </div>
 
-          <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
-            {installMethod === "mac" && (
-              <>
-                <a
-                  href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-darwin-arm64.tar.gz"
-                  className="landing-btn-secondary-mcp"
-                  style={{ fontSize: "0.82rem", padding: "0.45rem 1rem" }}
-                >
-                  Download macOS (Apple Silicon .tar.gz)
-                </a>
-                <a
-                  href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-darwin-x64.tar.gz"
-                  className="landing-btn-secondary-mcp"
-                  style={{ fontSize: "0.82rem", padding: "0.45rem 1rem" }}
-                >
-                  Download macOS (Intel .tar.gz)
-                </a>
-              </>
-            )}
-            {installMethod === "linux" && (
-              <>
-                <a
-                  href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-linux-x64-gnu.tar.gz"
-                  className="landing-btn-secondary-mcp"
-                  style={{ fontSize: "0.82rem", padding: "0.45rem 1rem" }}
-                >
-                  Download Linux (x86_64 .tar.gz)
-                </a>
-                <a
-                  href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-linux-arm64-gnu.tar.gz"
-                  className="landing-btn-secondary-mcp"
-                  style={{ fontSize: "0.82rem", padding: "0.45rem 1rem" }}
-                >
-                  Download Linux (ARM64 .tar.gz)
-                </a>
-              </>
-            )}
-            {installMethod === "windows" && (
+        <p style={{ fontSize: "0.82rem", color: "#94a3b8", fontFamily: "var(--font-mono)", marginBottom: "2rem" }}>
+          Open source · Apache 2.0 · macOS / Linux / Windows
+        </p>
+
+        {/* Binary Download Buttons */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "0.75rem", flexWrap: "wrap", marginBottom: "3.5rem" }}>
+          {installMethod === "mac" && (
+            <>
               <a
-                href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-windows-x64-msvc.exe"
-                className="landing-btn-secondary-mcp"
-                style={{ fontSize: "0.82rem", padding: "0.45rem 1rem" }}
+                href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-darwin-arm64.tar.gz"
+                className="landing-dl-btn"
               >
-                Download Windows Executable (x64 .exe)
+                <Download size={14} /> macOS Apple Silicon (.tar.gz)
               </a>
-            )}
+              <a
+                href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-darwin-x64.tar.gz"
+                className="landing-dl-btn"
+              >
+                <Download size={14} /> macOS Intel (.tar.gz)
+              </a>
+            </>
+          )}
+          {installMethod === "linux" && (
+            <>
+              <a
+                href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-linux-x64-gnu.tar.gz"
+                className="landing-dl-btn"
+              >
+                <Download size={14} /> Linux x86_64 (.tar.gz)
+              </a>
+              <a
+                href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-linux-arm64-gnu.tar.gz"
+                className="landing-dl-btn"
+              >
+                <Download size={14} /> Linux ARM64 (.tar.gz)
+              </a>
+            </>
+          )}
+          {installMethod === "windows" && (
+            <a
+              href="https://github.com/sraveshnandan/x-cli/releases/latest/download/x-cli-cli-windows-x64-msvc.exe"
+              className="landing-dl-btn"
+            >
+              <Download size={14} /> Windows Executable (.exe)
+            </a>
+          )}
+          {onLaunchApp && (
+            <button onClick={onLaunchApp} className="landing-dl-btn" style={{ borderColor: "#3b82f6", color: "#60a5fa" }}>
+              <Play size={14} /> Open Web Studio
+            </button>
+          )}
+        </div>
+
+        {/* Hero Visual Mockup */}
+        <div style={{ borderRadius: "12px", border: "1px solid rgba(255, 255, 255, 0.1)", overflow: "hidden", boxShadow: "0 25px 60px rgba(0,0,0,0.6)" }}>
+          <img src="/hero.jpg" alt="x-cli agent demonstration dashboard" style={{ width: "100%", height: "auto", display: "block" }} />
+        </div>
+      </section>
+
+      {/* SECTION 2: INTEGRATED ARCHITECTURE SYSTEM */}
+      <section id="integrated-system" className="landing-section landing-section-border">
+        <div style={{ maxWidth: "54rem", margin: "0 auto", textAlign: "left" }}>
+          <h2 style={{ fontSize: "2.5rem", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.035em", marginBottom: "1rem" }}>
+            Today's agents are local. The model isn't.
+          </h2>
+          <p style={{ fontSize: "1.15rem", color: "#cbd5e1", lineHeight: 1.7, marginBottom: "2.5rem" }}>
+            Every prompt, every file, every secret gets sent to a datacenter. x-cli runs the whole stack itself. The inference engine is part of the agent, so the models run inside it, right on your machine.
+          </p>
+
+          {/* Comparison Figure */}
+          <div className="landing-comparison-grid">
+            <div className="landing-comp-box-left">
+              <span style={{ fontSize: "0.72rem", fontFamily: "var(--font-mono)", color: "#64748b", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                TODAY'S AGENTS
+              </span>
+              <div style={{ marginTop: "2rem", display: "flex", alignItems: "center", gap: "1rem", minHeight: "120px" }}>
+                <div style={{ padding: "1rem", borderRadius: "12px", border: "1px solid rgba(255, 255, 255, 0.1)", background: "rgba(0,0,0,0.2)", color: "#64748b" }}>
+                  <HardDrive size={32} />
+                </div>
+                <div style={{ flex: 1, textAlign: "center", color: "#64748b", fontSize: "0.75rem", fontFamily: "var(--font-mono)" }}>
+                  <div>─────────►</div>
+                  <div style={{ marginTop: "0.25rem" }}>prompts, files, secrets</div>
+                </div>
+                <div style={{ padding: "1rem", borderRadius: "12px", border: "1px solid rgba(255, 255, 255, 0.1)", background: "rgba(0,0,0,0.2)", color: "#64748b", textAlign: "center" }}>
+                  <Share2 size={32} />
+                  <div style={{ fontSize: "0.65rem", marginTop: "0.25rem" }}>Datacenter</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="landing-comp-box-right">
+              <span style={{ fontSize: "0.72rem", fontFamily: "var(--font-mono)", color: "#60a5fa", letterSpacing: "0.08em" }}>
+                X-CLI PLATFORM
+              </span>
+              <div style={{ marginTop: "2rem", minHeight: "120px", display: "flex", alignItems: "center" }}>
+                <div style={{ width: "100%", borderRadius: "12px", border: "1px solid rgba(96, 165, 250, 0.35)", background: "rgba(30, 58, 138, 0.2)", padding: "1.25rem" }}>
+                  <div style={{ fontSize: "0.75rem", fontFamily: "var(--font-mono)", color: "#60a5fa", marginBottom: "0.75rem" }}>
+                    🔒 YOUR WORKSTATION (AIR-GAPPED)
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
+                    <div style={{ padding: "0.75rem", borderRadius: "6px", border: "1px solid rgba(96, 165, 250, 0.3)", background: "rgba(59, 130, 246, 0.15)", color: "#ffffff", fontWeight: 600, textAlign: "center", fontSize: "0.9rem" }}>
+                      Agent Runtime
+                    </div>
+                    <div style={{ padding: "0.75rem", borderRadius: "6px", border: "1px solid rgba(96, 165, 250, 0.3)", background: "rgba(59, 130, 246, 0.15)", color: "#ffffff", fontWeight: 600, textAlign: "center", fontSize: "0.9rem" }}>
+                      Local Llama Model
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* SECTION 3: USE CASES GRID */}
+      <section id="usecases" className="landing-section landing-section-border">
+        <div style={{ maxWidth: "54rem", margin: "0 auto" }}>
+          <h2 style={{ fontSize: "2.5rem", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.035em", marginBottom: "0.75rem" }}>
+            Use it for everyday work.
+          </h2>
+          <p style={{ fontSize: "1.15rem", color: "#cbd5e1", lineHeight: 1.7, marginBottom: "2.5rem" }}>
+            Out of the box, x-cli can use your shell, edit files, and run scripts. Add skills and it can work with Excel, PowerPoint, PDFs, or Chrome.
+          </p>
+
+          <div className="landing-usecases-grid">
+            <div className="landing-usecase-item">
+              <Shield size={26} color="#60a5fa" />
+              <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "#ffffff", marginTop: "1rem" }}>
+                Analyze sensitive data
+              </h3>
+            </div>
+            <div className="landing-usecase-item">
+              <FileText size={26} color="#60a5fa" />
+              <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "#ffffff", marginTop: "1rem" }}>
+                Manage private notes
+              </h3>
+            </div>
+            <div className="landing-usecase-item">
+              <Code2 size={26} color="#60a5fa" />
+              <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "#ffffff", marginTop: "1rem" }}>
+                Review code and logs
+              </h3>
+            </div>
+            <div className="landing-usecase-item">
+              <Search size={26} color="#60a5fa" />
+              <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "#ffffff", marginTop: "1rem" }}>
+                Search and organize files
+              </h3>
+            </div>
+            <div className="landing-usecase-item">
+              <Sliders size={26} color="#60a5fa" />
+              <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "#ffffff", marginTop: "1rem" }}>
+                Build docs or slides
+              </h3>
+            </div>
+            <div className="landing-usecase-item">
+              <Terminal size={26} color="#60a5fa" />
+              <h3 style={{ fontSize: "1.1rem", fontWeight: 600, color: "#ffffff", marginTop: "1rem" }}>
+                Create automation scripts
+              </h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: FAQ */}
+      <section id="faq" className="landing-section">
+        <div style={{ maxWidth: "42rem", margin: "0 auto", textAlign: "left" }}>
+          <h2 style={{ fontSize: "2rem", fontWeight: 700, color: "#ffffff", letterSpacing: "-0.03em", marginBottom: "2rem" }}>
+            Frequently Asked Questions
+          </h2>
+
+          <details className="landing-faq-item">
+            <summary className="landing-faq-summary">
+              <span>What is x-cli?</span>
+              <ChevronDown size={18} />
+            </summary>
+            <div className="landing-faq-answer">
+              x-cli is a high-performance open-source AI coding agent built with native local model support (`llama.cpp`) and multi-provider cloud connectivity. It runs 100% private and offline on your machine.
+            </div>
+          </details>
+
+          <details className="landing-faq-item">
+            <summary className="landing-faq-summary">
+              <span>What hardware do I need?</span>
+              <ChevronDown size={18} />
+            </summary>
+            <div className="landing-faq-answer">
+              There is no strict minimum. x-cli profiles your workstation GPU VRAM and System RAM to automatically recommend and load optimal GGUF models.
+            </div>
+          </details>
+
+          <details className="landing-faq-item">
+            <summary className="landing-faq-summary">
+              <span>Does my data ever go to the cloud?</span>
+              <ChevronDown size={18} />
+            </summary>
+            <div className="landing-faq-answer">
+              No. When executing local hardware models, every prompt, source file, and secret stays strictly on your machine.
+            </div>
+          </details>
+
+          <details className="landing-faq-item">
+            <summary className="landing-faq-summary">
+              <span>Do I need Ollama or another external server?</span>
+              <ChevronDown size={18} />
+            </summary>
+            <div className="landing-faq-answer">
+              No. x-cli embeds its own native Rust inference engine to manage GGUF model downloads, GPU memory offload, and hardware acceleration automatically.
+            </div>
+          </details>
         </div>
       </section>
 
@@ -409,29 +392,24 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunchApp, onOpenDoc
       <footer className="landing-footer">
         <div className="landing-footer-inner">
           <div className="landing-brand">
-            <div className="landing-brand-logo">
-              <Terminal size={18} />
-            </div>
-            <span className="landing-brand-title">x-cli</span>
+            <Terminal size={20} color="#60a5fa" />
+            <span>x-cli</span>
           </div>
 
           <div style={{ color: "#64748b", fontSize: "0.88rem" }}>
-            Licensed under Apache 2.0. Built with Effect-TS & llama.cpp.
+            Apache 2.0 Licensed · Built with Effect-TS & llama.cpp
           </div>
 
           <div style={{ display: "flex", gap: "1.25rem" }}>
-            <a href="https://github.com/sraveshnandan/x-cli" target="_blank" rel="noreferrer" className="landing-nav-link">
+            <button onClick={handleDocsClick} className="landing-nav-link">
+              Docs
+            </button>
+            <a href="https://github.com/sraveshnandan/x-cli" target="_blank" rel="noopener noreferrer" className="landing-nav-link">
               GitHub
             </a>
-            {onOpenDocs ? (
-              <button onClick={onOpenDocs} className="landing-nav-link">
-                Docs
-              </button>
-            ) : (
-              <a href="/docs" className="landing-nav-link">
-                Docs
-              </a>
-            )}
+            <a href="https://discord.gg/EHt48pPWdC" target="_blank" rel="noopener noreferrer" className="landing-nav-link">
+              Discord
+            </a>
           </div>
         </div>
       </footer>

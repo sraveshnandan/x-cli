@@ -7,9 +7,10 @@ const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..")
 const run = async (
   command: string[],
   env: Record<string, string | undefined> = process.env,
+  cwd: string = PROJECT_ROOT,
 ): Promise<number> => {
   const child = Bun.spawn(command, {
-    cwd: PROJECT_ROOT,
+    cwd,
     env,
     stdin: "inherit",
     stdout: "inherit",
@@ -46,10 +47,11 @@ if (explicit) {
 }
 
 const clientExit = await run(
-  ["bun", "run", "cli/src/index.tsx", "--debug", ...process.argv.slice(2)],
+  ["bun", "run", resolve(PROJECT_ROOT, "cli/src/index.tsx"), "--debug", ...process.argv.slice(2)],
   {
     ...process.env,
     MAGNITUDE_ICN_PATH: icnPath,
   },
+  process.cwd(),
 )
 process.exit(clientExit)

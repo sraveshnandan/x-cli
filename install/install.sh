@@ -27,6 +27,7 @@ Options:
 Environment:
     X_CLI_REPO              GitHub repo to fetch releases from (default: sraveshnandan/x-cli)
     X_CLI_SOURCE_REF        Git ref to build when --from-source is used (default: master)
+    X_CLI_SOURCE_DIR        Persistent source checkout (default: ~/.x-cli/source)
     X_CLI_INSTALL_DIR       Override install directory (highest priority)
     XDG_BIN_DIR             XDG Base Directory Specification compliant path
 
@@ -214,43 +215,47 @@ install_dependencies_for_source() {
 }
 
 build_from_source() {
-    print_message info "${MUTED}Building ${NC}x-cli ${MUTED}from source (${SOURCE_REF})...${NC}"
+    print_message info "${MUTED}Installing ${NC}x-cli ${MUTED}from source (${SOURCE_REF})...${NC}"
     install_dependencies_for_source
 
     local build_dir
+    local source_dir="${X_CLI_SOURCE_DIR:-$HOME/.x-cli/source}"
+    local source_parent
     build_dir=$(mktemp -d -t x-cli-build-XXXXXX)
+    source_parent=$(dirname "$source_dir")
     trap "rm -rf '$build_dir'" RETURN
 
     print_message info "${MUTED}Cloning ${NC}https://github.com/${REPO}.git${MUTED} @ ${NC}${SOURCE_REF}"
     if ! git clone --depth 1 --branch "${SOURCE_REF}" "https://github.com/${REPO}.git" "$build_dir/repo" 2>/dev/null; then
-        # Fallback if branch doesn't exist as a branch ref
         git clone --depth 1 "https://github.com/${REPO}.git" "$build_dir/repo"
         (cd "$build_dir/repo" && git checkout "${SOURCE_REF}")
     fi
 
-    # Initialize submodules (inference/native/llama-cpp-rs)
     if [ -f "$build_dir/repo/.gitmodules" ]; then
         print_message info "${MUTED}Initializing submodules...${NC}"
-        (cd "$build_dir/repo" && git submodule update --init --depth 1) || true
+        (cd "$build_dir/repo" && git submodule update --init --depth 1)
     fi
 
     print_message info "${MUTED}Installing dependencies (bun install)...${NC}"
     (cd "$build_dir/repo" && bun install)
+    (cd "$build_dir/repo" && bun run packages/version/scripts/generate-version.ts --dev)
 
-    print_message info "${MUTED}Building the CLI launcher (this is the small JS shim, not the ICN binary)...${NC}"
-    (cd "$build_dir/repo" && bun run packages/version/scripts/generate-version.ts)
+    print_message info "${MUTED}Saving source runtime to ${NC}${source_dir}"
+    mkdir -p "$source_parent"
+    rm -rf "$source_dir"
+    mv "$build_dir/repo" "$source_dir"
 
-    print_message info "${MUTED}Building x-cli CLI launcher bundle...${NC}"
-    (cd "$build_dir/repo" && bun run packages/cli/scripts/prepare-release-runtime.ts)
-
-    # Copy the launcher (x-cli-cli.js — a small Node/Bun-compatible shim) into the install dir.
-    local launcher="$build_dir/repo/packages/cli/bin/x-cli.js"
-    if [ ! -f "$launcher" ]; then
-        print_message error "Build succeeded but launcher not found at $launcher"
-        exit 1
-    fi
-
-    cp "$launcher" "$INSTALL_DIR/x-cli"
+    cat > "$INSTALL_DIR/x-cli" <<EOF
+#!/bin/sh
+case "\${1:-}" in
+    -h|--help|-V|--version)
+        exec bun run "$source_dir/cli/src/index.tsx" "\$@"
+        ;;
+    *)
+        exec bun run "$source_dir/scripts/dev.ts" "\$@"
+        ;;
+esac
+EOF
     chmod 755 "$INSTALL_DIR/x-cli"
     specific_version="source-${SOURCE_REF}"
 }
@@ -440,6 +445,10 @@ if [[ "$no_modify_path" != "true" ]]; then
             ;;
         esac
     fi
+elif [[ ":$PATH:" != *":$INSTALL_DIR:"* ]]; then
+    print_message warning "The install directory is not on your PATH (--no-modify-path)."
+    print_message info "Run this now:"
+    print_message info "  export PATH=$INSTALL_DIR:\$PATH"
 fi
 
 if [ -n "${GITHUB_ACTIONS-}" ] && [ "${GITHUB_ACTIONS}" == "true" ]; then
@@ -448,14 +457,19 @@ if [ -n "${GITHUB_ACTIONS-}" ] && [ "${GITHUB_ACTIONS}" == "true" ]; then
 fi
 
 echo -e ""
-echo -e "${MUTED}                  ${NC}        ▄      "
-echo -e "${MUTED}█ █▀▀ █ █▀▀█ █▀▀█ ${NC}█   █  █ █▀▀█ █  █"
-echo -e "${MUTED}█▀▀█  █ █▀▀▀ █▀▀▀ ${NC}█▀▀▀█  █ █  █ █▀▀▀"
-echo -e "${MUTED}█ █▀▀ █ ▀▀▀▀ ▀▀▀▀ ${NC}█   █  █ ▀▀▀▀ ▀▀▀▀"
+echo -e "${ORANGE}          _ _ ${NC}"
+echo -e "${ORANGE}__  __  ___| (_${NC}"
+echo -e "${ORANGE}\\ \\/ / / __| | |${NC}"
+echo -e "${ORANGE} >  < | (__| | |${NC}"
+echo -e "${ORANGE}/_/\\_\\(_)___|_|_|${NC}"
 echo -e ""
 echo -e "${MUTED}x-cli is installed. To get started:${NC}"
 echo -e ""
-echo -e "  ${GREEN}x-cli${NC}                  ${MUTED}# launch in current directory${NC}"
+if [[ ":$PATH:" == *":$INSTALL_DIR:"* ]]; then
+    echo -e "  ${GREEN}x-cli${NC}                  ${MUTED}# launch in current directory${NC}"
+else
+    echo -e "  ${GREEN}$INSTALL_DIR/x-cli${NC}    ${MUTED}# launch now${NC}"
+fi
 echo -e ""
 echo -e "${MUTED}Docs:    ${NC}https://github.com/${REPO}#readme"
 echo -e "${MUTED}Issues:  ${NC}https://github.com/${REPO}/issues"

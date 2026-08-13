@@ -7,7 +7,48 @@
 }
 
 @layer base {
-  .root {
-    isolation: isolate;
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-primary) 35%, transparent);
+  }
+}
+
+.landing-shell {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-fd-border) 35%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-fd-border) 24%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+  background-position: center top;
+}
+
+.landing-shell > * {
+  position: relative;
+}
+
+.runtime-map {
+  background-image: radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--color-primary) 12%, transparent), transparent 46%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
